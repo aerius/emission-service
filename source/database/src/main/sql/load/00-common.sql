@@ -6,8 +6,9 @@
  */
 INSERT INTO constants (key, value) VALUES ('SRID', 28992);
 
-{import_common 'general/'}
 {import_common 'i18n/'}
+{import_common 'substances/'}
 {import_common 'sectors/'}
 {import_common 'shipping/'}
 {import_common 'emission_factors/'}
+{import_common 'imaer/'}

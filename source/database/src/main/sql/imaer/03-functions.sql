@@ -57,14 +57,6 @@ BEGIN
 	PERFORM setup.ae_store_query('machinery_fuel_types', 
 		'SELECT code, name, name AS description FROM machinery_fuel_types ORDER BY code',
 		folder || 'IMAER_{queryname}_{datesuffix}.csv', TRUE);
-	
-	PERFORM setup.ae_store_query('authorities', 
-		'SELECT code, name, name AS description FROM authorities INNER JOIN submitting_authorities USING (authority_id) ORDER BY code',
-		folder || 'IMAER_{queryname}_{datesuffix}.csv', TRUE);
-
-	PERFORM setup.ae_store_query('permit_calculation_radius_types', 
-		'SELECT code, name, name AS description FROM permit_calculation_radius_types ORDER BY code',
-		folder || 'IMAER_{queryname}_{datesuffix}.csv', TRUE);
 END;
 $BODY$
 LANGUAGE plpgsql VOLATILE;
