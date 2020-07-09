@@ -18,6 +18,24 @@ CREATE TABLE shipping_inland_categories
 
 
 /*
+ * shipping_inland_waterway_categories
+ * -----------------------------------
+ * Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.
+ * Voor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook aangegeven.
+ */
+CREATE TABLE shipping_inland_waterway_categories
+(
+	shipping_inland_waterway_category_id integer NOT NULL,
+	code text NOT NULL UNIQUE,
+	name text NOT NULL UNIQUE,
+	description text,
+	flowing boolean NOT NULL,
+
+	CONSTRAINT shipping_inland_waterway_categories_pkey PRIMARY KEY (shipping_inland_waterway_category_id)
+);
+
+
+/*
  * shipping_inland_category_emission_factors
  * -----------------------------------------
  * De emissie factoren voor de verschillende soorten varende schepen.

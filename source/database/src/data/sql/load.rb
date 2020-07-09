@@ -6,8 +6,6 @@ run_sql_folder "substances"
 
 run_sql_folder "sectors"
 
-run_sql_folder "shipping"
-
 run_sql_folder "emission_factors"
 
 synchronize_serials
