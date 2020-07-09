@@ -55,18 +55,3 @@ $BODY$
 	SELECT ae_constant('SRID')::integer;
 $BODY$
 LANGUAGE sql IMMUTABLE;
-
-
-/*
- * ae_get_calculator_grid_boundary_box
- * -----------------------------------
- * Retourneert de bounding box van de CALCULATOR_GRID_BOUNDARY_BOX waarde.
- */
-CREATE OR REPLACE FUNCTION ae_get_calculator_grid_boundary_box()
-	RETURNS Box2D AS
-$BODY$
-BEGIN
-	RETURN Box2D(ST_GeomFromText(ae_constant('CALCULATOR_GRID_BOUNDARY_BOX'), ae_get_srid()));
-END;
-$BODY$
-LANGUAGE plpgsql IMMUTABLE;
