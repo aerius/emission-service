@@ -1,0 +1,2 @@
+# ignore possible .user.rb files, which might contain environment specific properties that don't apply in the docker environment.
+*.user.rb
