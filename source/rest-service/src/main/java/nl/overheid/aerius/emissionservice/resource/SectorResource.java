@@ -17,12 +17,16 @@
 package nl.overheid.aerius.emissionservice.resource;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import nl.overheid.aerius.emissionservice.domain.Sector;
@@ -31,12 +35,23 @@ import nl.overheid.aerius.emissionservice.domain.Sector;
 @Path("/sector")
 public class SectorResource {
 
+  private final LocaleHelper localeHelper;
+
+  @Context
+  private HttpHeaders headers;
+
+  @Autowired
+  public SectorResource(final LocaleHelper localeHelper) {
+    this.localeHelper = localeHelper;
+  }
+
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public List<Sector> getSectors() {
+    final Locale locale = localeHelper.getResponseLocale(headers);
     return List.of(
-        new Sector(1, "first sector", "my first mock sector"),
-        new Sector(2, "second sector", "my second mock sector"));
+        new Sector(1, "eerste sector", LocaleHelper.LOCALE_EN.equals(locale) ? "my first mock sector" : "mijn eerste nep sector"),
+        new Sector(2, "tweede sector", LocaleHelper.LOCALE_EN.equals(locale) ? "my second mock sector" : "mijn tweede nep sector"));
   }
 
 }
