@@ -30,28 +30,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import nl.overheid.aerius.emissionservice.domain.Sector;
+import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
 @Path("/sector")
 public class SectorResource {
 
   private final LocaleHelper localeHelper;
+  private final SectorRepository sectorRepository;
 
   @Context
   private HttpHeaders headers;
 
   @Autowired
-  public SectorResource(final LocaleHelper localeHelper) {
+  public SectorResource(final LocaleHelper localeHelper, final SectorRepository sectorRepository) {
     this.localeHelper = localeHelper;
+    this.sectorRepository = sectorRepository;
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public List<Sector> getSectors() {
     final Locale locale = localeHelper.getResponseLocale(headers);
-    return List.of(
-        new Sector(1, "eerste sector", LocaleHelper.LOCALE_EN.equals(locale) ? "my first mock sector" : "mijn eerste nep sector"),
-        new Sector(2, "tweede sector", LocaleHelper.LOCALE_EN.equals(locale) ? "my second mock sector" : "mijn tweede nep sector"));
+    return sectorRepository.getSectors(locale);
   }
 
 }
