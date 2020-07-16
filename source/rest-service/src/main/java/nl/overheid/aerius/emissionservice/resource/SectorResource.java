@@ -16,20 +16,22 @@
  */
 package nl.overheid.aerius.emissionservice.resource;
 
-import java.util.List;
 import java.util.Locale;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.overheid.aerius.emissionservice.domain.Sector;
 import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
@@ -37,22 +39,30 @@ import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 public class SectorResource {
 
   private final LocaleHelper localeHelper;
+  private final VersionHelper versionHelper;
   private final SectorRepository sectorRepository;
 
   @Context
   private HttpHeaders headers;
 
   @Autowired
-  public SectorResource(final LocaleHelper localeHelper, final SectorRepository sectorRepository) {
+  public SectorResource(final LocaleHelper localeHelper, final VersionHelper versionHelper,
+      final SectorRepository sectorRepository) {
     this.localeHelper = localeHelper;
+    this.versionHelper = versionHelper;
     this.sectorRepository = sectorRepository;
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public List<Sector> getSectors() {
+  public Response getSectors(@QueryParam("version") @DefaultValue(VersionHelper.LATEST_VERSION) final String version) {
+    final String actualVersion = versionHelper.validateVersion(version);
     final Locale locale = localeHelper.getResponseLocale(headers);
-    return sectorRepository.getSectors(locale);
+    return Response
+        .status(Status.OK)
+        .header("data-version", actualVersion)
+        .entity(sectorRepository.getSectors(locale))
+        .build();
   }
 
 }
