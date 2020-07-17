@@ -8,19 +8,19 @@ Database part of the AERIUS emission service.
 
 ### With docker
 
-Prefered way to run and developt this application is through docker.
+Prefered way to run and develop this application is through docker.
 
 For this part a local docker installation is required.
 
 To build the image, the following can be used (should be run in `{local_git_repository_folder}/aerius-emission-service/source/database/`):
 ```
-docker build ./ --build-arg SFTP_READONLY_PASSWORD={the_correct_password} --build-arg DATABASE_VERSION={the_correct_version} --tag emissions_database
+docker build ./ --build-arg SFTP_READONLY_PASSWORD={the_correct_password} --build-arg DATABASE_VERSION={the_correct_version} --tag emission_database
 ```
 
 To run this image and have the database available on port 5445, the following can be used:
 
 ```
-docker run --publish 5445:5432 --detach --name emissions_database emissions_database
+docker run --detach --publish 5445:5432 --name emission_database emission_database
 ```
 
 ### Without docker
