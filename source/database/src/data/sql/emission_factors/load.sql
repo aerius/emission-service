@@ -43,12 +43,12 @@ BEGIN; SELECT setup.ae_load_table('mobile_source_on_road_category_emission_facto
 /* Shipping data */
 BEGIN; SELECT setup.ae_load_table('shipping_maritime_categories', '{data_folder}/public/shipping_maritime_categories_20140331.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('shipping_maritime_category_maneuver_properties', '{data_folder}/temp/temp_shipping_maritime_category_maneuver_properties_20140402.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('shipping_maritime_maneuver_areas', '{data_folder}/temp/temp_shipping_maritime_maneuver_areas_20140422.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('shipping_maritime_category_emission_factors', '{data_folder}/public/shipping_maritime_category_emission_factors_20190321.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('shipping_maritime_category_source_characteristics', '{data_folder}/public/shipping_maritime_category_source_characteristics_20190321.txt'); COMMIT;
 
 /* Inland shipping data */
 BEGIN; SELECT setup.ae_load_table('shipping_inland_categories', '{data_folder}/public/shipping_inland_categories_20140327.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('shipping_inland_waterway_categories', '{data_folder}/temp/temp_shipping_inland_waterway_categories_20160301.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('shipping_inland_category_source_characteristics', '{data_folder}/public/shipping_inland_category_source_characteristics_20200616.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('shipping_inland_category_source_characteristics_docked', '{data_folder}/public/shipping_inland_category_source_characteristics_docked_20140326.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('shipping_inland_category_emission_factors', '{data_folder}/public/shipping_inland_category_emission_factors_20200530.txt'); COMMIT;

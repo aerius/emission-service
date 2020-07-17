@@ -1,2 +1,1 @@
--- Load PostGIS
-CREATE EXTENSION postgis;
+-- Currently none, postgis not yet required.

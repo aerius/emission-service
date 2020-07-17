@@ -22,4 +22,3 @@ CREATE TABLE i18n.system_info_messages (
 
   CONSTRAINT system_info_messages_pkey PRIMARY KEY (language_code)
 );
-

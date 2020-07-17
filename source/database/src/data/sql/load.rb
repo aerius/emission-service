@@ -2,13 +2,9 @@ add_build_constants
 
 cluster_tables
 
-run_sql "general.sql"
-
-run_sql_folder "general"
+run_sql_folder "substances"
 
 run_sql_folder "sectors"
-
-run_sql_folder "shipping"
 
 run_sql_folder "emission_factors"
 
