@@ -38,7 +38,7 @@ public class VersionHelper {
     if (LATEST_VERSION.equalsIgnoreCase(version)) {
       internalVersion = versionRepository.getLatestVersion();
     } else if (!versionRepository.isValidVersion(version)) {
-      throw new NotAcceptableException("Could not find supplied version.");
+      throw new NotAcceptableException("Could not find version " + version);
     } else {
       internalVersion = version;
     }
