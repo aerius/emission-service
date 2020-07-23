@@ -35,7 +35,7 @@ import org.springframework.stereotype.Service;
 import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
-@Path("/sector")
+@Path("/sectors")
 public class SectorResource {
 
   private final LocaleHelper localeHelper;
