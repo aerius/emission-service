@@ -32,13 +32,14 @@ import org.jooq.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import nl.overheid.aerius.emissionservice.domain.Sector;
+import nl.overheid.aerius.emissionservice.model.Sector;
 
 @Repository
 public class SectorRepository {
 
   private static final Field<Integer> SECTOR_ID = field("sector_id", Integer.class);
-  private static final Field<String> NAME = field("description", String.class);
+  private static final Field<Integer> ID = field("id", Integer.class);
+  private static final Field<String> NAME = field("name", String.class);
   private static final Field<String> DESCRIPTION = field("description", String.class);
   private static final Field<String> I18N_DESCRIPTION = field("i18n_description", String.class);
 
@@ -54,9 +55,9 @@ public class SectorRepository {
 
   public List<Sector> getSectors(final Locale locale) {
     return dsl.select(
-        SECTOR_ID,
+        SECTOR_ID.as(ID),
         DESCRIPTION.as(NAME),
-        coalesce(I18N_DESCRIPTION, DESCRIPTION))
+        coalesce(I18N_DESCRIPTION, DESCRIPTION).as(DESCRIPTION))
         .from(SECTORS)
         .leftJoin(
             select(SECTOR_ID, DESCRIPTION.as(I18N_DESCRIPTION))

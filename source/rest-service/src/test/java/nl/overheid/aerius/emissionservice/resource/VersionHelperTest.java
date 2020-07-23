@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 
-import javax.ws.rs.NotAcceptableException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.repository.VersionRepository;
 
@@ -75,9 +75,12 @@ class VersionHelperTest {
 
   @Test
   void testValidateVersionWithUnknownVersion() {
-    assertThrows(NotAcceptableException.class, () -> {
+    final ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
       versionHelper.validateVersion("anUnknownVersion");
     });
+
+    assertEquals(HttpStatus.NOT_ACCEPTABLE, exception.getStatus(), "Status used when version unknown");
+    assertEquals("Could not find version anUnknownVersion", exception.getReason(), "Message used when version unknown");
   }
 
 }

@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-import javax.ws.rs.core.HttpHeaders;
-
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.NativeWebRequest;
 
 @Component
 public class LocaleHelper {
@@ -32,11 +32,11 @@ public class LocaleHelper {
   public static Locale LOCALE_EN = Locale.forLanguageTag("en");
   public Collection<Locale> ACCEPTED_LOCALES = List.of(LOCALE_NL, LOCALE_EN);
 
-  public Locale getResponseLocale(final HttpHeaders headers) {
+  public Locale getResponseLocale(final Optional<NativeWebRequest> request) {
     final Optional<Locale> result;
-    final Optional<String> languageHeader = Optional.ofNullable(headers.getHeaderString(HttpHeaders.ACCEPT_LANGUAGE));
+    final Optional<String> languageHeader = request.map(r -> r.getHeader(HttpHeaders.ACCEPT_LANGUAGE));
     if (languageHeader.isPresent()) {
-      final List<Locale.LanguageRange> languageRanges = Locale.LanguageRange.parse(headers.getHeaderString(HttpHeaders.ACCEPT_LANGUAGE));
+      final List<Locale.LanguageRange> languageRanges = Locale.LanguageRange.parse(languageHeader.get());
 
       result = Optional.ofNullable(Locale.lookup(languageRanges, ACCEPTED_LOCALES));
     } else {

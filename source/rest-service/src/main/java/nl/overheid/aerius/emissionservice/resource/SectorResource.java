@@ -16,53 +16,51 @@
  */
 package nl.overheid.aerius.emissionservice.resource;
 
+import java.util.List;
 import java.util.Locale;
-
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.NativeWebRequest;
 
+import nl.overheid.aerius.emissionservice.api.SectorsApiDelegate;
+import nl.overheid.aerius.emissionservice.model.Sector;
 import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
-@Path("/sectors")
-public class SectorResource {
+public class SectorResource implements SectorsApiDelegate {
 
+  private final NativeWebRequest nativeWebRequest;
   private final LocaleHelper localeHelper;
   private final VersionHelper versionHelper;
   private final SectorRepository sectorRepository;
 
-  @Context
-  private HttpHeaders headers;
-
   @Autowired
-  public SectorResource(final LocaleHelper localeHelper, final VersionHelper versionHelper,
+  public SectorResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final VersionHelper versionHelper,
       final SectorRepository sectorRepository) {
+    this.nativeWebRequest = nativeWebRequest;
     this.localeHelper = localeHelper;
     this.versionHelper = versionHelper;
     this.sectorRepository = sectorRepository;
   }
 
-  @GET
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getSectors(@QueryParam("version") @DefaultValue(VersionHelper.LATEST_VERSION) final String version) {
+  @Override
+  public Optional<NativeWebRequest> getRequest() {
+    return Optional.ofNullable(nativeWebRequest);
+  }
+
+  @Override
+  public ResponseEntity<List<Sector>> listSectors(final String version) {
     final String actualVersion = versionHelper.validateVersion(version);
-    final Locale locale = localeHelper.getResponseLocale(headers);
-    return Response
-        .status(Status.OK)
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Sector> sectors = sectorRepository.getSectors(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
         .header("data-version", actualVersion)
-        .entity(sectorRepository.getSectors(locale))
-        .build();
+        .body(sectors);
   }
 
 }
