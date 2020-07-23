@@ -33,6 +33,9 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+    <openapi-generator-maven-plugin.version>4.3.1</openapi-generator-maven-plugin.version>
+    <swagger-annotations.version>1.6.2</swagger-annotations.version>
+    <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
   </properties>
 
   <dependencyManagement>
@@ -48,25 +51,44 @@
   </dependencyManagement>
 
   <dependencies>
+    <!-- Spring boot basic dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jersey</artifactId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jooq</artifactId>
     </dependency>
 
+    <!-- Dependencies for generated code -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>${swagger-annotations.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+      <version>${jackson-databind-nullable.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+    </dependency>
+
+    <!-- Database dependencies -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
     </dependency>
 
+    <!-- Testing dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -93,6 +115,48 @@
             </goals>
             <configuration>
               <mainClass>nl.overheid.aerius.emissionservice.EmissionServiceApplication</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>${openapi-generator-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <!-- Location of our openapi specification file -->
+              <inputSpec>${project.basedir}/src/main/resources/static/api.yaml</inputSpec>
+              <!-- Type of code to generate -->
+              <generatorName>spring</generatorName>
+              <!-- Location where generated code should end up -->
+              <output>${project.build.directory}/openapi/</output>
+              <!-- Package for the api side of things -->
+              <apiPackage>nl.overheid.aerius.emissionservice.api</apiPackage>
+              <!-- Package for the model (or domain) side of things -->
+              <modelPackage>nl.overheid.aerius.emissionservice.model</modelPackage>
+              <!-- 
+                Prevent generating too much by only specifying one file.
+                The ApiUtil is fairly harmless and is actually used in the delegate pattern. 
+                Reason to not want all the default generated files: we'd need more dependencies. 
+              -->
+              <supportingFilesToGenerate>
+                ApiUtil.java
+              </supportingFilesToGenerate>
+              <configOptions>
+                <!-- Not sure yet if we're using dates, but if so we'd better stick to plain java -->
+                <dateLibrary>java8</dateLibrary>
+                <!-- 
+                  Using delegate pattern for easy implementation with spring boot.
+                  Only have to implement an interface and annotate it with the correct annotation.  
+                -->
+                <delegatePattern>true</delegatePattern>
+              </configOptions>
             </configuration>
           </execution>
         </executions>

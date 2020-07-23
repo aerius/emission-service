@@ -16,9 +16,9 @@
  */
 package nl.overheid.aerius.emissionservice.resource;
 
-import javax.ws.rs.NotAcceptableException;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.repository.VersionRepository;
 
@@ -38,7 +38,7 @@ public class VersionHelper {
     if (LATEST_VERSION.equalsIgnoreCase(version)) {
       internalVersion = versionRepository.getLatestVersion();
     } else if (!versionRepository.isValidVersion(version)) {
-      throw new NotAcceptableException("Could not find version " + version);
+      throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Could not find version " + version);
     } else {
       internalVersion = version;
     }
