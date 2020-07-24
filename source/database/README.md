@@ -8,19 +8,20 @@ Database part of the AERIUS emission service.
 
 ### With docker
 
-Prefered way to run and developt this application is through docker.
+Prefered way to run and develop this application is through docker.
 
 For this part a local docker installation is required.
 
 To build the image, the following can be used (should be run in `{local_git_repository_folder}/aerius-emission-service/source/database/`):
+
 ```
-docker build ./ --build-arg SFTP_READONLY_PASSWORD={the_correct_password} --build-arg DATABASE_VERSION={the_correct_version} --tag emissions_database
+docker build ./ --build-arg SFTP_READONLY_PASSWORD={the_correct_password} --build-arg DATABASE_VERSION={the_correct_version} --tag emission_database
 ```
 
 To run this image and have the database available on port 5445, the following can be used:
 
 ```
-docker run --publish 5445:5432 --detach --name emissions_database emissions_database
+docker run --detach --publish 5445:5432 --name emission_database emission_database
 ```
 
 ### Without docker
@@ -42,37 +43,19 @@ Look at settings.rb to get a hint at which other properties might be set.
 Now a set of commands can be used for development purposes while in the root directory of the `database` module (that is, `{local_git_repository_folder}/aerius-emission-service/source/database/`).
 
 To test structure of the database (to detect faults in table declarations and such):
+
 ```
 ruby ../../../aerius-database-build/bin/Build.rb test_structure.rb settings.rb -v structure
 ```
 
 To download required data files from the SFTP server. 
+
 ```
 ruby ../../../aerius-database-build/bin/SyncDBData.rb settings.rb --from-sftp --to-local
 ```
 
 To build an actual database.
+
 ```
 ruby ../../../aerius-database-build/bin/Build.rb default.rb settings.rb -v "some_recognizable_version" -n "aerius-emissions"
 ```
-
-### Disclaimer
-
-Although the source code published here is of the AERIUS products no rights are granted. The owner of AERIUS assumes no liability. AERIUS is a registered trademark in the Benelux. All rights not expressly granted herein are reserved.
-
-### LICENSE
-
-Copyright [the State of the Netherlands](https://www.government.nl)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/.
