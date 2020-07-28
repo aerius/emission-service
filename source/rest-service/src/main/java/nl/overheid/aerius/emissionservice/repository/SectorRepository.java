@@ -16,55 +16,58 @@
  */
 package nl.overheid.aerius.emissionservice.repository;
 
+import static nl.overheid.aerius.emissionservice.jooq.template.Template.TEMPLATE;
 import static org.jooq.impl.DSL.coalesce;
-import static org.jooq.impl.DSL.condition;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
-import static org.jooq.impl.DSL.table;
 
 import java.util.List;
 import java.util.Locale;
 
-import org.jooq.DSLContext;
 import org.jooq.Field;
-import org.jooq.Record;
-import org.jooq.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
 import nl.overheid.aerius.emissionservice.model.Sector;
 
 @Repository
 public class SectorRepository {
 
-  private static final Field<Integer> SECTOR_ID = field("sector_id", Integer.class);
   private static final Field<Integer> ID = field("id", Integer.class);
   private static final Field<String> NAME = field("name", String.class);
   private static final Field<String> DESCRIPTION = field("description", String.class);
   private static final Field<String> I18N_DESCRIPTION = field("i18n_description", String.class);
 
-  private static final Table<Record> SECTORS = table("sectors");
-  private static final Table<Record> I18N_SECTORS = table("i18n.sectors");
-
-  private final DSLContext dsl;
+  private final DatasetStore datasetStore;
 
   @Autowired
-  public SectorRepository(final DSLContext dsl) {
-    this.dsl = dsl;
+  public SectorRepository(final DatasetStore datasetStore) {
+    this.datasetStore = datasetStore;
   }
 
   public List<Sector> getSectors(final Locale locale) {
-    return dsl.select(
-        SECTOR_ID.as(ID),
-        DESCRIPTION.as(NAME),
-        coalesce(I18N_DESCRIPTION, DESCRIPTION).as(DESCRIPTION))
-        .from(SECTORS)
+    return datasetStore.dsl().select(
+        TEMPLATE.SECTORS.SECTOR_ID.as(ID),
+        TEMPLATE.SECTORS.DESCRIPTION.as(NAME),
+        coalesce(I18N_DESCRIPTION, TEMPLATE.SECTORS.DESCRIPTION).as(DESCRIPTION))
+        .from(TEMPLATE.SECTORS)
         .leftJoin(
-            select(SECTOR_ID, DESCRIPTION.as(I18N_DESCRIPTION))
-                .from(I18N_SECTORS)
-                .where(condition("language_code = ?::i18n.language_code_type", locale.getLanguage())))
-        .using(SECTOR_ID)
+            select(TEMPLATE.I18N_SECTORS.SECTOR_ID, TEMPLATE.I18N_SECTORS.DESCRIPTION.as(I18N_DESCRIPTION))
+                .from(TEMPLATE.I18N_SECTORS)
+                .where(TEMPLATE.I18N_SECTORS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+        .using(TEMPLATE.SECTORS.SECTOR_ID)
         .fetchInto(Sector.class);
+  }
+
+  private LanguageCodeType getLanguageCodeType(final Locale locale) {
+    LanguageCodeType codeType = LanguageCodeType.nl_;
+    for (final LanguageCodeType value : LanguageCodeType.values()) {
+      if (value.getLiteral().equalsIgnoreCase(locale.getLanguage())) {
+        codeType = value;
+      }
+    }
+    return codeType;
   }
 
 }
