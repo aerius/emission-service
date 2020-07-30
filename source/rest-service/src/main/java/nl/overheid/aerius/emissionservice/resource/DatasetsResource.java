@@ -25,10 +25,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.api.DatasetsApiDelegate;
+import nl.overheid.aerius.emissionservice.model.Category;
+import nl.overheid.aerius.emissionservice.model.FarmLodging;
 import nl.overheid.aerius.emissionservice.model.Sector;
 import nl.overheid.aerius.emissionservice.repository.DatasetStore;
+import nl.overheid.aerius.emissionservice.repository.FarmRepository;
 import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
@@ -39,15 +43,17 @@ public class DatasetsResource implements DatasetsApiDelegate {
   private final DatasetHelper datasetHelper;
   private final DatasetStore datasetStore;
   private final SectorRepository sectorRepository;
+  private final FarmRepository farmRepository;
 
   @Autowired
   public DatasetsResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final DatasetHelper datasetHelper,
-      final DatasetStore datasetStore, final SectorRepository sectorRepository) {
+      final DatasetStore datasetStore, final SectorRepository sectorRepository, final FarmRepository farmRepository) {
     this.nativeWebRequest = nativeWebRequest;
     this.localeHelper = localeHelper;
     this.datasetHelper = datasetHelper;
     this.datasetStore = datasetStore;
     this.sectorRepository = sectorRepository;
+    this.farmRepository = farmRepository;
   }
 
   @Override
@@ -64,6 +70,29 @@ public class DatasetsResource implements DatasetsApiDelegate {
         .status(HttpStatus.OK)
         .header("dataset", actualDataset)
         .body(sectors);
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listFarmLodgings(final String dataset, final String animalCode) {
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmLodgings(locale, Optional.ofNullable(animalCode));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header("dataset", actualDataset)
+        .body(categories);
+  }
+
+  @Override
+  public ResponseEntity<FarmLodging> getFarmLodging(final String dataset, final String code) {
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmLodging lodging = farmRepository.getFarmLodging(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header("dataset", actualDataset)
+        .body(lodging);
   }
 
   private String handleDataset(final String dataset) {

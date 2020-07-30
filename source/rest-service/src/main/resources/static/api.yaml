@@ -60,6 +60,94 @@ paths:
         404:
           description: Supplied dataset not found.
           content: {}
+  /datasets/{dataset}/farmanimals:
+    get:
+      summary: List all farm animal categories
+      operationId: listFarmAnimals
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+      responses:
+        200:
+          description: An array of possible farm animal categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        404:
+          description: Supplied dataset not found.
+          content: {}
+  /datasets/{dataset}/farmlodgings:
+    get:
+      summary: List all farm lodging categories
+      operationId: listFarmLodgings
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+        - name: animalcode
+          in: query
+          description: filter for a specific animal category code.
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: An array of possible farm lodging categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        404:
+          description: Supplied dataset not found.
+          content: {}
+  /datasets/{dataset}/farmlodgings/{code}:
+    get:
+      summary: Get specific farm lodging information
+      operationId: getFarmLodging
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+        - name: code
+          in: path
+          description: Which farm lodging category to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: An array of possible farm lodging categories
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FarmLodging"
+        404:
+          description: Supplied dataset not found.
+          content: {}
 components:
   schemas:
     Sector:
@@ -75,3 +163,42 @@ components:
           type: string
         description:
           type: string
+    Category:
+      type: object
+      required:
+        - code
+        - name
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    FarmLodging:
+      type: object
+      required:
+        - code
+        - name
+        - emissionFactors
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        emissionFactors:
+          type: array
+          items:
+            $ref: "#/components/schemas/EmissionFactor"
+    EmissionFactor:
+      type: object
+      required:
+        - substance
+        - factor
+      properties:
+        substance:
+          type: string
+        factor:
+          type: number
