@@ -20,29 +20,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import nl.overheid.aerius.emissionservice.repository.VersionRepository;
+import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
 @Component
-public class VersionHelper {
+public class DatasetHelper {
 
-  public static final String LATEST_VERSION = "LATEST";
+  public static final String LATEST_DATASET = "LATEST";
 
-  private final VersionRepository versionRepository;
+  private final DatasetRepository datasetRepository;
 
-  public VersionHelper(final VersionRepository versionRepository) {
-    this.versionRepository = versionRepository;
+  public DatasetHelper(final DatasetRepository datasetRepository) {
+    this.datasetRepository = datasetRepository;
   }
 
-  public String validateVersion(final String version) {
-    final String internalVersion;
-    if (LATEST_VERSION.equalsIgnoreCase(version)) {
-      internalVersion = versionRepository.getLatestVersion();
-    } else if (!versionRepository.isValidVersion(version)) {
-      throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Could not find version " + version);
+  public String validateDataset(final String dataset) {
+    final String internalDataset;
+    if (LATEST_DATASET.equalsIgnoreCase(dataset)) {
+      internalDataset = datasetRepository.getLatestDataset();
+    } else if (!datasetRepository.isValidDataset(dataset)) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find dataset " + dataset);
     } else {
-      internalVersion = version;
+      internalDataset = dataset;
     }
-    return internalVersion;
+    return internalDataset;
   }
 
 }

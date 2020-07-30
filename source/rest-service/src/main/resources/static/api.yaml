@@ -2,37 +2,49 @@ openapi: 3.0.1
 info:
   title: AERIUS emission service
   description: 'This is a service to retrieve AERIUS emission factors for different sectors'
-  termsOfService: TODO
-  contact:
-    email: TODO
   license:
     name: GNU Affero General Public License v3.0
     url: https://www.gnu.org/licenses/agpl-3.0.nl.html
   version: 1.0.0
 externalDocs:
   description: Find out more about AERIUS
-  url: https://aerius.nl
+  url: https://aerius.nl/
 servers:
-- url: TODO
+- url: http://localhost:8080/
 tags:
-- name: version
-  description: Information about the different versions
+- name: dataset
+  description: Information about the different datasets
 - name: sectors
   description: Sector specific information
 - name: farming
   description: Farm specific information
 paths:
-  /sectors:
+  /datasets:
+    get:
+      summary: List all datasets
+      operationId: listDatasets
+      tags:
+        - dataset
+      responses:
+        200:
+          description: An array of datasets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /datasets/{dataset}/sectors:
     get:
       summary: List all sectors
       operationId: listSectors
       tags:
         - sectors
       parameters:
-        - name: version
-          in: query
-          description: Which version to retrieve sectors for.
-          required: false
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve sectors for.
+          required: true
           schema:
             type: string
             default: LATEST
@@ -40,11 +52,13 @@ paths:
         200:
           description: An array of sectors
           content:
-            application/json:    
+            application/json:
               schema:
-                $ref: "#/components/schemas/Sectors"
-        406:
-          description: Supplied version not valid.
+                type: array
+                items:
+                  $ref: "#/components/schemas/Sector"
+        404:
+          description: Supplied dataset not found.
           content: {}
 components:
   schemas:
@@ -61,7 +75,3 @@ components:
           type: string
         description:
           type: string
-    Sectors:
-      type: array
-      items:
-        $ref: "#/components/schemas/Sector"

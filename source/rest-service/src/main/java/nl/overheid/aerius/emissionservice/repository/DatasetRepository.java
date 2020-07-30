@@ -19,17 +19,17 @@ package nl.overheid.aerius.emissionservice.repository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VersionRepository {
+public class DatasetRepository {
 
-  public static final String LATEST_VERSION = "dev";
+  public static final String LATEST_DATASET = "dev";
 
-  public String getLatestVersion() {
-    return LATEST_VERSION;
+  public String getLatestDataset() {
+    return LATEST_DATASET;
   }
 
-  public boolean isValidVersion(final String version) {
-    // For now only accept one version, but this should be determined from database.
-    if (LATEST_VERSION.equalsIgnoreCase(version)) {
+  public boolean isValidDataset(final String dataset) {
+    // For now only accept one dataset, but this should be determined from database.
+    if (LATEST_DATASET.equalsIgnoreCase(dataset)) {
       return true;
     } else {
       return false;

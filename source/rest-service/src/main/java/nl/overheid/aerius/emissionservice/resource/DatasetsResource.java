@@ -26,26 +26,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import nl.overheid.aerius.emissionservice.api.SectorsApiDelegate;
+import nl.overheid.aerius.emissionservice.api.DatasetsApiDelegate;
 import nl.overheid.aerius.emissionservice.model.Sector;
 import nl.overheid.aerius.emissionservice.repository.DatasetStore;
 import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
-public class SectorResource implements SectorsApiDelegate {
+public class DatasetsResource implements DatasetsApiDelegate {
 
   private final NativeWebRequest nativeWebRequest;
   private final LocaleHelper localeHelper;
-  private final VersionHelper versionHelper;
+  private final DatasetHelper datasetHelper;
   private final DatasetStore datasetStore;
   private final SectorRepository sectorRepository;
 
   @Autowired
-  public SectorResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final VersionHelper versionHelper,
+  public DatasetsResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final DatasetHelper datasetHelper,
       final DatasetStore datasetStore, final SectorRepository sectorRepository) {
     this.nativeWebRequest = nativeWebRequest;
     this.localeHelper = localeHelper;
-    this.versionHelper = versionHelper;
+    this.datasetHelper = datasetHelper;
     this.datasetStore = datasetStore;
     this.sectorRepository = sectorRepository;
   }
@@ -56,15 +56,20 @@ public class SectorResource implements SectorsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Sector>> listSectors(final String version) {
-    final String actualVersion = versionHelper.validateVersion(version);
-    datasetStore.setDataset(actualVersion);
+  public ResponseEntity<List<Sector>> listSectors(final String dataset) {
+    final String actualDataset = handleDataset(dataset);
     final Locale locale = localeHelper.getResponseLocale(getRequest());
     final List<Sector> sectors = sectorRepository.getSectors(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("data-version", actualVersion)
+        .header("dataset", actualDataset)
         .body(sectors);
+  }
+
+  private String handleDataset(final String dataset) {
+    final String actualDataset = datasetHelper.validateDataset(dataset);
+    datasetStore.setDataset(actualDataset);
+    return actualDataset;
   }
 
 }
