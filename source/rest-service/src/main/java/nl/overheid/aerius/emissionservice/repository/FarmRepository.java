@@ -16,7 +16,9 @@
  */
 package nl.overheid.aerius.emissionservice.repository;
 
-import static nl.overheid.aerius.emissionservice.jooq.template.Template.TEMPLATE;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAnimalCategories.FARM_ANIMAL_CATEGORIES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypes.FARM_LODGING_TYPES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmLodgingTypes.I18N_FARM_LODGING_TYPES;
 import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
@@ -47,20 +49,20 @@ public class FarmRepository {
 
   public List<Category> getFarmLodgings(final Locale locale, final Optional<String> animalCode) {
     return datasetStore.dsl().select(
-        TEMPLATE.FARM_LODGING_TYPES.CODE,
-        TEMPLATE.FARM_LODGING_TYPES.NAME,
-        coalesce(I18N_DESCRIPTION, TEMPLATE.FARM_LODGING_TYPES.DESCRIPTION).as(DESCRIPTION))
-        .from(TEMPLATE.FARM_LODGING_TYPES)
+        FARM_LODGING_TYPES.CODE,
+        FARM_LODGING_TYPES.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_LODGING_TYPES.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_TYPES)
         .leftJoin(
-            select(TEMPLATE.I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, TEMPLATE.I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
-                .from(TEMPLATE.I18N_FARM_LODGING_TYPES)
-                .where(TEMPLATE.I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
-        .using(TEMPLATE.FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
+            select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
+                .from(I18N_FARM_LODGING_TYPES)
+                .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+        .using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
         .where(animalCode.isPresent()
-            ? TEMPLATE.FARM_LODGING_TYPES.FARM_ANIMAL_CATEGORY_ID.in(
-                select(TEMPLATE.FARM_ANIMAL_CATEGORIES.FARM_ANIMAL_CATEGORY_ID)
-                    .from(TEMPLATE.FARM_ANIMAL_CATEGORIES)
-                    .where(TEMPLATE.FARM_ANIMAL_CATEGORIES.CODE.eq(animalCode.get())))
+            ? FARM_LODGING_TYPES.FARM_ANIMAL_CATEGORY_ID.in(
+                select(FARM_ANIMAL_CATEGORIES.FARM_ANIMAL_CATEGORY_ID)
+                    .from(FARM_ANIMAL_CATEGORIES)
+                    .where(FARM_ANIMAL_CATEGORIES.CODE.eq(animalCode.get())))
             : trueCondition())
         .fetchInto(Category.class);
   }
