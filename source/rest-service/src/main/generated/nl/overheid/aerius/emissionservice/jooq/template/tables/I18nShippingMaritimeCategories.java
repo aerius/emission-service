@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * Vertaaltabel voor categorieën van verschillende soorten zeevaart-schepen.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nShippingMaritimeCategories extends TableImpl<I18nShippingMaritimeCategoriesRecord> {
 
-    private static final long serialVersionUID = 573901173;
+    private static final long serialVersionUID = 763360229;
 
     /**
      * The reference instance of <code>template.i18n_shipping_maritime_categories</code>
@@ -96,7 +96,7 @@ public class I18nShippingMaritimeCategories extends TableImpl<I18nShippingMariti
     }
 
     private I18nShippingMaritimeCategories(Name alias, Table<I18nShippingMaritimeCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten zeevaart-schepen.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten zeevaart-schepen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_maritime.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nShippingMaritimeCategories(Table<O> child, ForeignKey<O, I18nShippingMaritimeCategoriesRecord> key) {

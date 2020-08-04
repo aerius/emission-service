@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * De verschillende soorten werktuigen met naam en sector waarin zij gebruikt 
  * worden.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypes extends TableImpl<MachineryTypesRecord> {
 
-    private static final long serialVersionUID = -1005028622;
+    private static final long serialVersionUID = -195098526;
 
     /**
      * The reference instance of <code>template.machinery_types</code>
@@ -100,7 +100,7 @@ public class MachineryTypes extends TableImpl<MachineryTypesRecord> {
     }
 
     private MachineryTypes(Name alias, Table<MachineryTypesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De verschillende soorten werktuigen met naam en sector waarin zij gebruikt worden.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De verschillende soorten werktuigen met naam en sector waarin zij gebruikt worden.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> MachineryTypes(Table<O> child, ForeignKey<O, MachineryTypesRecord> key) {

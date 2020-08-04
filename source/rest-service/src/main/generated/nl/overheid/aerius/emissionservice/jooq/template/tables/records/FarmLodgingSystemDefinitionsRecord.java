@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Zie http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschrijvingen
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingSystemDefinitionsRecord extends UpdatableRecordImpl<FarmLodgingSystemDefinitionsRecord> implements Record4<Integer, String, String, String> {
 
-    private static final long serialVersionUID = -1751473302;
+    private static final long serialVersionUID = -1060698526;
 
     /**
      * Setter for <code>template.farm_lodging_system_definitions.farm_lodging_system_definition_id</code>.

@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * Zie http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschrijvingen
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingSystemDefinitions extends TableImpl<FarmLodgingSystemDefinitionsRecord> {
 
-    private static final long serialVersionUID = -1378216491;
+    private static final long serialVersionUID = -1717399083;
 
     /**
      * The reference instance of <code>template.farm_lodging_system_definitions</code>
@@ -97,7 +97,7 @@ public class FarmLodgingSystemDefinitions extends TableImpl<FarmLodgingSystemDef
     }
 
     private FarmLodgingSystemDefinitions(Name alias, Table<FarmLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Stalbeschrijvingen (BWL-nummers) zoals gebruikt voor de stalsystemen in de RAV.\r\nZie http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschrijvingen\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Stalbeschrijvingen (BWL-nummers) zoals gebruikt voor de stalsystemen in de RAV.\r\nZie http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschrijvingen\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingSystemDefinitions(Table<O> child, ForeignKey<O, FarmLodgingSystemDefinitionsRecord> key) {

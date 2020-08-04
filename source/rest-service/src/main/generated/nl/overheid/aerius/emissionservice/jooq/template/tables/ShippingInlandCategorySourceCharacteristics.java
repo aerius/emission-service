@@ -32,12 +32,12 @@ import org.jooq.impl.TableImpl;
  * Deze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen 
  * en ladingstoestand.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategorySourceCharacteristics extends TableImpl<ShippingInlandCategorySourceCharacteristicsRecord> {
 
-    private static final long serialVersionUID = -1143829995;
+    private static final long serialVersionUID = -1389901691;
 
     /**
      * The reference instance of <code>template.shipping_inland_category_source_characteristics</code>
@@ -118,7 +118,7 @@ public class ShippingInlandCategorySourceCharacteristics extends TableImpl<Shipp
     }
 
     private ShippingInlandCategorySourceCharacteristics(Name alias, Table<ShippingInlandCategorySourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken voor verschillende soorten varende schepen.\r\nDeze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen en ladingstoestand.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken voor verschillende soorten varende schepen.\r\nDeze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen en ladingstoestand.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingInlandCategorySourceCharacteristics(Table<O> child, ForeignKey<O, ShippingInlandCategorySourceCharacteristicsRecord> key) {

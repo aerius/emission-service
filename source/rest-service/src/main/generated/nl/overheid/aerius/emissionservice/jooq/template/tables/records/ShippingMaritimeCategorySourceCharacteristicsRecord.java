@@ -28,12 +28,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Spreiding is verder weer een karakteristiek die sterk samenhangt per hoogte, 
  * en is daarom ook meegenomen in deze tabel.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategorySourceCharacteristicsRecord extends UpdatableRecordImpl<ShippingMaritimeCategorySourceCharacteristicsRecord> implements Record7<Short, Short, ShippingMovementType, Integer, Float, Float, Float> {
 
-    private static final long serialVersionUID = -308689850;
+    private static final long serialVersionUID = 1576148542;
 
     /**
      * Setter for <code>template.shipping_maritime_category_source_characteristics.shipping_maritime_category_id</code>.

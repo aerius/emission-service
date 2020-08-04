@@ -21,12 +21,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Standaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen 
  * worden.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategoriesRecord extends UpdatableRecordImpl<ShippingInlandCategoriesRecord> implements Record4<Short, String, String, String> {
 
-    private static final long serialVersionUID = 633985930;
+    private static final long serialVersionUID = -918677102;
 
     /**
      * Setter for <code>template.shipping_inland_categories.shipping_inland_category_id</code>.

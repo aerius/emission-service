@@ -32,12 +32,12 @@ import org.jooq.impl.TableImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/plans.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PlanCategories extends TableImpl<PlanCategoriesRecord> {
 
-    private static final long serialVersionUID = -2075400777;
+    private static final long serialVersionUID = 1295695031;
 
     /**
      * The reference instance of <code>template.plan_categories</code>
@@ -108,7 +108,7 @@ public class PlanCategories extends TableImpl<PlanCategoriesRecord> {
     }
 
     private PlanCategories(Name alias, Table<PlanCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten plannen.\r\n\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/plans.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten plannen.\r\n\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql"), TableOptions.table());
     }
 
     public <O extends Record> PlanCategories(Table<O> child, ForeignKey<O, PlanCategoriesRecord> key) {

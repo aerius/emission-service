@@ -20,12 +20,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * @column energy_efficiency efficientie van de motor in g/kWh (hoeveel gram 
  * brandstof benodigd is voor 1 kWh).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypeFuelOptionsRecord extends UpdatableRecordImpl<MachineryTypeFuelOptionsRecord> implements Record5<Integer, Integer, Integer, Float, Float> {
 
-    private static final long serialVersionUID = -1630090183;
+    private static final long serialVersionUID = 1410175153;
 
     /**
      * Setter for <code>template.machinery_type_fuel_options.machinery_type_id</code>.

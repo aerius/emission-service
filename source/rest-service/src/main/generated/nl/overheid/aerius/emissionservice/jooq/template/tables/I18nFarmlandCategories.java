@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * Vertaaltabel voor categorieën van verschillende soorten landbouw grond 
  * activiteiten.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/farm_fields.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/farm_fields.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nFarmlandCategories extends TableImpl<I18nFarmlandCategoriesRecord> {
 
-    private static final long serialVersionUID = -184008385;
+    private static final long serialVersionUID = 1481478095;
 
     /**
      * The reference instance of <code>template.i18n_farmland_categories</code>
@@ -96,7 +96,7 @@ public class I18nFarmlandCategories extends TableImpl<I18nFarmlandCategoriesReco
     }
 
     private I18nFarmlandCategories(Name alias, Table<I18nFarmlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten landbouw grond activiteiten.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/farm_fields.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten landbouw grond activiteiten.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/farm_fields.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nFarmlandCategories(Table<O> child, ForeignKey<O, I18nFarmlandCategoriesRecord> key) {

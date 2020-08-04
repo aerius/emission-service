@@ -38,12 +38,12 @@ import org.jooq.impl.TableImpl;
  * @column emission_factor_idle EFS_plci, emissie factor stationair per uur 
  * per liter cilinder-inhoud (g/l/uur)
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOffRoadCategoryEmissionFactors extends TableImpl<MobileSourceOffRoadCategoryEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = 1089001103;
+    private static final long serialVersionUID = 1364950927;
 
     /**
      * The reference instance of <code>template.mobile_source_off_road_category_emission_factors</code>
@@ -104,7 +104,7 @@ public class MobileSourceOffRoadCategoryEmissionFactors extends TableImpl<Mobile
     }
 
     private MobileSourceOffRoadCategoryEmissionFactors(Name alias, Table<MobileSourceOffRoadCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren (werkend en stationair) voor stageklassen.\r\n\r\nHet veld emission_factor_idle is leeg indien er geen stationaire emissieberekening mogelijk is voor een stageklasse. Er bevindt zich dan ook geen bijbehorend record in {@see mobile_source_off_road_category_idle_properties}.\r\n\r\n@column emission_factor_working EFW_plb, emissie factor werkend per liter brandstof (g/l)\r\n@column emission_factor_idle EFS_plci, emissie factor stationair per uur per liter cilinder-inhoud (g/l/uur)\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren (werkend en stationair) voor stageklassen.\r\n\r\nHet veld emission_factor_idle is leeg indien er geen stationaire emissieberekening mogelijk is voor een stageklasse. Er bevindt zich dan ook geen bijbehorend record in {@see mobile_source_off_road_category_idle_properties}.\r\n\r\n@column emission_factor_working EFW_plb, emissie factor werkend per liter brandstof (g/l)\r\n@column emission_factor_idle EFS_plci, emissie factor stationair per uur per liter cilinder-inhoud (g/l/uur)\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     public <O extends Record> MobileSourceOffRoadCategoryEmissionFactors(Table<O> child, ForeignKey<O, MobileSourceOffRoadCategoryEmissionFactorsRecord> key) {

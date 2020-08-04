@@ -44,12 +44,12 @@ import org.jooq.impl.TableImpl;
  * @column reduction_factor_total De gecombineerde reductiefactor voor de 
  * emissie vanaf de vloer en uit de mestkelder
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasureReductionFactors extends TableImpl<FarmLodgingFodderMeasureReductionFactorsRecord> {
 
-    private static final long serialVersionUID = -95808442;
+    private static final long serialVersionUID = -1485811274;
 
     /**
      * The reference instance of <code>template.farm_lodging_fodder_measure_reduction_factors</code>
@@ -115,7 +115,7 @@ public class FarmLodgingFodderMeasureReductionFactors extends TableImpl<FarmLodg
     }
 
     private FarmLodgingFodderMeasureReductionFactors(Name alias, Table<FarmLodgingFodderMeasureReductionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Bevat de reductie factoren (factor 0..1) van de voer- en managementmaatregelen.\r\nAls er maatregelen op een stalsysteem worden toegepast, wordt van de combinatie van maatregelen eerst een enkele reductiefactor bepaalt. Deze reductiefactor wordt vervolgens toegepast op de totale emissie van het stalsysteem waarop gestapeld wordt, inclusief eventuele additionele en emissiereducerende staltechnieken die hierop gestapeld zijn.\r\n\r\n@column reduction_factor_floor De reductiefactor voor de emissie vanaf de vloer\r\n@column reduction_factor_cellar De reductiefactor voor de emissie uit de mestkelder\r\n@column reduction_factor_total De gecombineerde reductiefactor voor de emissie vanaf de vloer en uit de mestkelder\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Bevat de reductie factoren (factor 0..1) van de voer- en managementmaatregelen.\r\nAls er maatregelen op een stalsysteem worden toegepast, wordt van de combinatie van maatregelen eerst een enkele reductiefactor bepaalt. Deze reductiefactor wordt vervolgens toegepast op de totale emissie van het stalsysteem waarop gestapeld wordt, inclusief eventuele additionele en emissiereducerende staltechnieken die hierop gestapeld zijn.\r\n\r\n@column reduction_factor_floor De reductiefactor voor de emissie vanaf de vloer\r\n@column reduction_factor_cellar De reductiefactor voor de emissie uit de mestkelder\r\n@column reduction_factor_total De gecombineerde reductiefactor voor de emissie vanaf de vloer en uit de mestkelder\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingFodderMeasureReductionFactors(Table<O> child, ForeignKey<O, FarmLodgingFodderMeasureReductionFactorsRecord> key) {

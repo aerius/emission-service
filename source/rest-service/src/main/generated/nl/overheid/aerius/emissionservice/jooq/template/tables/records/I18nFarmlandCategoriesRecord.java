@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Vertaaltabel voor categorieën van verschillende soorten landbouw grond 
  * activiteiten.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/farm_fields.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/farm_fields.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nFarmlandCategoriesRecord extends UpdatableRecordImpl<I18nFarmlandCategoriesRecord> implements Record4<Short, LanguageCodeType, String, String> {
 
-    private static final long serialVersionUID = -1474182132;
+    private static final long serialVersionUID = -1302542716;
 
     /**
      * Setter for <code>template.i18n_farmland_categories.farmland_category_id</code>.

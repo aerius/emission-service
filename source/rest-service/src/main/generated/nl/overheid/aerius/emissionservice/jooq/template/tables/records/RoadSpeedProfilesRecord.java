@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Tabel met daarin de verschillende snelheidstyperingen per wegtype.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfilesRecord> implements Record5<Integer, RoadType, SpeedLimitEnforcementType, Integer, String> {
 
-    private static final long serialVersionUID = -779724441;
+    private static final long serialVersionUID = 1940428655;
 
     /**
      * Setter for <code>template.road_speed_profiles.road_speed_profile_id</code>.

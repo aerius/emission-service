@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Vertaaltabel voor categorieën van verschillende soorten brandstof.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMachineryFuelTypesRecord extends UpdatableRecordImpl<I18nMachineryFuelTypesRecord> implements Record3<Integer, LanguageCodeType, String> {
 
-    private static final long serialVersionUID = 834248118;
+    private static final long serialVersionUID = -1914048722;
 
     /**
      * Setter for <code>template.i18n_machinery_fuel_types.machinery_fuel_type_id</code>.

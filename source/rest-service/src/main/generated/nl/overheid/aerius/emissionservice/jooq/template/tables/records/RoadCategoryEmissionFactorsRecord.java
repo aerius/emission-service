@@ -21,12 +21,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * LET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk 
  * aan de AERIUS beleidsjaren.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadCategoryEmissionFactorsRecord> implements Record6<Integer, Integer, Short, Short, Double, Double> {
 
-    private static final long serialVersionUID = -809372764;
+    private static final long serialVersionUID = 1430185516;
 
     /**
      * Setter for <code>template.road_category_emission_factors.road_category_id</code>.

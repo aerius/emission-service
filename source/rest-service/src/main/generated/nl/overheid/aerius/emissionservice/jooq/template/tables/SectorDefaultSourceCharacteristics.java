@@ -28,12 +28,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Standaard OPS kenmerken per sector.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SectorDefaultSourceCharacteristics extends TableImpl<SectorDefaultSourceCharacteristicsRecord> {
 
-    private static final long serialVersionUID = 1893449187;
+    private static final long serialVersionUID = 1613584593;
 
     /**
      * The reference instance of <code>template.sector_default_source_characteristics</code>
@@ -104,7 +104,7 @@ public class SectorDefaultSourceCharacteristics extends TableImpl<SectorDefaultS
     }
 
     private SectorDefaultSourceCharacteristics(Name alias, Table<SectorDefaultSourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Standaard OPS kenmerken per sector.\r\n\r\n@file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Standaard OPS kenmerken per sector.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
     }
 
     public <O extends Record> SectorDefaultSourceCharacteristics(Table<O> child, ForeignKey<O, SectorDefaultSourceCharacteristicsRecord> key) {

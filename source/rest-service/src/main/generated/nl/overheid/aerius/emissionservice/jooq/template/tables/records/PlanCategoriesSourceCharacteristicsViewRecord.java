@@ -19,12 +19,12 @@ import org.jooq.impl.TableRecordImpl;
  * Zie plan_categories en plan_category_emission_factors voor meer informatie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/misc.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/misc.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PlanCategoriesSourceCharacteristicsViewRecord extends TableRecordImpl<PlanCategoriesSourceCharacteristicsViewRecord> implements Record13<Short, String, String, Integer, Short, UnitType, Float, Float, Float, Float, Integer, Integer, String> {
 
-    private static final long serialVersionUID = 233816240;
+    private static final long serialVersionUID = -2003683928;
 
     /**
      * Setter for <code>template.plan_categories_source_characteristics_view.plan_category_id</code>.

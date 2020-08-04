@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Vertaaltabel voor de verschillende type temporele variaties.
  * 
- * @file source/database/src/main/sql/sectors/i18n/base_keys.sql
+ * @file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nEmissionDiurnalVariationsRecord extends UpdatableRecordImpl<I18nEmissionDiurnalVariationsRecord> implements Record4<Integer, LanguageCodeType, String, String> {
 
-    private static final long serialVersionUID = 756532712;
+    private static final long serialVersionUID = -562406255;
 
     /**
      * Setter for <code>template.i18n_emission_diurnal_variations.emission_diurnal_variation_id</code>.

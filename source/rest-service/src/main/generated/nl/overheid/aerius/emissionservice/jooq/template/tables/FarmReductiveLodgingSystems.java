@@ -32,12 +32,12 @@ import org.jooq.impl.TableImpl;
  * Deze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.
  * Ook aangegeven is of het een luchtwasser is.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmReductiveLodgingSystems extends TableImpl<FarmReductiveLodgingSystemsRecord> {
 
-    private static final long serialVersionUID = -895516876;
+    private static final long serialVersionUID = -332985164;
 
     /**
      * The reference instance of <code>template.farm_reductive_lodging_systems</code>
@@ -108,7 +108,7 @@ public class FarmReductiveLodgingSystems extends TableImpl<FarmReductiveLodgingS
     }
 
     private FarmReductiveLodgingSystems(Name alias, Table<FarmReductiveLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Emissiereducerende staltechnieken. Dit zijn staltechnieken die zorgen voor minder emissies en gestapeld kunnen worden op een stalsysteem (farm_lodging_type).\r\nDeze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.\r\nOok aangegeven is of het een luchtwasser is.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Emissiereducerende staltechnieken. Dit zijn staltechnieken die zorgen voor minder emissies en gestapeld kunnen worden op een stalsysteem (farm_lodging_type).\r\nDeze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.\r\nOok aangegeven is of het een luchtwasser is.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmReductiveLodgingSystems(Table<O> child, ForeignKey<O, FarmReductiveLodgingSystemsRecord> key) {

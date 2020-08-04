@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven 
  * aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SectorsMainGcnSector extends TableImpl<SectorsMainGcnSectorRecord> {
 
-    private static final long serialVersionUID = 1001806099;
+    private static final long serialVersionUID = -2007876991;
 
     /**
      * The reference instance of <code>template.sectors_main_gcn_sector</code>
@@ -85,7 +85,7 @@ public class SectorsMainGcnSector extends TableImpl<SectorsMainGcnSectorRecord> 
     }
 
     private SectorsMainGcnSector(Name alias, Table<SectorsMainGcnSectorRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.\r\n\r\n@file source/database/src/main/sql/sectors/02-tables/01-sectors.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql"), TableOptions.table());
     }
 
     public <O extends Record> SectorsMainGcnSector(Table<O> child, ForeignKey<O, SectorsMainGcnSectorRecord> key) {

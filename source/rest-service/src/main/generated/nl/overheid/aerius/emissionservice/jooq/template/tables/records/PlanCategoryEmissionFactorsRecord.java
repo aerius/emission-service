@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De emissie factoren zijn hier afhankelijk van de category_unit van de bijbehorende 
  * plan_category.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/plans.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PlanCategoryEmissionFactorsRecord extends UpdatableRecordImpl<PlanCategoryEmissionFactorsRecord> implements Record3<Short, Short, Float> {
 
-    private static final long serialVersionUID = 117770232;
+    private static final long serialVersionUID = -96940304;
 
     /**
      * Setter for <code>template.plan_category_emission_factors.plan_category_id</code>.

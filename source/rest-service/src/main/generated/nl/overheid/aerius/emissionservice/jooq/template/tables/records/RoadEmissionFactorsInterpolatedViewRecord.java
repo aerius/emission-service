@@ -16,12 +16,12 @@ import org.jooq.impl.TableRecordImpl;
  * De wegemissiefactoren (road_category_emission_factors) waarvan alle ontbrekende 
  * tussenliggende rekenjaren worden geinterpoleerd.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadEmissionFactorsInterpolatedViewRecord extends TableRecordImpl<RoadEmissionFactorsInterpolatedViewRecord> implements Record6<Integer, Integer, Short, Short, Double, Double> {
 
-    private static final long serialVersionUID = 34721057;
+    private static final long serialVersionUID = -1061497831;
 
     /**
      * Setter for <code>template.road_emission_factors_interpolated_view.road_category_id</code>.

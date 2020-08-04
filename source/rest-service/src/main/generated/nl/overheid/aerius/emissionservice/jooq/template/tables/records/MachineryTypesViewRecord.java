@@ -16,12 +16,12 @@ import org.jooq.impl.TableRecordImpl;
  * Geeft informatie over de werktuigen terug, inclusief brandstof informatie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypesViewRecord extends TableRecordImpl<MachineryTypesViewRecord> implements Record14<Integer, Integer, String, String, Integer, Integer, String, String, Float, Integer, Float, Float, Integer, Float> {
 
-    private static final long serialVersionUID = 1460351087;
+    private static final long serialVersionUID = 1986978023;
 
     /**
      * Setter for <code>template.machinery_types_view.machinery_type_id</code>.

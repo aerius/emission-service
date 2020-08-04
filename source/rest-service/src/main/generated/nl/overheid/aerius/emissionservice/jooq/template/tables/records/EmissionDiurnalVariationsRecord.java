@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * We gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id 
  * als foreign key voorkomt.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmissionDiurnalVariationsRecord extends UpdatableRecordImpl<EmissionDiurnalVariationsRecord> implements Record4<Integer, String, String, String> {
 
-    private static final long serialVersionUID = -2073788616;
+    private static final long serialVersionUID = -845456223;
 
     /**
      * Setter for <code>template.emission_diurnal_variations.emission_diurnal_variation_id</code>.

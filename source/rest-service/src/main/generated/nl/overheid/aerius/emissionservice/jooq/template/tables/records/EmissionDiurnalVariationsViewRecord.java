@@ -16,12 +16,12 @@ import org.jooq.impl.TableRecordImpl;
  * View retourneert een lijst met verschillende types temporele variaties.
  * 
  * 
- * @file source/database/src/main/sql/sectors/04-views.sql
+ * @file source/database/src/main/sql/template/01_sectors/04-views.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmissionDiurnalVariationsViewRecord extends TableRecordImpl<EmissionDiurnalVariationsViewRecord> implements Record4<Integer, String, String, String> {
 
-    private static final long serialVersionUID = -1014736460;
+    private static final long serialVersionUID = 875775083;
 
     /**
      * Setter for <code>template.emission_diurnal_variations_view.emission_diurnal_variation_id</code>.

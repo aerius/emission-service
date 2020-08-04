@@ -26,12 +26,12 @@ import org.jooq.impl.TableImpl;
  * en de bijbehorende aandeel- en reductiefactoren voor die diercategorie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasureReductionFactorsView extends TableImpl<FarmLodgingFodderMeasureReductionFactorsViewRecord> {
 
-    private static final long serialVersionUID = -722186873;
+    private static final long serialVersionUID = -1623896425;
 
     /**
      * The reference instance of <code>template.farm_lodging_fodder_measure_reduction_factors_view</code>
@@ -127,7 +127,7 @@ public class FarmLodgingFodderMeasureReductionFactorsView extends TableImpl<Farm
     }
 
     private FarmLodgingFodderMeasureReductionFactorsView(Name alias, Table<FarmLodgingFodderMeasureReductionFactorsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een voer- en managementmaatregel, inclusief code, beschrijving, de diercategorieën waarop deze mag worden toegepast en de bijbehorende aandeel- en reductiefactoren voor die diercategorie.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/farms.sql"), TableOptions.view("create view \"farm_lodging_fodder_measure_reduction_factors_view\" as  SELECT farm_lodging_fodder_measures.farm_lodging_fodder_measure_id,\n    farm_lodging_fodder_measures.code,\n    farm_lodging_fodder_measures.name,\n    farm_lodging_fodder_measures.description,\n    farm_lodging_fodder_measures_animal_category.farm_animal_category_id,\n    farm_lodging_fodder_measure_reduction_factors.substance_id,\n    farm_lodging_fodder_measure_reduction_factors.reduction_factor_floor,\n    farm_lodging_fodder_measure_reduction_factors.reduction_factor_cellar,\n    farm_lodging_fodder_measure_reduction_factors.reduction_factor_total,\n    farm_lodging_fodder_measures_animal_category.proportion_floor,\n    farm_lodging_fodder_measures_animal_category.proportion_cellar\n   FROM (((template.farm_lodging_fodder_measures\n     JOIN template.farm_lodging_fodder_measure_reduction_factors USING (farm_lodging_fodder_measure_id))\n     JOIN template.farm_lodging_fodder_measures_animal_category USING (farm_lodging_fodder_measure_id))\n     JOIN template.farm_animal_categories USING (farm_animal_category_id));"));
+        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een voer- en managementmaatregel, inclusief code, beschrijving, de diercategorieën waarop deze mag worden toegepast en de bijbehorende aandeel- en reductiefactoren voor die diercategorie.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql"), TableOptions.view("create view \"farm_lodging_fodder_measure_reduction_factors_view\" as  SELECT farm_lodging_fodder_measures.farm_lodging_fodder_measure_id,\n    farm_lodging_fodder_measures.code,\n    farm_lodging_fodder_measures.name,\n    farm_lodging_fodder_measures.description,\n    farm_lodging_fodder_measures_animal_category.farm_animal_category_id,\n    farm_lodging_fodder_measure_reduction_factors.substance_id,\n    farm_lodging_fodder_measure_reduction_factors.reduction_factor_floor,\n    farm_lodging_fodder_measure_reduction_factors.reduction_factor_cellar,\n    farm_lodging_fodder_measure_reduction_factors.reduction_factor_total,\n    farm_lodging_fodder_measures_animal_category.proportion_floor,\n    farm_lodging_fodder_measures_animal_category.proportion_cellar\n   FROM (((template.farm_lodging_fodder_measures\n     JOIN template.farm_lodging_fodder_measure_reduction_factors USING (farm_lodging_fodder_measure_id))\n     JOIN template.farm_lodging_fodder_measures_animal_category USING (farm_lodging_fodder_measure_id))\n     JOIN template.farm_animal_categories USING (farm_animal_category_id));"));
     }
 
     public <O extends Record> FarmLodgingFodderMeasureReductionFactorsView(Table<O> child, ForeignKey<O, FarmLodgingFodderMeasureReductionFactorsViewRecord> key) {

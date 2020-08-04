@@ -16,12 +16,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemsToLodgingSystemDefinitionsRecord extends UpdatableRecordImpl<FarmAdditionalLodgingSystemsToLodgingSystemDefinitionsRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = -344092647;
+    private static final long serialVersionUID = -218060639;
 
     /**
      * Setter for <code>template.farm_additional_lodging_systems_to_lodging_system_definitions.farm_additional_lodging_system_id</code>.

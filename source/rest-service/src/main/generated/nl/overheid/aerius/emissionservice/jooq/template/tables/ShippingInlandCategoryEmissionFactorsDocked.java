@@ -35,12 +35,12 @@ import org.jooq.impl.TableImpl;
  * is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) 
  * bij een bepaalde snelheid.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategoryEmissionFactorsDocked extends TableImpl<ShippingInlandCategoryEmissionFactorsDockedRecord> {
 
-    private static final long serialVersionUID = 1538369996;
+    private static final long serialVersionUID = 1942983516;
 
     /**
      * The reference instance of <code>template.shipping_inland_category_emission_factors_docked</code>
@@ -106,7 +106,7 @@ public class ShippingInlandCategoryEmissionFactorsDocked extends TableImpl<Shipp
     }
 
     private ShippingInlandCategoryEmissionFactorsDocked(Name alias, Table<ShippingInlandCategoryEmissionFactorsDockedRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten stilliggende schepen.\r\nDeze kenmerken zijn uniek per scheepstype, ladingstoestand en stof.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten stilliggende schepen.\r\nDeze kenmerken zijn uniek per scheepstype, ladingstoestand en stof.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingInlandCategoryEmissionFactorsDocked(Table<O> child, ForeignKey<O, ShippingInlandCategoryEmissionFactorsDockedRecord> key) {

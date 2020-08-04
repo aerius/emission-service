@@ -21,12 +21,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * begrensd in de emissie berekening, o.b.v. die van het 'overige' stalsysteem.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesOtherLodgingTypeRecord extends UpdatableRecordImpl<FarmLodgingTypesOtherLodgingTypeRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = 1306906589;
+    private static final long serialVersionUID = 291354853;
 
     /**
      * Setter for <code>template.farm_lodging_types_other_lodging_type.farm_lodging_type_id</code>.

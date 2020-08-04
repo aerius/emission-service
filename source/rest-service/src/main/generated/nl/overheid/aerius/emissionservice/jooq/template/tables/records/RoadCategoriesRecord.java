@@ -22,12 +22,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Dit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesRecord> implements Record6<Integer, Integer, RoadType, VehicleType, String, String> {
 
-    private static final long serialVersionUID = -117570484;
+    private static final long serialVersionUID = -1847320892;
 
     /**
      * Setter for <code>template.road_categories.road_category_id</code>.

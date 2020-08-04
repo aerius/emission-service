@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * 
  * Deze additionele staltechnieken zijn afgeleid uit de RAV-code lijst.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemsRecord extends UpdatableRecordImpl<FarmAdditionalLodgingSystemsRecord> implements Record6<Integer, Integer, String, String, String, Boolean> {
 
-    private static final long serialVersionUID = 831265149;
+    private static final long serialVersionUID = -1506660731;
 
     /**
      * Setter for <code>template.farm_additional_lodging_systems.farm_additional_lodging_system_id</code>.

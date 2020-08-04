@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Vertaaltabel voor stalsystemen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nFarmLodgingTypesRecord extends UpdatableRecordImpl<I18nFarmLodgingTypesRecord> implements Record3<Integer, LanguageCodeType, String> {
 
-    private static final long serialVersionUID = -217781711;
+    private static final long serialVersionUID = 1371815593;
 
     /**
      * Setter for <code>template.i18n_farm_lodging_types.farm_lodging_type_id</code>.

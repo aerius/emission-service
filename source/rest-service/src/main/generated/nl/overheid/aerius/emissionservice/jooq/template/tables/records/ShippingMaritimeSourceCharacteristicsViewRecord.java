@@ -16,12 +16,12 @@ import org.jooq.impl.TableRecordImpl;
 /**
  * View retourneert de emissie karakteristieken voor zeescheep vaart.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeSourceCharacteristicsViewRecord extends TableRecordImpl<ShippingMaritimeSourceCharacteristicsViewRecord> implements Record9<Short, Short, ShippingMovementType, Integer, Float, Float, Float, Integer, String> {
 
-    private static final long serialVersionUID = -685380261;
+    private static final long serialVersionUID = 254924643;
 
     /**
      * Setter for <code>template.shipping_maritime_source_characteristics_view.shipping_maritime_category_id</code>.

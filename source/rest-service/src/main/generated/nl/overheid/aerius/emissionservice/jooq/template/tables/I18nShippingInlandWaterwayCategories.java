@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * Vertaaltabel voor categorieën van verschillende soorten binnenvaart vaarwegen.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nShippingInlandWaterwayCategories extends TableImpl<I18nShippingInlandWaterwayCategoriesRecord> {
 
-    private static final long serialVersionUID = -2047872117;
+    private static final long serialVersionUID = -176870629;
 
     /**
      * The reference instance of <code>template.i18n_shipping_inland_waterway_categories</code>
@@ -96,7 +96,7 @@ public class I18nShippingInlandWaterwayCategories extends TableImpl<I18nShipping
     }
 
     private I18nShippingInlandWaterwayCategories(Name alias, Table<I18nShippingInlandWaterwayCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten binnenvaart vaarwegen.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten binnenvaart vaarwegen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nShippingInlandWaterwayCategories(Table<O> child, ForeignKey<O, I18nShippingInlandWaterwayCategoriesRecord> key) {

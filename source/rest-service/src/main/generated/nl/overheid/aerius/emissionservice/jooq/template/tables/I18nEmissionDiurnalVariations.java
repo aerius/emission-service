@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor de verschillende type temporele variaties.
  * 
- * @file source/database/src/main/sql/sectors/i18n/base_keys.sql
+ * @file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nEmissionDiurnalVariations extends TableImpl<I18nEmissionDiurnalVariationsRecord> {
 
-    private static final long serialVersionUID = 374652585;
+    private static final long serialVersionUID = 931185339;
 
     /**
      * The reference instance of <code>template.i18n_emission_diurnal_variations</code>
@@ -95,7 +95,7 @@ public class I18nEmissionDiurnalVariations extends TableImpl<I18nEmissionDiurnal
     }
 
     private I18nEmissionDiurnalVariations(Name alias, Table<I18nEmissionDiurnalVariationsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor de verschillende type temporele variaties.\r\n\r\n@file source/database/src/main/sql/sectors/i18n/base_keys.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor de verschillende type temporele variaties.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nEmissionDiurnalVariations(Table<O> child, ForeignKey<O, I18nEmissionDiurnalVariationsRecord> key) {

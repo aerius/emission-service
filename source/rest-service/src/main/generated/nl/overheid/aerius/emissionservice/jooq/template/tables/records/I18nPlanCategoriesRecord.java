@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Vertaaltabel voor categorieën van verschillende soorten plannen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/plans.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/plans.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nPlanCategoriesRecord extends UpdatableRecordImpl<I18nPlanCategoriesRecord> implements Record4<Short, LanguageCodeType, String, String> {
 
-    private static final long serialVersionUID = 813917341;
+    private static final long serialVersionUID = -309560427;
 
     /**
      * Setter for <code>template.i18n_plan_categories.plan_category_id</code>.

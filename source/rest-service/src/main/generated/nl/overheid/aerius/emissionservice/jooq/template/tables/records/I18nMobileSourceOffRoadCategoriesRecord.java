@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Vertaaltabel voor categorieën van verschillende soorten offroad mobiele 
  * bronnen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<I18nMobileSourceOffRoadCategoriesRecord> implements Record4<Short, LanguageCodeType, String, String> {
 
-    private static final long serialVersionUID = 1509006327;
+    private static final long serialVersionUID = -76978817;
 
     /**
      * Setter for <code>template.i18n_mobile_source_off_road_categories.mobile_source_off_road_category_id</code>.

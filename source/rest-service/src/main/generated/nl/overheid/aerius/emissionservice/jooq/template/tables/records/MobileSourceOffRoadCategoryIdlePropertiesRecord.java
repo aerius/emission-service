@@ -27,12 +27,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * @column fuel_consumption_idle GBS_plci, liter brandstof verbruik stationair 
  * per uur per liter cilinder-inhoud (l/l/uur)
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOffRoadCategoryIdlePropertiesRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoryIdlePropertiesRecord> implements Record4<Short, Float, Float, Float> {
 
-    private static final long serialVersionUID = -1279713173;
+    private static final long serialVersionUID = -1489504653;
 
     /**
      * Setter for <code>template.mobile_source_off_road_category_idle_properties.mobile_source_off_road_category_id</code>.

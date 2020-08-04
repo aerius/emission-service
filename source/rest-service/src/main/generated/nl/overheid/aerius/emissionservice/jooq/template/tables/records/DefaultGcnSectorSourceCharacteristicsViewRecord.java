@@ -17,12 +17,12 @@ import org.jooq.impl.TableRecordImpl;
  * De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view 
  * retourneert de bron karakteristieken van de meest relevante stof.
  * 
- * @file source/database/src/main/sql/sectors/04-views.sql
+ * @file source/database/src/main/sql/template/01_sectors/04-views.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultGcnSectorSourceCharacteristicsViewRecord extends TableRecordImpl<DefaultGcnSectorSourceCharacteristicsViewRecord> implements Record6<Integer, Float, Float, Float, Integer, Integer> {
 
-    private static final long serialVersionUID = -1940135603;
+    private static final long serialVersionUID = 740609604;
 
     /**
      * Setter for <code>template.default_gcn_sector_source_characteristics_view.gcn_sector_id</code>.

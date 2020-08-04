@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farmlands.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farmlands.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCategoriesRecord> implements Record5<Short, Integer, String, String, String> {
 
-    private static final long serialVersionUID = 305102290;
+    private static final long serialVersionUID = -1450206502;
 
     /**
      * Setter for <code>template.farmland_categories.farmland_category_id</code>.

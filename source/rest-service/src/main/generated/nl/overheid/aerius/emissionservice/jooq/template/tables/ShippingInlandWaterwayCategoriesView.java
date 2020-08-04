@@ -24,12 +24,12 @@ import org.jooq.impl.TableImpl;
 /**
  * View retourneert de waterweg categorieen.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandWaterwayCategoriesView extends TableImpl<ShippingInlandWaterwayCategoriesViewRecord> {
 
-    private static final long serialVersionUID = 1651920551;
+    private static final long serialVersionUID = -1000315225;
 
     /**
      * The reference instance of <code>template.shipping_inland_waterway_categories_view</code>
@@ -90,7 +90,7 @@ public class ShippingInlandWaterwayCategoriesView extends TableImpl<ShippingInla
     }
 
     private ShippingInlandWaterwayCategoriesView(Name alias, Table<ShippingInlandWaterwayCategoriesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de waterweg categorieen.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql"), TableOptions.view("create view \"shipping_inland_waterway_categories_view\" as  SELECT DISTINCT shipping_inland_category_emission_factors.shipping_inland_waterway_category_id,\n    shipping_inland_waterway_categories.code,\n    shipping_inland_waterway_categories.name,\n    shipping_inland_category_emission_factors.ship_direction\n   FROM (template.shipping_inland_category_emission_factors\n     JOIN template.shipping_inland_waterway_categories USING (shipping_inland_waterway_category_id))\n  ORDER BY shipping_inland_category_emission_factors.shipping_inland_waterway_category_id;"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de waterweg categorieen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql"), TableOptions.view("create view \"shipping_inland_waterway_categories_view\" as  SELECT DISTINCT shipping_inland_category_emission_factors.shipping_inland_waterway_category_id,\n    shipping_inland_waterway_categories.code,\n    shipping_inland_waterway_categories.name,\n    shipping_inland_category_emission_factors.ship_direction\n   FROM (template.shipping_inland_category_emission_factors\n     JOIN template.shipping_inland_waterway_categories USING (shipping_inland_waterway_category_id))\n  ORDER BY shipping_inland_category_emission_factors.shipping_inland_waterway_category_id;"));
     }
 
     public <O extends Record> ShippingInlandWaterwayCategoriesView(Table<O> child, ForeignKey<O, ShippingInlandWaterwayCategoriesViewRecord> key) {

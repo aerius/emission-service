@@ -18,12 +18,12 @@ import org.jooq.impl.TableRecordImpl;
  * traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen 
  * worden.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<FarmLodgingTypeEmissionFactorsViewRecord> implements Record10<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean> {
 
-    private static final long serialVersionUID = -1518930267;
+    private static final long serialVersionUID = -715517395;
 
     /**
      * Setter for <code>template.farm_lodging_type_emission_factors_view.farm_lodging_type_id</code>.

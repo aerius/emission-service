@@ -16,12 +16,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Voorgedefinieerde OPS kenmerken per GCN sector.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GcnSectorSourceCharacteristicsRecord extends UpdatableRecordImpl<GcnSectorSourceCharacteristicsRecord> implements Record7<Integer, Short, Float, Float, Float, Integer, Integer> {
 
-    private static final long serialVersionUID = -1789855127;
+    private static final long serialVersionUID = 960115360;
 
     /**
      * Setter for <code>template.gcn_sector_source_characteristics.gcn_sector_id</code>.

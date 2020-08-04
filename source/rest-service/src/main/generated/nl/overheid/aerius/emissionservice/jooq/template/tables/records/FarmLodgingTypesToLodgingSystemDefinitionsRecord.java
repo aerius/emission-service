@@ -15,12 +15,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Koppeling tussen stalsystemen en stalbeschrijvingen (N:N).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesToLodgingSystemDefinitionsRecord extends UpdatableRecordImpl<FarmLodgingTypesToLodgingSystemDefinitionsRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = -1356956314;
+    private static final long serialVersionUID = 1911703006;
 
     /**
      * Setter for <code>template.farm_lodging_types_to_lodging_system_definitions.farm_lodging_type_id</code>.

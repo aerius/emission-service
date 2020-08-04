@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesToAdditionalLodgingSystemsRecord extends UpdatableRecordImpl<FarmLodgingTypesToAdditionalLodgingSystemsRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = 513880049;
+    private static final long serialVersionUID = 1753099497;
 
     /**
      * Setter for <code>template.farm_lodging_types_to_additional_lodging_systems.farm_lodging_type_id</code>.

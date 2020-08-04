@@ -24,12 +24,12 @@ import org.jooq.impl.TableImpl;
  * Geeft informatie over de werktuigen terug, inclusief brandstof informatie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypesView extends TableImpl<MachineryTypesViewRecord> {
 
-    private static final long serialVersionUID = -456689410;
+    private static final long serialVersionUID = 940857982;
 
     /**
      * The reference instance of <code>template.machinery_types_view</code>
@@ -140,7 +140,7 @@ public class MachineryTypesView extends TableImpl<MachineryTypesViewRecord> {
     }
 
     private MachineryTypesView(Name alias, Table<MachineryTypesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft informatie over de werktuigen terug, inclusief brandstof informatie.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql"), TableOptions.view("create view \"machinery_types_view\" as  SELECT machinery_types.machinery_type_id,\n    machinery_types.sector_id,\n    machinery_types.code AS machinery_code,\n    machinery_types.name AS machinery_name,\n    machinery_types.sort_order,\n    machinery_type_fuel_options.machinery_fuel_type_id,\n    machinery_fuel_types.code AS fuel_code,\n    machinery_fuel_types.name AS fuel_name,\n    machinery_fuel_types.density AS fuel_density,\n    machinery_type_fuel_options.power,\n    machinery_type_fuel_options.load,\n    machinery_type_fuel_options.energy_efficiency,\n    machinery_type_emission_factors.substance_id,\n    machinery_type_emission_factors.emission_factor\n   FROM (((template.machinery_types\n     JOIN template.machinery_type_fuel_options USING (machinery_type_id))\n     JOIN template.machinery_fuel_types USING (machinery_fuel_type_id))\n     JOIN template.machinery_type_emission_factors USING (machinery_type_id, machinery_fuel_type_id))\n  ORDER BY machinery_types.machinery_type_id, machinery_type_fuel_options.machinery_fuel_type_id, machinery_type_emission_factors.substance_id;"));
+        super(alias, null, aliased, parameters, DSL.comment("Geeft informatie over de werktuigen terug, inclusief brandstof informatie.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql"), TableOptions.view("create view \"machinery_types_view\" as  SELECT machinery_types.machinery_type_id,\n    machinery_types.sector_id,\n    machinery_types.code AS machinery_code,\n    machinery_types.name AS machinery_name,\n    machinery_types.sort_order,\n    machinery_type_fuel_options.machinery_fuel_type_id,\n    machinery_fuel_types.code AS fuel_code,\n    machinery_fuel_types.name AS fuel_name,\n    machinery_fuel_types.density AS fuel_density,\n    machinery_type_fuel_options.power,\n    machinery_type_fuel_options.load,\n    machinery_type_fuel_options.energy_efficiency,\n    machinery_type_emission_factors.substance_id,\n    machinery_type_emission_factors.emission_factor\n   FROM (((template.machinery_types\n     JOIN template.machinery_type_fuel_options USING (machinery_type_id))\n     JOIN template.machinery_fuel_types USING (machinery_fuel_type_id))\n     JOIN template.machinery_type_emission_factors USING (machinery_type_id, machinery_fuel_type_id))\n  ORDER BY machinery_types.machinery_type_id, machinery_type_fuel_options.machinery_fuel_type_id, machinery_type_emission_factors.substance_id;"));
     }
 
     public <O extends Record> MachineryTypesView(Table<O> child, ForeignKey<O, MachineryTypesViewRecord> key) {

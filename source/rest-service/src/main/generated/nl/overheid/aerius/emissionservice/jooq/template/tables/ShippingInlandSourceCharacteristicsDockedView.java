@@ -25,12 +25,12 @@ import org.jooq.impl.TableImpl;
  * View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandSourceCharacteristicsDockedView extends TableImpl<ShippingInlandSourceCharacteristicsDockedViewRecord> {
 
-    private static final long serialVersionUID = -284748484;
+    private static final long serialVersionUID = -1275073236;
 
     /**
      * The reference instance of <code>template.shipping_inland_source_characteristics_docked_view</code>
@@ -111,7 +111,7 @@ public class ShippingInlandSourceCharacteristicsDockedView extends TableImpl<Shi
     }
 
     private ShippingInlandSourceCharacteristicsDockedView(Name alias, Table<ShippingInlandSourceCharacteristicsDockedViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql"), TableOptions.view("create view \"shipping_inland_source_characteristics_docked_view\" as  SELECT shipping_inland_category_source_characteristics_docked.shipping_inland_category_id,\n    shipping_inland_category_source_characteristics_docked.laden_state,\n    shipping_inland_category_source_characteristics_docked.gcn_sector_id,\n    shipping_inland_category_source_characteristics_docked.heat_content,\n    shipping_inland_category_source_characteristics_docked.height,\n    shipping_inland_category_source_characteristics_docked.spread,\n    emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code\n   FROM ((template.shipping_inland_category_source_characteristics_docked\n     JOIN template.default_gcn_sector_source_characteristics_view USING (gcn_sector_id))\n     JOIN template.emission_diurnal_variations USING (emission_diurnal_variation_id));"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql"), TableOptions.view("create view \"shipping_inland_source_characteristics_docked_view\" as  SELECT shipping_inland_category_source_characteristics_docked.shipping_inland_category_id,\n    shipping_inland_category_source_characteristics_docked.laden_state,\n    shipping_inland_category_source_characteristics_docked.gcn_sector_id,\n    shipping_inland_category_source_characteristics_docked.heat_content,\n    shipping_inland_category_source_characteristics_docked.height,\n    shipping_inland_category_source_characteristics_docked.spread,\n    emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code\n   FROM ((template.shipping_inland_category_source_characteristics_docked\n     JOIN template.default_gcn_sector_source_characteristics_view USING (gcn_sector_id))\n     JOIN template.emission_diurnal_variations USING (emission_diurnal_variation_id));"));
     }
 
     public <O extends Record> ShippingInlandSourceCharacteristicsDockedView(Table<O> child, ForeignKey<O, ShippingInlandSourceCharacteristicsDockedViewRecord> key) {

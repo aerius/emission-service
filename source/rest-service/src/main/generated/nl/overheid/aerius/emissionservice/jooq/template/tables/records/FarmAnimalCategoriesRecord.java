@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Diercategorieen die voorkomen in de RAV-code lijst. (RAV = Regeling ammoniak 
  * en veehouderij)
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAnimalCategoriesRecord extends UpdatableRecordImpl<FarmAnimalCategoriesRecord> implements Record4<Integer, String, String, String> {
 
-    private static final long serialVersionUID = -726777834;
+    private static final long serialVersionUID = 155286814;
 
     /**
      * Setter for <code>template.farm_animal_categories.farm_animal_category_id</code>.

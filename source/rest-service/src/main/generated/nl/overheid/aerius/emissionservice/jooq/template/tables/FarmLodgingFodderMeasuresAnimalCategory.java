@@ -43,12 +43,12 @@ import org.jooq.impl.TableImpl;
  * @column proportion_cellar Het aandeel van de totale ammoniakemissie uit 
  * de mestkelder voor deze combinatie van maatregel en diercategorie
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasuresAnimalCategory extends TableImpl<FarmLodgingFodderMeasuresAnimalCategoryRecord> {
 
-    private static final long serialVersionUID = -265256414;
+    private static final long serialVersionUID = -930810846;
 
     /**
      * The reference instance of <code>template.farm_lodging_fodder_measures_animal_category</code>
@@ -109,7 +109,7 @@ public class FarmLodgingFodderMeasuresAnimalCategory extends TableImpl<FarmLodgi
     }
 
     private FarmLodgingFodderMeasuresAnimalCategory(Name alias, Table<FarmLodgingFodderMeasuresAnimalCategoryRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De diercategorieën van de stalsystemen waarop een maatregel mag worden toegepast, en de bijbehorende verhouding van de ammoniakemissie afkomstig van de vloer en uit de mestkelder welke de verdeling van reductiefactoren bepaalt.\r\nDe ammoniakverhouding voor alle maatregelen moet altijd gelijk zijn, wat impliceert dat alle gekozen maatregelen moeten gelden voor dezelfde diercategorie: dat van het het stalsysteem. Met andere woorden, een maatregel reduceert alleen de emissies van een stalsysteem als deze kan worden toegepast op de diercategorie van het stalsysteem.\r\n\r\n@column proportion_floor Het aandeel van de totale ammoniakemissie afkomstig van de vloer voor deze combinatie van maatregel en diercategorie\r\n@column proportion_cellar Het aandeel van de totale ammoniakemissie uit de mestkelder voor deze combinatie van maatregel en diercategorie\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De diercategorieën van de stalsystemen waarop een maatregel mag worden toegepast, en de bijbehorende verhouding van de ammoniakemissie afkomstig van de vloer en uit de mestkelder welke de verdeling van reductiefactoren bepaalt.\r\nDe ammoniakverhouding voor alle maatregelen moet altijd gelijk zijn, wat impliceert dat alle gekozen maatregelen moeten gelden voor dezelfde diercategorie: dat van het het stalsysteem. Met andere woorden, een maatregel reduceert alleen de emissies van een stalsysteem als deze kan worden toegepast op de diercategorie van het stalsysteem.\r\n\r\n@column proportion_floor Het aandeel van de totale ammoniakemissie afkomstig van de vloer voor deze combinatie van maatregel en diercategorie\r\n@column proportion_cellar Het aandeel van de totale ammoniakemissie uit de mestkelder voor deze combinatie van maatregel en diercategorie\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingFodderMeasuresAnimalCategory(Table<O> child, ForeignKey<O, FarmLodgingFodderMeasuresAnimalCategoryRecord> key) {

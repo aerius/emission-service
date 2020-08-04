@@ -16,12 +16,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Sectorindeling van AERIUS
  * 
- * @file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SectorsRecord extends UpdatableRecordImpl<SectorsRecord> implements Record2<Integer, String> {
 
-    private static final long serialVersionUID = -1167378790;
+    private static final long serialVersionUID = 238213137;
 
     /**
      * Setter for <code>template.sectors.sector_id</code>.

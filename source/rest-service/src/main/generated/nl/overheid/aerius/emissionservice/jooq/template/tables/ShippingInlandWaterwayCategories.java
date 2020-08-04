@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * Voor sommige types is de stroming van de vaarweg van belang, dit wordt 
  * hier ook aangegeven.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandWaterwayCategories extends TableImpl<ShippingInlandWaterwayCategoriesRecord> {
 
-    private static final long serialVersionUID = -873404802;
+    private static final long serialVersionUID = -1180201474;
 
     /**
      * The reference instance of <code>template.shipping_inland_waterway_categories</code>
@@ -101,7 +101,7 @@ public class ShippingInlandWaterwayCategories extends TableImpl<ShippingInlandWa
     }
 
     private ShippingInlandWaterwayCategories(Name alias, Table<ShippingInlandWaterwayCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.\r\nVoor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook aangegeven.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.\r\nVoor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook aangegeven.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingInlandWaterwayCategories(Table<O> child, ForeignKey<O, ShippingInlandWaterwayCategoriesRecord> key) {

@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * De emissiefactoren per werktuig, brandstof en emissiestof.
  * Emissie factor is hier in g/kWh.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypeEmissionFactors extends TableImpl<MachineryTypeEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = 1851821766;
+    private static final long serialVersionUID = -301195818;
 
     /**
      * The reference instance of <code>template.machinery_type_emission_factors</code>
@@ -96,7 +96,7 @@ public class MachineryTypeEmissionFactors extends TableImpl<MachineryTypeEmissio
     }
 
     private MachineryTypeEmissionFactors(Name alias, Table<MachineryTypeEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissiefactoren per werktuig, brandstof en emissiestof.\r\nEmissie factor is hier in g/kWh.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissiefactoren per werktuig, brandstof en emissiestof.\r\nEmissie factor is hier in g/kWh.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> MachineryTypeEmissionFactors(Table<O> child, ForeignKey<O, MachineryTypeEmissionFactorsRecord> key) {

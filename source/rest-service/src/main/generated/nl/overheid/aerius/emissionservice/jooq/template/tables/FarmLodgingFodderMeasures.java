@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * Dit zijn maatregelen die zorgen voor minder emissies en toegepast kunnen 
  * worden op een stalsysteem (farm_lodging_type).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasures extends TableImpl<FarmLodgingFodderMeasuresRecord> {
 
-    private static final long serialVersionUID = -1378614930;
+    private static final long serialVersionUID = 1644861038;
 
     /**
      * The reference instance of <code>template.farm_lodging_fodder_measures</code>
@@ -97,7 +97,7 @@ public class FarmLodgingFodderMeasures extends TableImpl<FarmLodgingFodderMeasur
     }
 
     private FarmLodgingFodderMeasures(Name alias, Table<FarmLodgingFodderMeasuresRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Voer- en managementmaatregelen; zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage2 en http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/pas-maatregelen/alle-pas-maatregelen/ Dit zijn maatregelen die zorgen voor minder emissies en toegepast kunnen worden op een stalsysteem (farm_lodging_type).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Voer- en managementmaatregelen; zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage2 en http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/pas-maatregelen/alle-pas-maatregelen/ Dit zijn maatregelen die zorgen voor minder emissies en toegepast kunnen worden op een stalsysteem (farm_lodging_type).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingFodderMeasures(Table<O> child, ForeignKey<O, FarmLodgingFodderMeasuresRecord> key) {

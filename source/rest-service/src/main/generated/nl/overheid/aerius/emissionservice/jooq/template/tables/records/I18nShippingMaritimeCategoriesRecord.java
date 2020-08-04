@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Vertaaltabel voor categorieën van verschillende soorten zeevaart-schepen.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nShippingMaritimeCategoriesRecord extends UpdatableRecordImpl<I18nShippingMaritimeCategoriesRecord> implements Record4<Short, LanguageCodeType, String, String> {
 
-    private static final long serialVersionUID = 1130429260;
+    private static final long serialVersionUID = 2134103380;
 
     /**
      * Setter for <code>template.i18n_shipping_maritime_categories.shipping_maritime_category_id</code>.

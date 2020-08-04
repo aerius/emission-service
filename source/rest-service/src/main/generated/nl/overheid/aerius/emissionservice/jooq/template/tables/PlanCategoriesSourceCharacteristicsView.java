@@ -27,12 +27,12 @@ import org.jooq.impl.TableImpl;
  * Zie plan_categories en plan_category_emission_factors voor meer informatie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/misc.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/misc.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PlanCategoriesSourceCharacteristicsView extends TableImpl<PlanCategoriesSourceCharacteristicsViewRecord> {
 
-    private static final long serialVersionUID = 682265084;
+    private static final long serialVersionUID = 221492092;
 
     /**
      * The reference instance of <code>template.plan_categories_source_characteristics_view</code>
@@ -138,7 +138,7 @@ public class PlanCategoriesSourceCharacteristicsView extends TableImpl<PlanCateg
     }
 
     private PlanCategoriesSourceCharacteristicsView(Name alias, Table<PlanCategoriesSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de categorieen voor plannen. Dit bevat onder andere de emissiefactoren en de emissie karakteristieken.\r\nZie plan_categories en plan_category_emission_factors voor meer informatie.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/misc.sql"), TableOptions.view("create view \"plan_categories_source_characteristics_view\" as  SELECT plan_categories.plan_category_id,\n    plan_categories.code,\n    plan_categories.name,\n    plan_categories.gcn_sector_id,\n    gcn_sector_source_characteristics.substance_id,\n    plan_categories.category_unit,\n    plan_category_emission_factors.emission_factor,\n    gcn_sector_source_characteristics.heat_content,\n    gcn_sector_source_characteristics.height,\n    gcn_sector_source_characteristics.spread,\n    gcn_sector_source_characteristics.particle_size_distribution,\n    emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code\n   FROM (((template.plan_categories\n     JOIN template.plan_category_emission_factors USING (plan_category_id))\n     LEFT JOIN template.gcn_sector_source_characteristics USING (gcn_sector_id, substance_id))\n     JOIN template.emission_diurnal_variations USING (emission_diurnal_variation_id))\n  ORDER BY plan_categories.plan_category_id;"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de categorieen voor plannen. Dit bevat onder andere de emissiefactoren en de emissie karakteristieken.\r\nZie plan_categories en plan_category_emission_factors voor meer informatie.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/misc.sql"), TableOptions.view("create view \"plan_categories_source_characteristics_view\" as  SELECT plan_categories.plan_category_id,\n    plan_categories.code,\n    plan_categories.name,\n    plan_categories.gcn_sector_id,\n    gcn_sector_source_characteristics.substance_id,\n    plan_categories.category_unit,\n    plan_category_emission_factors.emission_factor,\n    gcn_sector_source_characteristics.heat_content,\n    gcn_sector_source_characteristics.height,\n    gcn_sector_source_characteristics.spread,\n    gcn_sector_source_characteristics.particle_size_distribution,\n    emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code\n   FROM (((template.plan_categories\n     JOIN template.plan_category_emission_factors USING (plan_category_id))\n     LEFT JOIN template.gcn_sector_source_characteristics USING (gcn_sector_id, substance_id))\n     JOIN template.emission_diurnal_variations USING (emission_diurnal_variation_id))\n  ORDER BY plan_categories.plan_category_id;"));
     }
 
     public <O extends Record> PlanCategoriesSourceCharacteristicsView(Table<O> child, ForeignKey<O, PlanCategoriesSourceCharacteristicsViewRecord> key) {

@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor categorieën van verschillende soorten brandstof.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMachineryFuelTypes extends TableImpl<I18nMachineryFuelTypesRecord> {
 
-    private static final long serialVersionUID = 91019202;
+    private static final long serialVersionUID = -21884734;
 
     /**
      * The reference instance of <code>template.i18n_machinery_fuel_types</code>
@@ -90,7 +90,7 @@ public class I18nMachineryFuelTypes extends TableImpl<I18nMachineryFuelTypesReco
     }
 
     private I18nMachineryFuelTypes(Name alias, Table<I18nMachineryFuelTypesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten brandstof.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten brandstof.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nMachineryFuelTypes(Table<O> child, ForeignKey<O, I18nMachineryFuelTypesRecord> key) {

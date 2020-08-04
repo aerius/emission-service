@@ -27,12 +27,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * stilliggen.
  * (in kg/(aantal schepen * uur stilliggen)).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategoryEmissionFactorsRecord extends UpdatableRecordImpl<ShippingMaritimeCategoryEmissionFactorsRecord> implements Record5<Short, Short, Short, ShippingMovementType, Float> {
 
-    private static final long serialVersionUID = -1880978571;
+    private static final long serialVersionUID = 813745261;
 
     /**
      * Setter for <code>template.shipping_maritime_category_emission_factors.shipping_maritime_category_id</code>.

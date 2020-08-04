@@ -24,12 +24,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) 
  * bij een bepaalde snelheid.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategoryEmissionFactorsRecord extends UpdatableRecordImpl<ShippingInlandCategoryEmissionFactorsRecord> implements Record7<Short, Integer, ShippingInlandShipDirectionType, ShippingInlandLadenState, Short, Short, Float> {
 
-    private static final long serialVersionUID = 608901735;
+    private static final long serialVersionUID = -2012405393;
 
     /**
      * Setter for <code>template.shipping_inland_category_emission_factors.shipping_inland_category_id</code>.

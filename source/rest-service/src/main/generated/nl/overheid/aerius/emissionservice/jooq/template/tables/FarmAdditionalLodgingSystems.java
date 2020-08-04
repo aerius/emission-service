@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * 
  * Deze additionele staltechnieken zijn afgeleid uit de RAV-code lijst.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystems extends TableImpl<FarmAdditionalLodgingSystemsRecord> {
 
-    private static final long serialVersionUID = -212884781;
+    private static final long serialVersionUID = -431738925;
 
     /**
      * The reference instance of <code>template.farm_additional_lodging_systems</code>
@@ -107,7 +107,7 @@ public class FarmAdditionalLodgingSystems extends TableImpl<FarmAdditionalLodgin
     }
 
     private FarmAdditionalLodgingSystems(Name alias, Table<FarmAdditionalLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Additionele staltechnieken. Dit zijn staltechnieken die zorgen voor extra emissies en die gestapeld kunnen worden op een stalsysteem (farm_lodging_type).\r\nDeze additionele staltechnieken zijn afgeleid uit de RAV-code lijst.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Additionele staltechnieken. Dit zijn staltechnieken die zorgen voor extra emissies en die gestapeld kunnen worden op een stalsysteem (farm_lodging_type).\r\nDeze additionele staltechnieken zijn afgeleid uit de RAV-code lijst.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmAdditionalLodgingSystems(Table<O> child, ForeignKey<O, FarmAdditionalLodgingSystemsRecord> key) {

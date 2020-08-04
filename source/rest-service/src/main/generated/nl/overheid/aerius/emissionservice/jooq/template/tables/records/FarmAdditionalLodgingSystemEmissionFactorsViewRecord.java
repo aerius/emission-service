@@ -17,12 +17,12 @@ import org.jooq.impl.TableRecordImpl;
  * beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, 
  * en de stalbeschrijvingen die er bij gekozen kunnen worden.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemEmissionFactorsViewRecord extends TableRecordImpl<FarmAdditionalLodgingSystemEmissionFactorsViewRecord> implements Record9<Integer, String, String, String, Integer, Integer, Short, Float, Boolean> {
 
-    private static final long serialVersionUID = 2083147873;
+    private static final long serialVersionUID = 409529449;
 
     /**
      * Setter for <code>template.farm_additional_lodging_system_emission_factors_view.farm_additional_lodging_system_id</code>.

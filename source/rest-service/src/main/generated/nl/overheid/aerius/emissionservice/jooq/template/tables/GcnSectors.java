@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.
  * 
  * 
- * @file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GcnSectors extends TableImpl<GcnSectorsRecord> {
 
-    private static final long serialVersionUID = 583903972;
+    private static final long serialVersionUID = 849701622;
 
     /**
      * The reference instance of <code>template.gcn_sectors</code>
@@ -92,7 +92,7 @@ public class GcnSectors extends TableImpl<GcnSectorsRecord> {
     }
 
     private GcnSectors(Name alias, Table<GcnSectorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Sectorindeling van het RIVM.\r\nElke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.\r\n\r\n@file source/database/src/main/sql/sectors/02-tables/01-sectors.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Sectorindeling van het RIVM.\r\nElke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql"), TableOptions.table());
     }
 
     public <O extends Record> GcnSectors(Table<O> child, ForeignKey<O, GcnSectorsRecord> key) {

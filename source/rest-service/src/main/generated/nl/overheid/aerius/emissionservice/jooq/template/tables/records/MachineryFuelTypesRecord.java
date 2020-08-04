@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De verschillende soorten brandstof voor werktuigen.
  * @column density soortelijk gewicht in kg/liter.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryFuelTypesRecord extends UpdatableRecordImpl<MachineryFuelTypesRecord> implements Record4<Integer, String, String, Float> {
 
-    private static final long serialVersionUID = -1958712695;
+    private static final long serialVersionUID = 1175056913;
 
     /**
      * Setter for <code>template.machinery_fuel_types.machinery_fuel_type_id</code>.

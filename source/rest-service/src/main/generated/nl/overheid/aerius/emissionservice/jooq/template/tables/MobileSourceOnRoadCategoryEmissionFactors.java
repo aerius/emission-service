@@ -32,12 +32,12 @@ import org.jooq.impl.TableImpl;
  * 
  * De emissie factoren zijn hier in kg/km/voertuig.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileSourceOnRoadCategoryEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = -262940316;
+    private static final long serialVersionUID = -240668060;
 
     /**
      * The reference instance of <code>template.mobile_source_on_road_category_emission_factors</code>
@@ -98,7 +98,7 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
     }
 
     private MobileSourceOnRoadCategoryEmissionFactors(Name alias, Table<MobileSourceOnRoadCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten onroad mobiele bronnen.\r\nDe emissie factoren zijn hier in kg/km/voertuig.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten onroad mobiele bronnen.\r\nDe emissie factoren zijn hier in kg/km/voertuig.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     public <O extends Record> MobileSourceOnRoadCategoryEmissionFactors(Table<O> child, ForeignKey<O, MobileSourceOnRoadCategoryEmissionFactorsRecord> key) {

@@ -34,12 +34,12 @@ import org.jooq.impl.TableImpl;
  * LET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk 
  * aan de AERIUS beleidsjaren.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = 1285446765;
+    private static final long serialVersionUID = 1410781949;
 
     /**
      * The reference instance of <code>template.road_category_emission_factors</code>
@@ -110,7 +110,7 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
     }
 
     private RoadCategoryEmissionFactors(Name alias, Table<RoadCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten verkeer bij verschillende snelheidstyperingen voor verschillende soorten stoffen.\r\nDe emissie factors zijn hier in g/voertuig/km.\r\n\r\nLET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk aan de AERIUS beleidsjaren.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/roads.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten verkeer bij verschillende snelheidstyperingen voor verschillende soorten stoffen.\r\nDe emissie factors zijn hier in g/voertuig/km.\r\n\r\nLET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk aan de AERIUS beleidsjaren.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     public <O extends Record> RoadCategoryEmissionFactors(Table<O> child, ForeignKey<O, RoadCategoryEmissionFactorsRecord> key) {

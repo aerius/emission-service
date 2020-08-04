@@ -24,12 +24,12 @@ import org.jooq.impl.TableImpl;
 /**
  * View retourneert de emissie karakteristieken voor zeescheep vaart.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeSourceCharacteristicsView extends TableImpl<ShippingMaritimeSourceCharacteristicsViewRecord> {
 
-    private static final long serialVersionUID = -1922632795;
+    private static final long serialVersionUID = 1272088229;
 
     /**
      * The reference instance of <code>template.shipping_maritime_source_characteristics_view</code>
@@ -115,7 +115,7 @@ public class ShippingMaritimeSourceCharacteristicsView extends TableImpl<Shippin
     }
 
     private ShippingMaritimeSourceCharacteristicsView(Name alias, Table<ShippingMaritimeSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor zeescheep vaart.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/shipping_maritime.sql"), TableOptions.view("create view \"shipping_maritime_source_characteristics_view\" as  SELECT shipping_maritime_category_source_characteristics.shipping_maritime_category_id,\n    shipping_maritime_category_source_characteristics.year,\n    shipping_maritime_category_source_characteristics.movement_type,\n    shipping_maritime_category_source_characteristics.gcn_sector_id,\n    shipping_maritime_category_source_characteristics.heat_content,\n    shipping_maritime_category_source_characteristics.height,\n    shipping_maritime_category_source_characteristics.spread,\n    emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code\n   FROM ((template.shipping_maritime_category_source_characteristics\n     JOIN template.default_gcn_sector_source_characteristics_view USING (gcn_sector_id))\n     JOIN template.emission_diurnal_variations USING (emission_diurnal_variation_id));"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor zeescheep vaart.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_maritime.sql"), TableOptions.view("create view \"shipping_maritime_source_characteristics_view\" as  SELECT shipping_maritime_category_source_characteristics.shipping_maritime_category_id,\n    shipping_maritime_category_source_characteristics.year,\n    shipping_maritime_category_source_characteristics.movement_type,\n    shipping_maritime_category_source_characteristics.gcn_sector_id,\n    shipping_maritime_category_source_characteristics.heat_content,\n    shipping_maritime_category_source_characteristics.height,\n    shipping_maritime_category_source_characteristics.spread,\n    emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code\n   FROM ((template.shipping_maritime_category_source_characteristics\n     JOIN template.default_gcn_sector_source_characteristics_view USING (gcn_sector_id))\n     JOIN template.emission_diurnal_variations USING (emission_diurnal_variation_id));"));
     }
 
     public <O extends Record> ShippingMaritimeSourceCharacteristicsView(Table<O> child, ForeignKey<O, ShippingMaritimeSourceCharacteristicsViewRecord> key) {

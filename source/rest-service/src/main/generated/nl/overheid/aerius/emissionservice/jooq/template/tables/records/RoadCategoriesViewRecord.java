@@ -21,12 +21,12 @@ import org.jooq.impl.TableRecordImpl;
  * Zie road_categories en road_category_emission_factors voor meer informatie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesViewRecord> implements Record14<Integer, String, String, VehicleType, RoadType, Integer, Integer, SpeedLimitEnforcementType, Integer, String, Short, Short, Double, Double> {
 
-    private static final long serialVersionUID = -1719683535;
+    private static final long serialVersionUID = 1723391145;
 
     /**
      * Setter for <code>template.road_categories_view.road_category_id</code>.

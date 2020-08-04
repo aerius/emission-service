@@ -15,12 +15,12 @@ import org.jooq.impl.TableRecordImpl;
 /**
  * View retourneert de landbouwgrond categoriëen.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farmlands.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farmlands.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCategoriesViewRecord> implements Record4<Short, String, String, Integer> {
 
-    private static final long serialVersionUID = 692796271;
+    private static final long serialVersionUID = 381430759;
 
     /**
      * Setter for <code>template.farmland_categories_view.farmland_category_id</code>.

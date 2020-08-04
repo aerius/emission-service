@@ -28,12 +28,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Koppeling tussen stalsystemen en stalbeschrijvingen (N:N).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesToLodgingSystemDefinitions extends TableImpl<FarmLodgingTypesToLodgingSystemDefinitionsRecord> {
 
-    private static final long serialVersionUID = 1042201020;
+    private static final long serialVersionUID = -836985556;
 
     /**
      * The reference instance of <code>template.farm_lodging_types_to_lodging_system_definitions</code>
@@ -84,7 +84,7 @@ public class FarmLodgingTypesToLodgingSystemDefinitions extends TableImpl<FarmLo
     }
 
     private FarmLodgingTypesToLodgingSystemDefinitions(Name alias, Table<FarmLodgingTypesToLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen stalsystemen en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen stalsystemen en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingTypesToLodgingSystemDefinitions(Table<O> child, ForeignKey<O, FarmLodgingTypesToLodgingSystemDefinitionsRecord> key) {

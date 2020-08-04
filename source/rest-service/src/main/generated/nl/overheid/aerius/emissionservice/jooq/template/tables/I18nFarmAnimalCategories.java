@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor diercategorieën.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nFarmAnimalCategories extends TableImpl<I18nFarmAnimalCategoriesRecord> {
 
-    private static final long serialVersionUID = 1115863965;
+    private static final long serialVersionUID = 572956573;
 
     /**
      * The reference instance of <code>template.i18n_farm_animal_categories</code>
@@ -90,7 +90,7 @@ public class I18nFarmAnimalCategories extends TableImpl<I18nFarmAnimalCategories
     }
 
     private I18nFarmAnimalCategories(Name alias, Table<I18nFarmAnimalCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor diercategorieën.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor diercategorieën.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nFarmAnimalCategories(Table<O> child, ForeignKey<O, I18nFarmAnimalCategoriesRecord> key) {

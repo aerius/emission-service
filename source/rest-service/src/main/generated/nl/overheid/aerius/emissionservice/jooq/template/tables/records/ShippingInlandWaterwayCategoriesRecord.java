@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Voor sommige types is de stroming van de vaarweg van belang, dit wordt 
  * hier ook aangegeven.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandWaterwayCategoriesRecord extends UpdatableRecordImpl<ShippingInlandWaterwayCategoriesRecord> implements Record5<Integer, String, String, String, Boolean> {
 
-    private static final long serialVersionUID = -946388917;
+    private static final long serialVersionUID = 82469971;
 
     /**
      * Setter for <code>template.shipping_inland_waterway_categories.shipping_inland_waterway_category_id</code>.

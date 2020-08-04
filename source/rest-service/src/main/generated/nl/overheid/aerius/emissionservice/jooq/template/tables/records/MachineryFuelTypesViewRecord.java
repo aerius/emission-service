@@ -17,12 +17,12 @@ import org.jooq.impl.TableRecordImpl;
  * zijn.
  * Hiermee kan werktuigtype "Anders" gegeneerd worden in de UI.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryFuelTypesViewRecord extends TableRecordImpl<MachineryFuelTypesViewRecord> implements Record5<Integer, Integer, String, String, Float> {
 
-    private static final long serialVersionUID = -1244255422;
+    private static final long serialVersionUID = 1306326970;
 
     /**
      * Setter for <code>template.machinery_fuel_types_view.sector_id</code>.

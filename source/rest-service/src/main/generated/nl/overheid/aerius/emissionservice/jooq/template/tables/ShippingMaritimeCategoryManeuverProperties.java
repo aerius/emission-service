@@ -34,12 +34,12 @@ import org.jooq.impl.TableImpl;
  * Maneuver_length is de lengte van de route waarbij deze factor gebruikt 
  * moet worden.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategoryManeuverProperties extends TableImpl<ShippingMaritimeCategoryManeuverPropertiesRecord> {
 
-    private static final long serialVersionUID = 984803481;
+    private static final long serialVersionUID = 1819759129;
 
     /**
      * The reference instance of <code>template.shipping_maritime_category_maneuver_properties</code>
@@ -95,7 +95,7 @@ public class ShippingMaritimeCategoryManeuverProperties extends TableImpl<Shippi
     }
 
     private ShippingMaritimeCategoryManeuverProperties(Name alias, Table<ShippingMaritimeCategoryManeuverPropertiesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Manoeuvreer-eigenschappen per zeevaart schip.\r\n\r\nManeuver_factor is de factor waarmee de emissie in het beginstuk van de vaarroute moet worden opgehoogd vanwege het manouvreren van het schip bij de kade.\r\nManeuver_length is de lengte van de route waarbij deze factor gebruikt moet worden.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Manoeuvreer-eigenschappen per zeevaart schip.\r\n\r\nManeuver_factor is de factor waarmee de emissie in het beginstuk van de vaarroute moet worden opgehoogd vanwege het manouvreren van het schip bij de kade.\r\nManeuver_length is de lengte van de route waarbij deze factor gebruikt moet worden.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingMaritimeCategoryManeuverProperties(Table<O> child, ForeignKey<O, ShippingMaritimeCategoryManeuverPropertiesRecord> key) {

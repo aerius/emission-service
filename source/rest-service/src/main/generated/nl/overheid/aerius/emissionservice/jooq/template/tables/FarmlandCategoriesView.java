@@ -23,12 +23,12 @@ import org.jooq.impl.TableImpl;
 /**
  * View retourneert de landbouwgrond categoriëen.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farmlands.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farmlands.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmlandCategoriesView extends TableImpl<FarmlandCategoriesViewRecord> {
 
-    private static final long serialVersionUID = -922527528;
+    private static final long serialVersionUID = -83423416;
 
     /**
      * The reference instance of <code>template.farmland_categories_view</code>
@@ -89,7 +89,7 @@ public class FarmlandCategoriesView extends TableImpl<FarmlandCategoriesViewReco
     }
 
     private FarmlandCategoriesView(Name alias, Table<FarmlandCategoriesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de landbouwgrond categoriëen.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/farmlands.sql"), TableOptions.view("create view \"farmland_categories_view\" as  SELECT farmland_categories.farmland_category_id,\n    farmland_categories.code,\n    farmland_categories.name,\n    farmland_categories.gcn_sector_id\n   FROM template.farmland_categories;"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de landbouwgrond categoriëen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/farmlands.sql"), TableOptions.view("create view \"farmland_categories_view\" as  SELECT farmland_categories.farmland_category_id,\n    farmland_categories.code,\n    farmland_categories.name,\n    farmland_categories.gcn_sector_id\n   FROM template.farmland_categories;"));
     }
 
     public <O extends Record> FarmlandCategoriesView(Table<O> child, ForeignKey<O, FarmlandCategoriesViewRecord> key) {

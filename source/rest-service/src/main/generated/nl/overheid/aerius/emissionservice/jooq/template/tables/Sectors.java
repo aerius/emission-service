@@ -28,12 +28,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Sectorindeling van AERIUS
  * 
- * @file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Sectors extends TableImpl<SectorsRecord> {
 
-    private static final long serialVersionUID = 1685539685;
+    private static final long serialVersionUID = 887495109;
 
     /**
      * The reference instance of <code>template.sectors</code>
@@ -84,7 +84,7 @@ public class Sectors extends TableImpl<SectorsRecord> {
     }
 
     private Sectors(Name alias, Table<SectorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Sectorindeling van AERIUS\r\n\r\n@file source/database/src/main/sql/sectors/02-tables/01-sectors.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Sectorindeling van AERIUS\r\n\r\n@file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql"), TableOptions.table());
     }
 
     public <O extends Record> Sectors(Table<O> child, ForeignKey<O, SectorsRecord> key) {

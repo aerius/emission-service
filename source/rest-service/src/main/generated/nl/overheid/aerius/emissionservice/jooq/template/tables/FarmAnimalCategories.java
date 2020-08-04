@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * Diercategorieen die voorkomen in de RAV-code lijst. (RAV = Regeling ammoniak 
  * en veehouderij)
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAnimalCategories extends TableImpl<FarmAnimalCategoriesRecord> {
 
-    private static final long serialVersionUID = -1148893540;
+    private static final long serialVersionUID = -1857580132;
 
     /**
      * The reference instance of <code>template.farm_animal_categories</code>
@@ -95,7 +95,7 @@ public class FarmAnimalCategories extends TableImpl<FarmAnimalCategoriesRecord> 
     }
 
     private FarmAnimalCategories(Name alias, Table<FarmAnimalCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Diercategorieen die voorkomen in de RAV-code lijst. (RAV = Regeling ammoniak en veehouderij)\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Diercategorieen die voorkomen in de RAV-code lijst. (RAV = Regeling ammoniak en veehouderij)\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmAnimalCategories(Table<O> child, ForeignKey<O, FarmAnimalCategoriesRecord> key) {

@@ -18,12 +18,12 @@ import org.jooq.impl.TableRecordImpl;
  * en de bijbehorende aandeel- en reductiefactoren voor die diercategorie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasureReductionFactorsViewRecord extends TableRecordImpl<FarmLodgingFodderMeasureReductionFactorsViewRecord> implements Record11<Integer, String, String, String, Integer, Short, Float, Float, Float, Float, Float> {
 
-    private static final long serialVersionUID = -701975862;
+    private static final long serialVersionUID = -1809569966;
 
     /**
      * Setter for <code>template.farm_lodging_fodder_measure_reduction_factors_view.farm_lodging_fodder_measure_id</code>.

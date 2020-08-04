@@ -40,12 +40,12 @@ import org.jooq.impl.TableImpl;
  * stilliggen.
  * (in kg/(aantal schepen * uur stilliggen)).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategoryEmissionFactors extends TableImpl<ShippingMaritimeCategoryEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = 1954631664;
+    private static final long serialVersionUID = 1069924592;
 
     /**
      * The reference instance of <code>template.shipping_maritime_category_emission_factors</code>
@@ -111,7 +111,7 @@ public class ShippingMaritimeCategoryEmissionFactors extends TableImpl<ShippingM
     }
 
     private ShippingMaritimeCategoryEmissionFactors(Name alias, Table<ShippingMaritimeCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten schepen voor zeescheepvaart.\r\nDeze factoren zijn uniek per scheepstype per stof per jaar per snelheid.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\nDe emission_factor bij een snelheid van 0 is de emissie factor tijdens stilliggen.\r\n(in kg/(aantal schepen * uur stilliggen)).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten schepen voor zeescheepvaart.\r\nDeze factoren zijn uniek per scheepstype per stof per jaar per snelheid.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\nDe emission_factor bij een snelheid van 0 is de emissie factor tijdens stilliggen.\r\n(in kg/(aantal schepen * uur stilliggen)).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingMaritimeCategoryEmissionFactors(Table<O> child, ForeignKey<O, ShippingMaritimeCategoryEmissionFactorsRecord> key) {

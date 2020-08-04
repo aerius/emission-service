@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven 
  * aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SectorsMainGcnSectorRecord extends UpdatableRecordImpl<SectorsMainGcnSectorRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = -872675422;
+    private static final long serialVersionUID = 1625537611;
 
     /**
      * Setter for <code>template.sectors_main_gcn_sector.sector_id</code>.

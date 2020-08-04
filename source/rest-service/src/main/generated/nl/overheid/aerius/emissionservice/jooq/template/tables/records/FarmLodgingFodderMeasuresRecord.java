@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Dit zijn maatregelen die zorgen voor minder emissies en toegepast kunnen 
  * worden op een stalsysteem (farm_lodging_type).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasuresRecord extends UpdatableRecordImpl<FarmLodgingFodderMeasuresRecord> implements Record4<Integer, String, String, String> {
 
-    private static final long serialVersionUID = 584076257;
+    private static final long serialVersionUID = -1277650839;
 
     /**
      * Setter for <code>template.farm_lodging_fodder_measures.farm_lodging_fodder_measure_id</code>.

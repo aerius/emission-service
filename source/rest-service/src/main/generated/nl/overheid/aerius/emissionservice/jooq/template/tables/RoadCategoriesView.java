@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * Zie road_categories en road_category_emission_factors voor meer informatie.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
 
-    private static final long serialVersionUID = -1338785631;
+    private static final long serialVersionUID = 1288539153;
 
     /**
      * The reference instance of <code>template.road_categories_view</code>
@@ -145,7 +145,7 @@ public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
     }
 
     private RoadCategoriesView(Name alias, Table<RoadCategoriesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de categorieen voor wegen. Dit bevat onder andere de emissiefactoren en stagnatiefactoren.\r\nZie road_categories en road_category_emission_factors voor meer informatie.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/roads.sql"), TableOptions.view("create view \"road_categories_view\" as  SELECT road_categories.road_category_id,\n    ((road_categories.vehicle_type || '_'::text) || road_categories.road_type) AS code,\n    road_categories.name,\n    road_categories.vehicle_type,\n    road_categories.road_type,\n    road_categories.gcn_sector_id,\n    road_emission_factors_interpolated_view.road_speed_profile_id,\n    road_speed_profiles.speed_limit_enforcement,\n    road_speed_profiles.maximum_speed,\n    road_speed_profiles.name AS road_speed_profile_name,\n    road_emission_factors_interpolated_view.year,\n    road_emission_factors_interpolated_view.substance_id,\n    road_emission_factors_interpolated_view.emission_factor,\n    road_emission_factors_interpolated_view.stagnated_emission_factor\n   FROM ((template.road_categories\n     JOIN template.road_emission_factors_interpolated_view USING (road_category_id))\n     JOIN template.road_speed_profiles USING (road_speed_profile_id))\n  ORDER BY road_categories.road_category_id;"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de categorieen voor wegen. Dit bevat onder andere de emissiefactoren en stagnatiefactoren.\r\nZie road_categories en road_category_emission_factors voor meer informatie.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql"), TableOptions.view("create view \"road_categories_view\" as  SELECT road_categories.road_category_id,\n    ((road_categories.vehicle_type || '_'::text) || road_categories.road_type) AS code,\n    road_categories.name,\n    road_categories.vehicle_type,\n    road_categories.road_type,\n    road_categories.gcn_sector_id,\n    road_emission_factors_interpolated_view.road_speed_profile_id,\n    road_speed_profiles.speed_limit_enforcement,\n    road_speed_profiles.maximum_speed,\n    road_speed_profiles.name AS road_speed_profile_name,\n    road_emission_factors_interpolated_view.year,\n    road_emission_factors_interpolated_view.substance_id,\n    road_emission_factors_interpolated_view.emission_factor,\n    road_emission_factors_interpolated_view.stagnated_emission_factor\n   FROM ((template.road_categories\n     JOIN template.road_emission_factors_interpolated_view USING (road_category_id))\n     JOIN template.road_speed_profiles USING (road_speed_profile_id))\n  ORDER BY road_categories.road_category_id;"));
     }
 
     public <O extends Record> RoadCategoriesView(Table<O> child, ForeignKey<O, RoadCategoriesViewRecord> key) {

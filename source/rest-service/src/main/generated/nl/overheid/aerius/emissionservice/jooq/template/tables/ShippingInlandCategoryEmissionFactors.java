@@ -37,12 +37,12 @@ import org.jooq.impl.TableImpl;
  * is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) 
  * bij een bepaalde snelheid.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategoryEmissionFactors extends TableImpl<ShippingInlandCategoryEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = -1951616444;
+    private static final long serialVersionUID = -243519804;
 
     /**
      * The reference instance of <code>template.shipping_inland_category_emission_factors</code>
@@ -118,7 +118,7 @@ public class ShippingInlandCategoryEmissionFactors extends TableImpl<ShippingInl
     }
 
     private ShippingInlandCategoryEmissionFactors(Name alias, Table<ShippingInlandCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor de verschillende soorten varende schepen.\r\nDeze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen, ladingstoestand en stof.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor de verschillende soorten varende schepen.\r\nDeze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen, ladingstoestand en stof.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingInlandCategoryEmissionFactors(Table<O> child, ForeignKey<O, ShippingInlandCategoryEmissionFactorsRecord> key) {

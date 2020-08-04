@@ -104,7 +104,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Template extends SchemaImpl {
 
-    private static final long serialVersionUID = -893238932;
+    private static final long serialVersionUID = -1419767379;
 
     /**
      * The reference instance of <code>template</code>
@@ -115,7 +115,7 @@ public class Template extends SchemaImpl {
      * View retourneert de default GCN bron karakteristieken.
 De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view retourneert de bron karakteristieken van de meest relevante stof.
 
-@file source/database/src/main/sql/sectors/04-views.sql
+@file source/database/src/main/sql/template/01_sectors/04-views.sql
      */
     public final DefaultGcnSectorSourceCharacteristicsView DEFAULT_GCN_SECTOR_SOURCE_CHARACTERISTICS_VIEW = DefaultGcnSectorSourceCharacteristicsView.DEFAULT_GCN_SECTOR_SOURCE_CHARACTERISTICS_VIEW;
 
@@ -123,7 +123,7 @@ De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view retourne
      * View retourneert de emissie karakteristieken per AERIUS sector.
 Valt terug op een default GCN bron karakteristieken indien er geen AERIUS default waarde is opgegeven.
 
-@file source/database/src/main/sql/sectors/04-views.sql
+@file source/database/src/main/sql/template/01_sectors/04-views.sql
      */
     public final DefaultSourceCharacteristicsView DEFAULT_SOURCE_CHARACTERISTICS_VIEW = DefaultSourceCharacteristicsView.DEFAULT_SOURCE_CHARACTERISTICS_VIEW;
 
@@ -132,14 +132,14 @@ Valt terug op een default GCN bron karakteristieken indien er geen AERIUS defaul
 
 We gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id als foreign key voorkomt.
 
-@file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+@file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
      */
     public final EmissionDiurnalVariations EMISSION_DIURNAL_VARIATIONS = EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS;
 
     /**
      * View retourneert een lijst met verschillende types temporele variaties.
 
-@file source/database/src/main/sql/sectors/04-views.sql
+@file source/database/src/main/sql/template/01_sectors/04-views.sql
      */
     public final EmissionDiurnalVariationsView EMISSION_DIURNAL_VARIATIONS_VIEW = EmissionDiurnalVariationsView.EMISSION_DIURNAL_VARIATIONS_VIEW;
 
@@ -147,14 +147,14 @@ We gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurna
      * Bevat de emissiefactoren (kg/jaar) van de additionele staltechnieken.
 Deze emissiefactor wordt extra toegepast op een deel van het aantal dieren van het stalsysteem waarop gestapeld wordt.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmAdditionalLodgingSystemEmissionFactors FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS = FarmAdditionalLodgingSystemEmissionFactors.FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS;
 
     /**
      * Geeft de eigenschappen van een additionele staltechniek, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, en de stalbeschrijvingen die er bij gekozen kunnen worden.
 
-@file source/database/src/main/sql/emission_factors/04-views/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
      */
     public final FarmAdditionalLodgingSystemEmissionFactorsView FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW = FarmAdditionalLodgingSystemEmissionFactorsView.FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW;
 
@@ -162,21 +162,21 @@ Deze emissiefactor wordt extra toegepast op een deel van het aantal dieren van h
      * Additionele staltechnieken. Dit zijn staltechnieken die zorgen voor extra emissies en die gestapeld kunnen worden op een stalsysteem (farm_lodging_type).
 Deze additionele staltechnieken zijn afgeleid uit de RAV-code lijst.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmAdditionalLodgingSystems FARM_ADDITIONAL_LODGING_SYSTEMS = FarmAdditionalLodgingSystems.FARM_ADDITIONAL_LODGING_SYSTEMS;
 
     /**
      * Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmAdditionalLodgingSystemsToLodgingSystemDefinitions FARM_ADDITIONAL_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS = FarmAdditionalLodgingSystemsToLodgingSystemDefinitions.FARM_ADDITIONAL_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS;
 
     /**
      * Diercategorieen die voorkomen in de RAV-code lijst. (RAV = Regeling ammoniak en veehouderij)
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmAnimalCategories FARM_ANIMAL_CATEGORIES = FarmAnimalCategories.FARM_ANIMAL_CATEGORIES;
 
@@ -188,21 +188,21 @@ Als er maatregelen op een stalsysteem worden toegepast, wordt van de combinatie 
 @column reduction_factor_cellar De reductiefactor voor de emissie uit de mestkelder
 @column reduction_factor_total De gecombineerde reductiefactor voor de emissie vanaf de vloer en uit de mestkelder
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingFodderMeasureReductionFactors FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS = FarmLodgingFodderMeasureReductionFactors.FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS;
 
     /**
      * Geeft de eigenschappen van een voer- en managementmaatregel, inclusief code, beschrijving, de diercategorieën waarop deze mag worden toegepast en de bijbehorende aandeel- en reductiefactoren voor die diercategorie.
 
-@file source/database/src/main/sql/emission_factors/04-views/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
      */
     public final FarmLodgingFodderMeasureReductionFactorsView FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS_VIEW = FarmLodgingFodderMeasureReductionFactorsView.FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS_VIEW;
 
     /**
      * Voer- en managementmaatregelen; zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage2 en http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/pas-maatregelen/alle-pas-maatregelen/ Dit zijn maatregelen die zorgen voor minder emissies en toegepast kunnen worden op een stalsysteem (farm_lodging_type).
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingFodderMeasures FARM_LODGING_FODDER_MEASURES = FarmLodgingFodderMeasures.FARM_LODGING_FODDER_MEASURES;
 
@@ -213,7 +213,7 @@ De ammoniakverhouding voor alle maatregelen moet altijd gelijk zijn, wat implice
 @column proportion_floor Het aandeel van de totale ammoniakemissie afkomstig van de vloer voor deze combinatie van maatregel en diercategorie
 @column proportion_cellar Het aandeel van de totale ammoniakemissie uit de mestkelder voor deze combinatie van maatregel en diercategorie
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingFodderMeasuresAnimalCategory FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY = FarmLodgingFodderMeasuresAnimalCategory.FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY;
 
@@ -221,21 +221,21 @@ De ammoniakverhouding voor alle maatregelen moet altijd gelijk zijn, wat implice
      * Stalbeschrijvingen (BWL-nummers) zoals gebruikt voor de stalsystemen in de RAV.
 Zie http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschrijvingen
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingSystemDefinitions FARM_LODGING_SYSTEM_DEFINITIONS = FarmLodgingSystemDefinitions.FARM_LODGING_SYSTEM_DEFINITIONS;
 
     /**
      * Bevat de emissiefactoren (kg/jaar) van de stalsystemen.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingTypeEmissionFactors FARM_LODGING_TYPE_EMISSION_FACTORS = FarmLodgingTypeEmissionFactors.FARM_LODGING_TYPE_EMISSION_FACTORS;
 
     /**
      * Geeft de eigenschappen van een stalsysteem, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, het bijbehorende traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen worden.
 
-@file source/database/src/main/sql/emission_factors/04-views/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
      */
     public final FarmLodgingTypeEmissionFactorsView FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW = FarmLodgingTypeEmissionFactorsView.FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW;
 
@@ -243,7 +243,7 @@ Zie http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschri
      * Stalsystemen (huisvestingssystemen); dit is in essentie de RAV-code lijst, zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage1 Een stalsysteem behoort altijd tot een bepaalde diercategorie.
 Ook aangegeven is of het een luchtwasser is.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingTypes FARM_LODGING_TYPES = FarmLodgingTypes.FARM_LODGING_TYPES;
 
@@ -251,7 +251,7 @@ Ook aangegeven is of het een luchtwasser is.
      * Geeft voor emissiearme stalsystemen aan wat het bijbehorende 'overige' stalsysteem is.
 De koppeling (N:1) is alleen opgenomen als het stalsysteem als 'emissiearm' is geklassificeerd. In bepaalde gevallen wordt dan namelijk de emissiefactor begrensd in de emissie berekening, o.b.v. die van het 'overige' stalsysteem.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingTypesOtherLodgingType FARM_LODGING_TYPES_OTHER_LODGING_TYPE = FarmLodgingTypesOtherLodgingType.FARM_LODGING_TYPES_OTHER_LODGING_TYPE;
 
@@ -259,14 +259,14 @@ De koppeling (N:1) is alleen opgenomen als het stalsysteem als 'emissiearm' is g
      * Koppeling (N:N) welke aangeeft op welke stalsystemen de additionele staltechnieken gestapeld kunnen worden.
 In deze tabel staan de toegestane combinaties van stapelingen binnen de RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingTypesToAdditionalLodgingSystems FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS = FarmLodgingTypesToAdditionalLodgingSystems.FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS;
 
     /**
      * Koppeling tussen stalsystemen en stalbeschrijvingen (N:N).
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingTypesToLodgingSystemDefinitions FARM_LODGING_TYPES_TO_LODGING_SYSTEM_DEFINITIONS = FarmLodgingTypesToLodgingSystemDefinitions.FARM_LODGING_TYPES_TO_LODGING_SYSTEM_DEFINITIONS;
 
@@ -274,7 +274,7 @@ In deze tabel staan de toegestane combinaties van stapelingen binnen de RAV syst
      * Koppeling (N:N) welke aangeeft op welke stalsystemen de emissiereducerende staltechnieken gestapeld kunnen worden.
 In deze tabel staan de toegestane combinaties van stapelingen binnen de RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmLodgingTypesToReductiveLodgingSystems FARM_LODGING_TYPES_TO_REDUCTIVE_LODGING_SYSTEMS = FarmLodgingTypesToReductiveLodgingSystems.FARM_LODGING_TYPES_TO_REDUCTIVE_LODGING_SYSTEMS;
 
@@ -282,14 +282,14 @@ In deze tabel staan de toegestane combinaties van stapelingen binnen de RAV syst
      * Bevat de reductiefactoren (factor 0..1) van de emissiereducerende staltechnieken.
 Deze reductiefactor wordt toegepast op de totale emissie van het stalsysteem waarop gestapeld wordt, inclusief eventuele additionele staltechnieken die hierop gestapeld zijn.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmReductiveLodgingSystemReductionFactors FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS = FarmReductiveLodgingSystemReductionFactors.FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS;
 
     /**
      * Geeft de eigenschappen van een emissiereducerende staltechniek, inclusief code, beschrijving, diercategorie, reductiefactoren, of het een luchtwasser is, en de stalbeschrijvingen die er bij gekozen kunnen worden.
 
-@file source/database/src/main/sql/emission_factors/04-views/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
      */
     public final FarmReductiveLodgingSystemReductionFactorsView FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS_VIEW = FarmReductiveLodgingSystemReductionFactorsView.FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS_VIEW;
 
@@ -298,14 +298,14 @@ Deze reductiefactor wordt toegepast op de totale emissie van het stalsysteem waa
 Deze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.
 Ook aangegeven is of het een luchtwasser is.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmReductiveLodgingSystems FARM_REDUCTIVE_LODGING_SYSTEMS = FarmReductiveLodgingSystems.FARM_REDUCTIVE_LODGING_SYSTEMS;
 
     /**
      * Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen (N:N).
 
-@file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
      */
     public final FarmReductiveLodgingSystemsToLodgingSystemDefinitions FARM_REDUCTIVE_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS = FarmReductiveLodgingSystemsToLodgingSystemDefinitions.FARM_REDUCTIVE_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS;
 
@@ -313,21 +313,21 @@ Ook aangegeven is of het een luchtwasser is.
      * De categorieën van verschillende soorten landbouwgrond activiteiten 
 De naam is hierbij de identificatie van de categorie voor de gebruiker.
 
-@file source/database/src/main/sql/emission_factors/02-tables/farmlands.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/farmlands.sql
      */
     public final FarmlandCategories FARMLAND_CATEGORIES = FarmlandCategories.FARMLAND_CATEGORIES;
 
     /**
      * View retourneert de landbouwgrond categoriëen.
 
-@file source/database/src/main/sql/emission_factors/04-views/farmlands.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/farmlands.sql
      */
     public final FarmlandCategoriesView FARMLAND_CATEGORIES_VIEW = FarmlandCategoriesView.FARMLAND_CATEGORIES_VIEW;
 
     /**
      * Voorgedefinieerde OPS kenmerken per GCN sector.
 
-@file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+@file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
      */
     public final GcnSectorSourceCharacteristics GCN_SECTOR_SOURCE_CHARACTERISTICS = GcnSectorSourceCharacteristics.GCN_SECTOR_SOURCE_CHARACTERISTICS;
 
@@ -335,126 +335,126 @@ De naam is hierbij de identificatie van de categorie voor de gebruiker.
      * Sectorindeling van het RIVM.
 Elke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.
 
-@file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+@file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
      */
     public final GcnSectors GCN_SECTORS = GcnSectors.GCN_SECTORS;
 
     /**
      * Vertaaltabel voor de verschillende type temporele variaties.
 
-@file source/database/src/main/sql/sectors/i18n/base_keys.sql
+@file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql
      */
     public final I18nEmissionDiurnalVariations I18N_EMISSION_DIURNAL_VARIATIONS = I18nEmissionDiurnalVariations.I18N_EMISSION_DIURNAL_VARIATIONS;
 
     /**
      * Vertaaltabel voor additionele staltechnieken.
 
-@file source/database/src/main/sql/emission_factors/i18n/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
      */
     public final I18nFarmAdditionalLodgingSystems I18N_FARM_ADDITIONAL_LODGING_SYSTEMS = I18nFarmAdditionalLodgingSystems.I18N_FARM_ADDITIONAL_LODGING_SYSTEMS;
 
     /**
      * Vertaaltabel voor diercategorieën.
 
-@file source/database/src/main/sql/emission_factors/i18n/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
      */
     public final I18nFarmAnimalCategories I18N_FARM_ANIMAL_CATEGORIES = I18nFarmAnimalCategories.I18N_FARM_ANIMAL_CATEGORIES;
 
     /**
      * Vertaaltabel voor voer- en managementmaatregelen.
 
-@file source/database/src/main/sql/emission_factors/i18n/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
      */
     public final I18nFarmLodgingFodderMeasures I18N_FARM_LODGING_FODDER_MEASURES = I18nFarmLodgingFodderMeasures.I18N_FARM_LODGING_FODDER_MEASURES;
 
     /**
      * Vertaaltabel voor stalbeschrijvingen.
 
-@file source/database/src/main/sql/emission_factors/i18n/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
      */
     public final I18nFarmLodgingSystemDefinitions I18N_FARM_LODGING_SYSTEM_DEFINITIONS = I18nFarmLodgingSystemDefinitions.I18N_FARM_LODGING_SYSTEM_DEFINITIONS;
 
     /**
      * Vertaaltabel voor stalsystemen.
 
-@file source/database/src/main/sql/emission_factors/i18n/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
      */
     public final I18nFarmLodgingTypes I18N_FARM_LODGING_TYPES = I18nFarmLodgingTypes.I18N_FARM_LODGING_TYPES;
 
     /**
      * Vertaaltabel voor emissiereducerende staltechnieken.
 
-@file source/database/src/main/sql/emission_factors/i18n/farms.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
      */
     public final I18nFarmReductiveLodgingSystems I18N_FARM_REDUCTIVE_LODGING_SYSTEMS = I18nFarmReductiveLodgingSystems.I18N_FARM_REDUCTIVE_LODGING_SYSTEMS;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten landbouw grond activiteiten.
 
-@file source/database/src/main/sql/emission_factors/i18n/farm_fields.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/farm_fields.sql
      */
     public final I18nFarmlandCategories I18N_FARMLAND_CATEGORIES = I18nFarmlandCategories.I18N_FARMLAND_CATEGORIES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten brandstof.
 
-@file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql
      */
     public final I18nMachineryFuelTypes I18N_MACHINERY_FUEL_TYPES = I18nMachineryFuelTypes.I18N_MACHINERY_FUEL_TYPES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten werktuigen.
 
-@file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql
      */
     public final I18nMachineryTypes I18N_MACHINERY_TYPES = I18nMachineryTypes.I18N_MACHINERY_TYPES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten offroad mobiele bronnen.
 
-@file source/database/src/main/sql/emission_factors/i18n/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/mobile_sources.sql
      */
     public final I18nMobileSourceOffRoadCategories I18N_MOBILE_SOURCE_OFF_ROAD_CATEGORIES = I18nMobileSourceOffRoadCategories.I18N_MOBILE_SOURCE_OFF_ROAD_CATEGORIES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten onroad mobiele bronnen.
 
-@file source/database/src/main/sql/emission_factors/i18n/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/mobile_sources.sql
      */
     public final I18nMobileSourceOnRoadCategories I18N_MOBILE_SOURCE_ON_ROAD_CATEGORIES = I18nMobileSourceOnRoadCategories.I18N_MOBILE_SOURCE_ON_ROAD_CATEGORIES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten plannen.
 
-@file source/database/src/main/sql/emission_factors/i18n/plans.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/plans.sql
      */
     public final I18nPlanCategories I18N_PLAN_CATEGORIES = I18nPlanCategories.I18N_PLAN_CATEGORIES;
 
     /**
      * Vertaaltabel voor sectoren.
 
-@file source/database/src/main/sql/sectors/i18n/base_keys.sql
+@file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql
      */
     public final I18nSectors I18N_SECTORS = I18nSectors.I18N_SECTORS;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten binnenvaart-schepen.
 
-@file source/database/src/main/sql/emission_factors/i18n/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_inland.sql
      */
     public final I18nShippingInlandCategories I18N_SHIPPING_INLAND_CATEGORIES = I18nShippingInlandCategories.I18N_SHIPPING_INLAND_CATEGORIES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten binnenvaart vaarwegen.
 
-@file source/database/src/main/sql/emission_factors/i18n/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_inland.sql
      */
     public final I18nShippingInlandWaterwayCategories I18N_SHIPPING_INLAND_WATERWAY_CATEGORIES = I18nShippingInlandWaterwayCategories.I18N_SHIPPING_INLAND_WATERWAY_CATEGORIES;
 
     /**
      * Vertaaltabel voor categorieën van verschillende soorten zeevaart-schepen.
 
-@file source/database/src/main/sql/emission_factors/i18n/shipping_maritime.sql
+@file source/database/src/main/sql/template/02_emission_factors/i18n/shipping_maritime.sql
      */
     public final I18nShippingMaritimeCategories I18N_SHIPPING_MARITIME_CATEGORIES = I18nShippingMaritimeCategories.I18N_SHIPPING_MARITIME_CATEGORIES;
 
@@ -462,7 +462,7 @@ Elke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan welke 
      * De verschillende soorten brandstof voor werktuigen.
 @column density soortelijk gewicht in kg/liter.
 
-@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
      */
     public final MachineryFuelTypes MACHINERY_FUEL_TYPES = MachineryFuelTypes.MACHINERY_FUEL_TYPES;
 
@@ -470,7 +470,7 @@ Elke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan welke 
      * Hiermee wordt expliciet een koppeling gemaakt tussen sectoren en brandstof-types.
 Dit wordt gebruikt om het algemene werktuigtype 'Anders' samen te stellen door middel van de machinery_fuel_types_view.
 
-@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
      */
     public final MachineryFuelTypesToSectors MACHINERY_FUEL_TYPES_TO_SECTORS = MachineryFuelTypesToSectors.MACHINERY_FUEL_TYPES_TO_SECTORS;
 
@@ -478,7 +478,7 @@ Dit wordt gebruikt om het algemene werktuigtype 'Anders' samen te stellen door m
      * Geeft de brandstoffen terug voor de sectoren waar werktuigen voor beschikbaar zijn.
 Hiermee kan werktuigtype "Anders" gegeneerd worden in de UI.
 
-@file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql
      */
     public final MachineryFuelTypesView MACHINERY_FUEL_TYPES_VIEW = MachineryFuelTypesView.MACHINERY_FUEL_TYPES_VIEW;
 
@@ -486,7 +486,7 @@ Hiermee kan werktuigtype "Anders" gegeneerd worden in de UI.
      * De emissiefactoren per werktuig, brandstof en emissiestof.
 Emissie factor is hier in g/kWh.
 
-@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
      */
     public final MachineryTypeEmissionFactors MACHINERY_TYPE_EMISSION_FACTORS = MachineryTypeEmissionFactors.MACHINERY_TYPE_EMISSION_FACTORS;
 
@@ -496,21 +496,21 @@ Emissie factor is hier in g/kWh.
 @column load belasting, een percentage als fractie.
 @column energy_efficiency efficientie van de motor in g/kWh (hoeveel gram brandstof benodigd is voor 1 kWh).
 
-@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
      */
     public final MachineryTypeFuelOptions MACHINERY_TYPE_FUEL_OPTIONS = MachineryTypeFuelOptions.MACHINERY_TYPE_FUEL_OPTIONS;
 
     /**
      * De verschillende soorten werktuigen met naam en sector waarin zij gebruikt worden.
 
-@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
      */
     public final MachineryTypes MACHINERY_TYPES = MachineryTypes.MACHINERY_TYPES;
 
     /**
      * Geeft informatie over de werktuigen terug, inclusief brandstof informatie.
 
-@file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql
      */
     public final MachineryTypesView MACHINERY_TYPES_VIEW = MachineryTypesView.MACHINERY_TYPES_VIEW;
 
@@ -518,7 +518,7 @@ Emissie factor is hier in g/kWh.
      * De categorieën van verschillende soorten offroad mobiele bronnen (stageklassen).
 De naam is hierbij de identificatie van de categorie voor de gebruiker.
 
-@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
      */
     public final MobileSourceOffRoadCategories MOBILE_SOURCE_OFF_ROAD_CATEGORIES = MobileSourceOffRoadCategories.MOBILE_SOURCE_OFF_ROAD_CATEGORIES;
 
@@ -530,7 +530,7 @@ Het veld emission_factor_idle is leeg indien er geen stationaire emissieberekeni
 @column emission_factor_working EFW_plb, emissie factor werkend per liter brandstof (g/l)
 @column emission_factor_idle EFS_plci, emissie factor stationair per uur per liter cilinder-inhoud (g/l/uur)
 
-@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
      */
     public final MobileSourceOffRoadCategoryEmissionFactors MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS = MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS;
 
@@ -543,7 +543,7 @@ Niet voor alle stageklasses zijn stationaire emissieberekeningen mogelijk, in da
 @column power_max Vmax, maximaal vermogen binnen de opgegeven stage-klasse (KW)
 @column fuel_consumption_idle GBS_plci, liter brandstof verbruik stationair per uur per liter cilinder-inhoud (l/l/uur)
 
-@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
      */
     public final MobileSourceOffRoadCategoryIdleProperties MOBILE_SOURCE_OFF_ROAD_CATEGORY_IDLE_PROPERTIES = MobileSourceOffRoadCategoryIdleProperties.MOBILE_SOURCE_OFF_ROAD_CATEGORY_IDLE_PROPERTIES;
 
@@ -555,7 +555,7 @@ Er is een kans dat de lijsten afzonderlijk van elkaar zullen gaan wijzigen.
 
 De naam is hierbij de identificatie van de categorie voor de gebruiker.
 
-@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
      */
     public final MobileSourceOnRoadCategories MOBILE_SOURCE_ON_ROAD_CATEGORIES = MobileSourceOnRoadCategories.MOBILE_SOURCE_ON_ROAD_CATEGORIES;
 
@@ -563,7 +563,7 @@ De naam is hierbij de identificatie van de categorie voor de gebruiker.
      * De emissie factoren voor verschillende soorten onroad mobiele bronnen.
 De emissie factoren zijn hier in kg/km/voertuig.
 
-@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
      */
     public final MobileSourceOnRoadCategoryEmissionFactors MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS = MobileSourceOnRoadCategoryEmissionFactors.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS;
 
@@ -572,7 +572,7 @@ De emissie factoren zijn hier in kg/km/voertuig.
 
 De naam is hierbij de identificatie van de categorie voor de gebruiker.
 
-@file source/database/src/main/sql/emission_factors/02-tables/plans.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql
      */
     public final PlanCategories PLAN_CATEGORIES = PlanCategories.PLAN_CATEGORIES;
 
@@ -580,7 +580,7 @@ De naam is hierbij de identificatie van de categorie voor de gebruiker.
      * View retourneert de categorieen voor plannen. Dit bevat onder andere de emissiefactoren en de emissie karakteristieken.
 Zie plan_categories en plan_category_emission_factors voor meer informatie.
 
-@file source/database/src/main/sql/emission_factors/04-views/misc.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/misc.sql
      */
     public final PlanCategoriesSourceCharacteristicsView PLAN_CATEGORIES_SOURCE_CHARACTERISTICS_VIEW = PlanCategoriesSourceCharacteristicsView.PLAN_CATEGORIES_SOURCE_CHARACTERISTICS_VIEW;
 
@@ -588,7 +588,7 @@ Zie plan_categories en plan_category_emission_factors voor meer informatie.
      * De emissie factoren voor verschillende soorten plannen.
 De emissie factoren zijn hier afhankelijk van de category_unit van de bijbehorende plan_category.
 
-@file source/database/src/main/sql/emission_factors/02-tables/plans.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql
      */
     public final PlanCategoryEmissionFactors PLAN_CATEGORY_EMISSION_FACTORS = PlanCategoryEmissionFactors.PLAN_CATEGORY_EMISSION_FACTORS;
 
@@ -597,7 +597,7 @@ De emissie factoren zijn hier afhankelijk van de category_unit van de bijbehoren
 
 Dit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).
 
-@file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
      */
     public final RoadCategories ROAD_CATEGORIES = RoadCategories.ROAD_CATEGORIES;
 
@@ -605,7 +605,7 @@ Dit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).
      * View retourneert de categorieen voor wegen. Dit bevat onder andere de emissiefactoren en stagnatiefactoren.
 Zie road_categories en road_category_emission_factors voor meer informatie.
 
-@file source/database/src/main/sql/emission_factors/04-views/roads.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
      */
     public final RoadCategoriesView ROAD_CATEGORIES_VIEW = RoadCategoriesView.ROAD_CATEGORIES_VIEW;
 
@@ -615,14 +615,14 @@ De emissie factors zijn hier in g/voertuig/km.
 
 LET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk aan de AERIUS beleidsjaren.
 
-@file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
      */
     public final RoadCategoryEmissionFactors ROAD_CATEGORY_EMISSION_FACTORS = RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS;
 
     /**
      * De wegemissiefactoren (road_category_emission_factors) waarvan alle ontbrekende tussenliggende rekenjaren worden geinterpoleerd.
 
-@file source/database/src/main/sql/emission_factors/04-views/roads.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
      */
     public final RoadEmissionFactorsInterpolatedView ROAD_EMISSION_FACTORS_INTERPOLATED_VIEW = RoadEmissionFactorsInterpolatedView.ROAD_EMISSION_FACTORS_INTERPOLATED_VIEW;
 
@@ -630,35 +630,35 @@ LET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk aan 
      * Deze view retourneert voor alle jaren het begin- en eind-jaar welke gebruikt kunnen worden voor het interpoleren van de wegemissiefactoren.
 De begin- en eind-jaren worden geselecteerd uit de road_category_emission_factors tabel. De begin- en eind-jaren worden voor iedere key uit die tabel opnieuw bepaald en teruggegeven.
 
-@file source/database/src/main/sql/emission_factors/04-views/roads.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
      */
     public final RoadEmissionFactorsInterpolationYearsView ROAD_EMISSION_FACTORS_INTERPOLATION_YEARS_VIEW = RoadEmissionFactorsInterpolationYearsView.ROAD_EMISSION_FACTORS_INTERPOLATION_YEARS_VIEW;
 
     /**
      * Tabel met daarin de verschillende snelheidstyperingen per wegtype.
 
-@file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
      */
     public final RoadSpeedProfiles ROAD_SPEED_PROFILES = RoadSpeedProfiles.ROAD_SPEED_PROFILES;
 
     /**
      * Standaard OPS kenmerken per sector.
 
-@file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+@file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
      */
     public final SectorDefaultSourceCharacteristics SECTOR_DEFAULT_SOURCE_CHARACTERISTICS = SectorDefaultSourceCharacteristics.SECTOR_DEFAULT_SOURCE_CHARACTERISTICS;
 
     /**
      * Sectorindeling van AERIUS
 
-@file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+@file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
      */
     public final Sectors SECTORS = Sectors.SECTORS;
 
     /**
      * Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.
 
-@file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+@file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
      */
     public final SectorsMainGcnSector SECTORS_MAIN_GCN_SECTOR = SectorsMainGcnSector.SECTORS_MAIN_GCN_SECTOR;
 
@@ -668,7 +668,7 @@ In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als i
 
 Standaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen worden.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
      */
     public final ShippingInlandCategories SHIPPING_INLAND_CATEGORIES = ShippingInlandCategories.SHIPPING_INLAND_CATEGORIES;
 
@@ -678,7 +678,7 @@ Deze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen, ladingsto
 
 Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
      */
     public final ShippingInlandCategoryEmissionFactors SHIPPING_INLAND_CATEGORY_EMISSION_FACTORS = ShippingInlandCategoryEmissionFactors.SHIPPING_INLAND_CATEGORY_EMISSION_FACTORS;
 
@@ -688,7 +688,7 @@ Deze kenmerken zijn uniek per scheepstype, ladingstoestand en stof.
 
 Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
      */
     public final ShippingInlandCategoryEmissionFactorsDocked SHIPPING_INLAND_CATEGORY_EMISSION_FACTORS_DOCKED = ShippingInlandCategoryEmissionFactorsDocked.SHIPPING_INLAND_CATEGORY_EMISSION_FACTORS_DOCKED;
 
@@ -696,7 +696,7 @@ Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emi
      * De OPS karakteristieken voor verschillende soorten varende schepen.
 Deze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen en ladingstoestand.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
      */
     public final ShippingInlandCategorySourceCharacteristics SHIPPING_INLAND_CATEGORY_SOURCE_CHARACTERISTICS = ShippingInlandCategorySourceCharacteristics.SHIPPING_INLAND_CATEGORY_SOURCE_CHARACTERISTICS;
 
@@ -704,21 +704,21 @@ Deze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen e
      * De OPS karakteristieken voor verschillende soorten stilliggende schepen.
 Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
      */
     public final ShippingInlandCategorySourceCharacteristicsDocked SHIPPING_INLAND_CATEGORY_SOURCE_CHARACTERISTICS_DOCKED = ShippingInlandCategorySourceCharacteristicsDocked.SHIPPING_INLAND_CATEGORY_SOURCE_CHARACTERISTICS_DOCKED;
 
     /**
      * View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.
 
-@file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
      */
     public final ShippingInlandSourceCharacteristicsDockedView SHIPPING_INLAND_SOURCE_CHARACTERISTICS_DOCKED_VIEW = ShippingInlandSourceCharacteristicsDockedView.SHIPPING_INLAND_SOURCE_CHARACTERISTICS_DOCKED_VIEW;
 
     /**
      * View retourneert de emissie karakteristieken voor routes voor binnenvaart.
 
-@file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
      */
     public final ShippingInlandSourceCharacteristicsView SHIPPING_INLAND_SOURCE_CHARACTERISTICS_VIEW = ShippingInlandSourceCharacteristicsView.SHIPPING_INLAND_SOURCE_CHARACTERISTICS_VIEW;
 
@@ -726,14 +726,14 @@ Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
      * Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.
 Voor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook aangegeven.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
      */
     public final ShippingInlandWaterwayCategories SHIPPING_INLAND_WATERWAY_CATEGORIES = ShippingInlandWaterwayCategories.SHIPPING_INLAND_WATERWAY_CATEGORIES;
 
     /**
      * View retourneert de waterweg categorieen.
 
-@file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
      */
     public final ShippingInlandWaterwayCategoriesView SHIPPING_INLAND_WATERWAY_CATEGORIES_VIEW = ShippingInlandWaterwayCategoriesView.SHIPPING_INLAND_WATERWAY_CATEGORIES_VIEW;
 
@@ -741,7 +741,7 @@ Voor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook 
      * De categories van verschillende soorten schepen voor zeevaart.
 In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
      */
     public final ShippingMaritimeCategories SHIPPING_MARITIME_CATEGORIES = ShippingMaritimeCategories.SHIPPING_MARITIME_CATEGORIES;
 
@@ -753,7 +753,7 @@ Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emi
 De emission_factor bij een snelheid van 0 is de emissie factor tijdens stilliggen.
 (in kg/(aantal schepen * uur stilliggen)).
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
      */
     public final ShippingMaritimeCategoryEmissionFactors SHIPPING_MARITIME_CATEGORY_EMISSION_FACTORS = ShippingMaritimeCategoryEmissionFactors.SHIPPING_MARITIME_CATEGORY_EMISSION_FACTORS;
 
@@ -763,7 +763,7 @@ De emission_factor bij een snelheid van 0 is de emissie factor tijdens stilligge
 Maneuver_factor is de factor waarmee de emissie in het beginstuk van de vaarroute moet worden opgehoogd vanwege het manouvreren van het schip bij de kade.
 Maneuver_length is de lengte van de route waarbij deze factor gebruikt moet worden.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
      */
     public final ShippingMaritimeCategoryManeuverProperties SHIPPING_MARITIME_CATEGORY_MANEUVER_PROPERTIES = ShippingMaritimeCategoryManeuverProperties.SHIPPING_MARITIME_CATEGORY_MANEUVER_PROPERTIES;
 
@@ -776,14 +776,14 @@ De hoogte gedefinieerd in deze tabel overschrijft daarbij de hoogte verkregen vi
 Dit omdat de hoogte varieert per tonnage-reeks en beweeg type, niet alleen per sector.
 Spreiding is verder weer een karakteristiek die sterk samenhangt per hoogte, en is daarom ook meegenomen in deze tabel.
 
-@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
      */
     public final ShippingMaritimeCategorySourceCharacteristics SHIPPING_MARITIME_CATEGORY_SOURCE_CHARACTERISTICS = ShippingMaritimeCategorySourceCharacteristics.SHIPPING_MARITIME_CATEGORY_SOURCE_CHARACTERISTICS;
 
     /**
      * View retourneert de emissie karakteristieken voor zeescheep vaart.
 
-@file source/database/src/main/sql/emission_factors/04-views/shipping_maritime.sql
+@file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_maritime.sql
      */
     public final ShippingMaritimeSourceCharacteristicsView SHIPPING_MARITIME_SOURCE_CHARACTERISTICS_VIEW = ShippingMaritimeSourceCharacteristicsView.SHIPPING_MARITIME_SOURCE_CHARACTERISTICS_VIEW;
 

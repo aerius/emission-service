@@ -33,12 +33,12 @@ import org.jooq.impl.TableImpl;
  * Standaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen 
  * worden.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategories extends TableImpl<ShippingInlandCategoriesRecord> {
 
-    private static final long serialVersionUID = 322887167;
+    private static final long serialVersionUID = -83554961;
 
     /**
      * The reference instance of <code>template.shipping_inland_categories</code>
@@ -99,7 +99,7 @@ public class ShippingInlandCategories extends TableImpl<ShippingInlandCategories
     }
 
     private ShippingInlandCategories(Name alias, Table<ShippingInlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categories van verschillende soorten binnenvaart-schepen.\r\nIn de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.\r\n\r\nStandaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen worden.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De categories van verschillende soorten binnenvaart-schepen.\r\nIn de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.\r\n\r\nStandaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen worden.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingInlandCategories(Table<O> child, ForeignKey<O, ShippingInlandCategoriesRecord> key) {

@@ -20,12 +20,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * waarop gestapeld wordt, inclusief eventuele additionele staltechnieken 
  * die hierop gestapeld zijn.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmReductiveLodgingSystemReductionFactorsRecord extends UpdatableRecordImpl<FarmReductiveLodgingSystemReductionFactorsRecord> implements Record3<Integer, Short, Float> {
 
-    private static final long serialVersionUID = -1089472200;
+    private static final long serialVersionUID = 1839545776;
 
     /**
      * Setter for <code>template.farm_reductive_lodging_system_reduction_factors.farm_reductive_lodging_system_id</code>.

@@ -16,12 +16,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen 
  * (N:N).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmReductiveLodgingSystemsToLodgingSystemDefinitionsRecord extends UpdatableRecordImpl<FarmReductiveLodgingSystemsToLodgingSystemDefinitionsRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = 568831810;
+    private static final long serialVersionUID = -1184900294;
 
     /**
      * Setter for <code>template.farm_reductive_lodging_systems_to_lodging_system_definitions.farm_reductive_lodging_system_id</code>.

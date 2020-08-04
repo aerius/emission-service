@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * De verschillende soorten brandstof voor werktuigen.
  * @column density soortelijk gewicht in kg/liter.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryFuelTypes extends TableImpl<MachineryFuelTypesRecord> {
 
-    private static final long serialVersionUID = -1145061054;
+    private static final long serialVersionUID = -1579493182;
 
     /**
      * The reference instance of <code>template.machinery_fuel_types</code>
@@ -95,7 +95,7 @@ public class MachineryFuelTypes extends TableImpl<MachineryFuelTypesRecord> {
     }
 
     private MachineryFuelTypes(Name alias, Table<MachineryFuelTypesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De verschillende soorten brandstof voor werktuigen.\r\n@column density soortelijk gewicht in kg/liter.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De verschillende soorten brandstof voor werktuigen.\r\n@column density soortelijk gewicht in kg/liter.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> MachineryFuelTypes(Table<O> child, ForeignKey<O, MachineryFuelTypesRecord> key) {

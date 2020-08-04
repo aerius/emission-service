@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * Vertaaltabel voor categorieën van verschillende soorten onroad mobiele 
  * bronnen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMobileSourceOnRoadCategories extends TableImpl<I18nMobileSourceOnRoadCategoriesRecord> {
 
-    private static final long serialVersionUID = -1767766901;
+    private static final long serialVersionUID = -2125274997;
 
     /**
      * The reference instance of <code>template.i18n_mobile_source_on_road_categories</code>
@@ -96,7 +96,7 @@ public class I18nMobileSourceOnRoadCategories extends TableImpl<I18nMobileSource
     }
 
     private I18nMobileSourceOnRoadCategories(Name alias, Table<I18nMobileSourceOnRoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten onroad mobiele bronnen.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten onroad mobiele bronnen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/mobile_sources.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nMobileSourceOnRoadCategories(Table<O> child, ForeignKey<O, I18nMobileSourceOnRoadCategoriesRecord> key) {

@@ -34,12 +34,12 @@ import org.jooq.impl.TableImpl;
  * RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesToAdditionalLodgingSystems extends TableImpl<FarmLodgingTypesToAdditionalLodgingSystemsRecord> {
 
-    private static final long serialVersionUID = -748628523;
+    private static final long serialVersionUID = 1010773317;
 
     /**
      * The reference instance of <code>template.farm_lodging_types_to_additional_lodging_systems</code>
@@ -90,7 +90,7 @@ public class FarmLodgingTypesToAdditionalLodgingSystems extends TableImpl<FarmLo
     }
 
     private FarmLodgingTypesToAdditionalLodgingSystems(Name alias, Table<FarmLodgingTypesToAdditionalLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling (N:N) welke aangeeft op welke stalsystemen de additionele staltechnieken gestapeld kunnen worden.\r\nIn deze tabel staan de toegestane combinaties van stapelingen binnen de RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Koppeling (N:N) welke aangeeft op welke stalsystemen de additionele staltechnieken gestapeld kunnen worden.\r\nIn deze tabel staan de toegestane combinaties van stapelingen binnen de RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingTypesToAdditionalLodgingSystems(Table<O> child, ForeignKey<O, FarmLodgingTypesToAdditionalLodgingSystemsRecord> key) {

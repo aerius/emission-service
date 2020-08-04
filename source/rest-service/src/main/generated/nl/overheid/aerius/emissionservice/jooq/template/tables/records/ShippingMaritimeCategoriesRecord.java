@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt 
  * als identificatie van de categorie voor een gebruiker.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategoriesRecord extends UpdatableRecordImpl<ShippingMaritimeCategoriesRecord> implements Record4<Short, String, String, String> {
 
-    private static final long serialVersionUID = -470725097;
+    private static final long serialVersionUID = 1646081183;
 
     /**
      * Setter for <code>template.shipping_maritime_categories.shipping_maritime_category_id</code>.

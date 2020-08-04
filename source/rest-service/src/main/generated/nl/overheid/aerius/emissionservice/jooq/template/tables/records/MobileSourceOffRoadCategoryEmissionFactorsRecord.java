@@ -25,12 +25,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * @column emission_factor_idle EFS_plci, emissie factor stationair per uur 
  * per liter cilinder-inhoud (g/l/uur)
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoryEmissionFactorsRecord> implements Record4<Short, Short, Float, Float> {
 
-    private static final long serialVersionUID = -120338518;
+    private static final long serialVersionUID = 1041101986;
 
     /**
      * Setter for <code>template.mobile_source_off_road_category_emission_factors.mobile_source_off_road_category_id</code>.

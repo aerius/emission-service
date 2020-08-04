@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt 
  * als identificatie van de categorie voor een gebruiker.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategories extends TableImpl<ShippingMaritimeCategoriesRecord> {
 
-    private static final long serialVersionUID = -257744553;
+    private static final long serialVersionUID = -1811266985;
 
     /**
      * The reference instance of <code>template.shipping_maritime_categories</code>
@@ -96,7 +96,7 @@ public class ShippingMaritimeCategories extends TableImpl<ShippingMaritimeCatego
     }
 
     private ShippingMaritimeCategories(Name alias, Table<ShippingMaritimeCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categories van verschillende soorten schepen voor zeevaart.\r\nIn de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De categories van verschillende soorten schepen voor zeevaart.\r\nIn de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingMaritimeCategories(Table<O> child, ForeignKey<O, ShippingMaritimeCategoriesRecord> key) {

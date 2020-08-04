@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOffRoadCategories extends TableImpl<MobileSourceOffRoadCategoriesRecord> {
 
-    private static final long serialVersionUID = 1114228419;
+    private static final long serialVersionUID = -321450669;
 
     /**
      * The reference instance of <code>template.mobile_source_off_road_categories</code>
@@ -97,7 +97,7 @@ public class MobileSourceOffRoadCategories extends TableImpl<MobileSourceOffRoad
     }
 
     private MobileSourceOffRoadCategories(Name alias, Table<MobileSourceOffRoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten offroad mobiele bronnen (stageklassen).\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten offroad mobiele bronnen (stageklassen).\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     public <O extends Record> MobileSourceOffRoadCategories(Table<O> child, ForeignKey<O, MobileSourceOffRoadCategoriesRecord> key) {

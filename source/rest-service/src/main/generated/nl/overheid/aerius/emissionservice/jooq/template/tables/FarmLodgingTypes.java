@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * Een stalsysteem behoort altijd tot een bepaalde diercategorie.
  * Ook aangegeven is of het een luchtwasser is.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypes extends TableImpl<FarmLodgingTypesRecord> {
 
-    private static final long serialVersionUID = -756543865;
+    private static final long serialVersionUID = 2051313543;
 
     /**
      * The reference instance of <code>template.farm_lodging_types</code>
@@ -107,7 +107,7 @@ public class FarmLodgingTypes extends TableImpl<FarmLodgingTypesRecord> {
     }
 
     private FarmLodgingTypes(Name alias, Table<FarmLodgingTypesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Stalsystemen (huisvestingssystemen); dit is in essentie de RAV-code lijst, zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage1 Een stalsysteem behoort altijd tot een bepaalde diercategorie.\r\nOok aangegeven is of het een luchtwasser is.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Stalsystemen (huisvestingssystemen); dit is in essentie de RAV-code lijst, zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage1 Een stalsysteem behoort altijd tot een bepaalde diercategorie.\r\nOok aangegeven is of het een luchtwasser is.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingTypes(Table<O> child, ForeignKey<O, FarmLodgingTypesRecord> key) {

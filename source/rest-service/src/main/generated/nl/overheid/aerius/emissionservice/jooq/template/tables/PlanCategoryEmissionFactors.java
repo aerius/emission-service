@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * De emissie factoren zijn hier afhankelijk van de category_unit van de bijbehorende 
  * plan_category.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/plans.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PlanCategoryEmissionFactors extends TableImpl<PlanCategoryEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = 868665725;
+    private static final long serialVersionUID = 73788925;
 
     /**
      * The reference instance of <code>template.plan_category_emission_factors</code>
@@ -92,7 +92,7 @@ public class PlanCategoryEmissionFactors extends TableImpl<PlanCategoryEmissionF
     }
 
     private PlanCategoryEmissionFactors(Name alias, Table<PlanCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten plannen.\r\nDe emissie factoren zijn hier afhankelijk van de category_unit van de bijbehorende plan_category.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/plans.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten plannen.\r\nDe emissie factoren zijn hier afhankelijk van de category_unit van de bijbehorende plan_category.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql"), TableOptions.table());
     }
 
     public <O extends Record> PlanCategoryEmissionFactors(Table<O> child, ForeignKey<O, PlanCategoryEmissionFactorsRecord> key) {

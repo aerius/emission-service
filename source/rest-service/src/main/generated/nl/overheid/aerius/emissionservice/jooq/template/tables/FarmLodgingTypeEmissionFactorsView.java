@@ -26,12 +26,12 @@ import org.jooq.impl.TableImpl;
  * traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen 
  * worden.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypeEmissionFactorsView extends TableImpl<FarmLodgingTypeEmissionFactorsViewRecord> {
 
-    private static final long serialVersionUID = -1060047729;
+    private static final long serialVersionUID = -1245852385;
 
     /**
      * The reference instance of <code>template.farm_lodging_type_emission_factors_view</code>
@@ -122,7 +122,7 @@ public class FarmLodgingTypeEmissionFactorsView extends TableImpl<FarmLodgingTyp
     }
 
     private FarmLodgingTypeEmissionFactorsView(Name alias, Table<FarmLodgingTypeEmissionFactorsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een stalsysteem, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, het bijbehorende traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen worden.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/farms.sql"), TableOptions.view("create view \"farm_lodging_type_emission_factors_view\" as  SELECT farm_lodging_types.farm_lodging_type_id,\n    farm_lodging_types.code,\n    farm_lodging_types.name,\n    farm_lodging_types.description,\n    farm_lodging_types.farm_animal_category_id,\n    farm_lodging_types_to_lodging_system_definitions.farm_lodging_system_definition_id,\n    farm_lodging_type_emission_factors.substance_id,\n    farm_lodging_type_emission_factors.emission_factor,\n    farm_lodging_types_other_lodging_type.farm_other_lodging_type_id,\n    farm_lodging_types.scrubber\n   FROM ((((template.farm_lodging_types\n     JOIN template.farm_animal_categories USING (farm_animal_category_id))\n     JOIN template.farm_lodging_types_to_lodging_system_definitions USING (farm_lodging_type_id))\n     JOIN template.farm_lodging_type_emission_factors USING (farm_lodging_type_id))\n     LEFT JOIN template.farm_lodging_types_other_lodging_type USING (farm_lodging_type_id))\n  ORDER BY (\"left\"(farm_lodging_types.code, 1)), (string_to_array(\"right\"(farm_lodging_types.code, '-1'::integer), '.'::text))::integer[];"));
+        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een stalsysteem, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, het bijbehorende traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen worden.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql"), TableOptions.view("create view \"farm_lodging_type_emission_factors_view\" as  SELECT farm_lodging_types.farm_lodging_type_id,\n    farm_lodging_types.code,\n    farm_lodging_types.name,\n    farm_lodging_types.description,\n    farm_lodging_types.farm_animal_category_id,\n    farm_lodging_types_to_lodging_system_definitions.farm_lodging_system_definition_id,\n    farm_lodging_type_emission_factors.substance_id,\n    farm_lodging_type_emission_factors.emission_factor,\n    farm_lodging_types_other_lodging_type.farm_other_lodging_type_id,\n    farm_lodging_types.scrubber\n   FROM ((((template.farm_lodging_types\n     JOIN template.farm_animal_categories USING (farm_animal_category_id))\n     JOIN template.farm_lodging_types_to_lodging_system_definitions USING (farm_lodging_type_id))\n     JOIN template.farm_lodging_type_emission_factors USING (farm_lodging_type_id))\n     LEFT JOIN template.farm_lodging_types_other_lodging_type USING (farm_lodging_type_id))\n  ORDER BY (\"left\"(farm_lodging_types.code, 1)), (string_to_array(\"right\"(farm_lodging_types.code, '-1'::integer), '.'::text))::integer[];"));
     }
 
     public <O extends Record> FarmLodgingTypeEmissionFactorsView(Table<O> child, ForeignKey<O, FarmLodgingTypeEmissionFactorsViewRecord> key) {

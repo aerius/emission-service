@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoriesRecord> implements Record4<Short, String, String, String> {
 
-    private static final long serialVersionUID = -86516238;
+    private static final long serialVersionUID = -1273252358;
 
     /**
      * Setter for <code>template.mobile_source_off_road_categories.mobile_source_off_road_category_id</code>.

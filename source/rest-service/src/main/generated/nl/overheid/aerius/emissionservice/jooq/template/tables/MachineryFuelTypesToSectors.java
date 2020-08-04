@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * Dit wordt gebruikt om het algemene werktuigtype 'Anders' samen te stellen 
  * door middel van de machinery_fuel_types_view.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryFuelTypesToSectors extends TableImpl<MachineryFuelTypesToSectorsRecord> {
 
-    private static final long serialVersionUID = 85560594;
+    private static final long serialVersionUID = 1929062034;
 
     /**
      * The reference instance of <code>template.machinery_fuel_types_to_sectors</code>
@@ -87,7 +87,7 @@ public class MachineryFuelTypesToSectors extends TableImpl<MachineryFuelTypesToS
     }
 
     private MachineryFuelTypesToSectors(Name alias, Table<MachineryFuelTypesToSectorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Hiermee wordt expliciet een koppeling gemaakt tussen sectoren en brandstof-types.\r\nDit wordt gebruikt om het algemene werktuigtype 'Anders' samen te stellen door middel van de machinery_fuel_types_view.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Hiermee wordt expliciet een koppeling gemaakt tussen sectoren en brandstof-types.\r\nDit wordt gebruikt om het algemene werktuigtype 'Anders' samen te stellen door middel van de machinery_fuel_types_view.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> MachineryFuelTypesToSectors(Table<O> child, ForeignKey<O, MachineryFuelTypesToSectorsRecord> key) {

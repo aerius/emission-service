@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen 
  * (N:N).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmReductiveLodgingSystemsToLodgingSystemDefinitions extends TableImpl<FarmReductiveLodgingSystemsToLodgingSystemDefinitionsRecord> {
 
-    private static final long serialVersionUID = -1624650738;
+    private static final long serialVersionUID = 1708542846;
 
     /**
      * The reference instance of <code>template.farm_reductive_lodging_systems_to_lodging_system_definitions</code>
@@ -85,7 +85,7 @@ public class FarmReductiveLodgingSystemsToLodgingSystemDefinitions extends Table
     }
 
     private FarmReductiveLodgingSystemsToLodgingSystemDefinitions(Name alias, Table<FarmReductiveLodgingSystemsToLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmReductiveLodgingSystemsToLodgingSystemDefinitions(Table<O> child, ForeignKey<O, FarmReductiveLodgingSystemsToLodgingSystemDefinitionsRecord> key) {

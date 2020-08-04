@@ -29,12 +29,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * @column proportion_cellar Het aandeel van de totale ammoniakemissie uit 
  * de mestkelder voor deze combinatie van maatregel en diercategorie
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasuresAnimalCategoryRecord extends UpdatableRecordImpl<FarmLodgingFodderMeasuresAnimalCategoryRecord> implements Record4<Integer, Integer, Float, Float> {
 
-    private static final long serialVersionUID = -1231195912;
+    private static final long serialVersionUID = -188734848;
 
     /**
      * Setter for <code>template.farm_lodging_fodder_measures_animal_category.farm_lodging_fodder_measure_id</code>.

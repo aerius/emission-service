@@ -25,12 +25,12 @@ import org.jooq.impl.TableImpl;
  * beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, 
  * en de stalbeschrijvingen die er bij gekozen kunnen worden.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemEmissionFactorsView extends TableImpl<FarmAdditionalLodgingSystemEmissionFactorsViewRecord> {
 
-    private static final long serialVersionUID = 877595993;
+    private static final long serialVersionUID = 701398489;
 
     /**
      * The reference instance of <code>template.farm_additional_lodging_system_emission_factors_view</code>
@@ -116,7 +116,7 @@ public class FarmAdditionalLodgingSystemEmissionFactorsView extends TableImpl<Fa
     }
 
     private FarmAdditionalLodgingSystemEmissionFactorsView(Name alias, Table<FarmAdditionalLodgingSystemEmissionFactorsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een additionele staltechniek, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, en de stalbeschrijvingen die er bij gekozen kunnen worden.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/farms.sql"), TableOptions.view("create view \"farm_additional_lodging_system_emission_factors_view\" as  SELECT farm_additional_lodging_systems.farm_additional_lodging_system_id,\n    farm_additional_lodging_systems.code,\n    farm_additional_lodging_systems.name,\n    farm_additional_lodging_systems.description,\n    farm_additional_lodging_systems.farm_animal_category_id,\n    farm_additional_lodging_systems_to_lodging_system_definitions.farm_lodging_system_definition_id,\n    farm_additional_lodging_system_emission_factors.substance_id,\n    farm_additional_lodging_system_emission_factors.emission_factor,\n    farm_additional_lodging_systems.scrubber\n   FROM (((template.farm_additional_lodging_systems\n     JOIN template.farm_animal_categories USING (farm_animal_category_id))\n     JOIN template.farm_additional_lodging_system_emission_factors USING (farm_additional_lodging_system_id))\n     JOIN template.farm_additional_lodging_systems_to_lodging_system_definitions USING (farm_additional_lodging_system_id));"));
+        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een additionele staltechniek, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, en de stalbeschrijvingen die er bij gekozen kunnen worden.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/farms.sql"), TableOptions.view("create view \"farm_additional_lodging_system_emission_factors_view\" as  SELECT farm_additional_lodging_systems.farm_additional_lodging_system_id,\n    farm_additional_lodging_systems.code,\n    farm_additional_lodging_systems.name,\n    farm_additional_lodging_systems.description,\n    farm_additional_lodging_systems.farm_animal_category_id,\n    farm_additional_lodging_systems_to_lodging_system_definitions.farm_lodging_system_definition_id,\n    farm_additional_lodging_system_emission_factors.substance_id,\n    farm_additional_lodging_system_emission_factors.emission_factor,\n    farm_additional_lodging_systems.scrubber\n   FROM (((template.farm_additional_lodging_systems\n     JOIN template.farm_animal_categories USING (farm_animal_category_id))\n     JOIN template.farm_additional_lodging_system_emission_factors USING (farm_additional_lodging_system_id))\n     JOIN template.farm_additional_lodging_systems_to_lodging_system_definitions USING (farm_additional_lodging_system_id));"));
     }
 
     public <O extends Record> FarmAdditionalLodgingSystemEmissionFactorsView(Table<O> child, ForeignKey<O, FarmAdditionalLodgingSystemEmissionFactorsViewRecord> key) {

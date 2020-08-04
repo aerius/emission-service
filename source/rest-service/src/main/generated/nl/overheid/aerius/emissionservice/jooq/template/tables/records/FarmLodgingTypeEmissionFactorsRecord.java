@@ -16,12 +16,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Bevat de emissiefactoren (kg/jaar) van de stalsystemen.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypeEmissionFactorsRecord extends UpdatableRecordImpl<FarmLodgingTypeEmissionFactorsRecord> implements Record3<Integer, Short, Float> {
 
-    private static final long serialVersionUID = 262141682;
+    private static final long serialVersionUID = 2123326826;
 
     /**
      * Setter for <code>template.farm_lodging_type_emission_factors.farm_lodging_type_id</code>.

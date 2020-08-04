@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor emissiereducerende staltechnieken.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nFarmReductiveLodgingSystems extends TableImpl<I18nFarmReductiveLodgingSystemsRecord> {
 
-    private static final long serialVersionUID = -864869295;
+    private static final long serialVersionUID = 858532417;
 
     /**
      * The reference instance of <code>template.i18n_farm_reductive_lodging_systems</code>
@@ -90,7 +90,7 @@ public class I18nFarmReductiveLodgingSystems extends TableImpl<I18nFarmReductive
     }
 
     private I18nFarmReductiveLodgingSystems(Name alias, Table<I18nFarmReductiveLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor emissiereducerende staltechnieken.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor emissiereducerende staltechnieken.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nFarmReductiveLodgingSystems(Table<O> child, ForeignKey<O, I18nFarmReductiveLodgingSystemsRecord> key) {

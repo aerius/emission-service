@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Vertaaltabel voor categorieën van verschillende soorten werktuigen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMachineryTypesRecord extends UpdatableRecordImpl<I18nMachineryTypesRecord> implements Record3<Integer, LanguageCodeType, String> {
 
-    private static final long serialVersionUID = -1308605366;
+    private static final long serialVersionUID = 684543426;
 
     /**
      * Setter for <code>template.i18n_machinery_types.machinery_type_id</code>.

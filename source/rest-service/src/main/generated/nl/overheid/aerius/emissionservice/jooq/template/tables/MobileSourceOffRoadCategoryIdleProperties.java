@@ -39,12 +39,12 @@ import org.jooq.impl.TableImpl;
  * @column fuel_consumption_idle GBS_plci, liter brandstof verbruik stationair 
  * per uur per liter cilinder-inhoud (l/l/uur)
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOffRoadCategoryIdleProperties extends TableImpl<MobileSourceOffRoadCategoryIdlePropertiesRecord> {
 
-    private static final long serialVersionUID = 643284940;
+    private static final long serialVersionUID = 359932508;
 
     /**
      * The reference instance of <code>template.mobile_source_off_road_category_idle_properties</code>
@@ -105,7 +105,7 @@ public class MobileSourceOffRoadCategoryIdleProperties extends TableImpl<MobileS
     }
 
     private MobileSourceOffRoadCategoryIdleProperties(Name alias, Table<MobileSourceOffRoadCategoryIdlePropertiesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Eigenschappen per stageklasse die nodig zijn om de stationaire emissie te berekenen (onafhankelijk van de stof).\r\n\r\nNiet voor alle stageklasses zijn stationaire emissieberekeningen mogelijk, in dat geval ontbreekt het record.\r\n\r\n@column power_min Vmin, minimaal vermogen binnen de opgegeven stage-klasse (KW)\r\n@column power_max Vmax, maximaal vermogen binnen de opgegeven stage-klasse (KW)\r\n@column fuel_consumption_idle GBS_plci, liter brandstof verbruik stationair per uur per liter cilinder-inhoud (l/l/uur)\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Eigenschappen per stageklasse die nodig zijn om de stationaire emissie te berekenen (onafhankelijk van de stof).\r\n\r\nNiet voor alle stageklasses zijn stationaire emissieberekeningen mogelijk, in dat geval ontbreekt het record.\r\n\r\n@column power_min Vmin, minimaal vermogen binnen de opgegeven stage-klasse (KW)\r\n@column power_max Vmax, maximaal vermogen binnen de opgegeven stage-klasse (KW)\r\n@column fuel_consumption_idle GBS_plci, liter brandstof verbruik stationair per uur per liter cilinder-inhoud (l/l/uur)\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     public <O extends Record> MobileSourceOffRoadCategoryIdleProperties(Table<O> child, ForeignKey<O, MobileSourceOffRoadCategoryIdlePropertiesRecord> key) {

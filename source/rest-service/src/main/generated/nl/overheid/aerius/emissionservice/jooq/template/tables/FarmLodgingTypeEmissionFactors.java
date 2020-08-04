@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Bevat de emissiefactoren (kg/jaar) van de stalsystemen.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypeEmissionFactors extends TableImpl<FarmLodgingTypeEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = -320650138;
+    private static final long serialVersionUID = -935542810;
 
     /**
      * The reference instance of <code>template.farm_lodging_type_emission_factors</code>
@@ -90,7 +90,7 @@ public class FarmLodgingTypeEmissionFactors extends TableImpl<FarmLodgingTypeEmi
     }
 
     private FarmLodgingTypeEmissionFactors(Name alias, Table<FarmLodgingTypeEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Bevat de emissiefactoren (kg/jaar) van de stalsystemen.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Bevat de emissiefactoren (kg/jaar) van de stalsystemen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingTypeEmissionFactors(Table<O> child, ForeignKey<O, FarmLodgingTypeEmissionFactorsRecord> key) {

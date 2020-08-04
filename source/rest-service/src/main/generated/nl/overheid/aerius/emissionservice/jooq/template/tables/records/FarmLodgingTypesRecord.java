@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Een stalsysteem behoort altijd tot een bepaalde diercategorie.
  * Ook aangegeven is of het een luchtwasser is.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypesRecord> implements Record6<Integer, Integer, String, String, String, Boolean> {
 
-    private static final long serialVersionUID = 1456432509;
+    private static final long serialVersionUID = -1479137035;
 
     /**
      * Setter for <code>template.farm_lodging_types.farm_lodging_type_id</code>.

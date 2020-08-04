@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor additionele staltechnieken.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nFarmAdditionalLodgingSystems extends TableImpl<I18nFarmAdditionalLodgingSystemsRecord> {
 
-    private static final long serialVersionUID = -1683341473;
+    private static final long serialVersionUID = -578827297;
 
     /**
      * The reference instance of <code>template.i18n_farm_additional_lodging_systems</code>
@@ -90,7 +90,7 @@ public class I18nFarmAdditionalLodgingSystems extends TableImpl<I18nFarmAddition
     }
 
     private I18nFarmAdditionalLodgingSystems(Name alias, Table<I18nFarmAdditionalLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor additionele staltechnieken.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor additionele staltechnieken.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nFarmAdditionalLodgingSystems(Table<O> child, ForeignKey<O, I18nFarmAdditionalLodgingSystemsRecord> key) {

@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De emissiefactoren per werktuig, brandstof en emissiestof.
  * Emissie factor is hier in g/kWh.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypeEmissionFactorsRecord extends UpdatableRecordImpl<MachineryTypeEmissionFactorsRecord> implements Record4<Integer, Integer, Integer, Float> {
 
-    private static final long serialVersionUID = -799056052;
+    private static final long serialVersionUID = -448226220;
 
     /**
      * Setter for <code>template.machinery_type_emission_factors.machinery_type_id</code>.

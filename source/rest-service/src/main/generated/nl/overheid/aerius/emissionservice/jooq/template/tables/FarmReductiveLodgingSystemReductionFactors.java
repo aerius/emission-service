@@ -33,12 +33,12 @@ import org.jooq.impl.TableImpl;
  * waarop gestapeld wordt, inclusief eventuele additionele staltechnieken 
  * die hierop gestapeld zijn.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmReductiveLodgingSystemReductionFactors extends TableImpl<FarmReductiveLodgingSystemReductionFactorsRecord> {
 
-    private static final long serialVersionUID = 598211100;
+    private static final long serialVersionUID = -738042084;
 
     /**
      * The reference instance of <code>template.farm_reductive_lodging_system_reduction_factors</code>
@@ -94,7 +94,7 @@ public class FarmReductiveLodgingSystemReductionFactors extends TableImpl<FarmRe
     }
 
     private FarmReductiveLodgingSystemReductionFactors(Name alias, Table<FarmReductiveLodgingSystemReductionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Bevat de reductiefactoren (factor 0..1) van de emissiereducerende staltechnieken.\r\nDeze reductiefactor wordt toegepast op de totale emissie van het stalsysteem waarop gestapeld wordt, inclusief eventuele additionele staltechnieken die hierop gestapeld zijn.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Bevat de reductiefactoren (factor 0..1) van de emissiereducerende staltechnieken.\r\nDeze reductiefactor wordt toegepast op de totale emissie van het stalsysteem waarop gestapeld wordt, inclusief eventuele additionele staltechnieken die hierop gestapeld zijn.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmReductiveLodgingSystemReductionFactors(Table<O> child, ForeignKey<O, FarmReductiveLodgingSystemReductionFactorsRecord> key) {

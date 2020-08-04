@@ -20,12 +20,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Deze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.
  * Ook aangegeven is of het een luchtwasser is.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmReductiveLodgingSystemsRecord extends UpdatableRecordImpl<FarmReductiveLodgingSystemsRecord> implements Record6<Integer, Integer, String, String, String, Boolean> {
 
-    private static final long serialVersionUID = -99331183;
+    private static final long serialVersionUID = 1018373513;
 
     /**
      * Setter for <code>template.farm_reductive_lodging_systems.farm_reductive_lodging_system_id</code>.

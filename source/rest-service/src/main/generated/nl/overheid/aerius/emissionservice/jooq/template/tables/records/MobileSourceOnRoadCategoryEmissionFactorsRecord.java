@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * 
  * De emissie factoren zijn hier in kg/km/voertuig.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOnRoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<MobileSourceOnRoadCategoryEmissionFactorsRecord> implements Record4<Short, RoadType, Short, Float> {
 
-    private static final long serialVersionUID = 200766690;
+    private static final long serialVersionUID = -1619194646;
 
     /**
      * Setter for <code>template.mobile_source_on_road_category_emission_factors.mobile_source_on_road_category_id</code>.

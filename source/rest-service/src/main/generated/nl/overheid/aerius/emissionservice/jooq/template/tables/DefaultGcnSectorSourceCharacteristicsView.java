@@ -25,12 +25,12 @@ import org.jooq.impl.TableImpl;
  * De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view 
  * retourneert de bron karakteristieken van de meest relevante stof.
  * 
- * @file source/database/src/main/sql/sectors/04-views.sql
+ * @file source/database/src/main/sql/template/01_sectors/04-views.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultGcnSectorSourceCharacteristicsView extends TableImpl<DefaultGcnSectorSourceCharacteristicsViewRecord> {
 
-    private static final long serialVersionUID = -1724685105;
+    private static final long serialVersionUID = 1588418849;
 
     /**
      * The reference instance of <code>template.default_gcn_sector_source_characteristics_view</code>
@@ -101,7 +101,7 @@ public class DefaultGcnSectorSourceCharacteristicsView extends TableImpl<Default
     }
 
     private DefaultGcnSectorSourceCharacteristicsView(Name alias, Table<DefaultGcnSectorSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de default GCN bron karakteristieken.\r\nDe GCN bron karakteristieken lijst is per GCN sector en stof. Deze view retourneert de bron karakteristieken van de meest relevante stof.\r\n\r\n@file source/database/src/main/sql/sectors/04-views.sql"), TableOptions.view("create view \"default_gcn_sector_source_characteristics_view\" as  SELECT gcn_sector_source_characteristics.gcn_sector_id,\n    gcn_sector_source_characteristics.heat_content,\n    gcn_sector_source_characteristics.height,\n    gcn_sector_source_characteristics.spread,\n    gcn_sector_source_characteristics.emission_diurnal_variation_id,\n    gcn_sector_source_characteristics.particle_size_distribution\n   FROM template.gcn_sector_source_characteristics\n  WHERE (((gcn_sector_source_characteristics.substance_id = 11) AND ((gcn_sector_source_characteristics.gcn_sector_id < 4120) OR (gcn_sector_source_characteristics.gcn_sector_id >= 4300))) OR ((gcn_sector_source_characteristics.substance_id = 17) AND (gcn_sector_source_characteristics.gcn_sector_id >= 4120) AND (gcn_sector_source_characteristics.gcn_sector_id < 4300)));"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert de default GCN bron karakteristieken.\r\nDe GCN bron karakteristieken lijst is per GCN sector en stof. Deze view retourneert de bron karakteristieken van de meest relevante stof.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/04-views.sql"), TableOptions.view("create view \"default_gcn_sector_source_characteristics_view\" as  SELECT gcn_sector_source_characteristics.gcn_sector_id,\n    gcn_sector_source_characteristics.heat_content,\n    gcn_sector_source_characteristics.height,\n    gcn_sector_source_characteristics.spread,\n    gcn_sector_source_characteristics.emission_diurnal_variation_id,\n    gcn_sector_source_characteristics.particle_size_distribution\n   FROM template.gcn_sector_source_characteristics\n  WHERE (((gcn_sector_source_characteristics.substance_id = 11) AND ((gcn_sector_source_characteristics.gcn_sector_id < 4120) OR (gcn_sector_source_characteristics.gcn_sector_id >= 4300))) OR ((gcn_sector_source_characteristics.substance_id = 17) AND (gcn_sector_source_characteristics.gcn_sector_id >= 4120) AND (gcn_sector_source_characteristics.gcn_sector_id < 4300)));"));
     }
 
     public <O extends Record> DefaultGcnSectorSourceCharacteristicsView(Table<O> child, ForeignKey<O, DefaultGcnSectorSourceCharacteristicsViewRecord> key) {

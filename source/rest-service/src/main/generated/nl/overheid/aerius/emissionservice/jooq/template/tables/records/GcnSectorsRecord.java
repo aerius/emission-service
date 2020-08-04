@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.
  * 
  * 
- * @file source/database/src/main/sql/sectors/02-tables/01-sectors.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/01-sectors.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GcnSectorsRecord extends UpdatableRecordImpl<GcnSectorsRecord> implements Record3<Integer, Integer, String> {
 
-    private static final long serialVersionUID = 280787804;
+    private static final long serialVersionUID = -2042157293;
 
     /**
      * Setter for <code>template.gcn_sectors.gcn_sector_id</code>.

@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor categorieën van verschillende soorten plannen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/plans.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/plans.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nPlanCategories extends TableImpl<I18nPlanCategoriesRecord> {
 
-    private static final long serialVersionUID = -1422104791;
+    private static final long serialVersionUID = -895707591;
 
     /**
      * The reference instance of <code>template.i18n_plan_categories</code>
@@ -95,7 +95,7 @@ public class I18nPlanCategories extends TableImpl<I18nPlanCategoriesRecord> {
     }
 
     private I18nPlanCategories(Name alias, Table<I18nPlanCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten plannen.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/plans.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten plannen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/plans.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nPlanCategories(Table<O> child, ForeignKey<O, I18nPlanCategoriesRecord> key) {

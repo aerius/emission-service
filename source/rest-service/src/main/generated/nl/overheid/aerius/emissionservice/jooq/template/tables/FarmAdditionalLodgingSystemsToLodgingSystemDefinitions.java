@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
  * Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemsToLodgingSystemDefinitions extends TableImpl<FarmAdditionalLodgingSystemsToLodgingSystemDefinitionsRecord> {
 
-    private static final long serialVersionUID = 21947762;
+    private static final long serialVersionUID = 383646066;
 
     /**
      * The reference instance of <code>template.farm_additional_lodging_systems_to_lodging_system_definitions</code>
@@ -85,7 +85,7 @@ public class FarmAdditionalLodgingSystemsToLodgingSystemDefinitions extends Tabl
     }
 
     private FarmAdditionalLodgingSystemsToLodgingSystemDefinitions(Name alias, Table<FarmAdditionalLodgingSystemsToLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmAdditionalLodgingSystemsToLodgingSystemDefinitions(Table<O> child, ForeignKey<O, FarmAdditionalLodgingSystemsToLodgingSystemDefinitionsRecord> key) {

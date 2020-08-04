@@ -38,12 +38,12 @@ import org.jooq.impl.TableImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOnRoadCategories extends TableImpl<MobileSourceOnRoadCategoriesRecord> {
 
-    private static final long serialVersionUID = -433119841;
+    private static final long serialVersionUID = -1719953873;
 
     /**
      * The reference instance of <code>template.mobile_source_on_road_categories</code>
@@ -104,7 +104,7 @@ public class MobileSourceOnRoadCategories extends TableImpl<MobileSourceOnRoadCa
     }
 
     private MobileSourceOnRoadCategories(Name alias, Table<MobileSourceOnRoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten onroad mobiele bronnen.\r\nDit is qua structuur dezelfde tabel als mobile_source_off_road_categories.\r\nHierdoor zou overerving wel kunnen, echter is het nadeel hierbij dat voor de ID's vervolgens rekening gehouden moet worden met de andere tabel. Hierom is gekozen NIET gebruik te maken van overerving.\r\nEr is een kans dat de lijsten afzonderlijk van elkaar zullen gaan wijzigen.\r\n\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten onroad mobiele bronnen.\r\nDit is qua structuur dezelfde tabel als mobile_source_off_road_categories.\r\nHierdoor zou overerving wel kunnen, echter is het nadeel hierbij dat voor de ID's vervolgens rekening gehouden moet worden met de andere tabel. Hierom is gekozen NIET gebruik te maken van overerving.\r\nEr is een kans dat de lijsten afzonderlijk van elkaar zullen gaan wijzigen.\r\n\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     public <O extends Record> MobileSourceOnRoadCategories(Table<O> child, ForeignKey<O, MobileSourceOnRoadCategoriesRecord> key) {

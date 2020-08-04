@@ -24,12 +24,12 @@ import org.jooq.impl.TableImpl;
  * View retourneert een lijst met verschillende types temporele variaties.
  * 
  * 
- * @file source/database/src/main/sql/sectors/04-views.sql
+ * @file source/database/src/main/sql/template/01_sectors/04-views.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmissionDiurnalVariationsView extends TableImpl<EmissionDiurnalVariationsViewRecord> {
 
-    private static final long serialVersionUID = -1351565888;
+    private static final long serialVersionUID = 1676613970;
 
     /**
      * The reference instance of <code>template.emission_diurnal_variations_view</code>
@@ -90,7 +90,7 @@ public class EmissionDiurnalVariationsView extends TableImpl<EmissionDiurnalVari
     }
 
     private EmissionDiurnalVariationsView(Name alias, Table<EmissionDiurnalVariationsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert een lijst met verschillende types temporele variaties.\r\n\r\n@file source/database/src/main/sql/sectors/04-views.sql"), TableOptions.view("create view \"emission_diurnal_variations_view\" as  SELECT emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code,\n    emission_diurnal_variations.name AS emission_diurnal_variation_name,\n    emission_diurnal_variations.description AS as_diurnal_variation_description\n   FROM template.emission_diurnal_variations;"));
+        super(alias, null, aliased, parameters, DSL.comment("View retourneert een lijst met verschillende types temporele variaties.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/04-views.sql"), TableOptions.view("create view \"emission_diurnal_variations_view\" as  SELECT emission_diurnal_variations.emission_diurnal_variation_id,\n    emission_diurnal_variations.code AS emission_diurnal_variation_code,\n    emission_diurnal_variations.name AS emission_diurnal_variation_name,\n    emission_diurnal_variations.description AS as_diurnal_variation_description\n   FROM template.emission_diurnal_variations;"));
     }
 
     public <O extends Record> EmissionDiurnalVariationsView(Table<O> child, ForeignKey<O, EmissionDiurnalVariationsViewRecord> key) {

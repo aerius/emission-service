@@ -20,12 +20,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/plans.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/plans.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PlanCategoriesRecord extends UpdatableRecordImpl<PlanCategoriesRecord> implements Record6<Short, Integer, String, String, UnitType, String> {
 
-    private static final long serialVersionUID = -1667402632;
+    private static final long serialVersionUID = 1857274752;
 
     /**
      * Setter for <code>template.plan_categories.plan_category_id</code>.

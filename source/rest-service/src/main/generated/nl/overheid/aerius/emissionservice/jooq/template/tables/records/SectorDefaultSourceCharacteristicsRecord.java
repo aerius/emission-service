@@ -16,12 +16,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Standaard OPS kenmerken per sector.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SectorDefaultSourceCharacteristicsRecord extends UpdatableRecordImpl<SectorDefaultSourceCharacteristicsRecord> implements Record6<Integer, Float, Float, Float, Integer, Integer> {
 
-    private static final long serialVersionUID = 139147985;
+    private static final long serialVersionUID = 130219208;
 
     /**
      * Setter for <code>template.sector_default_source_characteristics.sector_id</code>.

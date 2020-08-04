@@ -25,12 +25,12 @@ import org.jooq.impl.TableImpl;
  * zijn.
  * Hiermee kan werktuigtype "Anders" gegeneerd worden in de UI.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryFuelTypesView extends TableImpl<MachineryFuelTypesViewRecord> {
 
-    private static final long serialVersionUID = -1449602430;
+    private static final long serialVersionUID = 1597349778;
 
     /**
      * The reference instance of <code>template.machinery_fuel_types_view</code>
@@ -96,7 +96,7 @@ public class MachineryFuelTypesView extends TableImpl<MachineryFuelTypesViewReco
     }
 
     private MachineryFuelTypesView(Name alias, Table<MachineryFuelTypesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft de brandstoffen terug voor de sectoren waar werktuigen voor beschikbaar zijn.\r\nHiermee kan werktuigtype \"Anders\" gegeneerd worden in de UI.\r\n\r\n@file source/database/src/main/sql/emission_factors/04-views/machinery_types.sql"), TableOptions.view("create view \"machinery_fuel_types_view\" as  SELECT machinery_fuel_types_to_sectors.sector_id,\n    machinery_fuel_types.machinery_fuel_type_id,\n    machinery_fuel_types.code AS fuel_code,\n    machinery_fuel_types.name AS fuel_name,\n    machinery_fuel_types.density AS fuel_density\n   FROM (template.machinery_fuel_types\n     JOIN template.machinery_fuel_types_to_sectors USING (machinery_fuel_type_id));"));
+        super(alias, null, aliased, parameters, DSL.comment("Geeft de brandstoffen terug voor de sectoren waar werktuigen voor beschikbaar zijn.\r\nHiermee kan werktuigtype \"Anders\" gegeneerd worden in de UI.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/04-views/machinery_types.sql"), TableOptions.view("create view \"machinery_fuel_types_view\" as  SELECT machinery_fuel_types_to_sectors.sector_id,\n    machinery_fuel_types.machinery_fuel_type_id,\n    machinery_fuel_types.code AS fuel_code,\n    machinery_fuel_types.name AS fuel_name,\n    machinery_fuel_types.density AS fuel_density\n   FROM (template.machinery_fuel_types\n     JOIN template.machinery_fuel_types_to_sectors USING (machinery_fuel_type_id));"));
     }
 
     public <O extends Record> MachineryFuelTypesView(Table<O> child, ForeignKey<O, MachineryFuelTypesViewRecord> key) {

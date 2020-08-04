@@ -16,12 +16,12 @@ import org.jooq.impl.TableRecordImpl;
 /**
  * View retourneert de waterweg categorieen.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandWaterwayCategoriesViewRecord extends TableRecordImpl<ShippingInlandWaterwayCategoriesViewRecord> implements Record4<Integer, String, String, ShippingInlandShipDirectionType> {
 
-    private static final long serialVersionUID = -1257923900;
+    private static final long serialVersionUID = -121667508;
 
     /**
      * Setter for <code>template.shipping_inland_waterway_categories_view.shipping_inland_waterway_category_id</code>.

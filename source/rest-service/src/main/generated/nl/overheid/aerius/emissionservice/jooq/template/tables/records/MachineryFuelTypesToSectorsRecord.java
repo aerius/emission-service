@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Dit wordt gebruikt om het algemene werktuigtype 'Anders' samen te stellen 
  * door middel van de machinery_fuel_types_view.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryFuelTypesToSectorsRecord extends UpdatableRecordImpl<MachineryFuelTypesToSectorsRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = 732433343;
+    private static final long serialVersionUID = 1403267767;
 
     /**
      * Setter for <code>template.machinery_fuel_types_to_sectors.machinery_fuel_type_id</code>.

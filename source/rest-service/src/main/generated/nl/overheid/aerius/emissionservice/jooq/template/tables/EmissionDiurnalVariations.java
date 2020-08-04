@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * We gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id 
  * als foreign key voorkomt.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmissionDiurnalVariations extends TableImpl<EmissionDiurnalVariationsRecord> {
 
-    private static final long serialVersionUID = 1199125271;
+    private static final long serialVersionUID = -2091456649;
 
     /**
      * The reference instance of <code>template.emission_diurnal_variations</code>
@@ -97,7 +97,7 @@ public class EmissionDiurnalVariations extends TableImpl<EmissionDiurnalVariatio
     }
 
     private EmissionDiurnalVariations(Name alias, Table<EmissionDiurnalVariationsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Lijst met verschillende types temporele variaties.\r\n\r\nWe gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id als foreign key voorkomt.\r\n\r\n@file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Lijst met verschillende types temporele variaties.\r\n\r\nWe gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id als foreign key voorkomt.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
     }
 
     public <O extends Record> EmissionDiurnalVariations(Table<O> child, ForeignKey<O, EmissionDiurnalVariationsRecord> key) {

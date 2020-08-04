@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Voorgedefinieerde OPS kenmerken per GCN sector.
  * 
- * @file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql
+ * @file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GcnSectorSourceCharacteristics extends TableImpl<GcnSectorSourceCharacteristicsRecord> {
 
-    private static final long serialVersionUID = 827459454;
+    private static final long serialVersionUID = -1898667760;
 
     /**
      * The reference instance of <code>template.gcn_sector_source_characteristics</code>
@@ -110,7 +110,7 @@ public class GcnSectorSourceCharacteristics extends TableImpl<GcnSectorSourceCha
     }
 
     private GcnSectorSourceCharacteristics(Name alias, Table<GcnSectorSourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Voorgedefinieerde OPS kenmerken per GCN sector.\r\n\r\n@file source/database/src/main/sql/sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Voorgedefinieerde OPS kenmerken per GCN sector.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
     }
 
     public <O extends Record> GcnSectorSourceCharacteristics(Table<O> child, ForeignKey<O, GcnSectorSourceCharacteristicsRecord> key) {

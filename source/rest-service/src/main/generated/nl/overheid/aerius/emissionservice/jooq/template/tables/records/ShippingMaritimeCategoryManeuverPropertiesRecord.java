@@ -22,12 +22,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Maneuver_length is de lengte van de route waarbij deze factor gebruikt 
  * moet worden.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_maritime.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_maritime.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingMaritimeCategoryManeuverPropertiesRecord extends UpdatableRecordImpl<ShippingMaritimeCategoryManeuverPropertiesRecord> implements Record3<Short, Float, Float> {
 
-    private static final long serialVersionUID = 1925759540;
+    private static final long serialVersionUID = 1485729468;
 
     /**
      * Setter for <code>template.shipping_maritime_category_maneuver_properties.shipping_maritime_category_id</code>.

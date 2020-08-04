@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * De verschillende soorten werktuigen met naam en sector waarin zij gebruikt 
  * worden.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypesRecord extends UpdatableRecordImpl<MachineryTypesRecord> implements Record5<Integer, Integer, String, String, Integer> {
 
-    private static final long serialVersionUID = 929123129;
+    private static final long serialVersionUID = -1373738047;
 
     /**
      * Setter for <code>template.machinery_types.machinery_type_id</code>.

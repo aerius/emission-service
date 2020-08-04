@@ -19,12 +19,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * 
  * Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategorySourceCharacteristicsDockedRecord extends UpdatableRecordImpl<ShippingInlandCategorySourceCharacteristicsDockedRecord> implements Record6<Short, ShippingInlandLadenState, Integer, Float, Float, Float> {
 
-    private static final long serialVersionUID = -1174891827;
+    private static final long serialVersionUID = -410229691;
 
     /**
      * Setter for <code>template.shipping_inland_category_source_characteristics_docked.shipping_inland_category_id</code>.

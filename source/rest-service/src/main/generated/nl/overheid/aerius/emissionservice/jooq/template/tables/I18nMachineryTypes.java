@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor categorieën van verschillende soorten werktuigen.
  * 
- * @file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMachineryTypes extends TableImpl<I18nMachineryTypesRecord> {
 
-    private static final long serialVersionUID = -1780893773;
+    private static final long serialVersionUID = -1896819517;
 
     /**
      * The reference instance of <code>template.i18n_machinery_types</code>
@@ -90,7 +90,7 @@ public class I18nMachineryTypes extends TableImpl<I18nMachineryTypesRecord> {
     }
 
     private I18nMachineryTypes(Name alias, Table<I18nMachineryTypesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten werktuigen.\r\n\r\n@file source/database/src/main/sql/emission_factors/i18n/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten werktuigen.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/i18n/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nMachineryTypes(Table<O> child, ForeignKey<O, I18nMachineryTypesRecord> key) {

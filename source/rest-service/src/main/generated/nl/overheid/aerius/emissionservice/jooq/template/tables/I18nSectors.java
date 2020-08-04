@@ -29,12 +29,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Vertaaltabel voor sectoren.
  * 
- * @file source/database/src/main/sql/sectors/i18n/base_keys.sql
+ * @file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nSectors extends TableImpl<I18nSectorsRecord> {
 
-    private static final long serialVersionUID = -534897979;
+    private static final long serialVersionUID = 1290797363;
 
     /**
      * The reference instance of <code>template.i18n_sectors</code>
@@ -90,7 +90,7 @@ public class I18nSectors extends TableImpl<I18nSectorsRecord> {
     }
 
     private I18nSectors(Name alias, Table<I18nSectorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor sectoren.\r\n\r\n@file source/database/src/main/sql/sectors/i18n/base_keys.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor sectoren.\r\n\r\n@file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql"), TableOptions.table());
     }
 
     public <O extends Record> I18nSectors(Table<O> child, ForeignKey<O, I18nSectorsRecord> key) {

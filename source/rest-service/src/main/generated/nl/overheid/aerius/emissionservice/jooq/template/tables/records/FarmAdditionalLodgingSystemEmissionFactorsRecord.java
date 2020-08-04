@@ -18,12 +18,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * Deze emissiefactor wordt extra toegepast op een deel van het aantal dieren 
  * van het stalsysteem waarop gestapeld wordt.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemEmissionFactorsRecord extends UpdatableRecordImpl<FarmAdditionalLodgingSystemEmissionFactorsRecord> implements Record3<Integer, Short, Float> {
 
-    private static final long serialVersionUID = 921502559;
+    private static final long serialVersionUID = -1174388905;
 
     /**
      * Setter for <code>template.farm_additional_lodging_system_emission_factors.farm_additional_lodging_system_id</code>.

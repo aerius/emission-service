@@ -32,12 +32,12 @@ import org.jooq.impl.TableImpl;
  * @column energy_efficiency efficientie van de motor in g/kWh (hoeveel gram 
  * brandstof benodigd is voor 1 kWh).
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineryTypeFuelOptions extends TableImpl<MachineryTypeFuelOptionsRecord> {
 
-    private static final long serialVersionUID = 32378864;
+    private static final long serialVersionUID = -179622048;
 
     /**
      * The reference instance of <code>template.machinery_type_fuel_options</code>
@@ -103,7 +103,7 @@ public class MachineryTypeFuelOptions extends TableImpl<MachineryTypeFuelOptions
     }
 
     private MachineryTypeFuelOptions(Name alias, Table<MachineryTypeFuelOptionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Parameters per werktuig en brandstof voor de emissieberekening.\r\n@column power vermogen in kW.\r\n@column load belasting, een percentage als fractie.\r\n@column energy_efficiency efficientie van de motor in g/kWh (hoeveel gram brandstof benodigd is voor 1 kWh).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Parameters per werktuig en brandstof voor de emissieberekening.\r\n@column power vermogen in kW.\r\n@column load belasting, een percentage als fractie.\r\n@column energy_efficiency efficientie van de motor in g/kWh (hoeveel gram brandstof benodigd is voor 1 kWh).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/machinery_types.sql"), TableOptions.table());
     }
 
     public <O extends Record> MachineryTypeFuelOptions(Table<O> child, ForeignKey<O, MachineryTypeFuelOptionsRecord> key) {

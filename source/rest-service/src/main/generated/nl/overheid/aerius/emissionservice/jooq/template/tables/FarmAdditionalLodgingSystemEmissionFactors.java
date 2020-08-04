@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * Deze emissiefactor wordt extra toegepast op een deel van het aantal dieren 
  * van het stalsysteem waarop gestapeld wordt.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmAdditionalLodgingSystemEmissionFactors extends TableImpl<FarmAdditionalLodgingSystemEmissionFactorsRecord> {
 
-    private static final long serialVersionUID = 574968780;
+    private static final long serialVersionUID = 1369774668;
 
     /**
      * The reference instance of <code>template.farm_additional_lodging_system_emission_factors</code>
@@ -92,7 +92,7 @@ public class FarmAdditionalLodgingSystemEmissionFactors extends TableImpl<FarmAd
     }
 
     private FarmAdditionalLodgingSystemEmissionFactors(Name alias, Table<FarmAdditionalLodgingSystemEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Bevat de emissiefactoren (kg/jaar) van de additionele staltechnieken.\r\nDeze emissiefactor wordt extra toegepast op een deel van het aantal dieren van het stalsysteem waarop gestapeld wordt.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Bevat de emissiefactoren (kg/jaar) van de additionele staltechnieken.\r\nDeze emissiefactor wordt extra toegepast op een deel van het aantal dieren van het stalsysteem waarop gestapeld wordt.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmAdditionalLodgingSystemEmissionFactors(Table<O> child, ForeignKey<O, FarmAdditionalLodgingSystemEmissionFactorsRecord> key) {

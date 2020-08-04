@@ -17,12 +17,12 @@ import org.jooq.impl.TableRecordImpl;
  * View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandSourceCharacteristicsDockedViewRecord extends TableRecordImpl<ShippingInlandSourceCharacteristicsDockedViewRecord> implements Record8<Short, ShippingInlandLadenState, Integer, Float, Float, Float, Integer, String> {
 
-    private static final long serialVersionUID = -1725385338;
+    private static final long serialVersionUID = -2102791810;
 
     /**
      * Setter for <code>template.shipping_inland_source_characteristics_docked_view.shipping_inland_category_id</code>.

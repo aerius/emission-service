@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
 /**
  * Tabel met daarin de verschillende snelheidstyperingen per wegtype.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadSpeedProfiles extends TableImpl<RoadSpeedProfilesRecord> {
 
-    private static final long serialVersionUID = 457161425;
+    private static final long serialVersionUID = -1908204223;
 
     /**
      * The reference instance of <code>template.road_speed_profiles</code>
@@ -101,7 +101,7 @@ public class RoadSpeedProfiles extends TableImpl<RoadSpeedProfilesRecord> {
     }
 
     private RoadSpeedProfiles(Name alias, Table<RoadSpeedProfilesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Tabel met daarin de verschillende snelheidstyperingen per wegtype.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/roads.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Tabel met daarin de verschillende snelheidstyperingen per wegtype.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     public <O extends Record> RoadSpeedProfiles(Table<O> child, ForeignKey<O, RoadSpeedProfilesRecord> key) {

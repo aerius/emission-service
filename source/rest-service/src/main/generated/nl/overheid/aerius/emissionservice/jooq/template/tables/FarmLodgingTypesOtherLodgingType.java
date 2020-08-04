@@ -35,12 +35,12 @@ import org.jooq.impl.TableImpl;
  * begrensd in de emissie berekening, o.b.v. die van het 'overige' stalsysteem.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingTypesOtherLodgingType extends TableImpl<FarmLodgingTypesOtherLodgingTypeRecord> {
 
-    private static final long serialVersionUID = -895033016;
+    private static final long serialVersionUID = 1709439800;
 
     /**
      * The reference instance of <code>template.farm_lodging_types_other_lodging_type</code>
@@ -91,7 +91,7 @@ public class FarmLodgingTypesOtherLodgingType extends TableImpl<FarmLodgingTypes
     }
 
     private FarmLodgingTypesOtherLodgingType(Name alias, Table<FarmLodgingTypesOtherLodgingTypeRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft voor emissiearme stalsystemen aan wat het bijbehorende 'overige' stalsysteem is.\r\nDe koppeling (N:1) is alleen opgenomen als het stalsysteem als 'emissiearm' is geklassificeerd. In bepaalde gevallen wordt dan namelijk de emissiefactor begrensd in de emissie berekening, o.b.v. die van het 'overige' stalsysteem.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Geeft voor emissiearme stalsystemen aan wat het bijbehorende 'overige' stalsysteem is.\r\nDe koppeling (N:1) is alleen opgenomen als het stalsysteem als 'emissiearm' is geklassificeerd. In bepaalde gevallen wordt dan namelijk de emissiefactor begrensd in de emissie berekening, o.b.v. die van het 'overige' stalsysteem.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmLodgingTypesOtherLodgingType(Table<O> child, ForeignKey<O, FarmLodgingTypesOtherLodgingTypeRecord> key) {

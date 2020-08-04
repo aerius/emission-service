@@ -17,12 +17,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 /**
  * Vertaaltabel voor sectoren.
  * 
- * @file source/database/src/main/sql/sectors/i18n/base_keys.sql
+ * @file source/database/src/main/sql/template/01_sectors/i18n/base_keys.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nSectorsRecord extends UpdatableRecordImpl<I18nSectorsRecord> implements Record3<Integer, LanguageCodeType, String> {
 
-    private static final long serialVersionUID = -473322602;
+    private static final long serialVersionUID = -1960960193;
 
     /**
      * Setter for <code>template.i18n_sectors.sector_id</code>.

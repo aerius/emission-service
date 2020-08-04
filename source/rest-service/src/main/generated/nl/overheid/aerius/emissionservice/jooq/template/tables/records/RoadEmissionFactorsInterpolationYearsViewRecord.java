@@ -19,12 +19,12 @@ import org.jooq.impl.TableRecordImpl;
  * tabel. De begin- en eind-jaren worden voor iedere key uit die tabel opnieuw 
  * bepaald en teruggegeven.
  * 
- * @file source/database/src/main/sql/emission_factors/04-views/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/04-views/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadEmissionFactorsInterpolationYearsViewRecord extends TableRecordImpl<RoadEmissionFactorsInterpolationYearsViewRecord> implements Record6<Integer, Integer, Short, Short, Short, Short> {
 
-    private static final long serialVersionUID = -821014519;
+    private static final long serialVersionUID = 1860516625;
 
     /**
      * Setter for <code>template.road_emission_factors_interpolation_years_view.road_category_id</code>.

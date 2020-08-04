@@ -30,12 +30,12 @@ import org.jooq.impl.TableImpl;
  * De naam is hierbij de identificatie van de categorie voor de gebruiker.
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farmlands.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farmlands.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmlandCategories extends TableImpl<FarmlandCategoriesRecord> {
 
-    private static final long serialVersionUID = 1079376153;
+    private static final long serialVersionUID = 1204068105;
 
     /**
      * The reference instance of <code>template.farmland_categories</code>
@@ -101,7 +101,7 @@ public class FarmlandCategories extends TableImpl<FarmlandCategoriesRecord> {
     }
 
     private FarmlandCategories(Name alias, Table<FarmlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten landbouwgrond activiteiten \r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/farmlands.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten landbouwgrond activiteiten \r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/farmlands.sql"), TableOptions.table());
     }
 
     public <O extends Record> FarmlandCategories(Table<O> child, ForeignKey<O, FarmlandCategoriesRecord> key) {

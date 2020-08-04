@@ -31,12 +31,12 @@ import org.jooq.impl.TableImpl;
  * 
  * Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ShippingInlandCategorySourceCharacteristicsDocked extends TableImpl<ShippingInlandCategorySourceCharacteristicsDockedRecord> {
 
-    private static final long serialVersionUID = 1866571244;
+    private static final long serialVersionUID = 1677247212;
 
     /**
      * The reference instance of <code>template.shipping_inland_category_source_characteristics_docked</code>
@@ -107,7 +107,7 @@ public class ShippingInlandCategorySourceCharacteristicsDocked extends TableImpl
     }
 
     private ShippingInlandCategorySourceCharacteristicsDocked(Name alias, Table<ShippingInlandCategorySourceCharacteristicsDockedRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken voor verschillende soorten stilliggende schepen.\r\nDeze karakteristieken zijn uniek per scheepstype en ladingstoestand.\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken voor verschillende soorten stilliggende schepen.\r\nDeze karakteristieken zijn uniek per scheepstype en ladingstoestand.\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     public <O extends Record> ShippingInlandCategorySourceCharacteristicsDocked(Table<O> child, ForeignKey<O, ShippingInlandCategorySourceCharacteristicsDockedRecord> key) {

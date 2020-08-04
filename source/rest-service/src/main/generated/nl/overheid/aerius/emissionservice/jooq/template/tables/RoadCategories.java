@@ -34,12 +34,12 @@ import org.jooq.impl.TableImpl;
  * Dit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).
  * 
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/roads.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RoadCategories extends TableImpl<RoadCategoriesRecord> {
 
-    private static final long serialVersionUID = -511272656;
+    private static final long serialVersionUID = -984725312;
 
     /**
      * The reference instance of <code>template.road_categories</code>
@@ -110,7 +110,7 @@ public class RoadCategories extends TableImpl<RoadCategoriesRecord> {
     }
 
     private RoadCategories(Name alias, Table<RoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Tabel met daarin de verschillende soorten wegen en de verschillende type voertuigen op die wegen.\r\n\r\nDit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).\r\n\r\n@file source/database/src/main/sql/emission_factors/02-tables/roads.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Tabel met daarin de verschillende soorten wegen en de verschillende type voertuigen op die wegen.\r\n\r\nDit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).\r\n\r\n@file source/database/src/main/sql/template/02_emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     public <O extends Record> RoadCategories(Table<O> child, ForeignKey<O, RoadCategoriesRecord> key) {

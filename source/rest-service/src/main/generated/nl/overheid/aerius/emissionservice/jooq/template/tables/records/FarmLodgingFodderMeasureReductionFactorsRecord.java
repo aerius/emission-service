@@ -29,12 +29,12 @@ import org.jooq.impl.UpdatableRecordImpl;
  * @column reduction_factor_total De gecombineerde reductiefactor voor de 
  * emissie vanaf de vloer en uit de mestkelder
  * 
- * @file source/database/src/main/sql/emission_factors/02-tables/farms.sql
+ * @file source/database/src/main/sql/template/02_emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FarmLodgingFodderMeasureReductionFactorsRecord extends UpdatableRecordImpl<FarmLodgingFodderMeasureReductionFactorsRecord> implements Record5<Integer, Short, Float, Float, Float> {
 
-    private static final long serialVersionUID = 1070305500;
+    private static final long serialVersionUID = 1600934884;
 
     /**
      * Setter for <code>template.farm_lodging_fodder_measure_reduction_factors.farm_lodging_fodder_measure_id</code>.

@@ -17,12 +17,12 @@ import org.jooq.impl.TableRecordImpl;
  * Valt terug op een default GCN bron karakteristieken indien er geen AERIUS 
  * default waarde is opgegeven.
  * 
- * @file source/database/src/main/sql/sectors/04-views.sql
+ * @file source/database/src/main/sql/template/01_sectors/04-views.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSourceCharacteristicsViewRecord extends TableRecordImpl<DefaultSourceCharacteristicsViewRecord> implements Record8<Integer, Integer, Float, Float, Float, Integer, String, Integer> {
 
-    private static final long serialVersionUID = 841605475;
+    private static final long serialVersionUID = 1581224908;
 
     /**
      * Setter for <code>template.default_source_characteristics_view.sector_id</code>.
