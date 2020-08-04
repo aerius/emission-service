@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class VersionRepository {
 
-  public static final String LATEST_VERSION = "current_dev";
+  public static final String LATEST_VERSION = "dev";
 
   public String getLatestVersion() {
     return LATEST_VERSION;
