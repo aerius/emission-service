@@ -29,7 +29,7 @@
 
     <target>
       <packageName>nl.overheid.aerius.emissionservice.jooq</packageName>
-      <directory>{git_location}/source/rest-service/src/main/java</directory>
+      <directory>{git_location}/source/rest-service/src/main/generated</directory>
     </target>
   </generator>
 </configuration>
