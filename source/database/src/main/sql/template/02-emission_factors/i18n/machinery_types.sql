@@ -4,8 +4,8 @@
  * Vertaaltabel voor categorieën van verschillende soorten werktuigen.
  */
 CREATE TABLE i18n_machinery_types (
-	machinery_type_id int,
-	language_code i18n.language_code_type,
+	machinery_type_id integer NOT NULL,
+	language_code i18n.language_code_type NOT NULL,
 	name text NOT NULL,
 
 	CONSTRAINT i18n_machinery_types_pkey PRIMARY KEY (machinery_type_id, language_code),
@@ -18,8 +18,8 @@ CREATE TABLE i18n_machinery_types (
  * Vertaaltabel voor categorieën van verschillende soorten brandstof.
  */
 CREATE TABLE i18n_machinery_fuel_types (
-	machinery_fuel_type_id int,
-	language_code i18n.language_code_type,
+	machinery_fuel_type_id integer NOT NULL,
+	language_code i18n.language_code_type NOT NULL,
 	name text NOT NULL,
 
 	CONSTRAINT i18n_machinery_fuel_types_pkey PRIMARY KEY (machinery_fuel_type_id, language_code),
