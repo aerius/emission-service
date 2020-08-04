@@ -16,7 +16,8 @@
  */
 package nl.overheid.aerius.emissionservice.repository;
 
-import static nl.overheid.aerius.emissionservice.jooq.template.Template.TEMPLATE;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nSectors.I18N_SECTORS;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.Sectors.SECTORS;
 import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
@@ -48,15 +49,15 @@ public class SectorRepository {
 
   public List<Sector> getSectors(final Locale locale) {
     return datasetStore.dsl().select(
-        TEMPLATE.SECTORS.SECTOR_ID.as(ID),
-        TEMPLATE.SECTORS.DESCRIPTION.as(NAME),
-        coalesce(I18N_DESCRIPTION, TEMPLATE.SECTORS.DESCRIPTION).as(DESCRIPTION))
-        .from(TEMPLATE.SECTORS)
+        SECTORS.SECTOR_ID.as(ID),
+        SECTORS.DESCRIPTION.as(NAME),
+        coalesce(I18N_DESCRIPTION, SECTORS.DESCRIPTION).as(DESCRIPTION))
+        .from(SECTORS)
         .leftJoin(
-            select(TEMPLATE.I18N_SECTORS.SECTOR_ID, TEMPLATE.I18N_SECTORS.DESCRIPTION.as(I18N_DESCRIPTION))
-                .from(TEMPLATE.I18N_SECTORS)
-                .where(TEMPLATE.I18N_SECTORS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
-        .using(TEMPLATE.SECTORS.SECTOR_ID)
+            select(I18N_SECTORS.SECTOR_ID, I18N_SECTORS.DESCRIPTION.as(I18N_DESCRIPTION))
+                .from(I18N_SECTORS)
+                .where(I18N_SECTORS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+        .using(SECTORS.SECTOR_ID)
         .fetchInto(Sector.class);
   }
 
