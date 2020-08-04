@@ -60,7 +60,7 @@ paths:
         404:
           description: Supplied dataset not found.
           content: {}
-  /datasets/{dataset}/farmanimals:
+  /datasets/{dataset}/farm/animals:
     get:
       summary: List all farm animal categories
       operationId: listFarmAnimals
@@ -86,7 +86,7 @@ paths:
         404:
           description: Supplied dataset not found.
           content: {}
-  /datasets/{dataset}/farmlodgings:
+  /datasets/{dataset}/farm/lodgings:
     get:
       summary: List all farm lodging categories
       operationId: listFarmLodgings
@@ -118,7 +118,7 @@ paths:
         404:
           description: Supplied dataset not found.
           content: {}
-  /datasets/{dataset}/farmlodgings/{code}:
+  /datasets/{dataset}/farm/lodgings/{code}:
     get:
       summary: Get specific farm lodging information
       operationId: getFarmLodging

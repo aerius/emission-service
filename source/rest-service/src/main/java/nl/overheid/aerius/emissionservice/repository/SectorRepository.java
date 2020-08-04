@@ -58,6 +58,7 @@ public class SectorRepository {
                 .from(I18N_SECTORS)
                 .where(I18N_SECTORS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
         .using(SECTORS.SECTOR_ID)
+        .orderBy(SECTORS.SECTOR_ID)
         .fetchInto(Sector.class);
   }
 

@@ -73,6 +73,17 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
+  public ResponseEntity<List<Category>> listFarmAnimals(final String dataset) {
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmAnimals(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header("dataset", actualDataset)
+        .body(categories);
+  }
+
+  @Override
   public ResponseEntity<List<Category>> listFarmLodgings(final String dataset, final String animalCode) {
     final String actualDataset = handleDataset(dataset);
     final Locale locale = localeHelper.getResponseLocale(getRequest());
