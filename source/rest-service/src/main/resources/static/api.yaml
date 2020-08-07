@@ -27,7 +27,7 @@ paths:
         - dataset
       responses:
         200:
-          description: An array of datasets
+          description: A list of datasets
           content:
             application/json:
               schema:
@@ -50,7 +50,7 @@ paths:
             default: LATEST
       responses:
         200:
-          description: An array of sectors
+          description: A list of sectors
           content:
             application/json:
               schema:
@@ -76,7 +76,7 @@ paths:
             default: LATEST
       responses:
         200:
-          description: An array of possible farm animal categories
+          description: A list of possible farm animal categories
           content:
             application/json:
               schema:
@@ -108,7 +108,7 @@ paths:
             type: string
       responses:
         200:
-          description: An array of possible farm lodging categories
+          description: A list of possible farm lodging categories
           content:
             application/json:
               schema:
@@ -140,58 +140,326 @@ paths:
             type: string
       responses:
         200:
-          description: An array of possible farm lodging categories
+          description: The matching farm lodging category.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/FarmLodging"
+                $ref: "#/components/schemas/FarmLodgingCategory"
+        404:
+          description: Supplied dataset or category not found.
+          content: {}
+  /datasets/{dataset}/farm/lodgings/additionalsystems:
+    get:
+      summary: List all farm additional lodging systems
+      operationId: listFarmAdditionalLodgingSystems
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+      responses:
+        200:
+          description: A list of possible farm additional lodging systems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
         404:
           description: Supplied dataset not found.
           content: {}
+  /datasets/{dataset}/farm/lodgings/additionalsystems/{code}:
+    get:
+      summary: Get specific farm additional lodging system
+      operationId: getFarmAdditionalLodgingSystem
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+        - name: code
+          in: path
+          description: Which farm additional lodging system category to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The matching farm additional lodging system category.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FarmAdditionalLodgingSystemCategory"
+        404:
+          description: Supplied dataset or category not found.
+          content: {}
+  /datasets/{dataset}/farm/lodgings/reductivesystems:
+    get:
+      summary: List all farm reductive lodging systems
+      operationId: listFarmReductiveLodgingSystems
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+      responses:
+        200:
+          description: A list of possible farm reductive lodging systems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        404:
+          description: Supplied dataset not found.
+          content: {}
+  /datasets/{dataset}/farm/lodgings/reductivesystems/{code}:
+    get:
+      summary: Get specific farm reductive lodging system
+      operationId: getFarmReductiveLodgingSystem
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+        - name: code
+          in: path
+          description: Which farm reductive lodging system category to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The matching farm reductive lodging system category.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FarmReductiveLodgingSystemCategory"
+        404:
+          description: Supplied dataset or category not found.
+          content: {}
+  /datasets/{dataset}/farm/lodgings/foddermeasures:
+    get:
+      summary: List all farm lodging fodder measures
+      operationId: listFarmLodgingFodderMeasures
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+      responses:
+        200:
+          description: A list of possible farm lodging fodder measures
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        404:
+          description: Supplied dataset not found.
+          content: {}
+  /datasets/{dataset}/farm/lodgings/foddermeasures/{code}:
+    get:
+      summary: Get specific farm lodging fodder measure
+      operationId: getFarmLodgingFodderMeasure
+      tags:
+        - farming
+      parameters:
+        - name: dataset
+          in: path
+          description: Which dataset to retrieve data for.
+          required: true
+          schema:
+            type: string
+            default: LATEST
+        - name: code
+          in: path
+          description: Which farm lodging fodder measure category to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The matching farm lodging fodder measure category.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FarmFodderMeasureCategory"
+        404:
+          description: Supplied dataset or category not found.
+          content: {}
 components:
   schemas:
-    Sector:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        description:
-          type: string
     Category:
       type: object
+      description: Basic information for a category.
       required:
         - code
         - name
       properties:
         code:
           type: string
+          description: Unique code for this category
         name:
           type: string
+          description: The name for this category
         description:
           type: string
-    FarmLodging:
+          description: The description for this category. Translated if possible.
+    Sector:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A category for a sector.
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              description: The ID of the sector. Deprecated in favor of code (which should be the string representation of this ID).
+              deprecated: true
+    FarmLodgingCategory:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A category for a farm lodging type.
+        - type: object
+          required:
+            - emissionFactors
+            - systemDefinitions
+            - additionalLodgingSystems
+            - reductiveLodgingSystems
+            - fodderMeasures
+            - scrubber
+          properties:
+            emissionFactors:
+              type: array
+              description: Emission factors per animal.
+              items:
+                $ref: "#/components/schemas/EmissionFactor"
+            systemDefinitions:
+              type: array
+              description: Possible farm lodging system definitions (BWL-number).
+              items:
+                $ref: "#/components/schemas/Category"
+            additionalLodgingSystems:
+              type: array
+              description: Additional lodging systems that make sense to use for this type of farm lodging.
+              items:
+                $ref: "#/components/schemas/Category"
+            reductiveLodgingSystems:
+              type: array
+              description: Reductive lodging systems that make sense to use for this type of farm lodging.
+              items:
+                $ref: "#/components/schemas/Category"
+            fodderMeasures:
+              type: array
+              description: Fodder measures ('voermaatregelen') that make sense to use for this type of farm lodging.
+              items:
+                $ref: "#/components/schemas/Category"
+            scrubber:
+              type: boolean
+              description: Indication wether or not this lodging type makes use of an air scrubber ('luchtwasser')
+    FarmAdditionalLodgingSystemCategory:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A category for a farm lodging additional system.
+        - type: object
+          required:
+            - emissionFactors
+          properties:
+            emissionFactors:
+              type: array
+              description: The extra emission per animal that will be added to the lodging due to using this system.
+              items:
+                $ref: "#/components/schemas/EmissionFactor"
+    FarmReductiveLodgingSystemCategory:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A category for a farm lodging reductive system.
+        - type: object
+          required:
+            - reductionFractions
+          properties:
+            reductionFractions:
+              type: array
+              description: The fraction that the total emission will be reduced to as a result of using this system.
+              items:
+                $ref: "#/components/schemas/EmissionReductionFraction"
+    FarmFodderMeasureCategory:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A category for a farm fodder measure.
+        - type: object
+          required:
+            - totalReductionFractions
+            - floorReductionFractions
+            - cellarReductionFractions
+            - proportionsForAnimals
+          properties:
+            totalReductionFractions:
+              type: array
+              description: The fraction that the emission will be reduced to. Should only be used if this is the only measure for the lodging. When there are multiple fodder measures the floor and cellar fractions in combination with the emission proportions for floor and cellar for the appropriate animal will have to be used to calculate the correct reductions of the combined fodder measures.
+              items:
+                $ref: "#/components/schemas/EmissionReductionFraction"
+            floorReductionFractions:
+              type: array
+              description: The fraction that the emissions originating from the floor will be reduced to by using this system. 
+              items:
+                $ref: "#/components/schemas/EmissionReductionFraction"
+            cellarReductionFractions:
+              type: array
+              description: The fraction that the emissions originating from the cellar (or manure pit) will be reduced to by using this system. 
+              items:
+                $ref: "#/components/schemas/EmissionReductionFraction"
+            proportionsForAnimals:
+              type: array
+              description: The proportions of emissions originating from the floor and the cellar per animal for this lodging type. 
+              items:
+                $ref: "#/components/schemas/FarmAnimalEmissionProportion"
+    FarmAnimalEmissionProportion:
       type: object
+      description: The proportion of emissions originating from the floor and the cellar per animal. The total of the fractions should sum up to be 1.
       required:
-        - code
-        - name
-        - emissionFactors
+        - farmAnimalCode
+        - proportionEmissionFromFloor
+        - proportionEmissionFromCellar
       properties:
-        code:
+        farmAnimalCode:
           type: string
-        name:
-          type: string
-        description:
-          type: string
-        emissionFactors:
-          type: array
-          items:
-            $ref: "#/components/schemas/EmissionFactor"
+          description: The category code for the farm animal that these proportions are for.
+        fractionFloor:
+          type: number
+          description: The fraction of the emission originating from the floor.
+        fractionCellar:
+          type: number
+          description: The fraction of the emission originating from the cellar (or manure pit).
     EmissionFactor:
       type: object
       required:
@@ -200,5 +468,19 @@ components:
       properties:
         substance:
           type: string
+          description: The substance that the emission factor is for.
         factor:
           type: number
+          description: The factor of emission per unit. Unit depends on the context where this object is used.
+    EmissionReductionFraction:
+      type: object
+      required:
+        - substance
+        - fraction
+      properties:
+        substance:
+          type: string
+          description: The substance that the emission reduction fraction is for.
+        fraction:
+          type: number
+          description: The fraction of emission.

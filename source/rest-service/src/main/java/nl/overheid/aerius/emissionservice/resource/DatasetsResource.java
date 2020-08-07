@@ -29,7 +29,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.api.DatasetsApiDelegate;
 import nl.overheid.aerius.emissionservice.model.Category;
-import nl.overheid.aerius.emissionservice.model.FarmLodging;
+import nl.overheid.aerius.emissionservice.model.FarmLodgingCategory;
 import nl.overheid.aerius.emissionservice.model.Sector;
 import nl.overheid.aerius.emissionservice.repository.DatasetStore;
 import nl.overheid.aerius.emissionservice.repository.FarmRepository;
@@ -95,10 +95,10 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<FarmLodging> getFarmLodging(final String dataset, final String code) {
+  public ResponseEntity<FarmLodgingCategory> getFarmLodging(final String dataset, final String code) {
     final String actualDataset = handleDataset(dataset);
     final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final FarmLodging lodging = farmRepository.getFarmLodging(locale, code).orElseThrow(
+    final FarmLodgingCategory lodging = farmRepository.getFarmLodging(locale, code).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code));
     return ResponseEntity
         .status(HttpStatus.OK)

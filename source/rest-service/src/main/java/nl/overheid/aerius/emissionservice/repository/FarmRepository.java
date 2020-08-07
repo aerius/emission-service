@@ -37,7 +37,7 @@ import org.springframework.stereotype.Repository;
 import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
 import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.model.EmissionFactor;
-import nl.overheid.aerius.emissionservice.model.FarmLodging;
+import nl.overheid.aerius.emissionservice.model.FarmLodgingCategory;
 
 @Repository
 public class FarmRepository {
@@ -89,13 +89,13 @@ public class FarmRepository {
         .fetchInto(Category.class);
   }
 
-  public Optional<FarmLodging> getFarmLodging(final Locale locale, final String lodgingCode) {
-    final Optional<FarmLodging> farmLodging = getOptionalFarmLodging(locale, lodgingCode);
+  public Optional<FarmLodgingCategory> getFarmLodging(final Locale locale, final String lodgingCode) {
+    final Optional<FarmLodgingCategory> farmLodging = getOptionalFarmLodging(locale, lodgingCode);
     farmLodging.ifPresent(lodging -> lodging.setEmissionFactors(getLodgingEmissionFactors(lodgingCode)));
     return farmLodging;
   }
 
-  private Optional<FarmLodging> getOptionalFarmLodging(final Locale locale, final String lodgingCode) {
+  private Optional<FarmLodgingCategory> getOptionalFarmLodging(final Locale locale, final String lodgingCode) {
     return datasetStore.dsl().select(
         FARM_LODGING_TYPES.CODE,
         FARM_LODGING_TYPES.NAME,
@@ -107,7 +107,7 @@ public class FarmRepository {
                 .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
         .using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
         .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
-        .fetchOptionalInto(FarmLodging.class);
+        .fetchOptionalInto(FarmLodgingCategory.class);
   }
 
   private List<EmissionFactor> getLodgingEmissionFactors(final String lodgingCode) {
