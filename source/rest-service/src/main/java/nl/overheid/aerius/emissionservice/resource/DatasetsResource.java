@@ -29,7 +29,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.api.DatasetsApiDelegate;
 import nl.overheid.aerius.emissionservice.model.Category;
+import nl.overheid.aerius.emissionservice.model.FarmAdditionalLodgingSystemCategory;
+import nl.overheid.aerius.emissionservice.model.FarmFodderMeasureCategory;
 import nl.overheid.aerius.emissionservice.model.FarmLodgingCategory;
+import nl.overheid.aerius.emissionservice.model.FarmReductiveLodgingSystemCategory;
 import nl.overheid.aerius.emissionservice.model.Sector;
 import nl.overheid.aerius.emissionservice.repository.DatasetStore;
 import nl.overheid.aerius.emissionservice.repository.FarmRepository;
@@ -59,6 +62,12 @@ public class DatasetsResource implements DatasetsApiDelegate {
   @Override
   public Optional<NativeWebRequest> getRequest() {
     return Optional.ofNullable(nativeWebRequest);
+  }
+
+  @Override
+  public ResponseEntity<List<String>> listDatasets() {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.listDatasets();
   }
 
   @Override
@@ -104,6 +113,42 @@ public class DatasetsResource implements DatasetsApiDelegate {
         .status(HttpStatus.OK)
         .header("dataset", actualDataset)
         .body(lodging);
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset) {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.listFarmAdditionalLodgingSystems(dataset);
+  }
+
+  @Override
+  public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code) {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.getFarmAdditionalLodgingSystem(dataset, code);
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset) {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.listFarmReductiveLodgingSystems(dataset);
+  }
+
+  @Override
+  public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code) {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.getFarmReductiveLodgingSystem(dataset, code);
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset) {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.listFarmLodgingFodderMeasures(dataset);
+  }
+
+  @Override
+  public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code) {
+    // TODO Auto-generated method stub
+    return DatasetsApiDelegate.super.getFarmLodgingFodderMeasure(dataset, code);
   }
 
   private String handleDataset(final String dataset) {
