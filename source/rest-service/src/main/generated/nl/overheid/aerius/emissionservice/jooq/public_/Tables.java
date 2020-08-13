@@ -5,6 +5,7 @@ package nl.overheid.aerius.emissionservice.jooq.public_;
 
 
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Constants;
+import nl.overheid.aerius.emissionservice.jooq.public_.tables.Datasets;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Substances;
 
 
@@ -20,6 +21,14 @@ public class Tables {
 @file source/database/src/main/sql/essentials/00-init/03-constants.sql
      */
     public static final Constants CONSTANTS = Constants.CONSTANTS;
+
+    /**
+     * De verschillende datasets die beschikbaar zijn.
+De data voor elke dataset bevindt zich in een eigen database schema.
+
+@file source/database/src/main/sql/datasets/02-tables.sql
+     */
+    public static final Datasets DATASETS = Datasets.DATASETS;
 
     /**
      * Stoffen

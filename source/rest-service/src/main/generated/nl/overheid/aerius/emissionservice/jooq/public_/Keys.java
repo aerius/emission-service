@@ -5,8 +5,10 @@ package nl.overheid.aerius.emissionservice.jooq.public_;
 
 
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Constants;
+import nl.overheid.aerius.emissionservice.jooq.public_.tables.Datasets;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Substances;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.records.ConstantsRecord;
+import nl.overheid.aerius.emissionservice.jooq.public_.tables.records.DatasetsRecord;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.records.SubstancesRecord;
 
 import org.jooq.TableField;
@@ -31,6 +33,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final UniqueKey<ConstantsRecord> CONSTANTS_PKEY = UniqueKeys0.CONSTANTS_PKEY;
+    public static final UniqueKey<DatasetsRecord> DATASETS_PKEY = UniqueKeys0.DATASETS_PKEY;
     public static final UniqueKey<SubstancesRecord> SUBSTANCES_PKEY = UniqueKeys0.SUBSTANCES_PKEY;
 
     // -------------------------------------------------------------------------
@@ -44,6 +47,7 @@ public class Keys {
 
     private static class UniqueKeys0 {
         public static final UniqueKey<ConstantsRecord> CONSTANTS_PKEY = Internal.createUniqueKey(Constants.CONSTANTS, "constants_pkey", new TableField[] { Constants.CONSTANTS.KEY }, true);
+        public static final UniqueKey<DatasetsRecord> DATASETS_PKEY = Internal.createUniqueKey(Datasets.DATASETS, "datasets_pkey", new TableField[] { Datasets.DATASETS.DATASET_CODE }, true);
         public static final UniqueKey<SubstancesRecord> SUBSTANCES_PKEY = Internal.createUniqueKey(Substances.SUBSTANCES, "substances_pkey", new TableField[] { Substances.SUBSTANCES.SUBSTANCE_ID }, true);
     }
 }
