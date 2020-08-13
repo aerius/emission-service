@@ -35,7 +35,8 @@ import nl.overheid.aerius.emissionservice.model.Sector;
 @Repository
 public class SectorRepository {
 
-  private static final Field<Integer> ID = field("id", Integer.class);
+  private static final Field<Long> ID = field("id", Long.class);
+  private static final Field<String> CODE = field("code", String.class);
   private static final Field<String> NAME = field("name", String.class);
   private static final Field<String> DESCRIPTION = field("description", String.class);
   private static final Field<String> I18N_DESCRIPTION = field("i18n_description", String.class);
@@ -49,9 +50,10 @@ public class SectorRepository {
 
   public List<Sector> getSectors(final Locale locale) {
     return datasetStore.dsl().select(
-        SECTORS.SECTOR_ID.as(ID),
+        SECTORS.SECTOR_ID.as(CODE),
         SECTORS.DESCRIPTION.as(NAME),
-        coalesce(I18N_DESCRIPTION, SECTORS.DESCRIPTION).as(DESCRIPTION))
+        coalesce(I18N_DESCRIPTION, SECTORS.DESCRIPTION).as(DESCRIPTION),
+        SECTORS.SECTOR_ID.as(ID))
         .from(SECTORS)
         .leftJoin(
             select(I18N_SECTORS.SECTOR_ID, I18N_SECTORS.DESCRIPTION.as(I18N_DESCRIPTION))
