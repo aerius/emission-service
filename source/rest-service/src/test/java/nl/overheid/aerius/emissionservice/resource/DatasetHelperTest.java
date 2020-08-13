@@ -18,8 +18,13 @@ package nl.overheid.aerius.emissionservice.resource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +34,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import nl.overheid.aerius.emissionservice.domain.Dataset;
 import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,39 +44,48 @@ class DatasetHelperTest {
   private static final String OTHER_VALID_DATASET = "ordinaryDataset";
 
   private DatasetHelper datasetHelper;
+  private DatasetRepository datasetRepository;
 
   @BeforeEach
   void init(@Mock final DatasetRepository datasetRepository) {
+    this.datasetRepository = datasetRepository;
     datasetHelper = new DatasetHelper(datasetRepository);
-    lenient().when(datasetRepository.getLatestDataset()).thenReturn(LATEST_INTERNAL_DATASET);
-    lenient().when(datasetRepository.isValidDataset(any(String.class)))
-        .thenAnswer(invocation -> LATEST_INTERNAL_DATASET.equalsIgnoreCase(invocation.getArgument(0))
-            || OTHER_VALID_DATASET.equalsIgnoreCase(invocation.getArgument(0)));
+    final Dataset latestInternal = new Dataset(LATEST_INTERNAL_DATASET, "");
+    lenient().when(datasetRepository.getLatestDataset()).thenReturn(latestInternal);
+    lenient().when(datasetRepository.getValidDataset(any(String.class)))
+        .thenAnswer(invocation -> toValidDataset(invocation.getArgument(0)));
+  }
+
+  private Optional<Dataset> toValidDataset(final String version) {
+    return LATEST_INTERNAL_DATASET.equalsIgnoreCase(version)
+        || OTHER_VALID_DATASET.equalsIgnoreCase(version)
+            ? Optional.of(new Dataset(version, version))
+            : Optional.empty();
   }
 
   @Test
   void testValidateDatasetLatestInternal() {
-    final String validated = datasetHelper.validateDataset(LATEST_INTERNAL_DATASET);
-    assertEquals(LATEST_INTERNAL_DATASET, validated, "Latest internal dataset");
+    final Dataset validated = datasetHelper.validateDataset(LATEST_INTERNAL_DATASET);
+    assertEquals(LATEST_INTERNAL_DATASET, validated.getCode(), "Latest internal dataset");
   }
 
   @Test
   void testValidateDatasetLatestExternal() {
-    final String validated = datasetHelper.validateDataset(DatasetHelper.LATEST_DATASET);
-    assertEquals(LATEST_INTERNAL_DATASET, validated, "Latest dataset as defined by helper");
+    final Dataset validated = datasetHelper.validateDataset(DatasetHelper.LATEST_DATASET);
+    assertEquals(LATEST_INTERNAL_DATASET, validated.getCode(), "Latest dataset as defined by helper");
   }
 
   @Test
   void testValidateDatasetOtherValid() {
-    final String validated = datasetHelper.validateDataset(OTHER_VALID_DATASET);
-    assertEquals(OTHER_VALID_DATASET, validated, "Other dataset");
+    final Dataset validated = datasetHelper.validateDataset(OTHER_VALID_DATASET);
+    assertEquals(OTHER_VALID_DATASET, validated.getCode(), "Other dataset");
   }
 
   @Test
   void testValidateDatasetOtherValidDifferentCase() {
-    final String validated = datasetHelper.validateDataset(OTHER_VALID_DATASET.toLowerCase());
+    final Dataset validated = datasetHelper.validateDataset(OTHER_VALID_DATASET.toLowerCase());
     // Just returning supplied dataset now, behavior might change with database implementation.
-    assertEquals(OTHER_VALID_DATASET.toLowerCase(), validated, "Other dataset lowerecased");
+    assertEquals(OTHER_VALID_DATASET.toLowerCase(), validated.getCode(), "Other dataset lowerecased");
   }
 
   @Test
@@ -81,6 +96,17 @@ class DatasetHelperTest {
 
     assertEquals(HttpStatus.NOT_FOUND, exception.getStatus(), "Status used when dataset unknown");
     assertEquals("Could not find dataset anUnknownDataset", exception.getReason(), "Message used when dataset unknown");
+  }
+
+  @Test
+  void testGetDatasetCodes() {
+    when(datasetRepository.getDatasets()).thenReturn(
+        List.of(new Dataset(LATEST_INTERNAL_DATASET, "Schema 1"), new Dataset(OTHER_VALID_DATASET, "Schema 2")));
+    final List<String> codes = datasetHelper.getDatasetCodes();
+    assertEquals(3, codes.size(), "amount of codes");
+    assertTrue(codes.contains(LATEST_INTERNAL_DATASET), "Should contain latest dataset");
+    assertTrue(codes.contains(OTHER_VALID_DATASET), "Should contain other dataset dataset");
+    assertTrue(codes.contains(DatasetHelper.LATEST_DATASET), "Should contain the identifier used for any latest dataset");
   }
 
 }

@@ -16,24 +16,53 @@
  */
 package nl.overheid.aerius.emissionservice.repository;
 
+import static nl.overheid.aerius.emissionservice.jooq.public_.tables.Datasets.DATASETS;
+import static org.jooq.impl.DSL.field;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.jooq.DSLContext;
+import org.jooq.Field;
 import org.springframework.stereotype.Repository;
+
+import nl.overheid.aerius.emissionservice.domain.Dataset;
 
 @Repository
 public class DatasetRepository {
 
-  public static final String LATEST_DATASET = "dev";
+  private static final Field<String> CODE = field("code", String.class);
 
-  public String getLatestDataset() {
-    return LATEST_DATASET;
+  private final DSLContext publicDsl;
+
+  public DatasetRepository(final DSLContext publicDsl) {
+    this.publicDsl = publicDsl;
   }
 
-  public boolean isValidDataset(final String dataset) {
-    // For now only accept one dataset, but this should be determined from database.
-    if (LATEST_DATASET.equalsIgnoreCase(dataset)) {
-      return true;
-    } else {
-      return false;
-    }
+  public List<Dataset> getDatasets() {
+    return publicDsl.select(
+        DATASETS.DATASET_CODE.as(CODE),
+        DATASETS.SCHEMA_NAME)
+        .from(DATASETS)
+        .fetchInto(Dataset.class);
+  }
+
+  public Dataset getLatestDataset() {
+    return publicDsl.select(
+        DATASETS.DATASET_CODE.as(CODE),
+        DATASETS.SCHEMA_NAME)
+        .from(DATASETS)
+        .where(DATASETS.LATEST.eq(true))
+        .fetchOneInto(Dataset.class);
+  }
+
+  public Optional<Dataset> getValidDataset(final String dataset) {
+    return publicDsl.select(
+        DATASETS.DATASET_CODE.as(CODE),
+        DATASETS.SCHEMA_NAME)
+        .from(DATASETS)
+        .where(DATASETS.DATASET_CODE.equalIgnoreCase(dataset))
+        .fetchOptionalInto(Dataset.class);
   }
 
 }

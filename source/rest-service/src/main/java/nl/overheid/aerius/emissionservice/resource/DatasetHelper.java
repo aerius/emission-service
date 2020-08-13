@@ -16,10 +16,15 @@
  */
 package nl.overheid.aerius.emissionservice.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import nl.overheid.aerius.emissionservice.domain.Dataset;
 import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
 @Component
@@ -33,16 +38,23 @@ public class DatasetHelper {
     this.datasetRepository = datasetRepository;
   }
 
-  public String validateDataset(final String dataset) {
-    final String internalDataset;
+  public List<String> getDatasetCodes() {
+    final List<Dataset> datasets = datasetRepository.getDatasets();
+    final List<String> codes = new ArrayList<>();
+    codes.add(LATEST_DATASET);
+    datasets.stream().map(Dataset::getCode).forEach(codes::add);
+    return codes;
+  }
+
+  public Dataset validateDataset(final String dataset) {
+    final Optional<Dataset> internalDataset;
     if (LATEST_DATASET.equalsIgnoreCase(dataset)) {
-      internalDataset = datasetRepository.getLatestDataset();
-    } else if (!datasetRepository.isValidDataset(dataset)) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find dataset " + dataset);
+      internalDataset = Optional.of(datasetRepository.getLatestDataset());
     } else {
-      internalDataset = dataset;
+      internalDataset = datasetRepository.getValidDataset(dataset);
     }
-    return internalDataset;
+    return internalDataset
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find dataset " + dataset));
   }
 
 }

@@ -2,6 +2,9 @@ package nl.overheid.aerius.emissionservice.config;
 
 import javax.sql.DataSource;
 
+import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
+import org.jooq.impl.DSL;
 import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.aop.target.ThreadLocalTargetSource;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +20,11 @@ import nl.overheid.aerius.emissionservice.repository.DatasetStore;
  */
 @Configuration
 public class DatasetConfig {
+
+  @Bean
+  public DSLContext publicDsl(final DataSource dataSource) {
+    return DSL.using(dataSource, SQLDialect.POSTGRES);
+  }
 
   @Bean(destroyMethod = "destroy")
   public ThreadLocalTargetSource threadLocalDataSetStore() {
