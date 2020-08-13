@@ -83,7 +83,7 @@ public class FarmRepository {
             ? FARM_LODGING_TYPES.FARM_ANIMAL_CATEGORY_ID.in(
                 select(FARM_ANIMAL_CATEGORIES.FARM_ANIMAL_CATEGORY_ID)
                     .from(FARM_ANIMAL_CATEGORIES)
-                    .where(FARM_ANIMAL_CATEGORIES.CODE.eq(animalCode.get())))
+                    .where(FARM_ANIMAL_CATEGORIES.CODE.containsIgnoreCase(animalCode.get())))
             : trueCondition())
         .orderBy(FARM_LODGING_TYPES.CODE)
         .fetchInto(Category.class);
