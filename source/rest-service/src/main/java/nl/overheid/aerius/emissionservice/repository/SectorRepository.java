@@ -29,7 +29,6 @@ import org.jooq.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
 import nl.overheid.aerius.emissionservice.model.Sector;
 
 @Repository
@@ -58,20 +57,10 @@ public class SectorRepository {
         .leftJoin(
             select(I18N_SECTORS.SECTOR_ID, I18N_SECTORS.DESCRIPTION.as(I18N_DESCRIPTION))
                 .from(I18N_SECTORS)
-                .where(I18N_SECTORS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                .where(I18N_SECTORS.LANGUAGE_CODE.eq(DbUtil.getLanguageCodeType(locale))))
         .using(SECTORS.SECTOR_ID)
         .orderBy(SECTORS.SECTOR_ID)
         .fetchInto(Sector.class);
-  }
-
-  private LanguageCodeType getLanguageCodeType(final Locale locale) {
-    LanguageCodeType codeType = LanguageCodeType.nl_;
-    for (final LanguageCodeType value : LanguageCodeType.values()) {
-      if (value.getLiteral().equalsIgnoreCase(locale.getLanguage())) {
-        codeType = value;
-      }
-    }
-    return codeType;
   }
 
 }

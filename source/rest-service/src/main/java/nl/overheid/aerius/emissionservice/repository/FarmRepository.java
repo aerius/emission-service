@@ -58,6 +58,7 @@ public class FarmRepository {
   }
 
   public List<Category> getFarmAnimals(final Locale locale) {
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
     return datasetStore.dsl().select(
         FARM_ANIMAL_CATEGORIES.CODE,
         FARM_ANIMAL_CATEGORIES.NAME,
@@ -66,13 +67,14 @@ public class FarmRepository {
         .leftJoin(
             select(I18N_FARM_ANIMAL_CATEGORIES.FARM_ANIMAL_CATEGORY_ID, I18N_FARM_ANIMAL_CATEGORIES.DESCRIPTION.as(I18N_DESCRIPTION))
                 .from(I18N_FARM_ANIMAL_CATEGORIES)
-                .where(I18N_FARM_ANIMAL_CATEGORIES.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                .where(I18N_FARM_ANIMAL_CATEGORIES.LANGUAGE_CODE.eq(language)))
         .using(FARM_ANIMAL_CATEGORIES.FARM_ANIMAL_CATEGORY_ID)
         .orderBy(FARM_ANIMAL_CATEGORIES.CODE)
         .fetchInto(Category.class);
   }
 
   public List<Category> getFarmLodgings(final Locale locale, final Optional<String> animalCode) {
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
     return datasetStore.dsl().select(
         FARM_LODGING_TYPES.CODE,
         FARM_LODGING_TYPES.NAME,
@@ -81,7 +83,7 @@ public class FarmRepository {
         .leftJoin(
             select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
                 .from(I18N_FARM_LODGING_TYPES)
-                .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(language)))
         .using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
         .where(animalCode.isPresent()
             ? FARM_LODGING_TYPES.FARM_ANIMAL_CATEGORY_ID.in(
@@ -94,12 +96,13 @@ public class FarmRepository {
   }
 
   public Optional<FarmLodgingCategory> getFarmLodging(final Locale locale, final String lodgingCode) {
-    final Optional<FarmLodgingCategory> farmLodging = getOptionalFarmLodging(locale, lodgingCode);
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
+    final Optional<FarmLodgingCategory> farmLodging = getOptionalFarmLodging(language, lodgingCode);
     farmLodging.ifPresent(lodging -> lodging.setEmissionFactors(getLodgingEmissionFactors(lodgingCode)));
     return farmLodging;
   }
 
-  private Optional<FarmLodgingCategory> getOptionalFarmLodging(final Locale locale, final String lodgingCode) {
+  private Optional<FarmLodgingCategory> getOptionalFarmLodging(final LanguageCodeType language, final String lodgingCode) {
     return datasetStore.dsl().select(
         FARM_LODGING_TYPES.CODE,
         FARM_LODGING_TYPES.NAME,
@@ -108,7 +111,7 @@ public class FarmRepository {
         .leftJoin(
             select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
                 .from(I18N_FARM_LODGING_TYPES)
-                .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(language)))
         .using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
         .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
         .fetchOptionalInto(FarmLodgingCategory.class);
@@ -125,6 +128,7 @@ public class FarmRepository {
   }
 
   public List<Category> getFarmAdditionalLodgingSystems(final Locale locale) {
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
     return datasetStore.dsl().select(
         FARM_ADDITIONAL_LODGING_SYSTEMS.CODE,
         FARM_ADDITIONAL_LODGING_SYSTEMS.NAME,
@@ -134,19 +138,21 @@ public class FarmRepository {
             select(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID,
                 I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION.as(I18N_DESCRIPTION))
                     .from(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS)
-                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(language)))
         .using(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID)
         .orderBy(FARM_ADDITIONAL_LODGING_SYSTEMS.CODE)
         .fetchInto(Category.class);
   }
 
   public Optional<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final Locale locale, final String systemCode) {
-    final Optional<FarmAdditionalLodgingSystemCategory> farmLodging = getOptionalFarmAdditionalLodgingSystem(locale, systemCode);
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
+    final Optional<FarmAdditionalLodgingSystemCategory> farmLodging = getOptionalFarmAdditionalLodgingSystem(language, systemCode);
     farmLodging.ifPresent(lodging -> lodging.setEmissionFactors(getAdditionalLodgingSystemEmissionFactors(systemCode)));
     return farmLodging;
   }
 
-  private Optional<FarmAdditionalLodgingSystemCategory> getOptionalFarmAdditionalLodgingSystem(final Locale locale, final String systemCode) {
+  private Optional<FarmAdditionalLodgingSystemCategory> getOptionalFarmAdditionalLodgingSystem(final LanguageCodeType language,
+      final String systemCode) {
     return datasetStore.dsl().select(
         FARM_ADDITIONAL_LODGING_SYSTEMS.CODE,
         FARM_ADDITIONAL_LODGING_SYSTEMS.NAME,
@@ -156,7 +162,7 @@ public class FarmRepository {
             select(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID,
                 I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION.as(I18N_DESCRIPTION))
                     .from(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS)
-                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(language)))
         .using(FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID)
         .where(FARM_ADDITIONAL_LODGING_SYSTEMS.CODE.eq(systemCode))
         .fetchOptionalInto(FarmAdditionalLodgingSystemCategory.class);
@@ -170,16 +176,6 @@ public class FarmRepository {
         .join(SUBSTANCES).using(SUBSTANCES.SUBSTANCE_ID)
         .where(FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW.CODE.eq(systemCode))
         .fetchInto(EmissionFactor.class);
-  }
-
-  private LanguageCodeType getLanguageCodeType(final Locale locale) {
-    LanguageCodeType codeType = LanguageCodeType.nl_;
-    for (final LanguageCodeType value : LanguageCodeType.values()) {
-      if (value.getLiteral().equalsIgnoreCase(locale.getLanguage())) {
-        codeType = value;
-      }
-    }
-    return codeType;
   }
 
 }
