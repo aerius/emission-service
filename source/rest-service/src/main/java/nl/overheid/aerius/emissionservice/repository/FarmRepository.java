@@ -17,9 +17,12 @@
 package nl.overheid.aerius.emissionservice.repository;
 
 import static nl.overheid.aerius.emissionservice.jooq.public_.tables.Substances.SUBSTANCES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditionalLodgingSystemEmissionFactorsView.FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditionalLodgingSystems.FARM_ADDITIONAL_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAnimalCategories.FARM_ANIMAL_CATEGORIES;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypeEmissionFactorsView.FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypes.FARM_LODGING_TYPES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmAdditionalLodgingSystems.I18N_FARM_ADDITIONAL_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmAnimalCategories.I18N_FARM_ANIMAL_CATEGORIES;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmLodgingTypes.I18N_FARM_LODGING_TYPES;
 import static org.jooq.impl.DSL.coalesce;
@@ -37,6 +40,7 @@ import org.springframework.stereotype.Repository;
 import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
 import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.model.EmissionFactor;
+import nl.overheid.aerius.emissionservice.model.FarmAdditionalLodgingSystemCategory;
 import nl.overheid.aerius.emissionservice.model.FarmLodgingCategory;
 
 @Repository
@@ -117,6 +121,54 @@ public class FarmRepository {
         .from(FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW)
         .join(SUBSTANCES).using(SUBSTANCES.SUBSTANCE_ID)
         .where(FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW.CODE.eq(lodgingCode))
+        .fetchInto(EmissionFactor.class);
+  }
+
+  public List<Category> getFarmAdditionalLodgingSystems(final Locale locale) {
+    return datasetStore.dsl().select(
+        FARM_ADDITIONAL_LODGING_SYSTEMS.CODE,
+        FARM_ADDITIONAL_LODGING_SYSTEMS.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_ADDITIONAL_LODGING_SYSTEMS)
+        .leftJoin(
+            select(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID,
+                I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS)
+                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+        .using(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID)
+        .orderBy(FARM_ADDITIONAL_LODGING_SYSTEMS.CODE)
+        .fetchInto(Category.class);
+  }
+
+  public Optional<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final Locale locale, final String systemCode) {
+    final Optional<FarmAdditionalLodgingSystemCategory> farmLodging = getOptionalFarmAdditionalLodgingSystem(locale, systemCode);
+    farmLodging.ifPresent(lodging -> lodging.setEmissionFactors(getAdditionalLodgingSystemEmissionFactors(systemCode)));
+    return farmLodging;
+  }
+
+  private Optional<FarmAdditionalLodgingSystemCategory> getOptionalFarmAdditionalLodgingSystem(final Locale locale, final String systemCode) {
+    return datasetStore.dsl().select(
+        FARM_ADDITIONAL_LODGING_SYSTEMS.CODE,
+        FARM_ADDITIONAL_LODGING_SYSTEMS.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_ADDITIONAL_LODGING_SYSTEMS)
+        .leftJoin(
+            select(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID,
+                I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS)
+                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+        .using(FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID)
+        .where(FARM_ADDITIONAL_LODGING_SYSTEMS.CODE.eq(systemCode))
+        .fetchOptionalInto(FarmAdditionalLodgingSystemCategory.class);
+  }
+
+  private List<EmissionFactor> getAdditionalLodgingSystemEmissionFactors(final String systemCode) {
+    return datasetStore.dsl().select(
+        SUBSTANCES.NAME.as(SUBSTANCE),
+        FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW.EMISSION_FACTOR.as(FACTOR))
+        .from(FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW)
+        .join(SUBSTANCES).using(SUBSTANCES.SUBSTANCE_ID)
+        .where(FARM_ADDITIONAL_LODGING_SYSTEM_EMISSION_FACTORS_VIEW.CODE.eq(systemCode))
         .fetchInto(EmissionFactor.class);
   }
 

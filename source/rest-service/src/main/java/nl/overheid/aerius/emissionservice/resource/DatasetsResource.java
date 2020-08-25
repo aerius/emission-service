@@ -121,14 +121,25 @@ public class DatasetsResource implements DatasetsApiDelegate {
 
   @Override
   public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.listFarmAdditionalLodgingSystems(dataset);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmAdditionalLodgingSystems(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header("dataset", actualDataset)
+        .body(categories);
   }
 
   @Override
   public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.getFarmAdditionalLodgingSystem(dataset, code);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmAdditionalLodgingSystemCategory additionalSystem = farmRepository.getFarmAdditionalLodgingSystem(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find additional system with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header("dataset", actualDataset)
+        .body(additionalSystem);
   }
 
   @Override
