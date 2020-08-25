@@ -24,6 +24,9 @@ import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAnimal
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingSystemDefinitions.FARM_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypeEmissionFactors.FARM_LODGING_TYPE_EMISSION_FACTORS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypes.FARM_LODGING_TYPES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesToAdditionalLodgingSystems.FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesToLodgingSystemDefinitions.FARM_LODGING_TYPES_TO_LODGING_SYSTEM_DEFINITIONS;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesToReductiveLodgingSystems.FARM_LODGING_TYPES_TO_REDUCTIVE_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmReductiveLodgingSystemReductionFactors.FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmReductiveLodgingSystems.FARM_REDUCTIVE_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmReductiveLodgingSystemsToLodgingSystemDefinitions.FARM_REDUCTIVE_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS;
@@ -108,7 +111,14 @@ public class FarmRepository {
   public Optional<FarmLodgingCategory> getFarmLodging(final Locale locale, final String lodgingCode) {
     final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
     final Optional<FarmLodgingCategory> farmLodging = getOptionalFarmLodging(language, lodgingCode);
-    farmLodging.ifPresent(lodging -> lodging.setEmissionFactors(getLodgingEmissionFactors(lodgingCode)));
+    farmLodging.ifPresent(lodging -> {
+      lodging.setEmissionFactors(getLodgingEmissionFactors(lodgingCode));
+      lodging.setSystemDefinitions(getLodgingSystemDefinitions(language, lodgingCode));
+      lodging.setAdditionalLodgingSystems(getLodgingAdditionalSystems(language, lodgingCode));
+      lodging.setReductiveLodgingSystems(getLodgingReductiveSystems(language, lodgingCode));
+      // TODO fodder measures
+      //      lodging.setFodderMeasures(fodderMeasures);
+    });
     return farmLodging;
   }
 
@@ -116,7 +126,8 @@ public class FarmRepository {
     return datasetStore.dsl().select(
         FARM_LODGING_TYPES.CODE,
         FARM_LODGING_TYPES.NAME,
-        coalesce(I18N_DESCRIPTION, FARM_LODGING_TYPES.DESCRIPTION).as(DESCRIPTION))
+        coalesce(I18N_DESCRIPTION, FARM_LODGING_TYPES.DESCRIPTION).as(DESCRIPTION),
+        FARM_LODGING_TYPES.SCRUBBER)
         .from(FARM_LODGING_TYPES)
         .leftJoin(
             select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
@@ -136,6 +147,63 @@ public class FarmRepository {
         .join(FARM_LODGING_TYPES).using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
         .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
         .fetchInto(EmissionFactor.class);
+  }
+
+  private List<Category> getLodgingSystemDefinitions(final LanguageCodeType language, final String lodgingCode) {
+    return datasetStore.dsl().select(
+        FARM_LODGING_SYSTEM_DEFINITIONS.CODE,
+        FARM_LODGING_SYSTEM_DEFINITIONS.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_LODGING_SYSTEM_DEFINITIONS.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_TYPES_TO_LODGING_SYSTEM_DEFINITIONS)
+        .join(FARM_LODGING_SYSTEM_DEFINITIONS).using(FARM_LODGING_SYSTEM_DEFINITIONS.FARM_LODGING_SYSTEM_DEFINITION_ID)
+        .join(FARM_LODGING_TYPES).using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
+        .leftJoin(
+            select(I18N_FARM_LODGING_SYSTEM_DEFINITIONS.FARM_LODGING_SYSTEM_DEFINITION_ID,
+                I18N_FARM_LODGING_SYSTEM_DEFINITIONS.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_LODGING_SYSTEM_DEFINITIONS)
+                    .where(I18N_FARM_LODGING_SYSTEM_DEFINITIONS.LANGUAGE_CODE.eq(language)))
+        .using(FARM_LODGING_SYSTEM_DEFINITIONS.FARM_LODGING_SYSTEM_DEFINITION_ID)
+        .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
+        .orderBy(FARM_LODGING_SYSTEM_DEFINITIONS.CODE)
+        .fetchInto(Category.class);
+  }
+
+  private List<Category> getLodgingAdditionalSystems(final LanguageCodeType language, final String lodgingCode) {
+    return datasetStore.dsl().select(
+        FARM_ADDITIONAL_LODGING_SYSTEMS.CODE,
+        FARM_ADDITIONAL_LODGING_SYSTEMS.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS)
+        .join(FARM_ADDITIONAL_LODGING_SYSTEMS).using(FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID)
+        .join(FARM_LODGING_TYPES).using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
+        .leftJoin(
+            select(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID,
+                I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS)
+                    .where(I18N_FARM_ADDITIONAL_LODGING_SYSTEMS.LANGUAGE_CODE.eq(language)))
+        .using(FARM_ADDITIONAL_LODGING_SYSTEMS.FARM_ADDITIONAL_LODGING_SYSTEM_ID)
+        .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
+        .orderBy(FARM_ADDITIONAL_LODGING_SYSTEMS.CODE)
+        .fetchInto(Category.class);
+  }
+
+  private List<Category> getLodgingReductiveSystems(final LanguageCodeType language, final String lodgingCode) {
+    return datasetStore.dsl().select(
+        FARM_REDUCTIVE_LODGING_SYSTEMS.CODE,
+        FARM_REDUCTIVE_LODGING_SYSTEMS.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_REDUCTIVE_LODGING_SYSTEMS.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_TYPES_TO_REDUCTIVE_LODGING_SYSTEMS)
+        .join(FARM_REDUCTIVE_LODGING_SYSTEMS).using(FARM_REDUCTIVE_LODGING_SYSTEMS.FARM_REDUCTIVE_LODGING_SYSTEM_ID)
+        .join(FARM_LODGING_TYPES).using(FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID)
+        .leftJoin(
+            select(I18N_FARM_REDUCTIVE_LODGING_SYSTEMS.FARM_REDUCTIVE_LODGING_SYSTEM_ID,
+                I18N_FARM_REDUCTIVE_LODGING_SYSTEMS.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_REDUCTIVE_LODGING_SYSTEMS)
+                    .where(I18N_FARM_REDUCTIVE_LODGING_SYSTEMS.LANGUAGE_CODE.eq(language)))
+        .using(FARM_REDUCTIVE_LODGING_SYSTEMS.FARM_REDUCTIVE_LODGING_SYSTEM_ID)
+        .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
+        .orderBy(FARM_REDUCTIVE_LODGING_SYSTEMS.CODE)
+        .fetchInto(Category.class);
   }
 
   public List<Category> getFarmAdditionalLodgingSystems(final Locale locale) {
