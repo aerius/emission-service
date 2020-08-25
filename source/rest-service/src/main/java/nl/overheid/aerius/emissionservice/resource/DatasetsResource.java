@@ -42,6 +42,8 @@ import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 @Service
 public class DatasetsResource implements DatasetsApiDelegate {
 
+  private static final String DATASET_HEADER = "dataset";
+
   private final NativeWebRequest nativeWebRequest;
   private final LocaleHelper localeHelper;
   private final DatasetHelper datasetHelper;
@@ -81,7 +83,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Sector> sectors = sectorRepository.getSectors(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(sectors);
   }
 
@@ -92,7 +94,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Category> categories = farmRepository.getFarmAnimals(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(categories);
   }
 
@@ -103,7 +105,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Category> categories = farmRepository.getFarmLodgings(locale, Optional.ofNullable(animalCode));
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(categories);
   }
 
@@ -115,7 +117,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code));
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(lodging);
   }
 
@@ -126,7 +128,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Category> categories = farmRepository.getFarmAdditionalLodgingSystems(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(categories);
   }
 
@@ -138,7 +140,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find additional system with code " + code));
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(additionalSystem);
   }
 
