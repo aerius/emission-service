@@ -392,26 +392,46 @@ components:
         - description: A category for a farm lodging additional system.
         - type: object
           required:
+            - scrubber
             - emissionFactors
+            - systemDefinitions
           properties:
+            scrubber:
+              type: boolean
+              description: Indication wether or not this lodging type makes use of an air scrubber ('luchtwasser')
             emissionFactors:
               type: array
               description: The extra emission per animal that will be added to the lodging due to using this system.
               items:
                 $ref: "#/components/schemas/EmissionFactor"
+            systemDefinitions:
+              type: array
+              description: Possible farm lodging system definitions (BWL-number).
+              items:
+                $ref: "#/components/schemas/Category"
     FarmReductiveLodgingSystemCategory:
       allOf:
         - $ref: '#/components/schemas/Category'
         - description: A category for a farm lodging reductive system.
         - type: object
           required:
+            - scrubber
             - reductionFractions
+            - systemDefinitions
           properties:
+            scrubber:
+              type: boolean
+              description: Indication wether or not this lodging type makes use of an air scrubber ('luchtwasser')
             reductionFractions:
               type: array
               description: The fraction that the total emission will be reduced to as a result of using this system.
               items:
                 $ref: "#/components/schemas/EmissionReductionFraction"
+            systemDefinitions:
+              type: array
+              description: Possible farm lodging system definitions (BWL-number).
+              items:
+                $ref: "#/components/schemas/Category"
     FarmFodderMeasureCategory:
       allOf:
         - $ref: '#/components/schemas/Category'
