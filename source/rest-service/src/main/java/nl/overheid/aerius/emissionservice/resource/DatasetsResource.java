@@ -146,14 +146,25 @@ public class DatasetsResource implements DatasetsApiDelegate {
 
   @Override
   public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.listFarmReductiveLodgingSystems(dataset);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmReductiveLodgingSystems(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(categories);
   }
 
   @Override
   public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.getFarmReductiveLodgingSystem(dataset, code);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmReductiveLodgingSystemCategory reductiveSystem = farmRepository.getFarmReductiveLodgingSystem(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find reductive system with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(reductiveSystem);
   }
 
   @Override
