@@ -4,8 +4,7 @@ cluster_tables
 
 run_sql_folder "substances"
 
-run_sql_folder "dev/sectors"
-run_sql_folder "dev/emission_factors"
+run_sql_folder "datasets"
 
 synchronize_serials
 

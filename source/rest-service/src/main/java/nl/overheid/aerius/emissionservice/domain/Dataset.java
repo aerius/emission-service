@@ -14,26 +14,32 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-package nl.overheid.aerius.emissionservice.repository;
+package nl.overheid.aerius.emissionservice.domain;
 
-import org.springframework.stereotype.Repository;
+public class Dataset {
 
-@Repository
-public class VersionRepository {
+  private String code;
+  private String schemaName;
 
-  public static final String LATEST_VERSION = "dev";
-
-  public String getLatestVersion() {
-    return LATEST_VERSION;
+  public Dataset(final String code, final String schemaName) {
+    this.code = code;
+    this.schemaName = schemaName;
   }
 
-  public boolean isValidVersion(final String version) {
-    // For now only accept one version, but this should be determined from database.
-    if (LATEST_VERSION.equalsIgnoreCase(version)) {
-      return true;
-    } else {
-      return false;
-    }
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(final String code) {
+    this.code = code;
+  }
+
+  public String getSchemaName() {
+    return schemaName;
+  }
+
+  public void setSchemaName(final String schemaName) {
+    this.schemaName = schemaName;
   }
 
 }
