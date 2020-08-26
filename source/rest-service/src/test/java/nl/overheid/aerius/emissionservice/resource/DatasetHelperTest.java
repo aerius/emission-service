@@ -24,6 +24,7 @@ import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -99,14 +101,17 @@ class DatasetHelperTest {
   }
 
   @Test
-  void testGetDatasetCodes() {
-    when(datasetRepository.getDatasets()).thenReturn(
-        List.of(new Dataset(CURRENT_INTERNAL_DATASET, "Schema 1"), new Dataset(OTHER_VALID_DATASET, "Schema 2")));
-    final List<String> codes = datasetHelper.getDatasetCodes();
+  void testGetDatasets() {
+    when(datasetRepository.getDatasets(any())).thenReturn(
+        List.of(new Category().code(CURRENT_INTERNAL_DATASET), new Category().code(OTHER_VALID_DATASET)));
+    final List<Category> codes = datasetHelper.getDatasets(Locale.ENGLISH);
     assertEquals(3, codes.size(), "amount of codes");
-    assertTrue(codes.contains(CURRENT_INTERNAL_DATASET), "Should contain current dataset");
-    assertTrue(codes.contains(OTHER_VALID_DATASET), "Should contain other dataset");
-    assertTrue(codes.contains(DatasetHelper.CURRENT_DATASET), "Should contain the identifier used for the current dataset");
+    assertTrue(codes.stream().anyMatch(dataset -> CURRENT_INTERNAL_DATASET.equalsIgnoreCase(dataset.getCode())),
+        "Should contain current dataset");
+    assertTrue(codes.stream().anyMatch(dataset -> OTHER_VALID_DATASET.equalsIgnoreCase(dataset.getCode())), ""
+        + "Should contain other dataset");
+    assertTrue(codes.stream().anyMatch(dataset -> DatasetHelper.CURRENT_DATASET.equalsIgnoreCase(dataset.getCode())),
+        "Should contain the identifier used for the current dataset");
   }
 
 }

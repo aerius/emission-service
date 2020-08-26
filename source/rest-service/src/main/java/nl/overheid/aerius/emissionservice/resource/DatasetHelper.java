@@ -18,6 +18,7 @@ package nl.overheid.aerius.emissionservice.resource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
 @Component
 public class DatasetHelper {
 
   public static final String CURRENT_DATASET = "CURRENT";
+  public static final Category CURRENT_CATEGORY = new Category()
+      .code(CURRENT_DATASET)
+      .name(CURRENT_DATASET)
+      .description(CURRENT_DATASET);
 
   private final DatasetRepository datasetRepository;
 
@@ -38,12 +44,12 @@ public class DatasetHelper {
     this.datasetRepository = datasetRepository;
   }
 
-  public List<String> getDatasetCodes() {
-    final List<Dataset> datasets = datasetRepository.getDatasets();
-    final List<String> codes = new ArrayList<>();
-    codes.add(CURRENT_DATASET);
-    datasets.stream().map(Dataset::getCode).forEach(codes::add);
-    return codes;
+  public List<Category> getDatasets(final Locale locale) {
+    final List<Category> databaseSets = datasetRepository.getDatasets(locale);
+    final List<Category> allSets = new ArrayList<>();
+    allSets.add(CURRENT_CATEGORY);
+    allSets.addAll(databaseSets);
+    return allSets;
   }
 
   public Dataset validateDataset(final String dataset) {

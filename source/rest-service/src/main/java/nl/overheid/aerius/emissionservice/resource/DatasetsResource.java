@@ -66,8 +66,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<String>> listDatasets() {
-    final List<String> datasetCodes = datasetHelper.getDatasetCodes();
+  public ResponseEntity<List<Category>> listDatasets() {
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> datasetCodes = datasetHelper.getDatasets(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
         .body(datasetCodes);

@@ -33,7 +33,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  $ref: "#/components/schemas/Category"
   /datasets/{dataset}/sectors:
     get:
       summary: List all sectors

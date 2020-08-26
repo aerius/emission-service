@@ -17,9 +17,13 @@
 package nl.overheid.aerius.emissionservice.repository;
 
 import static nl.overheid.aerius.emissionservice.jooq.public_.tables.Datasets.DATASETS;
+import static nl.overheid.aerius.emissionservice.jooq.public_.tables.I18nDatasets.I18N_DATASETS;
+import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
+import static org.jooq.impl.DSL.select;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import org.jooq.DSLContext;
@@ -27,11 +31,14 @@ import org.jooq.Field;
 import org.springframework.stereotype.Repository;
 
 import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
+import nl.overheid.aerius.emissionservice.model.Category;
 
 @Repository
 public class DatasetRepository {
 
-  private static final Field<String> CODE = field("code", String.class);
+  private static final Field<String> DESCRIPTION = field("description", String.class);
+  private static final Field<String> I18N_DESCRIPTION = field("i18n_description", String.class);
 
   private final DSLContext publicDsl;
 
@@ -39,17 +46,23 @@ public class DatasetRepository {
     this.publicDsl = publicDsl;
   }
 
-  public List<Dataset> getDatasets() {
+  public List<Category> getDatasets(final Locale locale) {
     return publicDsl.select(
-        DATASETS.CODE.as(CODE),
-        DATASETS.SCHEMA_NAME)
+        DATASETS.CODE,
+        DATASETS.NAME,
+        coalesce(I18N_DESCRIPTION, DATASETS.DESCRIPTION).as(DESCRIPTION))
         .from(DATASETS)
-        .fetchInto(Dataset.class);
+        .leftJoin(
+            select(I18N_DATASETS.CODE, I18N_DATASETS.DESCRIPTION.as(I18N_DESCRIPTION))
+                .from(I18N_DATASETS)
+                .where(I18N_DATASETS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+        .using(I18N_DATASETS.CODE)
+        .fetchInto(Category.class);
   }
 
   public Dataset getCurrentDataset() {
     return publicDsl.select(
-        DATASETS.CODE.as(CODE),
+        DATASETS.CODE,
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
         .where(DATASETS.CURRENT.eq(true))
@@ -58,11 +71,23 @@ public class DatasetRepository {
 
   public Optional<Dataset> getValidDataset(final String dataset) {
     return publicDsl.select(
-        DATASETS.CODE.as(CODE),
+        DATASETS.CODE,
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
         .where(DATASETS.CODE.equalIgnoreCase(dataset))
         .fetchOptionalInto(Dataset.class);
+  }
+
+
+  private LanguageCodeType getLanguageCodeType(final Locale locale) {
+    // TODO: use the one from util (next PR)
+    LanguageCodeType codeType = LanguageCodeType.nl_;
+    for (final LanguageCodeType value : LanguageCodeType.values()) {
+      if (value.getLiteral().equalsIgnoreCase(locale.getLanguage())) {
+        codeType = value;
+      }
+    }
+    return codeType;
   }
 
 }
