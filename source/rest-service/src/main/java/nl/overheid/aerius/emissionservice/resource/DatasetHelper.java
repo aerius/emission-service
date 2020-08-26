@@ -30,7 +30,7 @@ import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 @Component
 public class DatasetHelper {
 
-  public static final String LATEST_DATASET = "LATEST";
+  public static final String CURRENT_DATASET = "CURRENT";
 
   private final DatasetRepository datasetRepository;
 
@@ -41,15 +41,15 @@ public class DatasetHelper {
   public List<String> getDatasetCodes() {
     final List<Dataset> datasets = datasetRepository.getDatasets();
     final List<String> codes = new ArrayList<>();
-    codes.add(LATEST_DATASET);
+    codes.add(CURRENT_DATASET);
     datasets.stream().map(Dataset::getCode).forEach(codes::add);
     return codes;
   }
 
   public Dataset validateDataset(final String dataset) {
     final Optional<Dataset> internalDataset;
-    if (LATEST_DATASET.equalsIgnoreCase(dataset)) {
-      internalDataset = Optional.of(datasetRepository.getLatestDataset());
+    if (CURRENT_DATASET.equalsIgnoreCase(dataset)) {
+      internalDataset = Optional.of(datasetRepository.getCurrentDataset());
     } else {
       internalDataset = datasetRepository.getValidDataset(dataset);
     }

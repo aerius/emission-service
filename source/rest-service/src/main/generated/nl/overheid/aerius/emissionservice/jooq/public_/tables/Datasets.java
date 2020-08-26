@@ -15,7 +15,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Datasets extends TableImpl<DatasetsRecord> {
 
-    private static final long serialVersionUID = 996683104;
+    private static final long serialVersionUID = 1535255942;
 
     /**
      * The reference instance of <code>public.datasets</code>
@@ -50,9 +50,14 @@ public class Datasets extends TableImpl<DatasetsRecord> {
     }
 
     /**
-     * The column <code>public.datasets.dataset_code</code>.
+     * The column <code>public.datasets.code</code>.
      */
-    public final TableField<DatasetsRecord, String> DATASET_CODE = createField(DSL.name("dataset_code"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<DatasetsRecord, String> CODE = createField(DSL.name("code"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+
+    /**
+     * The column <code>public.datasets.name</code>.
+     */
+    public final TableField<DatasetsRecord, String> NAME = createField(DSL.name("name"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>public.datasets.schema_name</code>.
@@ -60,9 +65,9 @@ public class Datasets extends TableImpl<DatasetsRecord> {
     public final TableField<DatasetsRecord, String> SCHEMA_NAME = createField(DSL.name("schema_name"), org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
     /**
-     * The column <code>public.datasets.latest</code>.
+     * The column <code>public.datasets.current</code>.
      */
-    public final TableField<DatasetsRecord, Boolean> LATEST = createField(DSL.name("latest"), org.jooq.impl.SQLDataType.BOOLEAN.nullable(false), this, "");
+    public final TableField<DatasetsRecord, Boolean> CURRENT = createField(DSL.name("current"), org.jooq.impl.SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
      * The column <code>public.datasets.description</code>.
@@ -114,7 +119,7 @@ public class Datasets extends TableImpl<DatasetsRecord> {
 
     @Override
     public List<UniqueKey<DatasetsRecord>> getKeys() {
-        return Arrays.<UniqueKey<DatasetsRecord>>asList(Keys.DATASETS_PKEY);
+        return Arrays.<UniqueKey<DatasetsRecord>>asList(Keys.DATASETS_PKEY, Keys.DATASETS_NAME_KEY);
     }
 
     @Override
@@ -144,11 +149,11 @@ public class Datasets extends TableImpl<DatasetsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<String, String, Boolean, String> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<String, String, String, Boolean, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }

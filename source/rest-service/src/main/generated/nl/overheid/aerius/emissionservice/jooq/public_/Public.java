@@ -10,6 +10,7 @@ import java.util.List;
 import nl.overheid.aerius.emissionservice.jooq.DefaultCatalog;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Constants;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Datasets;
+import nl.overheid.aerius.emissionservice.jooq.public_.tables.I18nDatasets;
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.Substances;
 import nl.overheid.aerius.emissionservice.jooq.public_.udt.AeKeyValueRs;
 
@@ -25,7 +26,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = 1365377618;
+    private static final long serialVersionUID = -1854913899;
 
     /**
      * The reference instance of <code>public</code>
@@ -46,6 +47,13 @@ De data voor elke dataset bevindt zich in een eigen database schema.
 @file source/database/src/main/sql/datasets/02-tables.sql
      */
     public final Datasets DATASETS = Datasets.DATASETS;
+
+    /**
+     * Vertaaltabel voor de verschillende datasets die beschikbaar zijn.
+
+@file source/database/src/main/sql/datasets/02-tables.sql
+     */
+    public final I18nDatasets I18N_DATASETS = I18nDatasets.I18N_DATASETS;
 
     /**
      * Stoffen
@@ -72,6 +80,7 @@ De data voor elke dataset bevindt zich in een eigen database schema.
         return Arrays.<Table<?>>asList(
             Constants.CONSTANTS,
             Datasets.DATASETS,
+            I18nDatasets.I18N_DATASETS,
             Substances.SUBSTANCES);
     }
 

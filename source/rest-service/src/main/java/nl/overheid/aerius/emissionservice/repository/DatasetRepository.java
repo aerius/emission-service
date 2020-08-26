@@ -41,27 +41,27 @@ public class DatasetRepository {
 
   public List<Dataset> getDatasets() {
     return publicDsl.select(
-        DATASETS.DATASET_CODE.as(CODE),
+        DATASETS.CODE.as(CODE),
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
         .fetchInto(Dataset.class);
   }
 
-  public Dataset getLatestDataset() {
+  public Dataset getCurrentDataset() {
     return publicDsl.select(
-        DATASETS.DATASET_CODE.as(CODE),
+        DATASETS.CODE.as(CODE),
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
-        .where(DATASETS.LATEST.eq(true))
+        .where(DATASETS.CURRENT.eq(true))
         .fetchOneInto(Dataset.class);
   }
 
   public Optional<Dataset> getValidDataset(final String dataset) {
     return publicDsl.select(
-        DATASETS.DATASET_CODE.as(CODE),
+        DATASETS.CODE.as(CODE),
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
-        .where(DATASETS.DATASET_CODE.equalIgnoreCase(dataset))
+        .where(DATASETS.CODE.equalIgnoreCase(dataset))
         .fetchOptionalInto(Dataset.class);
   }
 

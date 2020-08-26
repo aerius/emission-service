@@ -40,7 +40,7 @@ import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 @ExtendWith(MockitoExtension.class)
 class DatasetHelperTest {
 
-  private static final String LATEST_INTERNAL_DATASET = "somethingWild";
+  private static final String CURRENT_INTERNAL_DATASET = "somethingWild";
   private static final String OTHER_VALID_DATASET = "ordinaryDataset";
 
   private DatasetHelper datasetHelper;
@@ -50,29 +50,29 @@ class DatasetHelperTest {
   void init(@Mock final DatasetRepository datasetRepository) {
     this.datasetRepository = datasetRepository;
     datasetHelper = new DatasetHelper(datasetRepository);
-    final Dataset latestInternal = new Dataset(LATEST_INTERNAL_DATASET, "");
-    lenient().when(datasetRepository.getLatestDataset()).thenReturn(latestInternal);
+    final Dataset currentInternal = new Dataset(CURRENT_INTERNAL_DATASET, "");
+    lenient().when(datasetRepository.getCurrentDataset()).thenReturn(currentInternal);
     lenient().when(datasetRepository.getValidDataset(any(String.class)))
         .thenAnswer(invocation -> toValidDataset(invocation.getArgument(0)));
   }
 
   private Optional<Dataset> toValidDataset(final String version) {
-    return LATEST_INTERNAL_DATASET.equalsIgnoreCase(version)
+    return CURRENT_INTERNAL_DATASET.equalsIgnoreCase(version)
         || OTHER_VALID_DATASET.equalsIgnoreCase(version)
             ? Optional.of(new Dataset(version, version))
             : Optional.empty();
   }
 
   @Test
-  void testValidateDatasetLatestInternal() {
-    final Dataset validated = datasetHelper.validateDataset(LATEST_INTERNAL_DATASET);
-    assertEquals(LATEST_INTERNAL_DATASET, validated.getCode(), "Latest internal dataset");
+  void testValidateDatasetCurrentInternal() {
+    final Dataset validated = datasetHelper.validateDataset(CURRENT_INTERNAL_DATASET);
+    assertEquals(CURRENT_INTERNAL_DATASET, validated.getCode(), "Current internal dataset");
   }
 
   @Test
-  void testValidateDatasetLatestExternal() {
-    final Dataset validated = datasetHelper.validateDataset(DatasetHelper.LATEST_DATASET);
-    assertEquals(LATEST_INTERNAL_DATASET, validated.getCode(), "Latest dataset as defined by helper");
+  void testValidateDatasetCurrentExternal() {
+    final Dataset validated = datasetHelper.validateDataset(DatasetHelper.CURRENT_DATASET);
+    assertEquals(CURRENT_INTERNAL_DATASET, validated.getCode(), "Current dataset as defined by helper");
   }
 
   @Test
@@ -101,12 +101,12 @@ class DatasetHelperTest {
   @Test
   void testGetDatasetCodes() {
     when(datasetRepository.getDatasets()).thenReturn(
-        List.of(new Dataset(LATEST_INTERNAL_DATASET, "Schema 1"), new Dataset(OTHER_VALID_DATASET, "Schema 2")));
+        List.of(new Dataset(CURRENT_INTERNAL_DATASET, "Schema 1"), new Dataset(OTHER_VALID_DATASET, "Schema 2")));
     final List<String> codes = datasetHelper.getDatasetCodes();
     assertEquals(3, codes.size(), "amount of codes");
-    assertTrue(codes.contains(LATEST_INTERNAL_DATASET), "Should contain latest dataset");
-    assertTrue(codes.contains(OTHER_VALID_DATASET), "Should contain other dataset dataset");
-    assertTrue(codes.contains(DatasetHelper.LATEST_DATASET), "Should contain the identifier used for any latest dataset");
+    assertTrue(codes.contains(CURRENT_INTERNAL_DATASET), "Should contain current dataset");
+    assertTrue(codes.contains(OTHER_VALID_DATASET), "Should contain other dataset");
+    assertTrue(codes.contains(DatasetHelper.CURRENT_DATASET), "Should contain the identifier used for the current dataset");
   }
 
 }
