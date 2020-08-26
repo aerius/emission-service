@@ -169,14 +169,25 @@ public class DatasetsResource implements DatasetsApiDelegate {
 
   @Override
   public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.listFarmLodgingFodderMeasures(dataset);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmFodderMeasures(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(categories);
   }
 
   @Override
   public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.getFarmLodgingFodderMeasure(dataset, code);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmFodderMeasureCategory reductiveSystem = farmRepository.getFarmFodderMeasure(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find fodder measure with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(reductiveSystem);
   }
 
   private String handleDataset(final String dataset) {

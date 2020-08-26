@@ -438,31 +438,39 @@ components:
         - description: A category for a farm fodder measure.
         - type: object
           required:
-            - totalReductionFractions
-            - floorReductionFractions
-            - cellarReductionFractions
+            - reductionFractions
             - proportionsForAnimals
           properties:
-            totalReductionFractions:
+            reductionFractions:
               type: array
-              description: The fraction that the emission will be reduced to. Should only be used if this is the only measure for the lodging. When there are multiple fodder measures the floor and cellar fractions in combination with the emission proportions for floor and cellar for the appropriate animal will have to be used to calculate the correct reductions of the combined fodder measures.
+              description: The different fractions per substance that are needed for emission calculations for this fodder measure.
               items:
-                $ref: "#/components/schemas/EmissionReductionFraction"
-            floorReductionFractions:
-              type: array
-              description: The fraction that the emissions originating from the floor will be reduced to by using this system. 
-              items:
-                $ref: "#/components/schemas/EmissionReductionFraction"
-            cellarReductionFractions:
-              type: array
-              description: The fraction that the emissions originating from the cellar (or manure pit) will be reduced to by using this system. 
-              items:
-                $ref: "#/components/schemas/EmissionReductionFraction"
+                $ref: "#/components/schemas/FarmFodderMeasureEmissionFractions"
             proportionsForAnimals:
               type: array
-              description: The proportions of emissions originating from the floor and the cellar per animal for this lodging type. 
+              description: The proportions of emissions originating from the floor and the cellar per animal for this fodder measure type. 
               items:
                 $ref: "#/components/schemas/FarmAnimalEmissionProportion"
+    FarmFodderMeasureEmissionFractions:
+      type: object
+      required:
+        - substance
+        - totalReductionFraction
+        - floorReductionFraction
+        - cellarReductionFraction
+      properties:
+        substance:
+          type: string
+          description: The substance that the emission reduction fractions are for.
+        totalReductionFraction:
+          type: number
+          description: The fraction that the emission will be reduced to. Should only be used if this is the only measure for the lodging. When there are multiple fodder measures the floor and cellar fractions in combination with the emission proportions for floor and cellar for the appropriate animal will have to be used to calculate the correct reductions of the combined fodder measures.
+        floorReductionFraction:
+          type: number
+          description: The fraction that the emissions originating from the floor will be reduced to by using this system. 
+        cellarReductionFraction:
+          type: number
+          description: The fraction that the emissions originating from the cellar (or manure pit) will be reduced to by using this system. 
     FarmAnimalEmissionProportion:
       type: object
       description: The proportion of emissions originating from the floor and the cellar per animal. The total of the fractions should sum up to be 1.

@@ -21,6 +21,9 @@ import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditi
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditionalLodgingSystems.FARM_ADDITIONAL_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditionalLodgingSystemsToLodgingSystemDefinitions.FARM_ADDITIONAL_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAnimalCategories.FARM_ANIMAL_CATEGORIES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingFodderMeasureReductionFactors.FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingFodderMeasures.FARM_LODGING_FODDER_MEASURES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingFodderMeasuresAnimalCategory.FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingSystemDefinitions.FARM_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypeEmissionFactors.FARM_LODGING_TYPE_EMISSION_FACTORS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypes.FARM_LODGING_TYPES;
@@ -32,6 +35,7 @@ import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmReduct
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmReductiveLodgingSystemsToLodgingSystemDefinitions.FARM_REDUCTIVE_LODGING_SYSTEMS_TO_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmAdditionalLodgingSystems.I18N_FARM_ADDITIONAL_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmAnimalCategories.I18N_FARM_ANIMAL_CATEGORIES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmLodgingFodderMeasures.I18N_FARM_LODGING_FODDER_MEASURES;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmLodgingSystemDefinitions.I18N_FARM_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmLodgingTypes.I18N_FARM_LODGING_TYPES;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.I18nFarmReductiveLodgingSystems.I18N_FARM_REDUCTIVE_LODGING_SYSTEMS;
@@ -52,6 +56,9 @@ import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.model.EmissionFactor;
 import nl.overheid.aerius.emissionservice.model.EmissionReductionFraction;
 import nl.overheid.aerius.emissionservice.model.FarmAdditionalLodgingSystemCategory;
+import nl.overheid.aerius.emissionservice.model.FarmAnimalEmissionProportion;
+import nl.overheid.aerius.emissionservice.model.FarmFodderMeasureCategory;
+import nl.overheid.aerius.emissionservice.model.FarmFodderMeasureEmissionFractions;
 import nl.overheid.aerius.emissionservice.model.FarmLodgingCategory;
 import nl.overheid.aerius.emissionservice.model.FarmReductiveLodgingSystemCategory;
 
@@ -63,6 +70,12 @@ public class FarmRepository {
   private static final Field<String> SUBSTANCE = field("substance", String.class);
   private static final Field<String> FACTOR = field("factor", String.class);
   private static final Field<String> FRACTION = field("fraction", String.class);
+  private static final Field<String> TOTAL_REDUCTION_FRACTION = field("total_reduction_fraction", String.class);
+  private static final Field<String> CELLAR_REDUCTION_FRACTION = field("cellar_reduction_fraction", String.class);
+  private static final Field<String> FLOOR_REDUCTION_FRACTION = field("floor_reduction_fraction", String.class);
+  private static final Field<String> FARM_ANIMAL_CODE = field("farm_animal_code", String.class);
+  private static final Field<String> FRACTION_CELLAR = field("fraction_cellar", String.class);
+  private static final Field<String> FRACTION_FLOOR = field("fraction_floor", String.class);
 
   private final DatasetStore datasetStore;
 
@@ -116,8 +129,7 @@ public class FarmRepository {
       lodging.setSystemDefinitions(getLodgingSystemDefinitions(language, lodgingCode));
       lodging.setAdditionalLodgingSystems(getLodgingAdditionalSystems(language, lodgingCode));
       lodging.setReductiveLodgingSystems(getLodgingReductiveSystems(language, lodgingCode));
-      // TODO fodder measures
-      //      lodging.setFodderMeasures(fodderMeasures);
+      lodging.setFodderMeasures(getLodgingFodderMeasures(language, lodgingCode));
     });
     return farmLodging;
   }
@@ -203,6 +215,25 @@ public class FarmRepository {
         .using(FARM_REDUCTIVE_LODGING_SYSTEMS.FARM_REDUCTIVE_LODGING_SYSTEM_ID)
         .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
         .orderBy(FARM_REDUCTIVE_LODGING_SYSTEMS.CODE)
+        .fetchInto(Category.class);
+  }
+
+  private List<Category> getLodgingFodderMeasures(final LanguageCodeType language, final String lodgingCode) {
+    return datasetStore.dsl().select(
+        FARM_LODGING_FODDER_MEASURES.CODE,
+        FARM_LODGING_FODDER_MEASURES.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_LODGING_FODDER_MEASURES.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY)
+        .join(FARM_LODGING_FODDER_MEASURES).using(FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID)
+        .join(FARM_LODGING_TYPES).using(FARM_LODGING_TYPES.FARM_ANIMAL_CATEGORY_ID)
+        .leftJoin(
+            select(I18N_FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID,
+                I18N_FARM_LODGING_FODDER_MEASURES.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_LODGING_FODDER_MEASURES)
+                    .where(I18N_FARM_LODGING_FODDER_MEASURES.LANGUAGE_CODE.eq(language)))
+        .using(FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID)
+        .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
+        .orderBy(FARM_LODGING_FODDER_MEASURES.CODE)
         .fetchInto(Category.class);
   }
 
@@ -332,8 +363,7 @@ public class FarmRepository {
         FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS.REDUCTION_FACTOR.as(FRACTION))
         .from(FARM_REDUCTIVE_LODGING_SYSTEM_REDUCTION_FACTORS)
         .join(SUBSTANCES).using(SUBSTANCES.SUBSTANCE_ID)
-        .join(FARM_REDUCTIVE_LODGING_SYSTEMS)
-        .using(FARM_REDUCTIVE_LODGING_SYSTEMS.FARM_REDUCTIVE_LODGING_SYSTEM_ID)
+        .join(FARM_REDUCTIVE_LODGING_SYSTEMS).using(FARM_REDUCTIVE_LODGING_SYSTEMS.FARM_REDUCTIVE_LODGING_SYSTEM_ID)
         .where(FARM_REDUCTIVE_LODGING_SYSTEMS.CODE.eq(systemCode))
         .fetchInto(EmissionReductionFraction.class);
   }
@@ -355,6 +385,75 @@ public class FarmRepository {
         .where(FARM_REDUCTIVE_LODGING_SYSTEMS.CODE.eq(systemCode))
         .orderBy(FARM_LODGING_SYSTEM_DEFINITIONS.CODE)
         .fetchInto(Category.class);
+  }
+
+  public List<Category> getFarmFodderMeasures(final Locale locale) {
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
+    return datasetStore.dsl().select(
+        FARM_LODGING_FODDER_MEASURES.CODE,
+        FARM_LODGING_FODDER_MEASURES.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_LODGING_FODDER_MEASURES.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_FODDER_MEASURES)
+        .leftJoin(
+            select(I18N_FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID,
+                I18N_FARM_LODGING_FODDER_MEASURES.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_LODGING_FODDER_MEASURES)
+                    .where(I18N_FARM_LODGING_FODDER_MEASURES.LANGUAGE_CODE.eq(language)))
+        .using(FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID)
+        .orderBy(FARM_LODGING_FODDER_MEASURES.CODE)
+        .fetchInto(Category.class);
+  }
+
+  public Optional<FarmFodderMeasureCategory> getFarmFodderMeasure(final Locale locale, final String measureCode) {
+    final LanguageCodeType language = DbUtil.getLanguageCodeType(locale);
+    final Optional<FarmFodderMeasureCategory> fodderMeasure = getOptionalFarmFodderMeasure(language, measureCode);
+    fodderMeasure.ifPresent(measure -> {
+      measure.setReductionFractions(getFodderMeasureEmissionFractions(measureCode));
+      measure.setProportionsForAnimals(getFodderMeasureFarmAnimalProportions(measureCode));
+    });
+    return fodderMeasure;
+  }
+
+  private Optional<FarmFodderMeasureCategory> getOptionalFarmFodderMeasure(final LanguageCodeType language,
+      final String measureCode) {
+    return datasetStore.dsl().select(
+        FARM_LODGING_FODDER_MEASURES.CODE,
+        FARM_LODGING_FODDER_MEASURES.NAME,
+        coalesce(I18N_DESCRIPTION, FARM_LODGING_FODDER_MEASURES.DESCRIPTION).as(DESCRIPTION))
+        .from(FARM_LODGING_FODDER_MEASURES)
+        .leftJoin(
+            select(I18N_FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID,
+                I18N_FARM_LODGING_FODDER_MEASURES.DESCRIPTION.as(I18N_DESCRIPTION))
+                    .from(I18N_FARM_LODGING_FODDER_MEASURES)
+                    .where(I18N_FARM_LODGING_FODDER_MEASURES.LANGUAGE_CODE.eq(language)))
+        .using(FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID)
+        .where(FARM_LODGING_FODDER_MEASURES.CODE.eq(measureCode))
+        .fetchOptionalInto(FarmFodderMeasureCategory.class);
+  }
+
+  private List<FarmFodderMeasureEmissionFractions> getFodderMeasureEmissionFractions(final String measureCode) {
+    return datasetStore.dsl().select(
+        SUBSTANCES.NAME.as(SUBSTANCE),
+        FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS.REDUCTION_FACTOR_TOTAL.as(TOTAL_REDUCTION_FRACTION),
+        FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS.REDUCTION_FACTOR_CELLAR.as(CELLAR_REDUCTION_FRACTION),
+        FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS.REDUCTION_FACTOR_FLOOR.as(FLOOR_REDUCTION_FRACTION))
+        .from(FARM_LODGING_FODDER_MEASURE_REDUCTION_FACTORS)
+        .join(SUBSTANCES).using(SUBSTANCES.SUBSTANCE_ID)
+        .join(FARM_LODGING_FODDER_MEASURES).using(FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID)
+        .where(FARM_LODGING_FODDER_MEASURES.CODE.eq(measureCode))
+        .fetchInto(FarmFodderMeasureEmissionFractions.class);
+  }
+
+  private List<FarmAnimalEmissionProportion> getFodderMeasureFarmAnimalProportions(final String measureCode) {
+    return datasetStore.dsl().select(
+        FARM_ANIMAL_CATEGORIES.CODE.as(FARM_ANIMAL_CODE),
+        FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY.PROPORTION_CELLAR.as(FRACTION_CELLAR),
+        FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY.PROPORTION_FLOOR.as(FRACTION_FLOOR))
+        .from(FARM_LODGING_FODDER_MEASURES_ANIMAL_CATEGORY)
+        .join(FARM_ANIMAL_CATEGORIES).using(FARM_ANIMAL_CATEGORIES.FARM_ANIMAL_CATEGORY_ID)
+        .join(FARM_LODGING_FODDER_MEASURES).using(FARM_LODGING_FODDER_MEASURES.FARM_LODGING_FODDER_MEASURE_ID)
+        .where(FARM_LODGING_FODDER_MEASURES.CODE.eq(measureCode))
+        .fetchInto(FarmAnimalEmissionProportion.class);
   }
 
 }
