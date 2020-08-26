@@ -68,8 +68,8 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listDatasets() {
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+  public ResponseEntity<List<Category>> listDatasets(final Optional<String> acceptLanguage) {
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Category> datasetCodes = datasetHelper.getDatasets(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -77,9 +77,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Sector>> listSectors(final String dataset) {
+  public ResponseEntity<List<Sector>> listSectors(final String dataset, final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Sector> sectors = sectorRepository.getSectors(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -88,9 +88,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmAnimals(final String dataset) {
+  public ResponseEntity<List<Category>> listFarmAnimals(final String dataset, final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Category> categories = farmRepository.getFarmAnimals(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -99,10 +99,11 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmLodgings(final String dataset, final String animalCode) {
+  public ResponseEntity<List<Category>> listFarmLodgings(final String dataset, final Optional<String> acceptLanguage,
+      final Optional<String> animalcode) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Category> categories = farmRepository.getFarmLodgings(locale, Optional.ofNullable(animalCode));
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
+    final List<Category> categories = farmRepository.getFarmLodgings(locale, animalcode);
     return ResponseEntity
         .status(HttpStatus.OK)
         .header(DATASET_HEADER, actualDataset)
@@ -110,9 +111,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<FarmLodgingCategory> getFarmLodging(final String dataset, final String code) {
+  public ResponseEntity<FarmLodgingCategory> getFarmLodging(final String dataset, final String code, final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final FarmLodgingCategory lodging = farmRepository.getFarmLodging(locale, code).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code));
     return ResponseEntity
@@ -122,9 +123,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset) {
+  public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset, final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Category> categories = farmRepository.getFarmAdditionalLodgingSystems(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -133,9 +134,10 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code) {
+  public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code,
+      final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final FarmAdditionalLodgingSystemCategory additionalSystem = farmRepository.getFarmAdditionalLodgingSystem(locale, code).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find additional system with code " + code));
     return ResponseEntity
@@ -145,9 +147,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset) {
+  public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset, final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Category> categories = farmRepository.getFarmReductiveLodgingSystems(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -156,9 +158,10 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code) {
+  public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code,
+      final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final FarmReductiveLodgingSystemCategory reductiveSystem = farmRepository.getFarmReductiveLodgingSystem(locale, code).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find reductive system with code " + code));
     return ResponseEntity
@@ -168,9 +171,9 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset) {
+  public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset, final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Category> categories = farmRepository.getFarmFodderMeasures(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -179,9 +182,10 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code) {
+  public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code,
+      final Optional<String> acceptLanguage) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final FarmFodderMeasureCategory reductiveSystem = farmRepository.getFarmFodderMeasure(locale, code).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find fodder measure with code " + code));
     return ResponseEntity

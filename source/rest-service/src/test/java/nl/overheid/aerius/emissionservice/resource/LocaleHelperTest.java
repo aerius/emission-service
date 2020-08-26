@@ -23,15 +23,8 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.context.request.NativeWebRequest;
 
 class LocaleHelperTest {
-
-  @Mock
-  NativeWebRequest mockRequest = Mockito.mock(NativeWebRequest.class);
 
   private LocaleHelper localeHelper;
 
@@ -41,45 +34,32 @@ class LocaleHelperTest {
   }
 
   @Test
-  void testGetResponseLocaleWithoutRequest() {
+  void testGetResponseLocaleWithoutHeader() {
     final Locale locale = localeHelper.getResponseLocale(Optional.empty());
     assertEquals(LocaleHelper.LOCALE_NL, locale, "Locale when there is no header");
   }
 
   @Test
-  void testGetResponseLocaleWithoutHeader() {
-    final Locale locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
-    assertEquals(LocaleHelper.LOCALE_NL, locale, "Locale when there is no header");
-  }
-
-  @Test
   void testGetResponseLocaleExpectedHeader() {
-    Mockito.when(mockRequest.getHeader(HttpHeaders.ACCEPT_LANGUAGE)).thenReturn("nl");
-    Locale locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
+    Locale locale = localeHelper.getResponseLocale(Optional.of("nl"));
     assertEquals(LocaleHelper.LOCALE_NL, locale, "Locale for nl");
 
-    Mockito.when(mockRequest.getHeader(HttpHeaders.ACCEPT_LANGUAGE)).thenReturn("en");
-    locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
+    locale = localeHelper.getResponseLocale(Optional.of("en"));
     assertEquals(LocaleHelper.LOCALE_EN, locale, "Locale for en");
 
-    Mockito.when(mockRequest.getHeader(HttpHeaders.ACCEPT_LANGUAGE)).thenReturn("en-gb");
-    locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
+    locale = localeHelper.getResponseLocale(Optional.of("en-gb"));
     assertEquals(LocaleHelper.LOCALE_EN, locale, "Locale for en-gb");
 
-    Mockito.when(mockRequest.getHeader(HttpHeaders.ACCEPT_LANGUAGE)).thenReturn("en-GB");
-    locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
+    locale = localeHelper.getResponseLocale(Optional.of("en-GB"));
     assertEquals(LocaleHelper.LOCALE_EN, locale, "Locale for en-GB");
 
-    Mockito.when(mockRequest.getHeader(HttpHeaders.ACCEPT_LANGUAGE)).thenReturn("fr");
-    locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
+    locale = localeHelper.getResponseLocale(Optional.of("fr"));
     assertEquals(LocaleHelper.LOCALE_NL, locale, "Locale for fr");
   }
 
   @Test
   void testGetResponseLocaleFullHeader() {
-    Mockito.when(mockRequest.getHeader(HttpHeaders.ACCEPT_LANGUAGE)).thenReturn("fr-FR;q=1.0,en-GB;q=0.5,nl-NL;q=0.0");
-
-    final Locale locale = localeHelper.getResponseLocale(Optional.of(mockRequest));
+    final Locale locale = localeHelper.getResponseLocale(Optional.of("fr-FR;q=1.0,en-GB;q=0.5,nl-NL;q=0.0"));
     assertEquals(LocaleHelper.LOCALE_EN, locale, "Locale with multiple languages");
   }
 
