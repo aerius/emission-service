@@ -31,7 +31,6 @@ import org.jooq.Field;
 import org.springframework.stereotype.Repository;
 
 import nl.overheid.aerius.emissionservice.domain.Dataset;
-import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
 import nl.overheid.aerius.emissionservice.model.Category;
 
 @Repository
@@ -55,7 +54,7 @@ public class DatasetRepository {
         .leftJoin(
             select(I18N_DATASETS.CODE, I18N_DATASETS.DESCRIPTION.as(I18N_DESCRIPTION))
                 .from(I18N_DATASETS)
-                .where(I18N_DATASETS.LANGUAGE_CODE.eq(getLanguageCodeType(locale))))
+                .where(I18N_DATASETS.LANGUAGE_CODE.eq(DbUtil.getLanguageCodeType(locale))))
         .using(I18N_DATASETS.CODE)
         .fetchInto(Category.class);
   }
@@ -76,18 +75,6 @@ public class DatasetRepository {
         .from(DATASETS)
         .where(DATASETS.CODE.equalIgnoreCase(dataset))
         .fetchOptionalInto(Dataset.class);
-  }
-
-
-  private LanguageCodeType getLanguageCodeType(final Locale locale) {
-    // TODO: use the one from util (next PR)
-    LanguageCodeType codeType = LanguageCodeType.nl_;
-    for (final LanguageCodeType value : LanguageCodeType.values()) {
-      if (value.getLiteral().equalsIgnoreCase(locale.getLanguage())) {
-        codeType = value;
-      }
-    }
-    return codeType;
   }
 
 }

@@ -16,6 +16,7 @@
  */
 package nl.overheid.aerius.emissionservice.repository;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
@@ -27,13 +28,9 @@ final class DbUtil {
   }
 
   static LanguageCodeType getLanguageCodeType(final Locale locale) {
-    LanguageCodeType codeType = LanguageCodeType.nl_;
-    for (final LanguageCodeType value : LanguageCodeType.values()) {
-      if (value.getLiteral().equalsIgnoreCase(locale.getLanguage())) {
-        codeType = value;
-      }
-    }
-    return codeType;
+    return Arrays.stream(LanguageCodeType.values())
+        .filter(value -> value.getLiteral().equalsIgnoreCase(locale.getLanguage()))
+        .findFirst().orElse(LanguageCodeType.nl_);
   }
 
 }
