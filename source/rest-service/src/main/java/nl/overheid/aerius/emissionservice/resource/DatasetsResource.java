@@ -83,6 +83,12 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
+  public ResponseEntity<Sector> getSector(final String dataset, final String code, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> sectorRepository.getSector(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find sector with code " + code)));
+  }
+
+  @Override
   public ResponseEntity<List<Category>> listFarmAnimals(final String dataset, final Optional<String> acceptLanguage) {
     return handle(dataset, acceptLanguage, farmRepository::getFarmAnimals);
   }
