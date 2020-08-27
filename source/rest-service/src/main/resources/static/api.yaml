@@ -25,6 +25,8 @@ paths:
       operationId: listDatasets
       tags:
         - dataset
+      parameters:
+        - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
           description: A list of datasets
@@ -41,12 +43,8 @@ paths:
       tags:
         - sectors
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve sectors for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
           description: A list of sectors
@@ -66,12 +64,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
           description: A list of possible farm animal categories
@@ -91,12 +85,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
         - name: animalcode
           in: query
           description: filter for a specific animal category code.
@@ -122,12 +112,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
         - name: code
           in: path
           description: Which farm lodging category to retrieve.
@@ -151,12 +137,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
           description: A list of possible farm additional lodging systems
@@ -176,12 +158,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
         - name: code
           in: path
           description: Which farm additional lodging system category to retrieve.
@@ -205,12 +183,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
           description: A list of possible farm reductive lodging systems
@@ -230,12 +204,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
         - name: code
           in: path
           description: Which farm reductive lodging system category to retrieve.
@@ -259,12 +229,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
           description: A list of possible farm lodging fodder measures
@@ -284,12 +250,8 @@ paths:
       tags:
         - farming
       parameters:
-        - name: dataset
-          in: path
-          description: Which dataset to retrieve data for.
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
         - name: code
           in: path
           description: Which farm lodging fodder measure category to retrieve.
@@ -307,6 +269,21 @@ paths:
           description: Supplied dataset or category not found.
           content: {}
 components:
+  parameters:
+    datasetParam:
+      in: path
+      name: dataset
+      required: true
+      schema:
+        type: string
+      description: Which dataset to retrieve data for.
+    languageHeader:
+      in: header
+      name: Accept-Language
+      required: false
+      schema:
+        type: string
+      description:  Indication of which language to use. if not supplied or only unsupported languages are supplied, dutch will be used.
   schemas:
     Category:
       type: object

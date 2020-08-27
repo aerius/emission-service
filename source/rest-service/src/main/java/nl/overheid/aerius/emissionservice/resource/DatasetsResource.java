@@ -19,6 +19,7 @@ package nl.overheid.aerius.emissionservice.resource;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -68,8 +69,8 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Category>> listDatasets() {
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
+  public ResponseEntity<List<Category>> listDatasets(final Optional<String> acceptLanguage) {
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final List<Category> datasetCodes = datasetHelper.getDatasets(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
@@ -77,117 +78,71 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<Sector>> listSectors(final String dataset) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Sector> sectors = sectorRepository.getSectors(locale);
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(sectors);
+  public ResponseEntity<List<Sector>> listSectors(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, sectorRepository::getSectors);
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmAnimals(final String dataset) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Category> categories = farmRepository.getFarmAnimals(locale);
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(categories);
+  public ResponseEntity<List<Category>> listFarmAnimals(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, farmRepository::getFarmAnimals);
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmLodgings(final String dataset, final String animalCode) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Category> categories = farmRepository.getFarmLodgings(locale, Optional.ofNullable(animalCode));
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(categories);
+  public ResponseEntity<List<Category>> listFarmLodgings(final String dataset, final Optional<String> acceptLanguage,
+      final Optional<String> animalcode) {
+    return handle(dataset, acceptLanguage, locale -> farmRepository.getFarmLodgings(locale, animalcode));
   }
 
   @Override
-  public ResponseEntity<FarmLodgingCategory> getFarmLodging(final String dataset, final String code) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final FarmLodgingCategory lodging = farmRepository.getFarmLodging(locale, code).orElseThrow(
-        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code));
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(lodging);
+  public ResponseEntity<FarmLodgingCategory> getFarmLodging(final String dataset, final String code, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> farmRepository.getFarmLodging(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code)));
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Category> categories = farmRepository.getFarmAdditionalLodgingSystems(locale);
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(categories);
+  public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, farmRepository::getFarmAdditionalLodgingSystems);
   }
 
   @Override
-  public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final FarmAdditionalLodgingSystemCategory additionalSystem = farmRepository.getFarmAdditionalLodgingSystem(locale, code).orElseThrow(
-        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find additional system with code " + code));
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(additionalSystem);
+  public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code,
+      final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> farmRepository.getFarmAdditionalLodgingSystem(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find additional system with code " + code)));
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Category> categories = farmRepository.getFarmReductiveLodgingSystems(locale);
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(categories);
+  public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, farmRepository::getFarmReductiveLodgingSystems);
   }
 
   @Override
-  public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final FarmReductiveLodgingSystemCategory reductiveSystem = farmRepository.getFarmReductiveLodgingSystem(locale, code).orElseThrow(
-        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find reductive system with code " + code));
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(reductiveSystem);
+  public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code,
+      final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> farmRepository.getFarmReductiveLodgingSystem(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find reductive system with code " + code)));
   }
 
   @Override
-  public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset) {
-    final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final List<Category> categories = farmRepository.getFarmFodderMeasures(locale);
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .header(DATASET_HEADER, actualDataset)
-        .body(categories);
+  public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, farmRepository::getFarmFodderMeasures);
   }
 
   @Override
-  public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code) {
+  public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code,
+      final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> farmRepository.getFarmFodderMeasure(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find fodder measure with code " + code)));
+  }
+
+  private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Function<Locale, T> function) {
     final String actualDataset = handleDataset(dataset);
-    final Locale locale = localeHelper.getResponseLocale(getRequest());
-    final FarmFodderMeasureCategory reductiveSystem = farmRepository.getFarmFodderMeasure(locale, code).orElseThrow(
-        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find fodder measure with code " + code));
+    final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
+    final T result = function.apply(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
         .header(DATASET_HEADER, actualDataset)
-        .body(reductiveSystem);
+        .body(result);
   }
 
   private String handleDataset(final String dataset) {
