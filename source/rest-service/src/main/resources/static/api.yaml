@@ -47,7 +47,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
       responses:
         200:
           description: A list of sectors
@@ -73,7 +72,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
       responses:
         200:
           description: A list of possible farm animal categories
@@ -99,7 +97,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
         - name: animalcode
           in: query
           description: filter for a specific animal category code.
@@ -131,7 +128,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
         - name: code
           in: path
           description: Which farm lodging category to retrieve.
@@ -161,7 +157,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
       responses:
         200:
           description: A list of possible farm additional lodging systems
@@ -187,7 +182,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
         - name: code
           in: path
           description: Which farm additional lodging system category to retrieve.
@@ -217,7 +211,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
       responses:
         200:
           description: A list of possible farm reductive lodging systems
@@ -243,7 +236,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
         - name: code
           in: path
           description: Which farm reductive lodging system category to retrieve.
@@ -273,7 +265,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
       responses:
         200:
           description: A list of possible farm lodging fodder measures
@@ -299,7 +290,6 @@ paths:
           required: true
           schema:
             type: string
-            default: LATEST
         - name: code
           in: path
           description: Which farm lodging fodder measure category to retrieve.
@@ -392,57 +382,85 @@ components:
         - description: A category for a farm lodging additional system.
         - type: object
           required:
+            - scrubber
             - emissionFactors
+            - systemDefinitions
           properties:
+            scrubber:
+              type: boolean
+              description: Indication wether or not this lodging type makes use of an air scrubber ('luchtwasser')
             emissionFactors:
               type: array
               description: The extra emission per animal that will be added to the lodging due to using this system.
               items:
                 $ref: "#/components/schemas/EmissionFactor"
+            systemDefinitions:
+              type: array
+              description: Possible farm lodging system definitions (BWL-number).
+              items:
+                $ref: "#/components/schemas/Category"
     FarmReductiveLodgingSystemCategory:
       allOf:
         - $ref: '#/components/schemas/Category'
         - description: A category for a farm lodging reductive system.
         - type: object
           required:
+            - scrubber
             - reductionFractions
+            - systemDefinitions
           properties:
+            scrubber:
+              type: boolean
+              description: Indication wether or not this lodging type makes use of an air scrubber ('luchtwasser')
             reductionFractions:
               type: array
               description: The fraction that the total emission will be reduced to as a result of using this system.
               items:
                 $ref: "#/components/schemas/EmissionReductionFraction"
+            systemDefinitions:
+              type: array
+              description: Possible farm lodging system definitions (BWL-number).
+              items:
+                $ref: "#/components/schemas/Category"
     FarmFodderMeasureCategory:
       allOf:
         - $ref: '#/components/schemas/Category'
         - description: A category for a farm fodder measure.
         - type: object
           required:
-            - totalReductionFractions
-            - floorReductionFractions
-            - cellarReductionFractions
+            - reductionFractions
             - proportionsForAnimals
           properties:
-            totalReductionFractions:
+            reductionFractions:
               type: array
-              description: The fraction that the emission will be reduced to. Should only be used if this is the only measure for the lodging. When there are multiple fodder measures the floor and cellar fractions in combination with the emission proportions for floor and cellar for the appropriate animal will have to be used to calculate the correct reductions of the combined fodder measures.
+              description: The different fractions per substance that are needed for emission calculations for this fodder measure.
               items:
-                $ref: "#/components/schemas/EmissionReductionFraction"
-            floorReductionFractions:
-              type: array
-              description: The fraction that the emissions originating from the floor will be reduced to by using this system. 
-              items:
-                $ref: "#/components/schemas/EmissionReductionFraction"
-            cellarReductionFractions:
-              type: array
-              description: The fraction that the emissions originating from the cellar (or manure pit) will be reduced to by using this system. 
-              items:
-                $ref: "#/components/schemas/EmissionReductionFraction"
+                $ref: "#/components/schemas/FarmFodderMeasureEmissionFractions"
             proportionsForAnimals:
               type: array
-              description: The proportions of emissions originating from the floor and the cellar per animal for this lodging type. 
+              description: The proportions of emissions originating from the floor and the cellar per animal for this fodder measure type. 
               items:
                 $ref: "#/components/schemas/FarmAnimalEmissionProportion"
+    FarmFodderMeasureEmissionFractions:
+      type: object
+      required:
+        - substance
+        - totalReductionFraction
+        - floorReductionFraction
+        - cellarReductionFraction
+      properties:
+        substance:
+          type: string
+          description: The substance that the emission reduction fractions are for.
+        totalReductionFraction:
+          type: number
+          description: The fraction that the emission will be reduced to. Should only be used if this is the only measure for the lodging. When there are multiple fodder measures the floor and cellar fractions in combination with the emission proportions for floor and cellar for the appropriate animal will have to be used to calculate the correct reductions of the combined fodder measures.
+        floorReductionFraction:
+          type: number
+          description: The fraction that the emissions originating from the floor will be reduced to by using this system. 
+        cellarReductionFraction:
+          type: number
+          description: The fraction that the emissions originating from the cellar (or manure pit) will be reduced to by using this system. 
     FarmAnimalEmissionProportion:
       type: object
       description: The proportion of emissions originating from the floor and the cellar per animal. The total of the fractions should sum up to be 1.

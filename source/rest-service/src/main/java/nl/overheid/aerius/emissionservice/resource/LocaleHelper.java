@@ -28,9 +28,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 @Component
 public class LocaleHelper {
 
-  public static Locale LOCALE_NL = Locale.forLanguageTag("nl");
-  public static Locale LOCALE_EN = Locale.forLanguageTag("en");
-  public Collection<Locale> ACCEPTED_LOCALES = List.of(LOCALE_NL, LOCALE_EN);
+  public static final Locale LOCALE_NL = Locale.forLanguageTag("nl");
+  public static final Locale LOCALE_EN = Locale.forLanguageTag("en");
+  public static final Collection<Locale> ACCEPTED_LOCALES = List.of(LOCALE_NL, LOCALE_EN);
 
   public Locale getResponseLocale(final Optional<NativeWebRequest> request) {
     final Optional<Locale> result;

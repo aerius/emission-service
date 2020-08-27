@@ -42,6 +42,8 @@ import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 @Service
 public class DatasetsResource implements DatasetsApiDelegate {
 
+  private static final String DATASET_HEADER = "dataset";
+
   private final NativeWebRequest nativeWebRequest;
   private final LocaleHelper localeHelper;
   private final DatasetHelper datasetHelper;
@@ -81,7 +83,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Sector> sectors = sectorRepository.getSectors(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(sectors);
   }
 
@@ -92,7 +94,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Category> categories = farmRepository.getFarmAnimals(locale);
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(categories);
   }
 
@@ -103,7 +105,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     final List<Category> categories = farmRepository.getFarmLodgings(locale, Optional.ofNullable(animalCode));
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(categories);
   }
 
@@ -115,44 +117,77 @@ public class DatasetsResource implements DatasetsApiDelegate {
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find lodging with code " + code));
     return ResponseEntity
         .status(HttpStatus.OK)
-        .header("dataset", actualDataset)
+        .header(DATASET_HEADER, actualDataset)
         .body(lodging);
   }
 
   @Override
   public ResponseEntity<List<Category>> listFarmAdditionalLodgingSystems(final String dataset) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.listFarmAdditionalLodgingSystems(dataset);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmAdditionalLodgingSystems(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(categories);
   }
 
   @Override
   public ResponseEntity<FarmAdditionalLodgingSystemCategory> getFarmAdditionalLodgingSystem(final String dataset, final String code) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.getFarmAdditionalLodgingSystem(dataset, code);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmAdditionalLodgingSystemCategory additionalSystem = farmRepository.getFarmAdditionalLodgingSystem(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find additional system with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(additionalSystem);
   }
 
   @Override
   public ResponseEntity<List<Category>> listFarmReductiveLodgingSystems(final String dataset) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.listFarmReductiveLodgingSystems(dataset);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmReductiveLodgingSystems(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(categories);
   }
 
   @Override
   public ResponseEntity<FarmReductiveLodgingSystemCategory> getFarmReductiveLodgingSystem(final String dataset, final String code) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.getFarmReductiveLodgingSystem(dataset, code);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmReductiveLodgingSystemCategory reductiveSystem = farmRepository.getFarmReductiveLodgingSystem(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find reductive system with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(reductiveSystem);
   }
 
   @Override
   public ResponseEntity<List<Category>> listFarmLodgingFodderMeasures(final String dataset) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.listFarmLodgingFodderMeasures(dataset);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final List<Category> categories = farmRepository.getFarmFodderMeasures(locale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(categories);
   }
 
   @Override
   public ResponseEntity<FarmFodderMeasureCategory> getFarmLodgingFodderMeasure(final String dataset, final String code) {
-    // TODO Auto-generated method stub
-    return DatasetsApiDelegate.super.getFarmLodgingFodderMeasure(dataset, code);
+    final String actualDataset = handleDataset(dataset);
+    final Locale locale = localeHelper.getResponseLocale(getRequest());
+    final FarmFodderMeasureCategory reductiveSystem = farmRepository.getFarmFodderMeasure(locale, code).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find fodder measure with code " + code));
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .header(DATASET_HEADER, actualDataset)
+        .body(reductiveSystem);
   }
 
   private String handleDataset(final String dataset) {
