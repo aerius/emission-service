@@ -4,6 +4,7 @@
 package nl.overheid.aerius.emissionservice.jooq.template;
 
 
+import nl.overheid.aerius.emissionservice.jooq.template.tables.DatasetMetadata;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.DefaultGcnSectorSourceCharacteristicsView;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.DefaultSourceCharacteristicsView;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.EmissionDiurnalVariations;
@@ -95,6 +96,13 @@ import nl.overheid.aerius.emissionservice.jooq.template.tables.ShippingMaritimeS
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * Metadata voor deze dataset
+
+@file source/database/src/main/sql/template/dataset_metadata.sql
+     */
+    public static final DatasetMetadata DATASET_METADATA = DatasetMetadata.DATASET_METADATA;
 
     /**
      * View retourneert de default GCN bron karakteristieken.

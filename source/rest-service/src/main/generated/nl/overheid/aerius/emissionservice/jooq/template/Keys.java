@@ -5,6 +5,7 @@ package nl.overheid.aerius.emissionservice.jooq.template;
 
 
 import nl.overheid.aerius.emissionservice.jooq.public_.tables.records.SubstancesRecord;
+import nl.overheid.aerius.emissionservice.jooq.template.tables.DatasetMetadata;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.EmissionDiurnalVariations;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditionalLodgingSystemEmissionFactors;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.FarmAdditionalLodgingSystems;
@@ -71,6 +72,7 @@ import nl.overheid.aerius.emissionservice.jooq.template.tables.ShippingMaritimeC
 import nl.overheid.aerius.emissionservice.jooq.template.tables.ShippingMaritimeCategoryEmissionFactors;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.ShippingMaritimeCategoryManeuverProperties;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.ShippingMaritimeCategorySourceCharacteristics;
+import nl.overheid.aerius.emissionservice.jooq.template.tables.records.DatasetMetadataRecord;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.records.EmissionDiurnalVariationsRecord;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.records.FarmAdditionalLodgingSystemEmissionFactorsRecord;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.records.FarmAdditionalLodgingSystemsRecord;
@@ -160,6 +162,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<DatasetMetadataRecord> DATASET_METADATA_PKEY = UniqueKeys0.DATASET_METADATA_PKEY;
     public static final UniqueKey<EmissionDiurnalVariationsRecord> EMISSION_DIURNAL_VARIATIONS_PKEY = UniqueKeys0.EMISSION_DIURNAL_VARIATIONS_PKEY;
     public static final UniqueKey<EmissionDiurnalVariationsRecord> EMISSION_DIURNAL_VARIATIONS_CODE_KEY = UniqueKeys0.EMISSION_DIURNAL_VARIATIONS_CODE_KEY;
     public static final UniqueKey<EmissionDiurnalVariationsRecord> EMISSION_DIURNAL_VARIATIONS_NAME_KEY = UniqueKeys0.EMISSION_DIURNAL_VARIATIONS_NAME_KEY;
@@ -357,6 +360,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class UniqueKeys0 {
+        public static final UniqueKey<DatasetMetadataRecord> DATASET_METADATA_PKEY = Internal.createUniqueKey(DatasetMetadata.DATASET_METADATA, "dataset_metadata_pkey", new TableField[] { DatasetMetadata.DATASET_METADATA.KEY }, true);
         public static final UniqueKey<EmissionDiurnalVariationsRecord> EMISSION_DIURNAL_VARIATIONS_PKEY = Internal.createUniqueKey(EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS, "emission_diurnal_variations_pkey", new TableField[] { EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS.EMISSION_DIURNAL_VARIATION_ID }, true);
         public static final UniqueKey<EmissionDiurnalVariationsRecord> EMISSION_DIURNAL_VARIATIONS_CODE_KEY = Internal.createUniqueKey(EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS, "emission_diurnal_variations_code_key", new TableField[] { EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS.CODE }, true);
         public static final UniqueKey<EmissionDiurnalVariationsRecord> EMISSION_DIURNAL_VARIATIONS_NAME_KEY = Internal.createUniqueKey(EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS, "emission_diurnal_variations_name_key", new TableField[] { EmissionDiurnalVariations.EMISSION_DIURNAL_VARIATIONS.NAME }, true);

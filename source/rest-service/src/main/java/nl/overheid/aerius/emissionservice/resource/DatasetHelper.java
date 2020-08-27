@@ -25,8 +25,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.domain.DatabaseDataset;
 import nl.overheid.aerius.emissionservice.model.Category;
+import nl.overheid.aerius.emissionservice.model.Dataset;
 import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
 @Component
@@ -52,8 +53,8 @@ public class DatasetHelper {
     return allSets;
   }
 
-  public Dataset validateDataset(final String dataset) {
-    final Optional<Dataset> internalDataset;
+  public DatabaseDataset validateDataset(final String dataset) {
+    final Optional<DatabaseDataset> internalDataset;
     if (CURRENT_DATASET.equalsIgnoreCase(dataset)) {
       internalDataset = Optional.of(datasetRepository.getCurrentDataset());
     } else {
@@ -61,6 +62,11 @@ public class DatasetHelper {
     }
     return internalDataset
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find dataset " + dataset));
+  }
+
+  public Dataset getDataset(final Locale locale, final String dataset) {
+    final DatabaseDataset databaseDataset = validateDataset(dataset);
+    return datasetRepository.getDataset(locale, databaseDataset.getCode());
   }
 
 }
