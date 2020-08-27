@@ -57,6 +57,31 @@ paths:
         404:
           description: Supplied dataset not found.
           content: {}
+  /datasets/{dataset}/sectors/{code}:
+    get:
+      summary: Get specific sector information
+      operationId: getSector
+      tags:
+        - sectors
+      parameters:
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
+        - name: code
+          in: path
+          description: Which sector to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The matching sector.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sector"
+        404:
+          description: Supplied dataset not found.
+          content: {}
   /datasets/{dataset}/farm/animals:
     get:
       summary: List all farm animal categories
@@ -309,9 +334,45 @@ components:
           properties:
             id:
               type: integer
-              format: int64
+              format: int32
               description: The ID of the sector. Deprecated in favor of code (which should be the string representation of this ID).
               deprecated: true
+            defaultSourceCharacteristics:
+              $ref: "#/components/schemas/SourceCharacteristics"
+    SourceCharacteristics:
+      description: Characteristics for a source.
+      type: object
+      required:
+        - heatContent
+        - emissionHeight
+        - spread
+        - gcnSector
+        - diurnalVariation
+      properties:
+        heatContent:
+          type: number
+          description: The heat content of the source in MW.
+        emissionHeight:
+          type: number
+          description: The source emission height in m.
+        spread:
+          type: number
+          description: The vertical spread of source emission height in m.
+        particleSizeDistributionId:
+          type: integer
+          description: The particle size distribution ID of the source. Needed for OPS calculations in the case of particulate matter (PM).
+        diurnalVariation:
+            $ref: "#/components/schemas/DiurnalVariationSpecification"
+    DiurnalVariationSpecification:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A emission diurnal variation specification.
+        - type: object
+          properties:
+            opsId:
+              type: integer
+              format: int32
+              description: The ID of the diurnal variation for OPS.
     FarmLodgingCategory:
       allOf:
         - $ref: '#/components/schemas/Category'
