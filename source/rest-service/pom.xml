@@ -148,6 +148,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
+              <skip>${maven.main.skip}</skip>
               <!-- Location of our openapi specification file -->
               <inputSpec>${project.basedir}/src/main/resources/static/api.yaml</inputSpec>
               <!-- Type of code to generate -->
