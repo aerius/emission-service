@@ -32,7 +32,7 @@ To run the rest-service image and have the service available on port 8085, the f
 docker run --detach --publish 8085:8080 --network emission_network --name emission_rest_service emission_rest_service
 ```
 
-The application should now be reachable, and status can be retrieved by going to `http://localhost:8085/actuator/health`.
+The application should now be reachable, and status can be retrieved by going to `http://localhost:8085/api/v1/actuator/health`.
 Startup log can be seen by using `docker logs emission_rest_service` (useful if for instance the status is down).
 
 ### Without docker
