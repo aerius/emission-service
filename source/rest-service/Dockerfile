@@ -3,11 +3,11 @@ FROM maven:3-openjdk-11 as builder
 
 WORKDIR /app
 
-#First download as many dependencies as possible. This avoids downloading all dependencies each time something in source changes
+# First download as many dependencies as possible. This avoids downloading all dependencies each time something in source changes
 COPY pom.xml /app
 RUN mvn clean package -Dmaven.main.skip -Dmaven.test.skip && rm -r target
 
-#Next do the actual build
+# Next do the actual build
 COPY . /app
 RUN mvn clean package
 
