@@ -42,7 +42,7 @@ CREATE TABLE shipping_inland_waterway_categories
  * Deze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen, ladingstoestand en stof.
  *
  * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens 
- * varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.
+ * varen (in g/(kilometer * aantal schepen)) bij een bepaalde snelheid.
  */
 CREATE TABLE shipping_inland_category_emission_factors
 (
@@ -68,7 +68,7 @@ CREATE TABLE shipping_inland_category_emission_factors
  * Deze kenmerken zijn uniek per scheepstype, ladingstoestand en stof.
  *
  * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens 
- * varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.
+ * stilliggen (in g/(uur * aantal schepen)).
  */
 CREATE TABLE shipping_inland_category_emission_factors_docked
 (
