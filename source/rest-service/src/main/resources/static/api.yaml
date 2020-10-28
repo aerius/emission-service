@@ -36,6 +36,25 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Category"
+  /datasets/{dataset}:
+    get:
+      summary: Retrieve information about a specific dataset
+      operationId: getDataset
+      tags:
+        - dataset
+      parameters:
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
+      responses:
+        200:
+          description: The matching dataset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dataset"
+        404:
+          description: Supplied dataset not found.
+          content: {}
   /datasets/{dataset}/sectors:
     get:
       summary: List all sectors
@@ -326,6 +345,16 @@ components:
         description:
           type: string
           description: The description for this category. Translated if possible.
+    Dataset:
+      allOf:
+        - $ref: '#/components/schemas/Category'
+        - description: A category for a sector.
+        - type: object
+          properties:
+            metadata:
+              type: object
+              additionalProperties:
+                type: string
     Sector:
       allOf:
         - $ref: '#/components/schemas/Category'

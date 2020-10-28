@@ -29,8 +29,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.server.ResponseStatusException;
 
 import nl.overheid.aerius.emissionservice.api.DatasetsApiDelegate;
-import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.domain.DatabaseDataset;
 import nl.overheid.aerius.emissionservice.model.Category;
+import nl.overheid.aerius.emissionservice.model.Dataset;
 import nl.overheid.aerius.emissionservice.model.FarmAdditionalLodgingSystemCategory;
 import nl.overheid.aerius.emissionservice.model.FarmFodderMeasureCategory;
 import nl.overheid.aerius.emissionservice.model.FarmLodgingCategory;
@@ -75,6 +76,11 @@ public class DatasetsResource implements DatasetsApiDelegate {
     return ResponseEntity
         .status(HttpStatus.OK)
         .body(datasetCodes);
+  }
+
+  @Override
+  public ResponseEntity<Dataset> getDataset(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> datasetHelper.getDataset(locale, dataset));
   }
 
   @Override
@@ -152,7 +158,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   private String handleDataset(final String dataset) {
-    final Dataset actualDataset = datasetHelper.validateDataset(dataset);
+    final DatabaseDataset actualDataset = datasetHelper.validateDataset(dataset);
     datasetStore.setDataset(actualDataset.getSchemaName());
     return actualDataset.getCode();
   }

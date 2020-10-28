@@ -18,6 +18,7 @@ package nl.overheid.aerius.emissionservice.repository;
 
 import static nl.overheid.aerius.emissionservice.jooq.public_.tables.Datasets.DATASETS;
 import static nl.overheid.aerius.emissionservice.jooq.public_.tables.I18nDatasets.I18N_DATASETS;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.DatasetMetadata.DATASET_METADATA;
 import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
@@ -30,8 +31,9 @@ import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.springframework.stereotype.Repository;
 
-import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.domain.DatabaseDataset;
 import nl.overheid.aerius.emissionservice.model.Category;
+import nl.overheid.aerius.emissionservice.model.Dataset;
 
 @Repository
 public class DatasetRepository {
@@ -40,9 +42,11 @@ public class DatasetRepository {
   private static final Field<String> I18N_DESCRIPTION = field("i18n_description", String.class);
 
   private final DSLContext publicDsl;
+  private final DatasetStore datasetStore;
 
-  public DatasetRepository(final DSLContext publicDsl) {
+  public DatasetRepository(final DSLContext publicDsl, final DatasetStore datasetStore) {
     this.publicDsl = publicDsl;
+    this.datasetStore = datasetStore;
   }
 
   public List<Category> getDatasets(final Locale locale) {
@@ -56,25 +60,45 @@ public class DatasetRepository {
                 .from(I18N_DATASETS)
                 .where(I18N_DATASETS.LANGUAGE_CODE.eq(DbUtil.getLanguageCodeType(locale))))
         .using(I18N_DATASETS.CODE)
+        .orderBy(DATASETS.CODE)
         .fetchInto(Category.class);
   }
 
-  public Dataset getCurrentDataset() {
+  public Dataset getDataset(final Locale locale, final String datasetCode) {
+    final Dataset dataset = publicDsl.select(
+        DATASETS.CODE,
+        DATASETS.NAME,
+        coalesce(I18N_DESCRIPTION, DATASETS.DESCRIPTION).as(DESCRIPTION))
+        .from(DATASETS)
+        .leftJoin(
+            select(I18N_DATASETS.CODE, I18N_DATASETS.DESCRIPTION.as(I18N_DESCRIPTION))
+                .from(I18N_DATASETS)
+                .where(I18N_DATASETS.LANGUAGE_CODE.eq(DbUtil.getLanguageCodeType(locale))))
+        .using(I18N_DATASETS.CODE)
+        .where(DATASETS.CODE.equalIgnoreCase(datasetCode))
+        .fetchOneInto(Dataset.class);
+    dataset.setMetadata(
+        datasetStore.dsl().select().from(DATASET_METADATA).fetchMap(DATASET_METADATA.KEY, DATASET_METADATA.VALUE));
+
+    return dataset;
+  }
+
+  public DatabaseDataset getCurrentDataset() {
     return publicDsl.select(
         DATASETS.CODE,
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
         .where(DATASETS.CURRENT.eq(true))
-        .fetchOneInto(Dataset.class);
+        .fetchOneInto(DatabaseDataset.class);
   }
 
-  public Optional<Dataset> getValidDataset(final String dataset) {
+  public Optional<DatabaseDataset> getValidDataset(final String dataset) {
     return publicDsl.select(
         DATASETS.CODE,
         DATASETS.SCHEMA_NAME)
         .from(DATASETS)
         .where(DATASETS.CODE.equalIgnoreCase(dataset))
-        .fetchOptionalInto(Dataset.class);
+        .fetchOptionalInto(DatabaseDataset.class);
   }
 
 }

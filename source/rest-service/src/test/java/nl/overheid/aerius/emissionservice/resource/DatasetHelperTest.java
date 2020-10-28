@@ -35,7 +35,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import nl.overheid.aerius.emissionservice.domain.Dataset;
+import nl.overheid.aerius.emissionservice.domain.DatabaseDataset;
 import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.repository.DatasetRepository;
 
@@ -52,40 +52,40 @@ class DatasetHelperTest {
   void init(@Mock final DatasetRepository datasetRepository) {
     this.datasetRepository = datasetRepository;
     datasetHelper = new DatasetHelper(datasetRepository);
-    final Dataset currentInternal = new Dataset(CURRENT_INTERNAL_DATASET, "");
+    final DatabaseDataset currentInternal = new DatabaseDataset(CURRENT_INTERNAL_DATASET, "");
     lenient().when(datasetRepository.getCurrentDataset()).thenReturn(currentInternal);
     lenient().when(datasetRepository.getValidDataset(any(String.class)))
         .thenAnswer(invocation -> toValidDataset(invocation.getArgument(0)));
   }
 
-  private Optional<Dataset> toValidDataset(final String version) {
+  private Optional<DatabaseDataset> toValidDataset(final String version) {
     return CURRENT_INTERNAL_DATASET.equalsIgnoreCase(version)
         || OTHER_VALID_DATASET.equalsIgnoreCase(version)
-            ? Optional.of(new Dataset(version, version))
+            ? Optional.of(new DatabaseDataset(version, version))
             : Optional.empty();
   }
 
   @Test
   void testValidateDatasetCurrentInternal() {
-    final Dataset validated = datasetHelper.validateDataset(CURRENT_INTERNAL_DATASET);
+    final DatabaseDataset validated = datasetHelper.validateDataset(CURRENT_INTERNAL_DATASET);
     assertEquals(CURRENT_INTERNAL_DATASET, validated.getCode(), "Current internal dataset");
   }
 
   @Test
   void testValidateDatasetCurrentExternal() {
-    final Dataset validated = datasetHelper.validateDataset(DatasetHelper.CURRENT_DATASET);
+    final DatabaseDataset validated = datasetHelper.validateDataset(DatasetHelper.CURRENT_DATASET);
     assertEquals(CURRENT_INTERNAL_DATASET, validated.getCode(), "Current dataset as defined by helper");
   }
 
   @Test
   void testValidateDatasetOtherValid() {
-    final Dataset validated = datasetHelper.validateDataset(OTHER_VALID_DATASET);
+    final DatabaseDataset validated = datasetHelper.validateDataset(OTHER_VALID_DATASET);
     assertEquals(OTHER_VALID_DATASET, validated.getCode(), "Other dataset");
   }
 
   @Test
   void testValidateDatasetOtherValidDifferentCase() {
-    final Dataset validated = datasetHelper.validateDataset(OTHER_VALID_DATASET.toLowerCase());
+    final DatabaseDataset validated = datasetHelper.validateDataset(OTHER_VALID_DATASET.toLowerCase());
     // Just returning supplied dataset now, behavior might change with database implementation.
     assertEquals(OTHER_VALID_DATASET.toLowerCase(), validated.getCode(), "Other dataset lowerecased");
   }

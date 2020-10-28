@@ -16,12 +16,12 @@
  */
 package nl.overheid.aerius.emissionservice.domain;
 
-public class Dataset {
+public class DatabaseDataset {
 
   private String code;
   private String schemaName;
 
-  public Dataset(final String code, final String schemaName) {
+  public DatabaseDataset(final String code, final String schemaName) {
     this.code = code;
     this.schemaName = schemaName;
   }

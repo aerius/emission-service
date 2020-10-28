@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import nl.overheid.aerius.emissionservice.jooq.DefaultCatalog;
+import nl.overheid.aerius.emissionservice.jooq.template.tables.DatasetMetadata;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.DefaultGcnSectorSourceCharacteristicsView;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.DefaultSourceCharacteristicsView;
 import nl.overheid.aerius.emissionservice.jooq.template.tables.EmissionDiurnalVariations;
@@ -104,12 +105,19 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Template extends SchemaImpl {
 
-    private static final long serialVersionUID = -1419767379;
+    private static final long serialVersionUID = -1348392915;
 
     /**
      * The reference instance of <code>template</code>
      */
     public static final Template TEMPLATE = new Template();
+
+    /**
+     * Metadata voor deze dataset
+
+@file source/database/src/main/sql/template/dataset_metadata.sql
+     */
+    public final DatasetMetadata DATASET_METADATA = DatasetMetadata.DATASET_METADATA;
 
     /**
      * View retourneert de default GCN bron karakteristieken.
