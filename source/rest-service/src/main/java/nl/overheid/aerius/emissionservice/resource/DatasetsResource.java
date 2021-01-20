@@ -39,6 +39,7 @@ import nl.overheid.aerius.emissionservice.model.FarmReductiveLodgingSystemCatego
 import nl.overheid.aerius.emissionservice.model.Sector;
 import nl.overheid.aerius.emissionservice.repository.DatasetStore;
 import nl.overheid.aerius.emissionservice.repository.FarmRepository;
+import nl.overheid.aerius.emissionservice.repository.FarmlandRepository;
 import nl.overheid.aerius.emissionservice.repository.SectorRepository;
 
 @Service
@@ -52,16 +53,19 @@ public class DatasetsResource implements DatasetsApiDelegate {
   private final DatasetStore datasetStore;
   private final SectorRepository sectorRepository;
   private final FarmRepository farmRepository;
+  private final FarmlandRepository farmlandRepository;
 
   @Autowired
   public DatasetsResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final DatasetHelper datasetHelper,
-      final DatasetStore datasetStore, final SectorRepository sectorRepository, final FarmRepository farmRepository) {
+      final DatasetStore datasetStore, final SectorRepository sectorRepository, final FarmRepository farmRepository,
+      final FarmlandRepository farmlandRepository) {
     this.nativeWebRequest = nativeWebRequest;
     this.localeHelper = localeHelper;
     this.datasetHelper = datasetHelper;
     this.datasetStore = datasetStore;
     this.sectorRepository = sectorRepository;
     this.farmRepository = farmRepository;
+    this.farmlandRepository = farmlandRepository;
   }
 
   @Override
@@ -145,6 +149,11 @@ public class DatasetsResource implements DatasetsApiDelegate {
       final Optional<String> acceptLanguage) {
     return handle(dataset, acceptLanguage, locale -> farmRepository.getFarmFodderMeasure(locale, code).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find fodder measure with code " + code)));
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listFarmlands(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, farmlandRepository::getFarmlands);
   }
 
   private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Function<Locale, T> function) {
