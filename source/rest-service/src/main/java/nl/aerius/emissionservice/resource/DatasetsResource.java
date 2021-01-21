@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,11 +55,12 @@ public class DatasetsResource implements DatasetsApiDelegate {
   private final SectorRepository sectorRepository;
   private final FarmRepository farmRepository;
   private final FarmlandRepository farmlandRepository;
+  private final RoadRepository roadRepository;
 
   @Autowired
   public DatasetsResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final DatasetHelper datasetHelper,
       final DatasetStore datasetStore, final SectorRepository sectorRepository, final FarmRepository farmRepository,
-      final FarmlandRepository farmlandRepository) {
+      final FarmlandRepository farmlandRepository, final RoadRepository roadRepository) {
     this.nativeWebRequest = nativeWebRequest;
     this.localeHelper = localeHelper;
     this.datasetHelper = datasetHelper;
@@ -66,6 +68,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     this.sectorRepository = sectorRepository;
     this.farmRepository = farmRepository;
     this.farmlandRepository = farmlandRepository;
+    this.roadRepository = roadRepository;
   }
 
   @Override
@@ -156,10 +159,44 @@ public class DatasetsResource implements DatasetsApiDelegate {
     return handle(dataset, acceptLanguage, farmlandRepository::getFarmlands);
   }
 
+  @Override
+  public ResponseEntity<List<String>> listVehicleTypes(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getVehicleTypes);
+  }
+
+  @Override
+  public ResponseEntity<List<String>> listRoadTypes(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getRoadTypes);
+  }
+
+  @Override
+  public ResponseEntity<List<RoadSpeedProfileCategory>> listSpeedProfiles(final String dataset, final Optional<String> acceptLanguage,
+      final Optional<String> roadtype, final Optional<String> speedlimitenforcement, final Optional<Boolean> srm2,
+      final Optional<Boolean> srm1, final Optional<Integer> maximumspeed) {
+    return handle(dataset, acceptLanguage,
+        locale -> roadRepository.getRoadSpeedProfiles(locale, roadtype, speedlimitenforcement, srm2, srm1, maximumspeed));
+  }
+
+  @Override
+  public ResponseEntity<List<RoadEmissionFactor>> getRoadEmissionFactors(final String dataset, final String speedprofile, final String vehicletype,
+      final Integer year, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> roadRepository.getEmissionFactors(locale, speedprofile, vehicletype, year));
+  }
+
+  private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Supplier<T> function) {
+    final String actualDataset = handleDataset(dataset);
+    final T result = function.get();
+    return toOkResponse(actualDataset, result);
+  }
+
   private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Function<Locale, T> function) {
     final String actualDataset = handleDataset(dataset);
     final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final T result = function.apply(locale);
+    return toOkResponse(actualDataset, result);
+  }
+
+  private <T> ResponseEntity<T> toOkResponse(final String actualDataset, final T result) {
     return ResponseEntity
         .status(HttpStatus.OK)
         .header(DATASET_HEADER, actualDataset)
