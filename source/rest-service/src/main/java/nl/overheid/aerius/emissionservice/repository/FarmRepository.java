@@ -27,6 +27,7 @@ import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgin
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingSystemDefinitions.FARM_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypeEmissionFactors.FARM_LODGING_TYPE_EMISSION_FACTORS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypes.FARM_LODGING_TYPES;
+import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesOtherLodgingType.FARM_LODGING_TYPES_OTHER_LODGING_TYPE;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesToAdditionalLodgingSystems.FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesToLodgingSystemDefinitions.FARM_LODGING_TYPES_TO_LODGING_SYSTEM_DEFINITIONS;
 import static nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypesToReductiveLodgingSystems.FARM_LODGING_TYPES_TO_REDUCTIVE_LODGING_SYSTEMS;
@@ -49,9 +50,12 @@ import java.util.Locale;
 import java.util.Optional;
 
 import org.jooq.Field;
+import org.jooq.Record2;
+import org.jooq.Select;
 import org.springframework.stereotype.Repository;
 
 import nl.overheid.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
+import nl.overheid.aerius.emissionservice.jooq.template.tables.FarmLodgingTypes;
 import nl.overheid.aerius.emissionservice.model.Category;
 import nl.overheid.aerius.emissionservice.model.EmissionFactor;
 import nl.overheid.aerius.emissionservice.model.EmissionReductionFraction;
@@ -130,6 +134,10 @@ public class FarmRepository {
       lodging.setAdditionalLodgingSystems(getLodgingAdditionalSystems(language, lodgingCode));
       lodging.setReductiveLodgingSystems(getLodgingReductiveSystems(language, lodgingCode));
       lodging.setFodderMeasures(getLodgingFodderMeasures(language, lodgingCode));
+      final Optional<Category> relatedTraditionalLodging = getRelatedTraditionalLodging(language, lodgingCode);
+      if (relatedTraditionalLodging.isPresent()) {
+        lodging.setTraditionalLodgingSystem(relatedTraditionalLodging.get());
+      }
     });
     return farmLodging;
   }
@@ -235,6 +243,25 @@ public class FarmRepository {
         .where(FARM_LODGING_TYPES.CODE.eq(lodgingCode))
         .orderBy(FARM_LODGING_FODDER_MEASURES.CODE)
         .fetchInto(Category.class);
+  }
+
+  private Optional<Category> getRelatedTraditionalLodging(final LanguageCodeType language, final String lodgingCode) {
+    final FarmLodgingTypes original = FARM_LODGING_TYPES.as("original");
+    final FarmLodgingTypes other = FARM_LODGING_TYPES.as("other");
+    final Select<Record2<Integer, String>> i18n = select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
+    .from(I18N_FARM_LODGING_TYPES)
+    .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(language));
+    return datasetStore.dsl().select(
+        other.CODE,
+        other.NAME,
+        coalesce(I18N_DESCRIPTION, other.DESCRIPTION).as(DESCRIPTION))
+        .from(original)
+        .innerJoin(FARM_LODGING_TYPES_OTHER_LODGING_TYPE).using(original.FARM_LODGING_TYPE_ID)
+        .innerJoin(other).on(other.FARM_LODGING_TYPE_ID.eq(FARM_LODGING_TYPES_OTHER_LODGING_TYPE.FARM_OTHER_LODGING_TYPE_ID))
+        .leftJoin(i18n)
+        .on(other.FARM_LODGING_TYPE_ID.eq(i18n.field(0, Integer.class)))
+        .where(original.CODE.eq(lodgingCode))
+        .fetchOptionalInto(Category.class);
   }
 
   public List<Category> getFarmAdditionalLodgingSystems(final Locale locale) {
