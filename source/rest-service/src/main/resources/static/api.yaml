@@ -443,6 +443,9 @@ components:
             scrubber:
               type: boolean
               description: Indication wether or not this lodging type makes use of an air scrubber ('luchtwasser')
+            traditionalLodgingSystem:
+              $ref: '#/components/schemas/Category'
+              description: Indicates the traditional lodging system that this system is linked to.
     FarmAdditionalLodgingSystemCategory:
       allOf:
         - $ref: '#/components/schemas/Category'
