@@ -72,8 +72,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Dataset"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/sectors:
     get:
       summary: List all sectors
@@ -93,8 +92,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/Sector"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/sectors/{code}:
     get:
       summary: Get specific sector information
@@ -118,8 +116,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Sector"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/animals:
     get:
       summary: List all farm animal categories
@@ -131,16 +128,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm animal categories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings:
     get:
       summary: List all farm lodging categories
@@ -158,16 +148,9 @@ paths:
             type: string
       responses:
         200:
-          description: A list of possible farm lodging categories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/{code}:
     get:
       summary: Get specific farm lodging information
@@ -191,8 +174,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmLodgingCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/additionalsystems:
     get:
       summary: List all farm additional lodging systems
@@ -204,16 +186,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm additional lodging systems
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/additionalsystems/{code}:
     get:
       summary: Get specific farm additional lodging system
@@ -237,8 +212,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmAdditionalLodgingSystemCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/reductivesystems:
     get:
       summary: List all farm reductive lodging systems
@@ -250,16 +224,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm reductive lodging systems
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/reductivesystems/{code}:
     get:
       summary: Get specific farm reductive lodging system
@@ -283,8 +250,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmReductiveLodgingSystemCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/foddermeasures:
     get:
       summary: List all farm lodging fodder measures
@@ -296,16 +262,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm lodging fodder measures
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/foddermeasures/{code}:
     get:
       summary: Get specific farm lodging fodder measure
@@ -329,8 +288,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmFodderMeasureCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farmlands:
     get:
       summary: List all farmland-related categories
@@ -342,16 +300,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farmland categories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/road/vehicletypes:
     get:
       summary: List all vehicle types
@@ -372,8 +323,7 @@ paths:
                   type: string
                   description: Unique code for the vehicle type
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/road/roadtypes:
     get:
       summary: List all road types
@@ -392,10 +342,9 @@ paths:
                 type: array
                 items:
                   type: string
-                  description: Unique code for the vehicle type
+                  description: Unique code for the road type
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/road/speedprofiles:
     get:
       summary: List all speed profiles
@@ -446,8 +395,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/RoadSpeedProfileCategory"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/road/speedprofile/{speedprofile}/vehicletype/{vehicletype}/year/{year}:
     get:
       summary: Retrieve emission factors for road
@@ -486,8 +434,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/RoadEmissionFactor"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
 components:
   parameters:
     datasetParam:
@@ -504,6 +451,21 @@ components:
       schema:
         type: string
       description:  Indication of which language to use. if not supplied or only unsupported languages are supplied, dutch will be used.
+
+  responses:
+    CategoriesList:
+      description: A list of possible categories
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Category"
+    NotFound:
+      description: |
+        Het opgegeven object kon niet worden gevonden.
+      content: {}
+
   schemas:
     Category:
       type: object
