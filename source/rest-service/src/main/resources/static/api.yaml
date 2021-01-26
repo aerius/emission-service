@@ -3,8 +3,8 @@ info:
   title: AERIUS emission service
   description: 'This is a service to retrieve AERIUS emission factors for different sectors'
   license:
-    name: GNU Affero General Public License v3.0
-    url: https://www.gnu.org/licenses/agpl-3.0.nl.html
+    name: Apache License, version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
   version: 1.0.0
 externalDocs:
   description: Find out more about AERIUS
