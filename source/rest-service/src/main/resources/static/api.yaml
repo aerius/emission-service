@@ -430,9 +430,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/RoadEmissionFactor"
+                $ref: "#/components/schemas/RoadEmissionFactors"
         404:
           $ref: '#/components/responses/NotFound'
 components:
@@ -714,6 +712,27 @@ components:
               type: integer
               format: int32
               description: the maximum speed for this speed profile in cases where that matters.
+    RoadEmissionFactors:
+      type: object
+      description: Category for road.
+      required:
+        - roadSpeedProfileCategory
+        - vehicleType
+        - year
+      properties:
+        roadSpeedProfileCategory:
+          $ref: "#/components/schemas/RoadSpeedProfileCategory"
+        vehicleType:
+          type: string
+          description: The vehicle type for the emission factors
+        year:
+          type: integer
+          format: int32
+          description: The year for the emission factors
+        emissionFactors:
+          type: array
+          items:
+            $ref: "#/components/schemas/RoadEmissionFactor"
     EmissionFactor:
       type: object
       required:

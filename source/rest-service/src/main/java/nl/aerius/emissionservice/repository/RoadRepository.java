@@ -24,7 +24,6 @@ import static org.jooq.impl.DSL.boolOr;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.trueCondition;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -41,6 +40,7 @@ import nl.overheid.aerius.emissionservice.jooq.public_.enums.RoadType;
 import nl.overheid.aerius.emissionservice.jooq.public_.enums.SpeedLimitEnforcementType;
 import nl.overheid.aerius.emissionservice.jooq.public_.enums.VehicleType;
 import nl.overheid.aerius.emissionservice.model.RoadEmissionFactor;
+import nl.overheid.aerius.emissionservice.model.RoadEmissionFactors;
 import nl.overheid.aerius.emissionservice.model.RoadSpeedProfileCategory;
 import nl.overheid.aerius.emissionservice.model.RoadSpeedProfileCategory.SpeedLimitEnforcementEnum;
 
@@ -95,7 +95,7 @@ public class RoadRepository {
     return results;
   }
 
-  public List<RoadEmissionFactor> getEmissionFactors(final Locale locale, final String speedProfile, final String vehicleType,
+  public Optional<RoadEmissionFactors> getEmissionFactors(final Locale locale, final String speedProfile, final String vehicleType,
       final Integer year) {
     final int speedProfileId;
     final VehicleType dbVehicleType;
@@ -103,8 +103,18 @@ public class RoadRepository {
       speedProfileId = Integer.parseInt(speedProfile);
       dbVehicleType = VehicleType.valueOf(vehicleType.toLowerCase(locale));
     } catch (final IllegalArgumentException e) {
-      return Collections.emptyList();
+      return Optional.empty();
     }
+    final Optional<RoadSpeedProfileCategory> speedProfileCategory = getRoadSpeedProfileCategory(speedProfileId);
+    return speedProfileCategory.map(category -> new RoadEmissionFactors()
+        .year(year)
+        .vehicleType(vehicleType)
+        .roadSpeedProfileCategory(category)
+        .emissionFactors(getEmissionFactors(locale, speedProfileId, dbVehicleType, year)));
+  }
+
+  private List<RoadEmissionFactor> getEmissionFactors(final Locale locale, final int speedProfileId, final VehicleType vehicleType,
+      final Integer year) {
     return datasetStore.dsl()
         .select(
             SUBSTANCES.NAME.as(SUBSTANCE),
@@ -113,7 +123,7 @@ public class RoadRepository {
         .from(ROAD_CATEGORIES_VIEW)
         .innerJoin(SUBSTANCES).using(ROAD_CATEGORIES_VIEW.SUBSTANCE_ID)
         .where(ROAD_CATEGORIES_VIEW.ROAD_SPEED_PROFILE_ID.eq(speedProfileId))
-        .and(ROAD_CATEGORIES_VIEW.VEHICLE_TYPE.eq(dbVehicleType))
+        .and(ROAD_CATEGORIES_VIEW.VEHICLE_TYPE.eq(vehicleType))
         .and(ROAD_CATEGORIES_VIEW.YEAR.eq((short) year.intValue()))
         .fetchInto(RoadEmissionFactor.class);
   }
@@ -184,5 +194,29 @@ public class RoadRepository {
           .filter(category -> category.getMaximumSpeed().intValue() == maxSpeedFound)
           .collect(Collectors.toList());
     }
+  }
+
+  private Optional<RoadSpeedProfileCategory> getRoadSpeedProfileCategory(final int speedProfileId) {
+    final Optional<Record> result = datasetStore.dsl()
+        .select()
+        .from(ROAD_SPEED_PROFILES)
+        .where(ROAD_SPEED_PROFILES.ROAD_SPEED_PROFILE_ID.eq(speedProfileId))
+        .fetchOptional();
+    final Map<RoadType, Boolean> srmDistinction = getSRMDistinctionPerRoadType();
+    return result.map(record -> {
+      final RoadType categoryRoadType = record.get(ROAD_SPEED_PROFILES.ROAD_TYPE);
+      final boolean usableForSrm1 = !srmDistinction.get(categoryRoadType)
+          || record.get(ROAD_SPEED_PROFILES.SPEED_LIMIT_ENFORCEMENT) == SpeedLimitEnforcementType.irrelevant;
+      final boolean usableForSrm2 = !srmDistinction.get(categoryRoadType)
+          || record.get(ROAD_SPEED_PROFILES.SPEED_LIMIT_ENFORCEMENT) != SpeedLimitEnforcementType.irrelevant;
+      return new RoadSpeedProfileCategory().code(record.get(ROAD_SPEED_PROFILES.ROAD_SPEED_PROFILE_ID).toString())
+          .name(record.get(ROAD_SPEED_PROFILES.NAME))
+          .description(categoryRoadType.name() + ", " + record.get(ROAD_SPEED_PROFILES.NAME))
+          .roadType(categoryRoadType.name())
+          .speedLimitEnforcement(SpeedLimitEnforcementEnum.fromValue(record.get(ROAD_SPEED_PROFILES.SPEED_LIMIT_ENFORCEMENT).name()))
+          .usableForSrm1(usableForSrm1)
+          .usableForSrm2(usableForSrm2)
+          .maximumSpeed(record.get(ROAD_SPEED_PROFILES.MAXIMUM_SPEED));
+    });
   }
 }
