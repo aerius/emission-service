@@ -34,7 +34,7 @@ INSERT INTO datasets (code, name, schema_name, current, description)
 	VALUES ('nature2021', 'AERIUS 2021 nature', 'nature2021', true, 'Dataset used in AERIUS 2021, nature profile, to be released...');
 
 INSERT INTO i18n_datasets (code, language_code, name, description)
-	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, nog niet publiek beschikbaa');
+	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, nog niet publiek beschikbaar');
 INSERT INTO i18n_datasets (code, language_code, name, description)
 	VALUES ('nature2021', 'en', 'AERIUS 2021 nature', 'Dataset used in AERIUS 2021, nature profile, to be released...');
 
