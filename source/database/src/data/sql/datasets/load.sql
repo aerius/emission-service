@@ -26,3 +26,18 @@ INSERT INTO i18n_datasets (code, language_code, name, description)
 {import_common 'nature2020/dataset_metadata.sql'}
 {import_common 'nature2020/sectors'}
 {import_common 'nature2020/emission_factors'}
+
+
+-- Dataset(s) voor AERIUS 2021
+
+INSERT INTO datasets (code, name, schema_name, current, description)
+	VALUES ('nature2021', 'AERIUS 2021 nature', 'nature2021', true, 'Dataset used in AERIUS 2021, nature profile, to be released...');
+
+INSERT INTO i18n_datasets (code, language_code, name, description)
+	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, nog niet publiek beschikbaa');
+INSERT INTO i18n_datasets (code, language_code, name, description)
+	VALUES ('nature2021', 'en', 'AERIUS 2021 nature', 'Dataset used in AERIUS 2021, nature profile, to be released...');
+
+{import_common 'nature2021/dataset_metadata.sql'}
+{import_common 'nature2021/sectors'}
+{import_common 'nature2021/emission_factors'}
