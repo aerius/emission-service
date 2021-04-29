@@ -16,15 +16,13 @@
     along with this program.  If not, see http://www.gnu.org/licenses/.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>nl.overheid.aerius</groupId>
   <artifactId>emission-service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>emission-service</name>
+  <name>Emission Service</name>
   <description>AERIUS emission service project</description>
 
   <properties>
@@ -32,10 +30,19 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
     <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
     <openapi-generator-maven-plugin.version>4.3.1</openapi-generator-maven-plugin.version>
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+
+    <aerius-tools.version>1.1.0-SNAPSHOT</aerius-tools.version>
+    <spotless.version>2.5.0</spotless.version>
+    <sonar.projectKey>aerius_emission-service</sonar.projectKey>
+    <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+    <sonar.organization>aerius</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <dependencyManagement>
@@ -119,7 +126,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -159,10 +166,10 @@
               <apiPackage>nl.overheid.aerius.emissionservice.api</apiPackage>
               <!-- Package for the model (or domain) side of things -->
               <modelPackage>nl.overheid.aerius.emissionservice.model</modelPackage>
-              <!-- 
+              <!--
                 Prevent generating too much by only specifying one file.
-                The ApiUtil is fairly harmless and is actually used in the delegate pattern. 
-                Reason to not want all the default generated files: we'd need more dependencies. 
+                The ApiUtil is fairly harmless and is actually used in the delegate pattern.
+                Reason to not want all the default generated files: we'd need more dependencies.
               -->
               <supportingFilesToGenerate>
                 ApiUtil.java
@@ -170,9 +177,9 @@
               <configOptions>
                 <!-- Not sure yet if we're using dates, but if so we'd better stick to plain java -->
                 <dateLibrary>java8</dateLibrary>
-                <!-- 
+                <!--
                   Using delegate pattern for easy implementation with spring boot.
-                  Only have to implement an interface and annotate it with the correct annotation.  
+                  Only have to implement an interface and annotate it with the correct annotation.
                 -->
                 <delegatePattern>true</delegatePattern>
                 <useOptional>true</useOptional>
@@ -181,8 +188,114 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
+        <configuration>
+          <formats>
+            <format>
+              <includes>
+                <include>pom.xml</include>
+              </includes>
+              <licenseHeader>
+                <file>pom-xml-header.txt</file>
+                <delimiter>&lt;project</delimiter>
+              </licenseHeader>
+              <trimTrailingWhitespace />
+              <endWithNewline />
+              <eclipseWtp>
+                <type>XML</type>
+                <files>
+                  <file>pom-xml.prefs</file>
+                </files>
+              </eclipseWtp>
+            </format>
+          </formats>
+          <java>
+            <includes>
+              <include>src/*/java/nl/overheid/aerius/**/*.java</include>
+            </includes>
+            <licenseHeader>
+              <file>checkstyle-header.txt</file>
+            </licenseHeader>
+            <eclipse>
+              <file>eclipse_code_formatter_profile.xml</file>
+            </eclipse>
+            <importOrder>
+              <file>eclipse.importorder</file>
+            </importOrder>
+          </java>
+        </configuration>
+
+        <dependencies>
+          <dependency>
+            <groupId>nl.aerius</groupId>
+            <artifactId>tools</artifactId>
+            <version>${aerius-tools.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          <header>license-header.txt</header>
+
+          <mapping>
+            <java>SLASHSTAR_STYLE</java>
+          </mapping>
+
+          <includes>
+            <include>**/*.java</include>
+            <include>**/pom.xml</include>
+          </includes>
+
+          <excludes>
+            <!-- External source code present in our source code -->
+            <exclude>**/src/main/java/com/**/*.java</exclude>
+          </excludes>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>nl.aerius</groupId>
+            <artifactId>tools</artifactId>
+            <version>${aerius-tools.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
     </plugins>
   </build>
 
-
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.6</version>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

@@ -248,9 +248,10 @@ public class FarmRepository {
   private Optional<Category> getRelatedTraditionalLodging(final LanguageCodeType language, final String lodgingCode) {
     final FarmLodgingTypes original = FARM_LODGING_TYPES.as("original");
     final FarmLodgingTypes other = FARM_LODGING_TYPES.as("other");
-    final Select<Record2<Integer, String>> i18n = select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID, I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
-    .from(I18N_FARM_LODGING_TYPES)
-    .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(language));
+    final Select<Record2<Integer, String>> i18n = select(I18N_FARM_LODGING_TYPES.FARM_LODGING_TYPE_ID,
+        I18N_FARM_LODGING_TYPES.DESCRIPTION.as(I18N_DESCRIPTION))
+            .from(I18N_FARM_LODGING_TYPES)
+            .where(I18N_FARM_LODGING_TYPES.LANGUAGE_CODE.eq(language));
     return datasetStore.dsl().select(
         other.CODE,
         other.NAME,
