@@ -1,5 +1,7 @@
 # AERIUS emission service
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=aerius_emission-service&metric=alert_status)](https://sonarcloud.io/dashboard?id=aerius_emission-service)
+
 ## About
 
 TODO
