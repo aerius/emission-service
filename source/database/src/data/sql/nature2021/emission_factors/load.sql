@@ -57,6 +57,6 @@ BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_emission_
 /* Machinery data */
 BEGIN; SELECT setup.ae_load_table('nature2021.machinery_fuel_types', '{data_folder}/public/machinery_fuel_types_20200701.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.machinery_types', '{data_folder}/public/machinery_types_20200619.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.machinery_type_fuel_options', '{data_folder}/public/machinery_type_fuel_options_20200619.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.machinery_type_emission_factors', '{data_folder}/public/machinery_type_emission_factors_20200701.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.machinery_type_fuel_options', '{data_folder}/public/machinery_type_fuel_options_20210302.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.machinery_type_emission_factors', '{data_folder}/public/machinery_type_emission_factors_20210302.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.machinery_fuel_types_to_sectors', '{data_folder}/public/machinery_fuel_types_to_sectors_20200701.txt'); COMMIT;
