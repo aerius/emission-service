@@ -1,7 +1,7 @@
 /* Road data */
 BEGIN; SELECT setup.ae_load_table('nature2021.road_categories', '{data_folder}/public/road_categories_20160602.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.road_speed_profiles', '{data_folder}/public/road_speed_profiles_20200929.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_category_emission_factors', '{data_folder}/public/road_category_emission_factors_20200929.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_category_emission_factors', '{data_folder}/public/road_category_emission_factors_20210519.txt'); COMMIT;
 
 /* Farm animal category and -lodging data */
 BEGIN; SELECT setup.ae_load_table('nature2021.farm_animal_categories', '{data_folder}/public/farm_animal_categories_20200914.txt'); COMMIT;
