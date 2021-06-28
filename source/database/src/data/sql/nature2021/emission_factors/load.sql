@@ -43,16 +43,16 @@ BEGIN; SELECT setup.ae_load_table('nature2021.mobile_source_on_road_category_emi
 /* Shipping data */
 BEGIN; SELECT setup.ae_load_table('nature2021.shipping_maritime_categories', '{data_folder}/public/shipping_maritime_categories_20140331.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.shipping_maritime_category_maneuver_properties', '{data_folder}/temp/temp_shipping_maritime_category_maneuver_properties_20140402.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.shipping_maritime_category_emission_factors', '{data_folder}/public/shipping_maritime_category_emission_factors_20210415.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.shipping_maritime_category_source_characteristics', '{data_folder}/public/shipping_maritime_category_source_characteristics_20210415.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.shipping_maritime_category_emission_factors', '{data_folder}/public/shipping_maritime_category_emission_factors_TEMP2035_20210616.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.shipping_maritime_category_source_characteristics', '{data_folder}/public/shipping_maritime_category_source_characteristics_TEMP2035_20210616.txt'); COMMIT;
 
 /* Inland shipping data */
 BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_categories', '{data_folder}/public/shipping_inland_categories_20140327.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_waterway_categories', '{data_folder}/temp/temp_shipping_inland_waterway_categories_20160301.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_source_characteristics', '{data_folder}/public/shipping_inland_category_source_characteristics_20210412.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_source_characteristics_docked', '{data_folder}/public/shipping_inland_category_source_characteristics_docked_20140326.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_emission_factors', '{data_folder}/public/shipping_inland_category_emission_factors_20210302.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_emission_factors_docked', '{data_folder}/public/shipping_inland_category_emission_factors_docked_20190415.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_emission_factors', '{data_folder}/public/shipping_inland_category_emission_factors_TEMP2035_20210616.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.shipping_inland_category_emission_factors_docked', '{data_folder}/public/shipping_inland_category_emission_factors_docked_TEMP2035_20210616.txt'); COMMIT;
 
 /* Machinery data */
 BEGIN; SELECT setup.ae_load_table('nature2021.machinery_fuel_types', '{data_folder}/public/machinery_fuel_types_20200701.txt'); COMMIT;
