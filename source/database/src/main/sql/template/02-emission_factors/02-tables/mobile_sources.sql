@@ -94,10 +94,11 @@ CREATE TABLE mobile_source_on_road_category_emission_factors
 (
 	mobile_source_on_road_category_id smallint NOT NULL,
 	road_type road_type NOT NULL,
+	year year_type NOT NULL,
 	substance_id smallint NOT NULL,
 	emission_factor posreal NOT NULL,
 
-	CONSTRAINT mobile_source_on_road_efac_pkey PRIMARY KEY (mobile_source_on_road_category_id, road_type, substance_id),
+	CONSTRAINT mobile_source_on_road_efac_pkey PRIMARY KEY (mobile_source_on_road_category_id, road_type, year, substance_id),
 	CONSTRAINT mobile_source_on_road_efac_fkey_substances FOREIGN KEY (substance_id) REFERENCES substances,
 	CONSTRAINT mobile_source_on_road_efac_fkey_mobile_on_road_cat FOREIGN KEY (mobile_source_on_road_category_id) REFERENCES mobile_source_on_road_categories
 );
