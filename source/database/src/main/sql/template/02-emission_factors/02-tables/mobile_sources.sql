@@ -22,15 +22,15 @@ CREATE TABLE mobile_source_off_road_categories
  *
  * Niet voor alle stageklasses zijn stationaire emissieberekeningen mogelijk, in dat geval ontbreekt het record.
  *
- * @column power_min Vmin, minimaal vermogen binnen de opgegeven stage-klasse (KW)
- * @column power_max Vmax, maximaal vermogen binnen de opgegeven stage-klasse (KW)
+ * @column engine_capacity_min Clmin, minimale cilinder-inhoud binnen de opgegeven stage-klasse (KW)
+ * @column engine_capacity_max Clmax, maximale cilinder-inhoud binnen de opgegeven stage-klasse (KW)
  * @column fuel_consumption_idle GBS_plci, liter brandstof verbruik stationair per uur per liter cilinder-inhoud (l/l/uur)
  */
 CREATE TABLE mobile_source_off_road_category_idle_properties
 (
 	mobile_source_off_road_category_id smallint NOT NULL,
-	power_min posreal NOT NULL,
-	power_max posreal NOT NULL,
+	engine_capacity_min posreal NOT NULL,
+	engine_capacity_max posreal NOT NULL,
 	fuel_consumption_idle posreal NOT NULL,
 
 	CONSTRAINT mobile_source_off_road_category_idle_prop_pkey PRIMARY KEY (mobile_source_off_road_category_id),
