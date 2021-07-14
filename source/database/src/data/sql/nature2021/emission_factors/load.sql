@@ -24,7 +24,7 @@ BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_types_to_reductive_lo
 
 BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_fodder_measures', '{data_folder}/public/farm_lodging_fodder_measures_20210607.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_fodder_measure_reduction_factors', '{data_folder}/public/farm_lodging_fodder_measure_reduction_factors_20210607.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_fodder_measures_animal_category', '{data_folder}/public/farm_lodging_fodder_measures_animal_category_20210607.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_fodder_measures_animal_category', '{data_folder}/public/farm_lodging_fodder_measures_animal_category_20210628.txt'); COMMIT;
 
 /* Farmland categories */
 BEGIN; SELECT setup.ae_load_table('nature2021.farmland_categories', '{data_folder}/temp/temp_farmland_categories_20200527.txt'); COMMIT;
