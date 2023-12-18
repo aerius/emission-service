@@ -1,12 +1,12 @@
 /*
- * Het setup-schema bevat basis-tabellen, queries en functies om afgeleide aerius-tabellen te maken.
- * In de setup kunnen (wegens performance redenen) (afgeleide) tussentabellen worden aangemaakt.
+ * The setup schema contains basic tables, queries and functions to create derived AERIUS tables.
+ * In the setup schema, several (derived) intermediate tables are created for performance reasons.
  */
 CREATE SCHEMA setup;
 
 /*
  * system
  * ------
- * Het system-schema bevat basis-tabellen voor de AERIUS applicatie.
+ * The system schema contains basic tables for the AERIUS application.
  */
 CREATE SCHEMA system;

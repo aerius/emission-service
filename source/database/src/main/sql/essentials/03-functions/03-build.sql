@@ -1,9 +1,12 @@
 /*
  * ae_synchronize_all_serials
  * --------------------------
- * Alle functies met naamgeving tabelnaam_kolomnaam_seq worden ingesteld op de MAX value van hun tabel.
- * Serials/sequences kunnen snel out of sync raken na bulk_loads, COPY FROMs en INSERTS zonder defaults.
- * Deze functie zet alle sequences daarom weer goed.
+ * Function to synchronize serials/sequences.
+ * All functions with naming convention tablename_columnname_seq are set to the max value of that column in that table.
+ *
+ * Serials/sequences can get out of sync with the actual content of the database after bulk loads, COPY FROMs and INSERTs without defaults.
+ * This function makes sure sequences match the content once again.
+ * This is for instance used after a database build.
  */
 CREATE OR REPLACE FUNCTION setup.ae_synchronize_all_serials()
 	RETURNS void AS
@@ -34,8 +37,8 @@ LANGUAGE plpgsql VOLATILE;
 /*
  * ae_cluster_all_tables
  * ---------------------
- * Clustert alle tabellen in de database o.b.v. de primary key.
- * Als het constraint (in dit geval de primary key) eenmaal gezet is, kan in het vervolg geclusterd worden met: CLUSTER databasenaam
+ * Function to cluster all tables in the database based on their primary key.
+ * Once the constraint (in this case the primary key) has been set, in the future clustering can be done by using: CLUSTER databasname.
  */
 CREATE OR REPLACE FUNCTION setup.ae_cluster_all_tables()
 	RETURNS void AS
@@ -53,7 +56,7 @@ BEGIN
 				INNER JOIN pg_class ON (pg_class.oid = pg_constraint.conrelid)
 				INNER JOIN pg_namespace ON (pg_namespace.oid = pg_class.relnamespace)
 
-			WHERE pg_class.relkind = 'r' AND pg_constraint.contype = 'p'
+			WHERE pg_class.relkind = 'r' AND pg_constraint.contype = 'p' AND pg_class.relisshared IS FALSE AND relname NOT LIKE 'pg_%'
 
 			ORDER BY tablename
 	LOOP
@@ -69,7 +72,10 @@ LANGUAGE plpgsql VOLATILE;
 /*
  * ae_validate_all
  * ---------------
- * Lege (default) ae_validate_all functie.
+ * Empty (default) ae_validate_all function.
+ *
+ * Called during build by ruby build script.
+ * Can be overwritten by each product to perform some actual validations.
  */
 CREATE OR REPLACE FUNCTION setup.ae_validate_all()
 	RETURNS TABLE (validaton_result_id integer, validation_run_id integer, name regproc, result setup.validation_result_type) AS
@@ -88,9 +94,9 @@ LANGUAGE plpgsql VOLATILE;
 /*
  * ae_list_unittest_functions
  * --------------------------
- * Retourneert een lijst van alle functies die beginnen met de opgegeven prefix.
- * Functies die onderdeel uitmaken van een extensie of de PostgreSQL catalogus, worden niet teruggegeven.
- * Naast de functienaam (inclusief schemanaam), worden ook de argumenten en returnwaarde van die functie teruggegeven.
+ * Function that returns a list of all functions starting with the supplied prefix.
+ * Functions that are part of an extension or part of the PostgreSQL catalog are not returned.
+ * Returns the function name (including schema), the arguments and the return value of the function.
  */
 CREATE OR REPLACE FUNCTION setup.ae_list_unittest_functions(v_prefix text)
 	RETURNS TABLE(name regproc, args text, returns text) AS
@@ -125,11 +131,11 @@ LANGUAGE plpgsql STABLE;
 /*
  * ae_execute_unittest
  * -------------------
- * Voert de gegeven (unit test) functie uit.
- * Indien een exceptie optreedt (wat normaliter het geval is wanneer een assertie in de unit test faalt), dan wordt deze afgevangen, geparsed, en
- * de exceptietekst, regelnummer, en eerste context regelnummer worden allen teruggegeven als een record.
- * Een unit test stopt bij de eerste exceptie, dus deze functie zal nooit meer dan één record teruggeven.
- * Als er geen records worden teruggegeven, dan is de unit test geslaagd.
+ * Function to execute the supplied (unit test) function.
+ * In case of an exception (which should be the case when an assert in the unit test fails), the exception is caught, parsed,
+ * and the exception message, line number and first context line number are all returned in a record.
+ * A unit test should fail on the first exception, so this function should never return more than 1 record.
+ * When no records are returned, the unit test was succesfull.
  */
 CREATE OR REPLACE FUNCTION setup.ae_execute_unittest(v_function regproc)
 	RETURNS TABLE(errcode text, message text, linenr integer, context text) AS
@@ -152,17 +158,17 @@ LANGUAGE plpgsql VOLATILE;
 /*
  * ae_checksum_all
  * ---------------
- * Deze functie genereert checksums voor alle belangrijke database objecten.
- * In het geval van tabellen worden er aparte checksums gemaakt voor de structuur en de data. Voor deze data checksums kunnen bepaalde tabellen worden
- * overgeslagen, bijvoorbeeld bij bepaalde live data is het niet zinvol deze te checken/vergelijken.
+ * Function to generate checksums for all important database objects.
+ * In the case of tables, a separate checksum is made for the structure and the data.
+ * For the data checksums some tables can be skipped, for example when the content is dynamic and it does not make sense to check/compare checksums.
  *
- * De uitkomst van de functie kan (gesorteerd) worden opgeslagen in een bestand om deze te vergelijken met een andere database. Bijvoorbeeld na het patchen
- * van de productiedatabase, om te controleren of deze daarna overeenkomt met de bedoelde laatste build.
+ * The (sorted) result of the function can be saved to compare it with another database.
+ * For example after patching a production database, to check if it matches the last build.
  *
- * Catalog objecten en objecten van extensies zoals PostGIS worden automatisch weggefilterd.
+ * Catalog objects and objects of extensions like PostGIS are automatically filtered out.
  *
- * @param v_excluded_data_tables Lijstje van tabellen waarvoor geen checksums van de data gegenereerd moet worden.
- * @return Per object type een naam of beschrijving van het object en de checksum van de definitie van dat object.
+ * @param v_excluded_data_tables List of tables for which no data checksum should be generated.
+ * @return Per object type a name or description of the object, and the checksum of the definiton/data of that object
  */
 CREATE OR REPLACE FUNCTION setup.ae_checksum_all(v_excluded_data_tables regclass[] = NULL)
 	RETURNS TABLE(objecttype text, description text, checksum bigint) AS

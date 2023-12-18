@@ -1,8 +1,8 @@
 /*
  * validation_result_type
  * ----------------------
- * Type voor de verschillende validatie resultaten.
- * De volgorde van deze ENUM is van belang en loopt van laag naar hoog.
+ * Enum type for the different validation results.
+ * The order of this enum is important, and runs from low to high.
  */
 CREATE TYPE setup.validation_result_type AS ENUM
 	('success', 'hint', 'warning', 'error');
@@ -11,10 +11,10 @@ CREATE TYPE setup.validation_result_type AS ENUM
 /*
  * validation_result
  * -----------------
- * Type voor de resultaten van een validatie.
+ * Type used as a return type for validation results.
  */
 CREATE TYPE setup.validation_result AS (
-	result setup.validation_result_type, 
+	result setup.validation_result_type,
 	object text,
 	message text
 );

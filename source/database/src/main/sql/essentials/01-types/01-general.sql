@@ -1,7 +1,8 @@
 /*
  * posint
  * ------
- * Positieve integer gebruikt voor o.a. de diameter van een bron
+ * Integer value type which can only be positive or 0.
+ * Used for the diameter of a source for example.
  */
 CREATE DOMAIN posint AS integer
 	CHECK (VALUE >= 0::integer);
@@ -10,7 +11,8 @@ CREATE DOMAIN posint AS integer
 /*
  * posreal
  * -------
- * Positieve real gebruikt voor o.a. deposities
+ * Real (decimal) value type which can only be positive or 0.
+ * Used for depositions for example.
  */
 CREATE DOMAIN posreal AS real
 	CHECK (VALUE >= 0::real);
@@ -19,7 +21,8 @@ CREATE DOMAIN posreal AS real
 /*
  * fraction
  * --------
- * Real tussen 0..1 gebruikt voor o.a. de habitat bedekkingsfactor
+ * Real (decimal) value type between 0 and 1 (inclusive), specifying fractions.
+ * Used for the habitat coverage factor for example.
  */
 CREATE DOMAIN fraction AS real
 	CHECK ((VALUE >= 0::real) AND (VALUE <= 1::real));
@@ -28,7 +31,8 @@ CREATE DOMAIN fraction AS real
 /*
  * year_type
  * ---------
- * Small integer gebruikt voor o.a. begin- en eindjaren maatregelen
+ * Small integer value type which can only be valid years (2000-2050 currently).
+ * Used for background years for example.
  */
 CREATE DOMAIN year_type AS smallint
 	CHECK ((VALUE >= 2000::smallint) AND (VALUE <= 2050::smallint));
@@ -37,8 +41,8 @@ CREATE DOMAIN year_type AS smallint
 /*
  * ae_key_value_rs
  * ---------------
- * Type gebruikt als return type in het geval dat een key-value pair wordt teruggegeven.
- * Bedoeld als gebruik bij de aggregate functie ae_max_with_key, maar zou ook in andere gevallen gebruikt kunnen worden.
+ * Type used as a return type in the case where a key-value pair is returned.
+ * Intended for use by the aggregate function ae_max_with_key, but can be used for other means as well.
  */
 CREATE TYPE ae_key_value_rs AS
 (

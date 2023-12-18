@@ -1,7 +1,7 @@
 /*
  * ae_percentile_sorted_array
  * --------------------------
- * Basis functie voor het berekenen van een percentiel op basis van een GESORTEERDE lijst.
+ * Function to calculate the percentile based on a sorted array.
  */
 CREATE OR REPLACE FUNCTION ae_percentile_sorted_array(sorted_array numeric[], percentile int)
 	RETURNS numeric AS
@@ -38,8 +38,8 @@ LANGUAGE plpgsql IMMUTABLE RETURNS NULL ON NULL INPUT;
 /*
  * ae_percentile
  * -------------
- * Berekenen van een percentiel op basis van een ongesorteerde lijst.
- * Opmerking: Er is geen AGGREGATE van deze functie omdat deze veel slechter performed.
+ * Function to calculate the percentile based on an unsorted list.
+ * Remark: there is no aggregate version of this function due to very bad performance.
  */
 CREATE OR REPLACE FUNCTION ae_percentile(unsorted_array numeric[], percentile int)
 	RETURNS numeric AS
@@ -54,8 +54,8 @@ LANGUAGE plpgsql IMMUTABLE RETURNS NULL ON NULL INPUT;
 /*
  * ae_median
  * ---------
- * Berekenen van de mediaan op basis van een ongesorteerde lijst. Identiek aan percentiel 50%.
- * Opmerking: Er is geen AGGREGATE van deze functie omdat deze veel slechter performed.
+ * Function to calculate the median based on an unsorted list. Identical to 50% percentile.
+ * Remark: there is no aggregate version of this function due to very bad performance.
  */
 CREATE OR REPLACE FUNCTION ae_median(unsorted_array numeric[])
 	RETURNS numeric AS
@@ -71,7 +71,7 @@ LANGUAGE plpgsql IMMUTABLE RETURNS NULL ON NULL INPUT;
 /*
  * ae_max_with_key_sfunc
  * ---------------------
- * State function voor 'ae_max_with_key'.
+ * State function for 'ae_max_with_key'.
  */
 CREATE OR REPLACE FUNCTION ae_max_with_key_sfunc(state numeric[2], e1 numeric, e2 numeric)
 	RETURNS numeric[2] AS
@@ -90,8 +90,8 @@ LANGUAGE plpgsql IMMUTABLE;
 /*
  * ae_max_with_key_ffunc
  * ---------------------
- * Final function voor 'ae_max_with_key'.
- * Wordt gebruikt om eindresultaat in een type te vormen.
+ * Final function for 'ae_max_with_key'.
+ * This function is used to shape the endresult into the correct type.
  */
 CREATE OR REPLACE FUNCTION ae_max_with_key_ffunc(state numeric[2])
 	RETURNS ae_key_value_rs AS
@@ -106,9 +106,9 @@ LANGUAGE plpgsql IMMUTABLE;
 /*
  * ae_max_with_key
  * ---------------
- * Aggregate functie voor het bepalen van de maximum value in een lijst van key-values waarbij zowel key als value worden teruggegeven.
- * Input bestaat uit 2 numeric argumenten, 1e wordt opgevat als de key, 2e als de value.
- * Output is een ae_key_value_rs (wat ook bestaat uit key als numeric, value als numeric).
+ * Aggregate function to determine the maximum value in a list of key-values, returning both the key and the value.
+ * Input consists of 2 numeric arguments, first should be the key, second should be the value.
+ * Output is of the type ae_key_value_rs (which also consists of a numeric key and numeric value).
  */
 CREATE AGGREGATE ae_max_with_key(numeric, numeric) (
 	SFUNC = ae_max_with_key_sfunc,
@@ -122,8 +122,8 @@ CREATE AGGREGATE ae_max_with_key(numeric, numeric) (
 /*
  * ae_weighted_avg_sfunc
  * ---------------------
- * State function voor gewogen gemiddelde functie 'ae_weighted_avg'.
- * Verzameld totaal van gewogen waardes en totaal van gewichten in een 2-dimensionale array.
+ * State function for the weighted average function 'ae_weighted_avg'.
+ * Collects the total of weighted values and the total of weights in an array with 2 values.
  */
 CREATE OR REPLACE FUNCTION ae_weighted_avg_sfunc(state numeric[], value numeric, weight numeric)
 	RETURNS numeric[] AS
@@ -138,8 +138,8 @@ LANGUAGE plpgsql IMMUTABLE RETURNS NULL ON NULL INPUT;
 /*
  * ae_weighted_avg_ffunc
  * ---------------------
- * Final function voor gewogen gemiddelde functie 'ae_weighted_avg'.
- * Deelt totaal van gewogen waardes door totaal van gewichten (was verzameld in een 2-dimensionale array).
+ * Final function for the weighted average function 'ae_weighted_avg'.
+ * Divides the total of the weighted values by the total of the weights (which were collected in an array with 2 values).
  */
 CREATE OR REPLACE FUNCTION ae_weighted_avg_ffunc(state numeric[])
 	RETURNS numeric AS
@@ -158,9 +158,9 @@ LANGUAGE plpgsql IMMUTABLE RETURNS NULL ON NULL INPUT;
 /*
  * ae_weighted_avg
  * ---------------
- * Aggregatie functie om gewogen gemiddelde te berekenen.
- * Eerste parameter is de waarde, tweede parameter is het gewicht.
- * NULL invoerwaardes worden overgeslagen. Als er helemaal geen niet-NULL waardes zijn, wordt NULL teruggegeven.
+ * Aggregate function to determine a weighted average.
+ * First parameter is the value, second parameter is the weight.
+ * NULL values are skipped, and if there are no non-NULL values, NULL will be returned.
  */
 CREATE AGGREGATE ae_weighted_avg(numeric, numeric) (
 	SFUNC = ae_weighted_avg_sfunc,
@@ -174,8 +174,8 @@ CREATE AGGREGATE ae_weighted_avg(numeric, numeric) (
 /*
  * ae_distribute_enum_sfunc
  * ------------------------
- * State function voor enum distributie unctie 'ae_distribute_enum'.
- * Houdt een array bij met een element voor iedere waarde in de enum, en telt mbv 'weight' de binnenkomende enumwaardes.
+ * State function for enum distribution function 'ae_distribute_enum'.
+ * Tracks an array with an element for each value in the enum, and sums the weight according to the supplied enum values.
  */
 CREATE OR REPLACE FUNCTION ae_distribute_enum_sfunc(state numeric[], key anyenum, weight numeric)
 	RETURNS numeric[] AS
@@ -194,12 +194,12 @@ LANGUAGE plpgsql IMMUTABLE RETURNS NULL ON NULL INPUT;
 /*
  * ae_distribute_enum
  * ------------------
- * Aggregatie functie om (evt. gewogen) te tellen hoevaak de waardes van een enum voorkomen.
- * Eerste parameter is een enum waarde, tweede parameter is het gewicht waarmee deze waarde moet worden meegeteld.
- * Het gewicht kan bijvoorbeeld 1 zijn om aantal voorkomens te tellen, of een 'surface' kolom om oppervlaktes op te tellen.
- * Returnwaarde is een array met evenveel elementen als waardes in de enum (en ook in die volgorde). Ieder element geeft de
- * optelling voor die enumwaarde aan.
- * NULL invoerwaardes worden overgeslagen. Als er helemaal geen niet-NULL waardes zijn, wordt NULL teruggegeven.
+ * Aggregate function to count the occurrence of values in an enum, weighted if need be.
+ * First parameter is an enum value, second parameter is the weight which should be summed for that enum value.
+ * As an example, the weight can be 1 to count the number of occurrences of each enum value, or a 'surface' column to sum the surface per enum value.
+ * The return value is an array with as many elements as there are values in the enum, in same order as the enum is defined.
+ * Each element consists of the summed value for each respective enum value.
+ * NULL values are skipped, and if there are no non-NULL values, NULL will be returned.
  */
 CREATE AGGREGATE ae_distribute_enum(anyenum, numeric) (
 	SFUNC = ae_distribute_enum_sfunc,
