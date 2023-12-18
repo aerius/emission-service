@@ -96,7 +96,7 @@ class DatasetHelperTest {
       datasetHelper.validateDataset("anUnknownDataset");
     }, "Expected exception on unknown dataset");
 
-    assertEquals(HttpStatus.NOT_FOUND, exception.getStatus(), "Status used when dataset unknown");
+    assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode(), "Status used when dataset unknown");
     assertEquals("Could not find dataset anUnknownDataset", exception.getReason(), "Message used when dataset unknown");
   }
 
