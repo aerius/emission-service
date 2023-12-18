@@ -16,10 +16,10 @@
  */
 package nl.aerius.emissionservice.repository;
 
-import static nl.aerius.emissionservice.jooq.template.tables.DefaultSourceCharacteristicsView.DEFAULT_SOURCE_CHARACTERISTICS_VIEW;
-import static nl.aerius.emissionservice.jooq.template.tables.I18nEmissionDiurnalVariations.I18N_EMISSION_DIURNAL_VARIATIONS;
-import static nl.aerius.emissionservice.jooq.template.tables.I18nSectors.I18N_SECTORS;
-import static nl.aerius.emissionservice.jooq.template.tables.Sectors.SECTORS;
+import static nl.aerius.emissionservice.db.generated.template.tables.DefaultSourceCharacteristicsView.DEFAULT_SOURCE_CHARACTERISTICS_VIEW;
+import static nl.aerius.emissionservice.db.generated.template.tables.I18nEmissionDiurnalVariations.I18N_EMISSION_DIURNAL_VARIATIONS;
+import static nl.aerius.emissionservice.db.generated.template.tables.I18nSectors.I18N_SECTORS;
+import static nl.aerius.emissionservice.db.generated.template.tables.Sectors.SECTORS;
 import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
@@ -34,7 +34,7 @@ import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import nl.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
+import nl.aerius.emissionservice.db.generated.i18n.enums.LanguageCodeType;
 import nl.aerius.emissionservice.model.DiurnalVariationSpecification;
 import nl.aerius.emissionservice.model.Sector;
 import nl.aerius.emissionservice.model.SourceCharacteristics;

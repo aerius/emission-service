@@ -16,9 +16,9 @@
  */
 package nl.aerius.emissionservice.repository;
 
-import static nl.aerius.emissionservice.jooq.public_.tables.Datasets.DATASETS;
-import static nl.aerius.emissionservice.jooq.public_.tables.I18nDatasets.I18N_DATASETS;
-import static nl.aerius.emissionservice.jooq.template.tables.DatasetMetadata.DATASET_METADATA;
+import static nl.aerius.emissionservice.db.generated.public_.tables.Datasets.DATASETS;
+import static nl.aerius.emissionservice.db.generated.public_.tables.I18nDatasets.I18N_DATASETS;
+import static nl.aerius.emissionservice.db.generated.template.tables.DatasetMetadata.DATASET_METADATA;
 import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;

@@ -16,8 +16,8 @@
  */
 package nl.aerius.emissionservice.repository;
 
-import static nl.aerius.emissionservice.jooq.template.tables.FarmlandCategories.FARMLAND_CATEGORIES;
-import static nl.aerius.emissionservice.jooq.template.tables.I18nFarmlandCategories.I18N_FARMLAND_CATEGORIES;
+import static nl.aerius.emissionservice.db.generated.template.tables.FarmlandCategories.FARMLAND_CATEGORIES;
+import static nl.aerius.emissionservice.db.generated.template.tables.I18nFarmlandCategories.I18N_FARMLAND_CATEGORIES;
 import static org.jooq.impl.DSL.coalesce;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.select;
@@ -28,7 +28,7 @@ import java.util.Locale;
 import org.jooq.Field;
 import org.springframework.stereotype.Repository;
 
-import nl.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
+import nl.aerius.emissionservice.db.generated.i18n.enums.LanguageCodeType;
 import nl.aerius.emissionservice.model.Category;
 
 @Repository

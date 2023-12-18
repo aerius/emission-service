@@ -22,8 +22,7 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
-import nl.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
-import nl.aerius.emissionservice.repository.DbUtil;
+import nl.aerius.emissionservice.db.generated.i18n.enums.LanguageCodeType;
 
 class DbUtilTest {
 

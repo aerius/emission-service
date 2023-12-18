@@ -19,7 +19,7 @@ package nl.aerius.emissionservice.repository;
 import java.util.Arrays;
 import java.util.Locale;
 
-import nl.aerius.emissionservice.jooq.i18n.enums.LanguageCodeType;
+import nl.aerius.emissionservice.db.generated.i18n.enums.LanguageCodeType;
 
 final class DbUtil {
 
