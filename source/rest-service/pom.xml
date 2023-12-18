@@ -187,9 +187,9 @@
               <!-- Location where generated code should end up -->
               <output>${project.build.directory}/openapi/</output>
               <!-- Package for the api side of things -->
-              <apiPackage>nl.overheid.aerius.emissionservice.api</apiPackage>
+              <apiPackage>nl.aerius.emissionservice.api</apiPackage>
               <!-- Package for the model (or domain) side of things -->
-              <modelPackage>nl.overheid.aerius.emissionservice.model</modelPackage>
+              <modelPackage>nl.aerius.emissionservice.model</modelPackage>
               <!--
                 Prevent generating too much by only specifying one file.
                 The ApiUtil is fairly harmless and is actually used in the delegate pattern.
