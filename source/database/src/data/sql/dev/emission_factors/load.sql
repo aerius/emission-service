@@ -49,10 +49,3 @@ BEGIN; SELECT setup.ae_load_table('dev.shipping_inland_category_source_character
 BEGIN; SELECT setup.ae_load_table('dev.shipping_inland_category_source_characteristics_docked', '{data_folder}/public/shipping_inland_category_source_characteristics_docked_20140326.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('dev.shipping_inland_category_emission_factors', '{data_folder}/public/shipping_inland_category_emission_factors_20200530.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('dev.shipping_inland_category_emission_factors_docked', '{data_folder}/public/shipping_inland_category_emission_factors_docked_20190415.txt'); COMMIT;
-
-/* Machinery data */
-BEGIN; SELECT setup.ae_load_table('dev.machinery_fuel_types', '{data_folder}/public/machinery_fuel_types_20200701.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('dev.machinery_types', '{data_folder}/public/machinery_types_20200619.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('dev.machinery_type_fuel_options', '{data_folder}/public/machinery_type_fuel_options_20200619.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('dev.machinery_type_emission_factors', '{data_folder}/public/machinery_type_emission_factors_20200701.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('dev.machinery_fuel_types_to_sectors', '{data_folder}/public/machinery_fuel_types_to_sectors_20200701.txt'); COMMIT;

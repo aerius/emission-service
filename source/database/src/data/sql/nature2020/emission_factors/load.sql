@@ -56,8 +56,9 @@ BEGIN; SELECT setup.ae_load_table('nature2020.shipping_inland_category_emission_
 BEGIN; SELECT setup.ae_load_table('nature2020.shipping_inland_category_emission_factors_docked', '{data_folder}/public/shipping_inland_category_emission_factors_docked_20190415.txt'); COMMIT;
 
 /* Machinery data */
-BEGIN; SELECT setup.ae_load_table('nature2020.machinery_fuel_types', '{data_folder}/public/machinery_fuel_types_20200701.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2020.machinery_types', '{data_folder}/public/machinery_types_20200619.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2020.machinery_type_fuel_options', '{data_folder}/public/machinery_type_fuel_options_20200619.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2020.machinery_type_emission_factors', '{data_folder}/public/machinery_type_emission_factors_20200701.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2020.machinery_fuel_types_to_sectors', '{data_folder}/public/machinery_fuel_types_to_sectors_20200701.txt'); COMMIT;
+-- Machinery types are removed, kept around as reference.
+--BEGIN; SELECT setup.ae_load_table('nature2020.machinery_fuel_types', '{data_folder}/public/machinery_fuel_types_20200701.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.machinery_types', '{data_folder}/public/machinery_types_20200619.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.machinery_type_fuel_options', '{data_folder}/public/machinery_type_fuel_options_20200619.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.machinery_type_emission_factors', '{data_folder}/public/machinery_type_emission_factors_20200701.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.machinery_fuel_types_to_sectors', '{data_folder}/public/machinery_fuel_types_to_sectors_20200701.txt'); COMMIT;

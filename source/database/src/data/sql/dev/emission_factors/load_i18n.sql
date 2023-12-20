@@ -47,13 +47,3 @@ BEGIN;
 	INSERT INTO dev.i18n_shipping_inland_waterway_categories
 	SELECT shipping_inland_waterway_category_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name, description FROM dev.shipping_inland_waterway_categories;
 COMMIT;
-
-BEGIN;
-	INSERT INTO dev.i18n_machinery_types
-	SELECT machinery_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM dev.machinery_types;
-COMMIT;
-
-BEGIN;
-	INSERT INTO dev.i18n_machinery_fuel_types
-	SELECT machinery_fuel_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM dev.machinery_fuel_types;
-COMMIT;

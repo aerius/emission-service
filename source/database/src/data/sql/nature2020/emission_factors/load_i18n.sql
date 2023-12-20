@@ -52,12 +52,13 @@ BEGIN;
 	SELECT shipping_inland_waterway_category_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name, description FROM nature2020.shipping_inland_waterway_categories;
 COMMIT;
 
-BEGIN;
-	INSERT INTO nature2020.i18n_machinery_types
-	SELECT machinery_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2020.machinery_types;
-COMMIT;
-
-BEGIN;
-	INSERT INTO nature2020.i18n_machinery_fuel_types
-	SELECT machinery_fuel_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2020.machinery_fuel_types;
-COMMIT;
+-- Machinery types are removed, kept around as reference.
+--BEGIN;
+--	INSERT INTO nature2020.i18n_machinery_types
+--	SELECT machinery_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2020.machinery_types;
+--COMMIT;
+--
+--BEGIN;
+--	INSERT INTO nature2020.i18n_machinery_fuel_types
+--	SELECT machinery_fuel_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2020.machinery_fuel_types;
+--COMMIT;
