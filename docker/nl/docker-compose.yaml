@@ -1,0 +1,42 @@
+#
+# Copyright the State of the Netherlands
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/.
+#
+
+version: "3.8"
+
+services:
+  database:
+    build:
+      context: ../common/database
+      args:
+        - DATABASE_VERSION=${AERIUS_IMAGE_TAG}_${AERIUS_GITHASH}
+    image: ${AERIUS_REGISTRY_URL}database:${AERIUS_IMAGE_TAG}
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - POSTGRES_USER=${AERIUS_DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${AERIUS_DATABASE_PASSWORD}
+
+  api:
+    build: ../common/api
+    image: ${AERIUS_REGISTRY_URL}api:${AERIUS_IMAGE_TAG}
+    restart: unless-stopped
+    environment:
+      - TZ=${AERIUS_TIMEZONE}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database/emissions
+      - SPRING_DATASOURCE_USERNAME=${AERIUS_DATABASE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${AERIUS_DATABASE_PASSWORD}

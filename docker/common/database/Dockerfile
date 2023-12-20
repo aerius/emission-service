@@ -19,7 +19,9 @@ ENV DBDATA_PATH="/data_emission_service/db-data/aeriusII" \
     DATABASE_NAME="emissions"
 
 # Copy over the database source files
-COPY . /source/aerius-emission-database/
+COPY source/ /source/aerius-emission-database
 
 # Start the actual database build
-RUN /build-database.sh
+RUN --mount=id=aerius-dbdata,type=cache,target=/data_emission_service/db-data \
+    --mount=type=tmpfs,target=/dev/shm \
+  /build-database.sh
