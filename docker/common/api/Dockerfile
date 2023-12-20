@@ -4,11 +4,11 @@ FROM maven:3-eclipse-temurin-17 as builder
 WORKDIR /app
 
 # First download as many dependencies as possible. This avoids downloading all dependencies each time something in source changes
-COPY pom.xml /app
+COPY source/pom.xml /app
 RUN mvn clean package -Dmaven.main.skip -Dmaven.test.skip -Dspring-boot.repackage.skip && rm -r target
 
 # Next do the actual build
-COPY . /app
+COPY source /app
 RUN mvn clean package
 
 # Move the resultant jar to a known name so it can be picked up by the final image.
