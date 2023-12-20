@@ -20,20 +20,20 @@ version: "3.8"
 services:
   database:
     build:
-      context: source/database
+      context: ../common/database
       args:
-        - DATABASE_VERSION=${IMAGE_TAG}_${GITHASH}
-    image: ${REGISTRY_URL}emission-database:${IMAGE_TAG}
+        - DATABASE_VERSION=${AERIUS_IMAGE_TAG}_${AERIUS_GITHASH}
+    image: ${AERIUS_REGISTRY_URL}emission-database:${AERIUS_IMAGE_TAG}
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
 
   api:
-    build: source/rest-service
-    image: ${REGISTRY_URL}emission-rest-service:${IMAGE_TAG}
+    build: ../common/api
+    image: ${AERIUS_REGISTRY_URL}emission-rest-service:${AERIUS_IMAGE_TAG}
     restart: unless-stopped
     environment:
-      - TZ=${TIMEZONE}
+      - TZ=${AERIUS_TIMEZONE}
       - SPRING_DATASOURCE_URL=jdbc:postgresql://database/emissions
-      - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+      - SPRING_DATASOURCE_USERNAME=${AERIUS_DATABASE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${AERIUS_DATABASE_PASSWORD}
