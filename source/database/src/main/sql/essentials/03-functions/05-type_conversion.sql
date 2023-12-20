@@ -1,8 +1,8 @@
 /*
  * ae_array_to_index
  * -----------------
- * Index (beginnend bij 1; standaard postgres) van het eerste element in wat anyarray gelijk is aan anyelement
- * of NULL indien anyelement niet voor komt.
+ * Index (starting by 1, standard postgres) of the first element in anyarray that is equal to anyelement.
+ * Returns NULL when anylement is not present in anyarray.
  */
 CREATE OR REPLACE FUNCTION ae_array_to_index(anyarray anyarray, anyelement anyelement)
 	RETURNS integer AS
@@ -18,7 +18,7 @@ LANGUAGE sql IMMUTABLE;
 /*
  * ae_enum_to_index
  * ----------------
- * Index (beginnend bij 1; standaard postgres) van anyenum in de type definitie van zijn enum type.
+ * Index (starting by 1, standard postgres) of anyenum in the type definition of it's enum type.
  */
 CREATE OR REPLACE FUNCTION ae_enum_to_index(anyenum anyenum)
 	RETURNS integer AS
@@ -31,8 +31,8 @@ LANGUAGE sql IMMUTABLE;
 /*
  * ae_enum_by_index
  * ----------------
- * Anyenum op positie index (beginnend bij 1; standaard postgres) in de type definitie van het enum type anyenum.
- * of NULL indien index ongeldig is.
+ * Anynum on index position (starting by 1, standard postgres) in the type definition of its enum type.
+ * Returns NULL when the index is invalid.
  */
 CREATE OR REPLACE FUNCTION ae_enum_by_index(anyenum anyenum, index integer)
 	RETURNS anyenum AS

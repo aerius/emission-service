@@ -1,7 +1,7 @@
 /*
  * constants
  * ---------
- * Systeem tabel voor de webapplicatie properties.
+ * System table for constants used by the web application.
  */
 CREATE TABLE system.constants (
 	key text NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE system.constants (
 /*
  * constants_view
  * --------------
- * Union van de webapplicatie (system) constantes en de database (public) constantes.
+ * View containing the union of web application (system) and database (public) constants.
  */
 CREATE OR REPLACE VIEW system.constants_view AS
 SELECT key, value, description, type FROM constants
@@ -28,8 +28,8 @@ SELECT key, value, description, type FROM system.constants
 /*
  * ae_constant
  * -----------
- * Retourneert waarde van een database of webapplicatie constante.
- * Indien constante niet bestaat in de system.constants_view wordt een exceptie geraised.
+ * Function returning the value of a database or web application constant.
+ * When the constant does not exist in the view system.constants_view, an exception is raised.
  */
 CREATE OR REPLACE FUNCTION system.ae_constant(constant_key text)
 	RETURNS text AS
@@ -50,8 +50,8 @@ LANGUAGE plpgsql STABLE;
 /*
  * ae_set_constant
  * ---------------
- * Veranderd de waarde van een database of webapplicatie constante.
- * Indien constante niet reeds bestaat in de system.constants wordt een exceptie geraised.
+ * Function to change the value of a web application constant.
+ * When the constant does not yet exist in the system.constants table, an exception is raised.
  */
 CREATE OR REPLACE FUNCTION system.ae_set_constant(constant_key text, constant_value text)
 	RETURNS void AS
@@ -70,7 +70,7 @@ LANGUAGE plpgsql VOLATILE;
 /*
  * ae_get_git_revision
  * -------------------
- * Retourneert de revision waarde welke als database constants in de database opgeslagen is.
+ * Function returning the revision value, which is stored as a web application constant.
  */
 CREATE OR REPLACE FUNCTION system.ae_get_git_revision()
 	RETURNS text AS

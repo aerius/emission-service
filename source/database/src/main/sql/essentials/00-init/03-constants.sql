@@ -1,7 +1,7 @@
 /*
  * constant_type
  * -------------
- * Geeft het type van een constante aan.
+ * Specifies the type of a constant.
  */
 CREATE TYPE constant_type AS ENUM
 	('string', 'integer', 'float', 'boolean', 'wkt');
@@ -10,7 +10,7 @@ CREATE TYPE constant_type AS ENUM
 /*
  * constants
  * ---------
- * Tabel voor de database constanten.
+ * Table for database constants.
  */
 CREATE TABLE constants (
 	key text NOT NULL,
@@ -25,8 +25,8 @@ CREATE TABLE constants (
 /*
  * ae_constant
  * -----------
- * Retourneert waarde van een database constante.
- * Indien constante niet bestaat in de constants tabel wordt een exceptie geraised.
+ * Function returning the value of a database constant.
+ * When the constant does not exist in the constants table, an exception is raised.
  */
 CREATE OR REPLACE FUNCTION ae_constant(constant_key text)
 	RETURNS text AS
@@ -47,7 +47,7 @@ LANGUAGE plpgsql IMMUTABLE;
 /*
  * ae_get_srid
  * -----------
- * Retourneert de default SRID waarde.
+ * Function returning the default SRID value.
  */
 CREATE OR REPLACE FUNCTION ae_get_srid()
 	RETURNS integer AS

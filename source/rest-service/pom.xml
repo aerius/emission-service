@@ -19,9 +19,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>nl.overheid.aerius</groupId>
+  <parent>
+    <groupId>nl.aerius</groupId>
+    <artifactId>aerius-root-pom</artifactId>
+    <version>1.0.0</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
   <artifactId>emission-service</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>Emission Service</name>
   <description>AERIUS emission service project</description>
 
@@ -62,38 +67,30 @@
       <url>https://nexus.aerius.nl/repository/maven-public/</url>
     </repository>
   </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>aerius-nexus-public</id>
+      <name>AERIUS Nexus Repository</name>
+      <url>https://nexus.aerius.nl/repository/maven-public/</url>
+    </pluginRepository>
+  </pluginRepositories>
 
   <properties>
-    <java.version>11</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>17</java.version>
 
-    <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
-    <openapi-generator-maven-plugin.version>4.3.1</openapi-generator-maven-plugin.version>
-    <swagger-annotations.version>1.6.2</swagger-annotations.version>
-    <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
-
-    <aerius-tools.version>1.1.0-SNAPSHOT</aerius-tools.version>
+    <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
     <spotless.version>2.5.0</spotless.version>
+    <jooq-codegen-maven.version>3.17.12</jooq-codegen-maven.version>
+
+    <generate-jooq.url>jdbc:postgresql://localhost:5432/emissionservice_source_generator</generate-jooq.url>
+    <generate-jooq.username>aerius</generate-jooq.username>
+    <generate-jooq.password>aerius</generate-jooq.password>
+
     <sonar.projectKey>aerius_emission-service</sonar.projectKey>
     <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
     <sonar.organization>aerius</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <!-- Spring boot basic dependencies -->
@@ -107,23 +104,21 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jooq</artifactId>
     </dependency>
 
     <!-- Dependencies for generated code -->
     <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <version>${swagger-annotations.version}</version>
+      <groupId>io.swagger.parser.v3</groupId>
+      <artifactId>swagger-parser</artifactId>
     </dependency>
     <dependency>
       <groupId>org.openapitools</groupId>
       <artifactId>jackson-databind-nullable</artifactId>
-      <version>${jackson-databind-nullable.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
     </dependency>
 
     <!-- Database dependencies -->
@@ -148,28 +143,15 @@
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
         <executions>
           <execution>
             <goals>
               <goal>repackage</goal>
             </goals>
-            <configuration>
-              <mainClass>nl.overheid.aerius.emissionservice.EmissionServiceApplication</mainClass>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -177,7 +159,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>${build-helper-maven-plugin.version}</version>
         <executions>
           <execution>
             <phase>generate-sources</phase>
@@ -196,7 +178,6 @@
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>${openapi-generator-maven-plugin.version}</version>
         <executions>
           <execution>
             <goals>
@@ -211,9 +192,9 @@
               <!-- Location where generated code should end up -->
               <output>${project.build.directory}/openapi/</output>
               <!-- Package for the api side of things -->
-              <apiPackage>nl.overheid.aerius.emissionservice.api</apiPackage>
+              <apiPackage>nl.aerius.emissionservice.api</apiPackage>
               <!-- Package for the model (or domain) side of things -->
-              <modelPackage>nl.overheid.aerius.emissionservice.model</modelPackage>
+              <modelPackage>nl.aerius.emissionservice.model</modelPackage>
               <!--
                 Prevent generating too much by only specifying one file.
                 The ApiUtil is fairly harmless and is actually used in the delegate pattern.
@@ -230,6 +211,12 @@
                   Only have to implement an interface and annotate it with the correct annotation.
                 -->
                 <delegatePattern>true</delegatePattern>
+                <!-- Ensure spring boot 3 dependencies are used (jakarta instead of javax for one thing) -->
+                <useSpringBoot3>true</useSpringBoot3>
+
+                <!-- Ensure generated models implement serializable -->
+                <serializableModel>true</serializableModel>
+
                 <useOptional>true</useOptional>
               </configOptions>
             </configuration>
@@ -289,31 +276,6 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>3.0</version>
-        <configuration>
-          <header>license-header.txt</header>
-
-          <mapping>
-            <java>SLASHSTAR_STYLE</java>
-          </mapping>
-
-          <includes>
-            <include>**/*.java</include>
-            <include>**/pom.xml</include>
-          </includes>
-
-          <excludes>
-            <!-- External source code present in our source code -->
-            <exclude>**/src/main/java/com/**/*.java</exclude>
-          </excludes>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>nl.aerius</groupId>
-            <artifactId>tools</artifactId>
-            <version>${aerius-tools.version}</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>
@@ -326,21 +288,68 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.6</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>generate-jooq</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen-maven</artifactId>
+            <version>${jooq-codegen-maven.version}</version>
+
             <executions>
               <execution>
-                <id>prepare-agent</id>
+                <phase>generate-sources</phase>
                 <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>report</id>
-                <goals>
-                  <goal>report</goal>
+                  <goal>generate</goal>
                 </goals>
               </execution>
             </executions>
+
+            <configuration>
+              <jdbc>
+                <url>${generate-jooq.url}</url>
+                <user>${generate-jooq.username}</user>
+                <password>${generate-jooq.password}</password>
+              </jdbc>
+              <generator>
+                <generate>
+                  <!-- Using spatial types requires the commercial JOOQ distribution -->
+                  <spatialTypes>false</spatialTypes>
+                </generate>
+                <database>
+                  <includes>.*</includes>
+                  <excludes>
+                    ST_.*
+                    | _ST_.*
+                    | POSTGIS_.*
+                    | PGIS_.*
+                    | GEO.*
+                  </excludes>
+                  <schemata>
+                    <schema>
+                      <inputSchema>public</inputSchema>
+                    </schema>
+                    <schema>
+                      <inputSchema>i18n</inputSchema>
+                    </schema>
+                    <schema>
+                      <inputSchema>template</inputSchema>
+                    </schema>
+                  </schemata>
+                </database>
+                <target>
+                  <packageName>nl.aerius.emissionservice.db.generated</packageName>
+                  <directory>src/main/generated</directory>
+                </target>
+              </generator>
+            </configuration>
           </plugin>
         </plugins>
       </build>

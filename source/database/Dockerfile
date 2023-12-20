@@ -1,4 +1,4 @@
-FROM stikstofje/aerius-database-build:12-3.0
+FROM nexus-docker.aerius.nl/database-build:1.1.0-psql_15-pgis_3.4
 
 # Required arguments needed for building this dockerfile.
 # The readonly password should correspond to the sftp_data_path and sftp_data_readonly_username in settings.rb

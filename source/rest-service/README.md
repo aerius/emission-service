@@ -42,3 +42,21 @@ In some cases, like troubleshooting, it can be useful to run without docker.
 You can use a normal `mvn clean package` to obtain a jar that you can run.
 Alternatively, and most likely more useful, you can run/debug the application in your favorite IDE using `EmissionServiceApplication` as main class.
 In that case, you can create a file `{local_git_repository_folder}/aerius-emission-service/source/rest-service/config/application.properties` to supply your configuration or use environment variables.
+
+## JOOQ
+
+We're using JOOQ to query the database.
+
+For more information about JOOQ, see https://www.jooq.org/
+
+### Generating JOOQ classes
+
+JOOQ supports generating classes based on a database.
+This can be done through a maven plugin, however we usually don't want to depend on a database during build time.
+Hence the generated classes are added to version control.
+
+The JOOQ classes can be generated in the following way:
+
+* Create a database with the name `emissionservice_source_generator` based on the database part of this project.
+* Ensure the `aerius` user exists in the database (or adjust pom.xml to your own liking)
+* Run `mvn generate-sources -P generate-jooq` (run normal `generate-sources` maven goal with the `generate-jooq` profile)
