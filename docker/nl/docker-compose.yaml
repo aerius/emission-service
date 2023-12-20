@@ -23,14 +23,14 @@ services:
       context: ../common/database
       args:
         - DATABASE_VERSION=${AERIUS_IMAGE_TAG}_${AERIUS_GITHASH}
-    image: ${AERIUS_REGISTRY_URL}emission-database:${AERIUS_IMAGE_TAG}
+    image: ${AERIUS_REGISTRY_URL}database:${AERIUS_IMAGE_TAG}
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
 
   api:
     build: ../common/api
-    image: ${AERIUS_REGISTRY_URL}emission-rest-service:${AERIUS_IMAGE_TAG}
+    image: ${AERIUS_REGISTRY_URL}api:${AERIUS_IMAGE_TAG}
     restart: unless-stopped
     environment:
       - TZ=${AERIUS_TIMEZONE}

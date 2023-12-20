@@ -40,8 +40,6 @@ services:
     networks:
       - default
       - web
-    extra_hosts:
-      - "aerius-auth-local:host-gateway"
 
   database:
     networks:

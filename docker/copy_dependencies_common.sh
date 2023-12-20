@@ -19,7 +19,7 @@ source ./include.functions.sh
 # database
 # create source directory and put all sources in there so we can use a single COPY statement in the Dockerfile
 # (make sure it's isolated in 1 layer instead of multiple)
-if _is_module_enabled "${1}" 'database-calculator' || _is_module_enabled "${1}" 'database-calculator-uk' || _is_module_enabled "${1}" 'database-check'; then
+if _is_module_enabled "${1}" 'database'; then
   mkdir -p "${DOCKER_COMMON_DIR}"/database/source
   cp -Rauv "${SOURCE_DIR}"/source/database \
            "${DOCKER_COMMON_DIR}"/database/source/
