@@ -1,7 +1,7 @@
 /*
  * substances
  * ----------
- * Stoffen
+ * Substances available within the system.
  */
 CREATE TABLE substances (
 	substance_id smallint NOT NULL,

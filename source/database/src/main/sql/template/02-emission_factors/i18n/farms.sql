@@ -1,7 +1,7 @@
 /*
  * i18n_farm_animal_categories
  * ---------------------------
- * Vertaaltabel voor diercategorieën.
+ * Translation table for farm animal categories.
  */
 CREATE TABLE i18n_farm_animal_categories (
 	farm_animal_category_id integer NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE i18n_farm_animal_categories (
 /*
  * i18n_farm_lodging_types
  * -----------------------
- * Vertaaltabel voor stalsystemen.
+ * Translation table for lodging systems for farms.
  */
 CREATE TABLE i18n_farm_lodging_types (
 	farm_lodging_type_id integer NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE i18n_farm_lodging_types (
 /*
  * i18n_farm_additional_lodging_systems
  * ------------------------------------
- * Vertaaltabel voor additionele staltechnieken.
+ * Translation table for additional lodging techniques for farms.
  */
 CREATE TABLE i18n_farm_additional_lodging_systems (
 	farm_additional_lodging_system_id integer NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE i18n_farm_additional_lodging_systems (
 /*
  * i18n_farm_reductive_lodging_systems
  * -----------------------------------
- * Vertaaltabel voor emissiereducerende staltechnieken.
+ * Translation table for emission reducing lodging techniques for farms.
  */
 CREATE TABLE i18n_farm_reductive_lodging_systems (
 	farm_reductive_lodging_system_id integer NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE i18n_farm_reductive_lodging_systems (
 /*
  * i18n_farm_lodging_fodder_measures
  * ---------------------------------
- * Vertaaltabel voor voer- en managementmaatregelen.
+ * Translation table for fodder and management measures for farms.
  */
 CREATE TABLE i18n_farm_lodging_fodder_measures (
 	farm_lodging_fodder_measure_id integer NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE i18n_farm_lodging_fodder_measures (
 /*
  * i18n_farm_lodging_system_definitions
  * ------------------------------------
- * Vertaaltabel voor stalbeschrijvingen.
+ * Translation table for lodging system definitions for farms.
  */
 CREATE TABLE i18n_farm_lodging_system_definitions (
 	farm_lodging_system_definition_id integer NOT NULL,
@@ -85,4 +85,19 @@ CREATE TABLE i18n_farm_lodging_system_definitions (
 
 	CONSTRAINT i18n_farm_lodging_system_definitions_pkey PRIMARY KEY (farm_lodging_system_definition_id, language_code),
 	CONSTRAINT i18n_farm_lodging_system_definitions_fkey FOREIGN KEY (farm_lodging_system_definition_id) REFERENCES farm_lodging_system_definitions
+);
+
+
+/*
+ * i18n_farm_source_categories
+ * ---------------------------
+ * Translation table for farm source categories.
+ */
+CREATE TABLE i18n_farm_source_categories (
+	farm_source_category_id integer NOT NULL,
+	language_code i18n.language_code_type NOT NULL,
+	description text,
+
+	CONSTRAINT i18n_farm_source_categories_pkey PRIMARY KEY (farm_source_category_id, language_code),
+	CONSTRAINT i18n_farm_source_categories_fkey FOREIGN KEY (farm_source_category_id) REFERENCES farm_source_categories
 );

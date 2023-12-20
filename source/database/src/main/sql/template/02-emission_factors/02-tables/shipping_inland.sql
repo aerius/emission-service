@@ -1,10 +1,7 @@
 /*
  * shipping_inland_categories
  * --------------------------
- * De categories van verschillende soorten binnenvaart-schepen.
- * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.
- *
- * Standaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen worden.
+ * Table containing the inland shipping categories.
  */
 CREATE TABLE shipping_inland_categories
 (
@@ -20,8 +17,8 @@ CREATE TABLE shipping_inland_categories
 /*
  * shipping_inland_waterway_categories
  * -----------------------------------
- * Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.
- * Voor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook aangegeven.
+ * Table containing all waterway categories in the inland shipping network.
+ * @column flowing For some types the current or flow of the waterway is of importance, this is indicated by the flowing boolean.
  */
 CREATE TABLE shipping_inland_waterway_categories
 (
@@ -38,11 +35,11 @@ CREATE TABLE shipping_inland_waterway_categories
 /*
  * shipping_inland_category_emission_factors
  * -----------------------------------------
- * De emissie factoren voor de verschillende soorten varende schepen.
- * Deze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen, ladingstoestand en stof.
+ * Table containing the emission factors for inland shipping categories for moving ships.
+ * These emission factors are defined per ship type, waterway type, travel direction, laden state and substance.
  *
- * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens 
- * varen (in g/(kilometer * aantal schepen)) bij een bepaalde snelheid.
+ * The emission factors are specified by year (year-dependant), and represent the emission factor during movement,
+ * in g/(kilometer * number of ships) at an average speed.
  */
 CREATE TABLE shipping_inland_category_emission_factors
 (
@@ -64,11 +61,11 @@ CREATE TABLE shipping_inland_category_emission_factors
 /*
  * shipping_inland_category_emission_factors_docked
  * ------------------------------------------------
- * De emissie factoren voor verschillende soorten stilliggende schepen.
- * Deze kenmerken zijn uniek per scheepstype, ladingstoestand en stof.
+ * Table containing the emission factors for inland shipping categories for docked ships.
+ * These emission factors are defined per ship type, laden state and substance.
  *
- * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens 
- * stilliggen (in g/(uur * aantal schepen)).
+ * The emission factors are specified by year (year-dependant), and represent the emission factor when not moving (for example when docked),
+ * in g/(hour * number of ships).
  */
 CREATE TABLE shipping_inland_category_emission_factors_docked
 (
@@ -87,8 +84,8 @@ CREATE TABLE shipping_inland_category_emission_factors_docked
 /*
  * shipping_inland_category_source_characteristics
  * -----------------------------------------------
- * De OPS karakteristieken voor verschillende soorten varende schepen.
- * Deze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen en ladingstoestand.
+ * Table containing the OPS characteristics for the inland shipping categories for moving ships.
+ * These characteristics are defined per ship type, waterway type, travel direction and laden state.
  */
 CREATE TABLE shipping_inland_category_source_characteristics
 (
@@ -111,8 +108,8 @@ CREATE TABLE shipping_inland_category_source_characteristics
 /*
  * shipping_inland_category_source_characteristics_docked
  * ------------------------------------------------------
- * De OPS karakteristieken voor verschillende soorten stilliggende schepen.
- * Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
+ * Table containing the OPS characteristics for inland shipping categories for docked ships.
+ * These characteristics are defined per ship type and laden state.
  */
 CREATE TABLE shipping_inland_category_source_characteristics_docked
 (

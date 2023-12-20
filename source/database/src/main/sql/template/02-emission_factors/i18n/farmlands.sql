@@ -1,7 +1,7 @@
 /*
  * i18n_farmland_categories
  * ------------------------
- * Vertaaltabel voor categorieën van verschillende soorten landbouw grond activiteiten.
+ * Translation table for farmland activity categories.
  */
 CREATE TABLE i18n_farmland_categories (
 	farmland_category_id smallint NOT NULL,

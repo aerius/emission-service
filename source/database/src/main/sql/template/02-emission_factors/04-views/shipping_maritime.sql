@@ -1,7 +1,7 @@
 /*
  * shipping_maritime_source_characteristics_view
  * ---------------------------------------------
- * View retourneert de emissie karakteristieken voor zeescheep vaart.
+ * View returning the emission characteristics for maritime shipping.
  */
 CREATE OR REPLACE VIEW shipping_maritime_source_characteristics_view AS
 SELECT

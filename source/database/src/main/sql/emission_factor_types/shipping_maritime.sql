@@ -1,8 +1,9 @@
 /*
  * shipping_movement_type
  * ----------------------
- * Geeft aan wat voor soort beweging een schip aan het maken is. Dit hangt af van de locatie van het schip.
- * Dock is hierbij bijvoorbeeld stilliggend aan de kade.
+ * Enum indicating the type of movement a maritime ship can make.
+ * This depends on the location of the ship.
+ * Dock for instance is when the ship is moored at a dock and not moving.
  */
 CREATE TYPE shipping_movement_type AS ENUM
 	('dock', 'inland', 'maritime');

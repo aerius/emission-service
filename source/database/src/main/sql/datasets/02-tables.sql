@@ -1,8 +1,8 @@
 /*
  * datasets
  * --------
- * De verschillende datasets die beschikbaar zijn.
- * De data voor elke dataset bevindt zich in een eigen database schema.
+ * The different datasets that are available.
+ * The data for each dataset will reside in their own database schema.
  */
 CREATE TABLE datasets (
 	code text NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE datasets (
 /*
  * i18n_datasets
  * -------------
- * Vertaaltabel voor de verschillende datasets die beschikbaar zijn.
+ * Translation table for the different available datasets.
  */
 CREATE TABLE i18n_datasets (
 	code text NOT NULL,

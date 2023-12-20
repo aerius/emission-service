@@ -1,7 +1,7 @@
 /*
  * dataset_metadata
  * ----------------
- * Metadata voor deze dataset
+ * Table containing metadata for this dataset.
  */
 CREATE TABLE dataset_metadata (
 	key text NOT NULL,

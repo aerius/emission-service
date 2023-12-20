@@ -1,8 +1,8 @@
 /*
  * shipping_maritime_categories
  * ----------------------------
- * De categories van verschillende soorten schepen voor zeevaart.
- * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.
+ * Table containing the maritime shipping categories.
+ * The name of the category should indicate a tonnage-range.
  */
 CREATE TABLE shipping_maritime_categories
 (
@@ -18,10 +18,10 @@ CREATE TABLE shipping_maritime_categories
 /*
  * shipping_maritime_category_maneuver_properties
  * ----------------------------------------------
- * Manoeuvreer-eigenschappen per zeevaart schip.
+ * Table containing maneuver properties for maritime shipping categories.
  *
- * Maneuver_factor is de factor waarmee de emissie in het beginstuk van de vaarroute moet worden opgehoogd vanwege het manouvreren van het schip bij de kade.
- * Maneuver_length is de lengte van de route waarbij deze factor gebruikt moet worden.
+ * @column maneuver_factor The factor to increase emissions at the starting section of a route due to maneuvring the ship near the dock.
+ * @column maneuver_length The length of the route for which the factor should be applied.
  */
 CREATE TABLE shipping_maritime_category_maneuver_properties
 (
@@ -37,13 +37,12 @@ CREATE TABLE shipping_maritime_category_maneuver_properties
 /*
  * shipping_maritime_category_emission_factors
  * -------------------------------------------
- * De emissie factoren voor verschillende soorten schepen voor zeescheepvaart.
- * Deze factoren zijn uniek per scheepstype per stof per jaar per snelheid.
+ * Table containing the emission factors for maritime shipping categories.
+ * These factors are defined per shipping category, per substance, per year and per movement type.
  *
- * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens 
- * varen (in kg/(kilometer * aantal schepen)) bij een bepaalde snelheid.
- * De emission_factor bij een snelheid van 0 is de emissie factor tijdens stilliggen.
- * (in kg/(aantal schepen * uur stilliggen)).
+ * The unit of the emission factor depends on the movement type.
+ * When moving at a certain speed, the emission factor is in kg/(kilometer * number of ships).
+ * When not moving/docked, the emission factor is in kg/(hours docked * number of ships).
  */
 CREATE TABLE shipping_maritime_category_emission_factors
 (
@@ -62,13 +61,9 @@ CREATE TABLE shipping_maritime_category_emission_factors
 /*
  * shipping_maritime_category_source_characteristics
  * -------------------------------------------------
- * De OPS karakteristieken per scheepstype.
+ * Table containing the OPS characteristics per maritime shipping category.
  *
- * De warmteinhoud (heat_content) in deze tabel overschrijft verder de warmteinhoud verkregen via de sector van het scheepstype.
- * Dit omdat de warmteinhoud afhankelijk is van de scheepstype en beweegtype.
- * De hoogte gedefinieerd in deze tabel overschrijft daarbij de hoogte verkregen via de sector.
- * Dit omdat de hoogte varieert per tonnage-reeks en beweeg type, niet alleen per sector.
- * Spreiding is verder weer een karakteristiek die sterk samenhangt per hoogte, en is daarom ook meegenomen in deze tabel.
+ * These characteristics all depend on the type of the ship and the type of movement.
  */
 CREATE TABLE shipping_maritime_category_source_characteristics
 (
@@ -83,4 +78,24 @@ CREATE TABLE shipping_maritime_category_source_characteristics
 	CONSTRAINT shipping_maritime_category_source_char_pkey PRIMARY KEY (shipping_maritime_category_id, movement_type, year),
 	CONSTRAINT shipping_maritime_category_source_char_fkey_categories FOREIGN KEY (shipping_maritime_category_id) REFERENCES shipping_maritime_categories,
 	CONSTRAINT shipping_maritime_category_source_char_fkey_gcn_sectors FOREIGN KEY (gcn_sector_id) REFERENCES gcn_sectors
+);
+
+
+/*
+ * shipping_maritime_mooring_maneuver_factors
+ * ------------------------------------------
+ * Table containing the maneuver factors and maneuver lengths for bruto tonnage ranges.
+ *
+ * @column tonnage_lower_threshold The lower threshold/boundary of the bruto tonnage range. The upper threshold/boundary is the lower threshold of the next range.
+ * @column maneuver_factor The factor that should be applied to the emission for the section of the route where maneuvering near a dock is expected.
+ * @column maneuver_length The length of the route from a dock for which maneuvering is expected, and for which the maneuver factor should be applied.
+ */
+CREATE TABLE shipping_maritime_mooring_maneuver_factors
+(
+	tonnage_category_id smallint NOT NULL,
+	tonnage_lower_threshold integer NOT NULL,
+	maneuver_factor posreal NOT NULL,
+	maneuver_length posreal NOT NULL,
+
+	CONSTRAINT shipping_maritime_mooring_maneuver_factors_pkey PRIMARY KEY (tonnage_category_id)
 );

@@ -1,7 +1,7 @@
 /*
  * i18n_sectors
  * ------------
- * Vertaaltabel voor sectoren.
+ * Table containing i18n localization for sectors.
  */
 CREATE TABLE i18n_sectors (
 	sector_id integer NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE i18n_sectors (
 /*
  * i18n_emission_diurnal_variations
  * --------------------------------
- * Vertaaltabel voor de verschillende type temporele variaties.
+ * Table containing i18n localization for different types of diurnal variation.
  */
 CREATE TABLE i18n_emission_diurnal_variations (
 	emission_diurnal_variation_id integer NOT NULL,

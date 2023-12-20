@@ -1,9 +1,7 @@
 /*
  * emission_diurnal_variations
  * ---------------------------
- * Lijst met verschillende types temporele variaties.
- *
- * We gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id als foreign key voorkomt.
+ * Table containing the different types of diurnal (temporal) variations.
  */
 CREATE TABLE emission_diurnal_variations (
 	emission_diurnal_variation_id integer NOT NULL,
@@ -18,7 +16,7 @@ CREATE TABLE emission_diurnal_variations (
 /*
  * sector_default_source_characteristics
  * -------------------------------------
- * Standaard OPS kenmerken per sector.
+ * Table containing the standard OPS characteristics per sector.
  */
 CREATE TABLE sector_default_source_characteristics (
 	sector_id integer NOT NULL,
@@ -36,7 +34,7 @@ CREATE TABLE sector_default_source_characteristics (
 /*
  * gcn_sector_source_characteristics
  * ---------------------------------
- * Voorgedefinieerde OPS kenmerken per GCN sector.
+ * Table containing the predefined OPS characteristics per GCN sector.
  */
 CREATE TABLE gcn_sector_source_characteristics (
 	gcn_sector_id integer NOT NULL,
