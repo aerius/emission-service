@@ -1,5 +1,4 @@
 /* Road data */
--- TODO: replace with current data
 BEGIN; SELECT setup.ae_load_table('dev.road_area_categories', '{data_folder}/public/road_area_categories_20220203.txt', TRUE); COMMIT;
 BEGIN; SELECT setup.ae_load_table('dev.road_type_categories', '{data_folder}/public/road_type_categories_20220203.txt', TRUE); COMMIT;
 BEGIN; SELECT setup.ae_load_table('dev.road_vehicle_categories', '{data_folder}/public/road_vehicle_categories_20220203.txt', TRUE); COMMIT;
