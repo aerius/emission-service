@@ -15,7 +15,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-version: "3"
+version: "3.10"
 
 services:
   database:
