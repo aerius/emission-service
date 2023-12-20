@@ -13,13 +13,14 @@ ARG DATABASE_VERSION
 # DBSOURCE_PATH should be the path containing our database source
 # DATABASE_NAME will be the resulting database name
 ENV DBDATA_PATH="/data_emission_service/db-data/aeriusII" \
-    DBCONFIG_PATH="/source/aerius-emission-database" \
+    DBSOURCE_PATH="/source/database" \
+    DBCONFIG_PATH="/source/database" \
     DBRUNSCRIPT="docker" \
-    DBSOURCE_PATH="/source/aerius-emission-database" \
+    DBDATA_CLEANUP="false" \
     DATABASE_NAME="emissions"
 
 # Copy over the database source files
-COPY source/ /source/aerius-emission-database
+COPY source/ /source
 
 # Start the actual database build
 RUN --mount=id=aerius-dbdata,type=cache,target=/data_emission_service/db-data \

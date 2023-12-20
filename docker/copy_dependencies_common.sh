@@ -29,7 +29,7 @@ fi
 # This service is build within docker, so move the source to the correct location
 if _is_module_enabled "${1}" 'api'; then
   cp -auv "${SOURCE_DIR}"/source/rest-service \
-          "${DOCKER_COMMON_DIR}"/api/
+          "${DOCKER_COMMON_DIR}"/api/source
 fi
 
 # Change current directory to previous one so scripts calling this one can function properly

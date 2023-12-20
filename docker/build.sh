@@ -12,11 +12,7 @@ cd "${SCRIPT_DIR}"
 source ./include.functions.sh
 
 # Set variables we will re-use multiple times
-PROFILE_PATH="${GENERATED_DIRECTORY}/${CUSTOM_PROFILE_FILENAME}"
 DOCKER_COMPOSE_ORIGINAL_PATH="${GENERATED_DIRECTORY}/docker-compose-original.yaml"
-
-# Set variable with whether the custom profile file is found
-[[ -f "${PROFILE_PATH}" ]] && PROFILE_PATH_FOUND=0 || PROFILE_PATH_FOUND=1
 
 ####################
 ### Validations ###
@@ -26,6 +22,8 @@ DOCKER_COMPOSE_ORIGINAL_PATH="${GENERATED_DIRECTORY}/docker-compose-original.yam
 if ! ( [[ -d "${GENERATED_DIRECTORY}" ]] || [[ -f "${DOCKER_COMPOSE_ORIGINAL_PATH}" ]] ); then
   _error 'Generated directory not found. Use prepare.sh to generate one first.'
 fi
+
+: ${SFTP_READONLY_PASSWORD?'ENV variable SFTP_READONLY_PASSWORD is required if a database needs to be built'}
 
 #####################
 ### The real deal ###
@@ -54,4 +52,4 @@ echo
 
 # Build images
 echo '# Building images'
-_docker-compose -f "${DOCKER_COMPOSE_PATH}" --project-directory "${GENERATED_DIRECTORY}" build --pull --parallel
+_docker-compose -f "${DOCKER_COMPOSE_PATH}" --project-directory "${GENERATED_DIRECTORY}" build --pull --parallel --build-arg SFTP_READONLY_PASSWORD="${SFTP_READONLY_PASSWORD}"

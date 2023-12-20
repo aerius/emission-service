@@ -1,0 +1,6 @@
+# Ignore generated theme
+generated/*
+
+# Ignore source code
+*/*/source
+
