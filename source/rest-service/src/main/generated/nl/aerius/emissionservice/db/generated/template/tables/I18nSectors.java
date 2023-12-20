@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor sectoren.
+ * Table containing i18n localization for sectors.
  * 
  * @file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql
  */
@@ -74,7 +74,7 @@ public class I18nSectors extends TableImpl<I18nSectorsRecord> {
     }
 
     private I18nSectors(Name alias, Table<I18nSectorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor sectoren.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing i18n localization for sectors.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql"), TableOptions.table());
     }
 
     /**

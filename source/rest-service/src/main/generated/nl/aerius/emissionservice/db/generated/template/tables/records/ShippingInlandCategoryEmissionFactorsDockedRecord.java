@@ -15,11 +15,13 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De emissie factoren voor verschillende soorten stilliggende schepen.
- * Deze kenmerken zijn uniek per scheepstype, ladingstoestand en stof.
+ * Table containing the emission factors for inland shipping categories for
+ * docked ships.
+ * These emission factors are defined per ship type, laden state and substance.
  * 
- * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de
- * emissie factor tijdens stilliggen (in g/(uur * aantal schepen)).
+ * The emission factors are specified by year (year-dependant), and represent
+ * the emission factor when not moving (for example when docked), in g/(hour *
+ * number of ships).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql

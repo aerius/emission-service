@@ -14,7 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Stoffen
+ * Substances available within the system.
  * 
  * @file source/database/src/main/sql/substances/02-tables.sql
  */

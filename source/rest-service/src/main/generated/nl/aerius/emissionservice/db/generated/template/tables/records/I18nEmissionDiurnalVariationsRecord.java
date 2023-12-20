@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor de verschillende type temporele variaties.
+ * Table containing i18n localization for different types of diurnal variation.
  * 
  * @file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql
  */

@@ -14,20 +14,20 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Bevat de reductie factoren (factor 0..1) van de voer- en
- * managementmaatregelen.
- * Als er maatregelen op een stalsysteem worden toegepast, wordt van de
- * combinatie van maatregelen eerst een enkele reductiefactor bepaalt. Deze
- * reductiefactor wordt vervolgens toegepast op de totale emissie van het
- * stalsysteem waarop gestapeld wordt, inclusief eventuele additionele en
- * emissiereducerende staltechnieken die hierop gestapeld zijn.
+ * Table containing the reduction factors (factor 0..1) for fodder and managment
+ * measures.
+ * When measures are applied to a lodging system, a single reduction factor for
+ * the combination of measures is first determined.
+ * This reduction factor is then applied on the total emission of the lodging
+ * system, including additional or emission reducing lodging systems that are
+ * stacked.
  * 
- * @column reduction_factor_floor De reductiefactor voor de emissie vanaf de
- * vloer
- * @column reduction_factor_cellar De reductiefactor voor de emissie uit de
- * mestkelder
- * @column reduction_factor_total De gecombineerde reductiefactor voor de
- * emissie vanaf de vloer en uit de mestkelder
+ * @column reduction_factor_floor The reduction factor for emission from the
+ * floor.
+ * @column reduction_factor_cellar The reduction factor for emission from the
+ * manure cellar.
+ * @column reduction_factor_total The combined reduction factor for emission
+ * from both floor and manure cellar.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

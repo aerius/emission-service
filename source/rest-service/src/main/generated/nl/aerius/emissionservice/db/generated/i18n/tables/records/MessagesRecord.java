@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Systeem tabel voor localized teksten.
+ * System table for localized messages.
  * 
  * @file source/database/src/main/sql/i18n/02-tables.sql
  */

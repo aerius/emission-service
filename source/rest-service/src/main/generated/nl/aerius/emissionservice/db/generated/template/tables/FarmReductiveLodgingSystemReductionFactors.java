@@ -32,11 +32,11 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Bevat de reductiefactoren (factor 0..1) van de emissiereducerende
- * staltechnieken.
- * Deze reductiefactor wordt toegepast op de totale emissie van het stalsysteem
- * waarop gestapeld wordt, inclusief eventuele additionele staltechnieken die
- * hierop gestapeld zijn.
+ * Table containing the reduction factors (factor 0..1) for the emission
+ * reducing lodging techniques.
+ * These reduction factors are applied on the total emission of the lodging
+ * system on which it is stacked, including any additional lodging techniques
+ * that have been stacked.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -83,7 +83,7 @@ public class FarmReductiveLodgingSystemReductionFactors extends TableImpl<FarmRe
     }
 
     private FarmReductiveLodgingSystemReductionFactors(Name alias, Table<FarmReductiveLodgingSystemReductionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Bevat de reductiefactoren (factor 0..1) van de emissiereducerende staltechnieken.\r\nDeze reductiefactor wordt toegepast op de totale emissie van het stalsysteem waarop gestapeld wordt, inclusief eventuele additionele staltechnieken die hierop gestapeld zijn.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the reduction factors (factor 0..1) for the emission reducing lodging techniques.\r\nThese reduction factors are applied on the total emission of the lodging system on which it is stacked, including any additional lodging techniques that have been stacked.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**

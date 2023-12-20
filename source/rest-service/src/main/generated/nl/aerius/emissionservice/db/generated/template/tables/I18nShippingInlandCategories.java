@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten binnenvaart-schepen.
+ * Translation table for inland shipping categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql
@@ -84,7 +84,7 @@ public class I18nShippingInlandCategories extends TableImpl<I18nShippingInlandCa
     }
 
     private I18nShippingInlandCategories(Name alias, Table<I18nShippingInlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten binnenvaart-schepen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for inland shipping categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

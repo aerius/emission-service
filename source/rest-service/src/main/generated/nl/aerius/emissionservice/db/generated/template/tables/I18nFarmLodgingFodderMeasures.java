@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor voer- en managementmaatregelen.
+ * Translation table for fodder and management measures for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql
@@ -79,7 +79,7 @@ public class I18nFarmLodgingFodderMeasures extends TableImpl<I18nFarmLodgingFodd
     }
 
     private I18nFarmLodgingFodderMeasures(Name alias, Table<I18nFarmLodgingFodderMeasuresRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor voer- en managementmaatregelen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for fodder and management measures for farms.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     /**

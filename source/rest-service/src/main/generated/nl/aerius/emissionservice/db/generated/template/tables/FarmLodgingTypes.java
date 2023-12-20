@@ -8,17 +8,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import nl.aerius.emissionservice.db.generated.public_.enums.FarmEmissionFactorType;
 import nl.aerius.emissionservice.db.generated.template.Keys;
 import nl.aerius.emissionservice.db.generated.template.Template;
 import nl.aerius.emissionservice.db.generated.template.tables.records.FarmLodgingTypesRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function6;
+import org.jooq.Function7;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row6;
+import org.jooq.Row7;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -31,11 +32,13 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Stalsystemen (huisvestingssystemen); dit is in essentie de RAV-code lijst,
- * zie
- * http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage1
- * Een stalsysteem behoort altijd tot een bepaalde diercategorie.
- * Ook aangegeven is of het een luchtwasser is.
+ * Table containing farm lodging or farm housing systems (huisvestingssystemen).
+ * 
+ * A lodging system always belongs to a farm animal category.
+ * This table also indicates if the system is a scrubber (luchtwasser).
+ * For NL: this is in essence the RAV-code list, see
+ * https://wetten.overheid.nl/jci1.3:c:BWBR0013629&amp;bijlage=1&amp;z=2023-04-01&amp;g=2023-04-01
+ * 
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -89,12 +92,18 @@ public class FarmLodgingTypes extends TableImpl<FarmLodgingTypesRecord> {
      */
     public final TableField<FarmLodgingTypesRecord, Boolean> SCRUBBER = createField(DSL.name("scrubber"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
+    /**
+     * The column
+     * <code>template.farm_lodging_types.farm_emission_factor_type</code>.
+     */
+    public final TableField<FarmLodgingTypesRecord, FarmEmissionFactorType> FARM_EMISSION_FACTOR_TYPE = createField(DSL.name("farm_emission_factor_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.FarmEmissionFactorType.class), this, "");
+
     private FarmLodgingTypes(Name alias, Table<FarmLodgingTypesRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private FarmLodgingTypes(Name alias, Table<FarmLodgingTypesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Stalsystemen (huisvestingssystemen); dit is in essentie de RAV-code lijst, zie http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage1 Een stalsysteem behoort altijd tot een bepaalde diercategorie.\r\nOok aangegeven is of het een luchtwasser is.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing farm lodging or farm housing systems (huisvestingssystemen).\r\nA lodging system always belongs to a farm animal category.\r\nThis table also indicates if the system is a scrubber (luchtwasser).\r\nFor NL: this is in essence the RAV-code list, see https://wetten.overheid.nl/jci1.3:c:BWBR0013629&bijlage=1&z=2023-04-01&g=2023-04-01\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**
@@ -197,18 +206,18 @@ public class FarmLodgingTypes extends TableImpl<FarmLodgingTypesRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, Integer, String, String, String, Boolean> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row7<Integer, Integer, String, String, String, Boolean, FarmEmissionFactorType> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function6<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Boolean, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function7<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Boolean, ? super FarmEmissionFactorType, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -216,7 +225,7 @@ public class FarmLodgingTypes extends TableImpl<FarmLodgingTypesRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Boolean, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Integer, ? super Integer, ? super String, ? super String, ? super String, ? super Boolean, ? super FarmEmissionFactorType, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -14,7 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Metadata voor deze dataset
+ * Table containing metadata for this dataset.
  * 
  * @file source/database/src/main/sql/template/dataset_metadata.sql
  */

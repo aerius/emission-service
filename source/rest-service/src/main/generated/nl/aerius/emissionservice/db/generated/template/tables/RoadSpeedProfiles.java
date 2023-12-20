@@ -6,7 +6,6 @@ package nl.aerius.emissionservice.db.generated.template.tables;
 
 import java.util.function.Function;
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
 import nl.aerius.emissionservice.db.generated.public_.enums.SpeedLimitEnforcementType;
 import nl.aerius.emissionservice.db.generated.template.Keys;
 import nl.aerius.emissionservice.db.generated.template.Template;
@@ -14,11 +13,11 @@ import nl.aerius.emissionservice.db.generated.template.tables.records.RoadSpeedP
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function5;
+import org.jooq.Function4;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row5;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -31,7 +30,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Tabel met daarin de verschillende snelheidstyperingen per wegtype.
+ * Table containing the different speed profiles.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
@@ -61,11 +60,6 @@ public class RoadSpeedProfiles extends TableImpl<RoadSpeedProfilesRecord> {
     public final TableField<RoadSpeedProfilesRecord, Integer> ROAD_SPEED_PROFILE_ID = createField(DSL.name("road_speed_profile_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>template.road_speed_profiles.road_type</code>.
-     */
-    public final TableField<RoadSpeedProfilesRecord, RoadType> ROAD_TYPE = createField(DSL.name("road_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.RoadType.class), this, "");
-
-    /**
      * The column
      * <code>template.road_speed_profiles.speed_limit_enforcement</code>.
      */
@@ -77,16 +71,16 @@ public class RoadSpeedProfiles extends TableImpl<RoadSpeedProfilesRecord> {
     public final TableField<RoadSpeedProfilesRecord, Integer> MAXIMUM_SPEED = createField(DSL.name("maximum_speed"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>template.road_speed_profiles.name</code>.
+     * The column <code>template.road_speed_profiles.gradient</code>.
      */
-    public final TableField<RoadSpeedProfilesRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB, this, "");
+    public final TableField<RoadSpeedProfilesRecord, Integer> GRADIENT = createField(DSL.name("gradient"), SQLDataType.INTEGER, this, "");
 
     private RoadSpeedProfiles(Name alias, Table<RoadSpeedProfilesRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private RoadSpeedProfiles(Name alias, Table<RoadSpeedProfilesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Tabel met daarin de verschillende snelheidstyperingen per wegtype.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the different speed profiles.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     /**
@@ -166,18 +160,18 @@ public class RoadSpeedProfiles extends TableImpl<RoadSpeedProfilesRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Integer, RoadType, SpeedLimitEnforcementType, Integer, String> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row4<Integer, SpeedLimitEnforcementType, Integer, Integer> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function5<? super Integer, ? super RoadType, ? super SpeedLimitEnforcementType, ? super Integer, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function4<? super Integer, ? super SpeedLimitEnforcementType, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -185,7 +179,7 @@ public class RoadSpeedProfiles extends TableImpl<RoadSpeedProfilesRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Integer, ? super RoadType, ? super SpeedLimitEnforcementType, ? super Integer, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Integer, ? super SpeedLimitEnforcementType, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

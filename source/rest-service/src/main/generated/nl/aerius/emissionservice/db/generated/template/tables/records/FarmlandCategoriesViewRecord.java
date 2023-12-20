@@ -13,7 +13,7 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de landbouwgrond categoriëen.
+ * View returning the farmland categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farmlands.sql
@@ -68,16 +68,16 @@ public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCatego
     }
 
     /**
-     * Setter for <code>template.farmland_categories_view.gcn_sector_id</code>.
+     * Setter for <code>template.farmland_categories_view.sector_id</code>.
      */
-    public void setGcnSectorId(Integer value) {
+    public void setSectorId(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>template.farmland_categories_view.gcn_sector_id</code>.
+     * Getter for <code>template.farmland_categories_view.sector_id</code>.
      */
-    public Integer getGcnSectorId() {
+    public Integer getSectorId() {
         return (Integer) get(3);
     }
 
@@ -112,7 +112,7 @@ public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCatego
 
     @Override
     public Field<Integer> field4() {
-        return FarmlandCategoriesView.FARMLAND_CATEGORIES_VIEW.GCN_SECTOR_ID;
+        return FarmlandCategoriesView.FARMLAND_CATEGORIES_VIEW.SECTOR_ID;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCatego
 
     @Override
     public Integer component4() {
-        return getGcnSectorId();
+        return getSectorId();
     }
 
     @Override
@@ -152,7 +152,7 @@ public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCatego
 
     @Override
     public Integer value4() {
-        return getGcnSectorId();
+        return getSectorId();
     }
 
     @Override
@@ -175,7 +175,7 @@ public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCatego
 
     @Override
     public FarmlandCategoriesViewRecord value4(Integer value) {
-        setGcnSectorId(value);
+        setSectorId(value);
         return this;
     }
 
@@ -202,12 +202,12 @@ public class FarmlandCategoriesViewRecord extends TableRecordImpl<FarmlandCatego
     /**
      * Create a detached, initialised FarmlandCategoriesViewRecord
      */
-    public FarmlandCategoriesViewRecord(Short farmlandCategoryId, String code, String name, Integer gcnSectorId) {
+    public FarmlandCategoriesViewRecord(Short farmlandCategoryId, String code, String name, Integer sectorId) {
         super(FarmlandCategoriesView.FARMLAND_CATEGORIES_VIEW);
 
         setFarmlandCategoryId(farmlandCategoryId);
         setCode(code);
         setName(name);
-        setGcnSectorId(gcnSectorId);
+        setSectorId(sectorId);
     }
 }

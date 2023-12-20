@@ -30,7 +30,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Tabel voor de database constanten.
+ * Table for database constants.
  * 
  * @file source/database/src/main/sql/essentials/00-init/03-constants.sql
  */
@@ -77,7 +77,7 @@ public class Constants extends TableImpl<ConstantsRecord> {
     }
 
     private Constants(Name alias, Table<ConstantsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Tabel voor de database constanten.\r\n\r\n@file source/database/src/main/sql/essentials/00-init/03-constants.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table for database constants.\r\n\r\n@file source/database/src/main/sql/essentials/00-init/03-constants.sql"), TableOptions.table());
     }
 
     /**

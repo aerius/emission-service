@@ -14,8 +14,7 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken voor aanlegplaatsen voor
- * binnenvaart.
+ * View returning the emission characteristics for inland shipping docks.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql

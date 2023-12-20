@@ -31,17 +31,10 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De categorieën van verschillende soorten onroad mobiele bronnen.
- * Dit is qua structuur dezelfde tabel als mobile_source_off_road_categories.
- * Hierdoor zou overerving wel kunnen, echter is het nadeel hierbij dat voor de
- * ID's vervolgens rekening gehouden moet worden met de andere tabel. Hierom is
- * gekozen NIET gebruik te maken van overerving.
- * Er is een kans dat de lijsten afzonderlijk van elkaar zullen gaan wijzigen.
- * 
- * De naam is hierbij de identificatie van de categorie voor de gebruiker.
+ * Table containing the on road mobile source categories.
  * 
  * @file
- * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
+ * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOnRoadCategories extends TableImpl<MobileSourceOnRoadCategoriesRecord> {
@@ -89,7 +82,7 @@ public class MobileSourceOnRoadCategories extends TableImpl<MobileSourceOnRoadCa
     }
 
     private MobileSourceOnRoadCategories(Name alias, Table<MobileSourceOnRoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten onroad mobiele bronnen.\r\nDit is qua structuur dezelfde tabel als mobile_source_off_road_categories.\r\nHierdoor zou overerving wel kunnen, echter is het nadeel hierbij dat voor de ID's vervolgens rekening gehouden moet worden met de andere tabel. Hierom is gekozen NIET gebruik te maken van overerving.\r\nEr is een kans dat de lijsten afzonderlijk van elkaar zullen gaan wijzigen.\r\n\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the on road mobile source categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     /**

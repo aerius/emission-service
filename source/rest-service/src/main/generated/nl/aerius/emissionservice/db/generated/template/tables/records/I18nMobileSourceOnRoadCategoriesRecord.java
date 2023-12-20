@@ -15,11 +15,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten onroad mobiele
- * bronnen.
+ * Translation table for on road mobile source categories.
  * 
  * @file
- * source/database/src/main/sql/template/02-emission_factors/i18n/mobile_sources.sql
+ * source/database/src/main/sql/template/02-emission_factors/i18n/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class I18nMobileSourceOnRoadCategoriesRecord extends UpdatableRecordImpl<I18nMobileSourceOnRoadCategoriesRecord> implements Record4<Short, LanguageCodeType, String, String> {

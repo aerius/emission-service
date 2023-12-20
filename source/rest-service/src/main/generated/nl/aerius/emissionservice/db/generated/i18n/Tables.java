@@ -15,15 +15,14 @@ import nl.aerius.emissionservice.db.generated.i18n.tables.SystemInfoMessages;
 public class Tables {
 
     /**
-     * Systeem tabel voor localized teksten.
+     * System table for localized messages.
      * 
      * @file source/database/src/main/sql/i18n/02-tables.sql
      */
     public static final Messages MESSAGES = Messages.MESSAGES;
 
     /**
-     * Systeem info tabel voor localized teksten, voor tonen van systeem
-     * berichten.
+     * System info table for localized messages, for showing system messages.
      * 
      * @file source/database/src/main/sql/i18n/02-tables.sql
      */

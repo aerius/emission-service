@@ -28,7 +28,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de waterweg categorieen.
+ * View returning the waterway categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql
@@ -81,7 +81,7 @@ public class ShippingInlandWaterwayCategoriesView extends TableImpl<ShippingInla
     }
 
     private ShippingInlandWaterwayCategoriesView(Name alias, Table<ShippingInlandWaterwayCategoriesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de waterweg categorieen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the waterway categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql"), TableOptions.view("""
         create view "shipping_inland_waterway_categories_view" as  SELECT DISTINCT shipping_inland_category_emission_factors.shipping_inland_waterway_category_id,
           shipping_inland_waterway_categories.code,
           shipping_inland_waterway_categories.name,

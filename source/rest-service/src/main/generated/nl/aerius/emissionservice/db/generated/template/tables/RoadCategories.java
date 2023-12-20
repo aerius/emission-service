@@ -8,19 +8,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
-import nl.aerius.emissionservice.db.generated.public_.enums.VehicleType;
 import nl.aerius.emissionservice.db.generated.template.Keys;
 import nl.aerius.emissionservice.db.generated.template.Template;
 import nl.aerius.emissionservice.db.generated.template.tables.records.RoadCategoriesRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function6;
+import org.jooq.Function5;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row6;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -33,10 +31,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Tabel met daarin de verschillende soorten wegen en de verschillende type
- * voertuigen op die wegen.
- * 
- * Dit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).
+ * Table containing road categories, which are combinations of road areas, road
+ * types, vehicle types, etc.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
@@ -65,36 +61,32 @@ public class RoadCategories extends TableImpl<RoadCategoriesRecord> {
     public final TableField<RoadCategoriesRecord, Integer> ROAD_CATEGORY_ID = createField(DSL.name("road_category_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>template.road_categories.gcn_sector_id</code>.
+     * The column <code>template.road_categories.road_area_category_id</code>.
      */
-    public final TableField<RoadCategoriesRecord, Integer> GCN_SECTOR_ID = createField(DSL.name("gcn_sector_id"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<RoadCategoriesRecord, Integer> ROAD_AREA_CATEGORY_ID = createField(DSL.name("road_area_category_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>template.road_categories.road_type</code>.
+     * The column <code>template.road_categories.road_type_category_id</code>.
      */
-    public final TableField<RoadCategoriesRecord, RoadType> ROAD_TYPE = createField(DSL.name("road_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.RoadType.class), this, "");
+    public final TableField<RoadCategoriesRecord, Integer> ROAD_TYPE_CATEGORY_ID = createField(DSL.name("road_type_category_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>template.road_categories.vehicle_type</code>.
+     * The column
+     * <code>template.road_categories.road_vehicle_category_id</code>.
      */
-    public final TableField<RoadCategoriesRecord, VehicleType> VEHICLE_TYPE = createField(DSL.name("vehicle_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.VehicleType.class), this, "");
+    public final TableField<RoadCategoriesRecord, Integer> ROAD_VEHICLE_CATEGORY_ID = createField(DSL.name("road_vehicle_category_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>template.road_categories.name</code>.
+     * The column <code>template.road_categories.road_speed_profile_id</code>.
      */
-    public final TableField<RoadCategoriesRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB.nullable(false), this, "");
-
-    /**
-     * The column <code>template.road_categories.description</code>.
-     */
-    public final TableField<RoadCategoriesRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
+    public final TableField<RoadCategoriesRecord, Integer> ROAD_SPEED_PROFILE_ID = createField(DSL.name("road_speed_profile_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     private RoadCategories(Name alias, Table<RoadCategoriesRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private RoadCategories(Name alias, Table<RoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Tabel met daarin de verschillende soorten wegen en de verschillende type voertuigen op die wegen.\r\n\r\nDit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing road categories, which are combinations of road areas, road types, vehicle types, etc.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     /**
@@ -134,25 +126,49 @@ public class RoadCategories extends TableImpl<RoadCategoriesRecord> {
 
     @Override
     public List<UniqueKey<RoadCategoriesRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.ROAD_CATEGORIES_ROAD_AND_VEHICLE_TYPE_UNIQUE, Keys.ROAD_CATEGORIES_NAME_KEY);
+        return Arrays.asList(Keys.ROAD_CATEGORIES_UNIQUE);
     }
 
     @Override
     public List<ForeignKey<RoadCategoriesRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_GCN_SECTORS);
+        return Arrays.asList(Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_ROAD_AREAS_TO_ROAD_TYPES, Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_ROAD_TYPES_TO_SPEED_PROFILES, Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_ROAD_VEHICLE_CATEGORIES);
     }
 
-    private transient GcnSectors _gcnSectors;
+    private transient RoadAreasToRoadTypes _roadAreasToRoadTypes;
+    private transient RoadTypesToSpeedProfiles _roadTypesToSpeedProfiles;
+    private transient RoadTypeCategories _roadTypeCategories;
 
     /**
-     * Get the implicit join path to the <code>template.gcn_sectors</code>
-     * table.
+     * Get the implicit join path to the
+     * <code>template.road_areas_to_road_types</code> table.
      */
-    public GcnSectors gcnSectors() {
-        if (_gcnSectors == null)
-            _gcnSectors = new GcnSectors(this, Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_GCN_SECTORS);
+    public RoadAreasToRoadTypes roadAreasToRoadTypes() {
+        if (_roadAreasToRoadTypes == null)
+            _roadAreasToRoadTypes = new RoadAreasToRoadTypes(this, Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_ROAD_AREAS_TO_ROAD_TYPES);
 
-        return _gcnSectors;
+        return _roadAreasToRoadTypes;
+    }
+
+    /**
+     * Get the implicit join path to the
+     * <code>template.road_types_to_speed_profiles</code> table.
+     */
+    public RoadTypesToSpeedProfiles roadTypesToSpeedProfiles() {
+        if (_roadTypesToSpeedProfiles == null)
+            _roadTypesToSpeedProfiles = new RoadTypesToSpeedProfiles(this, Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_ROAD_TYPES_TO_SPEED_PROFILES);
+
+        return _roadTypesToSpeedProfiles;
+    }
+
+    /**
+     * Get the implicit join path to the
+     * <code>template.road_type_categories</code> table.
+     */
+    public RoadTypeCategories roadTypeCategories() {
+        if (_roadTypeCategories == null)
+            _roadTypeCategories = new RoadTypeCategories(this, Keys.ROAD_CATEGORIES__ROAD_CATEGORIES_FKEY_ROAD_VEHICLE_CATEGORIES);
+
+        return _roadTypeCategories;
     }
 
     @Override
@@ -195,18 +211,18 @@ public class RoadCategories extends TableImpl<RoadCategoriesRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, Integer, RoadType, VehicleType, String, String> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row5<Integer, Integer, Integer, Integer, Integer> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function6<? super Integer, ? super Integer, ? super RoadType, ? super VehicleType, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Integer, ? super Integer, ? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -214,7 +230,7 @@ public class RoadCategories extends TableImpl<RoadCategoriesRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Integer, ? super Integer, ? super RoadType, ? super VehicleType, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Integer, ? super Integer, ? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -4,28 +4,24 @@
 package nl.aerius.emissionservice.db.generated.template.tables.records;
 
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
-import nl.aerius.emissionservice.db.generated.public_.enums.VehicleType;
 import nl.aerius.emissionservice.db.generated.template.tables.RoadCategories;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record6;
-import org.jooq.Row6;
+import org.jooq.Record5;
+import org.jooq.Row5;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Tabel met daarin de verschillende soorten wegen en de verschillende type
- * voertuigen op die wegen.
- * 
- * Dit zijn de standaard categorieen voor wegverkeer (bijv. personenauto's).
+ * Table containing road categories, which are combinations of road areas, road
+ * types, vehicle types, etc.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesRecord> implements Record6<Integer, Integer, RoadType, VehicleType, String, String> {
+public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesRecord> implements Record5<Integer, Integer, Integer, Integer, Integer> {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,73 +40,61 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
     }
 
     /**
-     * Setter for <code>template.road_categories.gcn_sector_id</code>.
+     * Setter for <code>template.road_categories.road_area_category_id</code>.
      */
-    public void setGcnSectorId(Integer value) {
+    public void setRoadAreaCategoryId(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>template.road_categories.gcn_sector_id</code>.
+     * Getter for <code>template.road_categories.road_area_category_id</code>.
      */
-    public Integer getGcnSectorId() {
+    public Integer getRoadAreaCategoryId() {
         return (Integer) get(1);
     }
 
     /**
-     * Setter for <code>template.road_categories.road_type</code>.
+     * Setter for <code>template.road_categories.road_type_category_id</code>.
      */
-    public void setRoadType(RoadType value) {
+    public void setRoadTypeCategoryId(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>template.road_categories.road_type</code>.
+     * Getter for <code>template.road_categories.road_type_category_id</code>.
      */
-    public RoadType getRoadType() {
-        return (RoadType) get(2);
+    public Integer getRoadTypeCategoryId() {
+        return (Integer) get(2);
     }
 
     /**
-     * Setter for <code>template.road_categories.vehicle_type</code>.
+     * Setter for
+     * <code>template.road_categories.road_vehicle_category_id</code>.
      */
-    public void setVehicleType(VehicleType value) {
+    public void setRoadVehicleCategoryId(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>template.road_categories.vehicle_type</code>.
+     * Getter for
+     * <code>template.road_categories.road_vehicle_category_id</code>.
      */
-    public VehicleType getVehicleType() {
-        return (VehicleType) get(3);
+    public Integer getRoadVehicleCategoryId() {
+        return (Integer) get(3);
     }
 
     /**
-     * Setter for <code>template.road_categories.name</code>.
+     * Setter for <code>template.road_categories.road_speed_profile_id</code>.
      */
-    public void setName(String value) {
+    public void setRoadSpeedProfileId(Integer value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>template.road_categories.name</code>.
+     * Getter for <code>template.road_categories.road_speed_profile_id</code>.
      */
-    public String getName() {
-        return (String) get(4);
-    }
-
-    /**
-     * Setter for <code>template.road_categories.description</code>.
-     */
-    public void setDescription(String value) {
-        set(5, value);
-    }
-
-    /**
-     * Getter for <code>template.road_categories.description</code>.
-     */
-    public String getDescription() {
-        return (String) get(5);
+    public Integer getRoadSpeedProfileId() {
+        return (Integer) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -123,17 +107,17 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
     }
 
     // -------------------------------------------------------------------------
-    // Record6 type implementation
+    // Record5 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, Integer, RoadType, VehicleType, String, String> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row5<Integer, Integer, Integer, Integer, Integer> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     @Override
-    public Row6<Integer, Integer, RoadType, VehicleType, String, String> valuesRow() {
-        return (Row6) super.valuesRow();
+    public Row5<Integer, Integer, Integer, Integer, Integer> valuesRow() {
+        return (Row5) super.valuesRow();
     }
 
     @Override
@@ -143,27 +127,22 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
 
     @Override
     public Field<Integer> field2() {
-        return RoadCategories.ROAD_CATEGORIES.GCN_SECTOR_ID;
+        return RoadCategories.ROAD_CATEGORIES.ROAD_AREA_CATEGORY_ID;
     }
 
     @Override
-    public Field<RoadType> field3() {
-        return RoadCategories.ROAD_CATEGORIES.ROAD_TYPE;
+    public Field<Integer> field3() {
+        return RoadCategories.ROAD_CATEGORIES.ROAD_TYPE_CATEGORY_ID;
     }
 
     @Override
-    public Field<VehicleType> field4() {
-        return RoadCategories.ROAD_CATEGORIES.VEHICLE_TYPE;
+    public Field<Integer> field4() {
+        return RoadCategories.ROAD_CATEGORIES.ROAD_VEHICLE_CATEGORY_ID;
     }
 
     @Override
-    public Field<String> field5() {
-        return RoadCategories.ROAD_CATEGORIES.NAME;
-    }
-
-    @Override
-    public Field<String> field6() {
-        return RoadCategories.ROAD_CATEGORIES.DESCRIPTION;
+    public Field<Integer> field5() {
+        return RoadCategories.ROAD_CATEGORIES.ROAD_SPEED_PROFILE_ID;
     }
 
     @Override
@@ -173,27 +152,22 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
 
     @Override
     public Integer component2() {
-        return getGcnSectorId();
+        return getRoadAreaCategoryId();
     }
 
     @Override
-    public RoadType component3() {
-        return getRoadType();
+    public Integer component3() {
+        return getRoadTypeCategoryId();
     }
 
     @Override
-    public VehicleType component4() {
-        return getVehicleType();
+    public Integer component4() {
+        return getRoadVehicleCategoryId();
     }
 
     @Override
-    public String component5() {
-        return getName();
-    }
-
-    @Override
-    public String component6() {
-        return getDescription();
+    public Integer component5() {
+        return getRoadSpeedProfileId();
     }
 
     @Override
@@ -203,27 +177,22 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
 
     @Override
     public Integer value2() {
-        return getGcnSectorId();
+        return getRoadAreaCategoryId();
     }
 
     @Override
-    public RoadType value3() {
-        return getRoadType();
+    public Integer value3() {
+        return getRoadTypeCategoryId();
     }
 
     @Override
-    public VehicleType value4() {
-        return getVehicleType();
+    public Integer value4() {
+        return getRoadVehicleCategoryId();
     }
 
     @Override
-    public String value5() {
-        return getName();
-    }
-
-    @Override
-    public String value6() {
-        return getDescription();
+    public Integer value5() {
+        return getRoadSpeedProfileId();
     }
 
     @Override
@@ -234,42 +203,35 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
 
     @Override
     public RoadCategoriesRecord value2(Integer value) {
-        setGcnSectorId(value);
+        setRoadAreaCategoryId(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesRecord value3(RoadType value) {
-        setRoadType(value);
+    public RoadCategoriesRecord value3(Integer value) {
+        setRoadTypeCategoryId(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesRecord value4(VehicleType value) {
-        setVehicleType(value);
+    public RoadCategoriesRecord value4(Integer value) {
+        setRoadVehicleCategoryId(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesRecord value5(String value) {
-        setName(value);
+    public RoadCategoriesRecord value5(Integer value) {
+        setRoadSpeedProfileId(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesRecord value6(String value) {
-        setDescription(value);
-        return this;
-    }
-
-    @Override
-    public RoadCategoriesRecord values(Integer value1, Integer value2, RoadType value3, VehicleType value4, String value5, String value6) {
+    public RoadCategoriesRecord values(Integer value1, Integer value2, Integer value3, Integer value4, Integer value5) {
         value1(value1);
         value2(value2);
         value3(value3);
         value4(value4);
         value5(value5);
-        value6(value6);
         return this;
     }
 
@@ -287,14 +249,13 @@ public class RoadCategoriesRecord extends UpdatableRecordImpl<RoadCategoriesReco
     /**
      * Create a detached, initialised RoadCategoriesRecord
      */
-    public RoadCategoriesRecord(Integer roadCategoryId, Integer gcnSectorId, RoadType roadType, VehicleType vehicleType, String name, String description) {
+    public RoadCategoriesRecord(Integer roadCategoryId, Integer roadAreaCategoryId, Integer roadTypeCategoryId, Integer roadVehicleCategoryId, Integer roadSpeedProfileId) {
         super(RoadCategories.ROAD_CATEGORIES);
 
         setRoadCategoryId(roadCategoryId);
-        setGcnSectorId(gcnSectorId);
-        setRoadType(roadType);
-        setVehicleType(vehicleType);
-        setName(name);
-        setDescription(description);
+        setRoadAreaCategoryId(roadAreaCategoryId);
+        setRoadTypeCategoryId(roadTypeCategoryId);
+        setRoadVehicleCategoryId(roadVehicleCategoryId);
+        setRoadSpeedProfileId(roadSpeedProfileId);
     }
 }

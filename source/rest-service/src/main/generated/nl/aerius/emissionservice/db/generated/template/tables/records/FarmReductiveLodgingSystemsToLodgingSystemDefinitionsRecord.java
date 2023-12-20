@@ -13,8 +13,8 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen
- * (N:N).
+ * Table linking emission reducing lodging techniques and lodging system
+ * definitions (N:N)
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

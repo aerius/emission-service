@@ -29,7 +29,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken voor routes voor binnenvaart.
+ * View returning the emission characteristics for inland shipping routes.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql
@@ -118,7 +118,7 @@ public class ShippingInlandSourceCharacteristicsView extends TableImpl<ShippingI
     }
 
     private ShippingInlandSourceCharacteristicsView(Name alias, Table<ShippingInlandSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor routes voor binnenvaart.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the emission characteristics for inland shipping routes.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql"), TableOptions.view("""
         create view "shipping_inland_source_characteristics_view" as  SELECT shipping_inland_category_source_characteristics.shipping_inland_category_id,
          shipping_inland_category_source_characteristics.shipping_inland_waterway_category_id,
          shipping_inland_category_source_characteristics.ship_direction,

@@ -31,9 +31,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De categories van verschillende soorten schepen voor zeevaart.
- * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt
- * als identificatie van de categorie voor een gebruiker.
+ * Table containing the maritime shipping categories.
+ * The name of the category should indicate a tonnage-range.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql
@@ -84,7 +83,7 @@ public class ShippingMaritimeCategories extends TableImpl<ShippingMaritimeCatego
     }
 
     private ShippingMaritimeCategories(Name alias, Table<ShippingMaritimeCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categories van verschillende soorten schepen voor zeevaart.\r\nIn de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the maritime shipping categories.\r\nThe name of the category should indicate a tonnage-range.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
     }
 
     /**

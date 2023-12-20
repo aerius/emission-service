@@ -27,9 +27,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Geeft de eigenschappen van een additionele staltechniek, inclusief code,
- * beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, en
- * de stalbeschrijvingen die er bij gekozen kunnen worden.
+ * View returning the properties of additional lodging techniques, including
+ * possible lodging definitions.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql
@@ -112,7 +111,7 @@ public class FarmAdditionalLodgingSystemEmissionFactorsView extends TableImpl<Fa
     }
 
     private FarmAdditionalLodgingSystemEmissionFactorsView(Name alias, Table<FarmAdditionalLodgingSystemEmissionFactorsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een additionele staltechniek, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, en de stalbeschrijvingen die er bij gekozen kunnen worden.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the properties of additional lodging techniques, including possible lodging definitions.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql"), TableOptions.view("""
         create view "farm_additional_lodging_system_emission_factors_view" as  SELECT farm_additional_lodging_systems.farm_additional_lodging_system_id,
          farm_additional_lodging_systems.code,
          farm_additional_lodging_systems.name,
@@ -125,7 +124,7 @@ public class FarmAdditionalLodgingSystemEmissionFactorsView extends TableImpl<Fa
         FROM (((template.farm_additional_lodging_systems
           JOIN template.farm_animal_categories USING (farm_animal_category_id))
           JOIN template.farm_additional_lodging_system_emission_factors USING (farm_additional_lodging_system_id))
-          JOIN template.farm_additional_lodging_systems_to_lodging_system_definitions USING (farm_additional_lodging_system_id));
+          LEFT JOIN template.farm_additional_lodging_systems_to_lodging_system_definitions USING (farm_additional_lodging_system_id));
         """));
     }
 

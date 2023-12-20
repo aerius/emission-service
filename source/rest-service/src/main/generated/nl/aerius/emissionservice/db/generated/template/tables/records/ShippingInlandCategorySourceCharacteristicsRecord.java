@@ -16,9 +16,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De OPS karakteristieken voor verschillende soorten varende schepen.
- * Deze karakteristieken zijn uniek per scheepstype, vaarwegtypes,
- * vaarrichtingen en ladingstoestand.
+ * Table containing the OPS characteristics for the inland shipping categories
+ * for moving ships.
+ * These characteristics are defined per ship type, waterway type, travel
+ * direction and laden state.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql

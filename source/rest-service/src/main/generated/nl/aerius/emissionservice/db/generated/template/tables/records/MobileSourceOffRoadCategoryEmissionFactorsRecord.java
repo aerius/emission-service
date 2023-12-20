@@ -8,29 +8,32 @@ import nl.aerius.emissionservice.db.generated.template.tables.MobileSourceOffRoa
 
 import org.jooq.Field;
 import org.jooq.Record2;
-import org.jooq.Record4;
-import org.jooq.Row4;
+import org.jooq.Record5;
+import org.jooq.Row5;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De emissie factoren (werkend en stationair) voor stageklassen.
+ * Table containing the emission factors for off road mobile sources.
  * 
- * Het veld emission_factor_idle is leeg indien er geen stationaire
- * emissieberekening mogelijk is voor een stageklasse. Er bevindt zich dan ook
- * geen bijbehorend record in {@see
- * mobile_source_off_road_category_idle_properties}.
+ * There are emission factors available for fuel use and for operating hours.
+ * Based on the category, 1 of these is present (or not 0), or both are present.
  * 
- * @column emission_factor_working EFW_plb, emissie factor werkend per liter
- * brandstof (g/l)
- * @column emission_factor_idle EFS_plci, emissie factor stationair per uur per
- * liter cilinder-inhoud (g/l/uur)
+ * Besides these factors, an adblue emissionfactor can be present, which can
+ * reduce the total emissions (these are expected to be negative values).
+ * 
+ * @column emission_factor_per_liter_fuel f1 Emission factor per liter brandstof
+ * (kg/l)
+ * @column emission_factor_per_operating_hour f2 Emission factor per operating
+ * hour (stationary + working) (kg/hour)
+ * @column emission_factor_per_liter_adblue f3 Emission factor per liter adblue
+ * (kg/l).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoryEmissionFactorsRecord> implements Record4<Short, Short, Float, Float> {
+public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoryEmissionFactorsRecord> implements Record5<Short, Short, Float, Float, Float> {
 
     private static final long serialVersionUID = 1L;
 
@@ -68,34 +71,50 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
 
     /**
      * Setter for
-     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_working</code>.
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_liter_fuel</code>.
      */
-    public void setEmissionFactorWorking(Float value) {
+    public void setEmissionFactorPerLiterFuel(Float value) {
         set(2, value);
     }
 
     /**
      * Getter for
-     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_working</code>.
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_liter_fuel</code>.
      */
-    public Float getEmissionFactorWorking() {
+    public Float getEmissionFactorPerLiterFuel() {
         return (Float) get(2);
     }
 
     /**
      * Setter for
-     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_idle</code>.
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_operating_hour</code>.
      */
-    public void setEmissionFactorIdle(Float value) {
+    public void setEmissionFactorPerOperatingHour(Float value) {
         set(3, value);
     }
 
     /**
      * Getter for
-     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_idle</code>.
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_operating_hour</code>.
      */
-    public Float getEmissionFactorIdle() {
+    public Float getEmissionFactorPerOperatingHour() {
         return (Float) get(3);
+    }
+
+    /**
+     * Setter for
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_liter_adblue</code>.
+     */
+    public void setEmissionFactorPerLiterAdblue(Float value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_liter_adblue</code>.
+     */
+    public Float getEmissionFactorPerLiterAdblue() {
+        return (Float) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -108,17 +127,17 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
     }
 
     // -------------------------------------------------------------------------
-    // Record4 type implementation
+    // Record5 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Short, Short, Float, Float> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Short, Short, Float, Float, Float> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     @Override
-    public Row4<Short, Short, Float, Float> valuesRow() {
-        return (Row4) super.valuesRow();
+    public Row5<Short, Short, Float, Float, Float> valuesRow() {
+        return (Row5) super.valuesRow();
     }
 
     @Override
@@ -133,12 +152,17 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
 
     @Override
     public Field<Float> field3() {
-        return MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS.EMISSION_FACTOR_WORKING;
+        return MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS.EMISSION_FACTOR_PER_LITER_FUEL;
     }
 
     @Override
     public Field<Float> field4() {
-        return MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS.EMISSION_FACTOR_IDLE;
+        return MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS.EMISSION_FACTOR_PER_OPERATING_HOUR;
+    }
+
+    @Override
+    public Field<Float> field5() {
+        return MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS.EMISSION_FACTOR_PER_LITER_ADBLUE;
     }
 
     @Override
@@ -153,12 +177,17 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
 
     @Override
     public Float component3() {
-        return getEmissionFactorWorking();
+        return getEmissionFactorPerLiterFuel();
     }
 
     @Override
     public Float component4() {
-        return getEmissionFactorIdle();
+        return getEmissionFactorPerOperatingHour();
+    }
+
+    @Override
+    public Float component5() {
+        return getEmissionFactorPerLiterAdblue();
     }
 
     @Override
@@ -173,12 +202,17 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
 
     @Override
     public Float value3() {
-        return getEmissionFactorWorking();
+        return getEmissionFactorPerLiterFuel();
     }
 
     @Override
     public Float value4() {
-        return getEmissionFactorIdle();
+        return getEmissionFactorPerOperatingHour();
+    }
+
+    @Override
+    public Float value5() {
+        return getEmissionFactorPerLiterAdblue();
     }
 
     @Override
@@ -195,22 +229,29 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
 
     @Override
     public MobileSourceOffRoadCategoryEmissionFactorsRecord value3(Float value) {
-        setEmissionFactorWorking(value);
+        setEmissionFactorPerLiterFuel(value);
         return this;
     }
 
     @Override
     public MobileSourceOffRoadCategoryEmissionFactorsRecord value4(Float value) {
-        setEmissionFactorIdle(value);
+        setEmissionFactorPerOperatingHour(value);
         return this;
     }
 
     @Override
-    public MobileSourceOffRoadCategoryEmissionFactorsRecord values(Short value1, Short value2, Float value3, Float value4) {
+    public MobileSourceOffRoadCategoryEmissionFactorsRecord value5(Float value) {
+        setEmissionFactorPerLiterAdblue(value);
+        return this;
+    }
+
+    @Override
+    public MobileSourceOffRoadCategoryEmissionFactorsRecord values(Short value1, Short value2, Float value3, Float value4, Float value5) {
         value1(value1);
         value2(value2);
         value3(value3);
         value4(value4);
+        value5(value5);
         return this;
     }
 
@@ -229,12 +270,13 @@ public class MobileSourceOffRoadCategoryEmissionFactorsRecord extends UpdatableR
      * Create a detached, initialised
      * MobileSourceOffRoadCategoryEmissionFactorsRecord
      */
-    public MobileSourceOffRoadCategoryEmissionFactorsRecord(Short mobileSourceOffRoadCategoryId, Short substanceId, Float emissionFactorWorking, Float emissionFactorIdle) {
+    public MobileSourceOffRoadCategoryEmissionFactorsRecord(Short mobileSourceOffRoadCategoryId, Short substanceId, Float emissionFactorPerLiterFuel, Float emissionFactorPerOperatingHour, Float emissionFactorPerLiterAdblue) {
         super(MobileSourceOffRoadCategoryEmissionFactors.MOBILE_SOURCE_OFF_ROAD_CATEGORY_EMISSION_FACTORS);
 
         setMobileSourceOffRoadCategoryId(mobileSourceOffRoadCategoryId);
         setSubstanceId(substanceId);
-        setEmissionFactorWorking(emissionFactorWorking);
-        setEmissionFactorIdle(emissionFactorIdle);
+        setEmissionFactorPerLiterFuel(emissionFactorPerLiterFuel);
+        setEmissionFactorPerOperatingHour(emissionFactorPerOperatingHour);
+        setEmissionFactorPerLiterAdblue(emissionFactorPerLiterAdblue);
     }
 }

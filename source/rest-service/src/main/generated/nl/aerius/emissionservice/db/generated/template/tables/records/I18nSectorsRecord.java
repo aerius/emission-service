@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor sectoren.
+ * Table containing i18n localization for sectors.
  * 
  * @file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql
  */

@@ -13,9 +13,10 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de default GCN bron karakteristieken.
- * De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view
- * retourneert de bron karakteristieken van de meest relevante stof.
+ * View returning the default GCN source characteristics.
+ * As the GCN can have different default characteristics per substance, and
+ * AERIUS only needs 1 set, this view returns the characteristics for the most
+ * relevant substance.
  * 
  * @file source/database/src/main/sql/template/01-sectors/04-views.sql
  */

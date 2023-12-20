@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Systeem info tabel voor localized teksten, voor tonen van systeem berichten.
+ * System info table for localized messages, for showing system messages.
  * 
  * @file source/database/src/main/sql/i18n/02-tables.sql
  */

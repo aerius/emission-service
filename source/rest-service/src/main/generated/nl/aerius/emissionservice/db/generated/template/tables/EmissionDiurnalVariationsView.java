@@ -27,7 +27,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert een lijst met verschillende types temporele variaties.
+ * View returning the different types of diurnal variation.
  * 
  * @file source/database/src/main/sql/template/01-sectors/04-views.sql
  */
@@ -79,7 +79,7 @@ public class EmissionDiurnalVariationsView extends TableImpl<EmissionDiurnalVari
     }
 
     private EmissionDiurnalVariationsView(Name alias, Table<EmissionDiurnalVariationsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert een lijst met verschillende types temporele variaties.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/04-views.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the different types of diurnal variation.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/04-views.sql"), TableOptions.view("""
         create view "emission_diurnal_variations_view" as  SELECT emission_diurnal_variations.emission_diurnal_variation_id,
          emission_diurnal_variations.code AS emission_diurnal_variation_code,
          emission_diurnal_variations.name AS emission_diurnal_variation_name,

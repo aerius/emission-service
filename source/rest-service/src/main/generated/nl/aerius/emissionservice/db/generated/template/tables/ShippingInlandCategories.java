@@ -31,12 +31,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De categories van verschillende soorten binnenvaart-schepen.
- * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt
- * als identificatie van de categorie voor een gebruiker.
- * 
- * Standaard kenmerken voor een specifieke scheepstype kunnen via sector
- * verkregen worden.
+ * Table containing the inland shipping categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql
@@ -86,7 +81,7 @@ public class ShippingInlandCategories extends TableImpl<ShippingInlandCategories
     }
 
     private ShippingInlandCategories(Name alias, Table<ShippingInlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categories van verschillende soorten binnenvaart-schepen.\r\nIn de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt als identificatie van de categorie voor een gebruiker.\r\n\r\nStandaard kenmerken voor een specifieke scheepstype kunnen via sector verkregen worden.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the inland shipping categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

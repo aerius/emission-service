@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Bevat de emissiefactoren (kg/jaar) van de stalsystemen.
+ * Table containing the emission factors (kg/year) for farm lodging systems.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -79,7 +79,7 @@ public class FarmLodgingTypeEmissionFactors extends TableImpl<FarmLodgingTypeEmi
     }
 
     private FarmLodgingTypeEmissionFactors(Name alias, Table<FarmLodgingTypeEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Bevat de emissiefactoren (kg/jaar) van de stalsystemen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the emission factors (kg/year) for farm lodging systems.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**

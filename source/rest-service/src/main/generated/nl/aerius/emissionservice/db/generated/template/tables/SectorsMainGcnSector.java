@@ -31,8 +31,10 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan
- * welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.
+ * Table linking sectors to main GCN sectors.
+ * This can be used to link sources to a GCN sector if required.
+ * It is also used for the ParticleSizeDistribution value in OPS characteristics
+ * (for calculations involving substances like PM10).
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/01-sectors.sql
@@ -70,7 +72,7 @@ public class SectorsMainGcnSector extends TableImpl<SectorsMainGcnSectorRecord> 
     }
 
     private SectorsMainGcnSector(Name alias, Table<SectorsMainGcnSectorRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/01-sectors.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table linking sectors to main GCN sectors.\r\nThis can be used to link sources to a GCN sector if required.\r\nIt is also used for the ParticleSizeDistribution value in OPS characteristics (for calculations involving substances like PM10).\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/01-sectors.sql"), TableOptions.table());
     }
 
     /**

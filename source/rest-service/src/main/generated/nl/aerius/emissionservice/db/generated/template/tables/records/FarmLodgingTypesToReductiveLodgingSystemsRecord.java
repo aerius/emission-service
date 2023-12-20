@@ -13,10 +13,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Koppeling (N:N) welke aangeeft op welke stalsystemen de emissiereducerende
- * staltechnieken gestapeld kunnen worden.
- * In deze tabel staan de toegestane combinaties van stapelingen binnen de RAV
- * systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.
+ * Table linking (N:N) which emission reducing lodging techniques can be stacked
+ * on which lodging system.
+ * This table contains the allowed combinations within the RAV way of working,
+ * however within calculator every combination is possible.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

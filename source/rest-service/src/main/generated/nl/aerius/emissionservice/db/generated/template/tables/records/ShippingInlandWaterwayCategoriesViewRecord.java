@@ -14,7 +14,7 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de waterweg categorieen.
+ * View returning the waterway categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql

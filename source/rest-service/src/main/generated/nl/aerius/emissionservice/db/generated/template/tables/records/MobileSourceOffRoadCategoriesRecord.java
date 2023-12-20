@@ -8,21 +8,19 @@ import nl.aerius.emissionservice.db.generated.template.tables.MobileSourceOffRoa
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record4;
-import org.jooq.Row4;
+import org.jooq.Record5;
+import org.jooq.Row5;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De categorieën van verschillende soorten offroad mobiele bronnen
- * (stageklassen).
- * De naam is hierbij de identificatie van de categorie voor de gebruiker.
+ * Table containing the off road mobile source categories (stageklassen).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoriesRecord> implements Record4<Short, String, String, String> {
+public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<MobileSourceOffRoadCategoriesRecord> implements Record5<Short, String, String, String, Integer> {
 
     private static final long serialVersionUID = 1L;
 
@@ -86,6 +84,22 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
         return (String) get(3);
     }
 
+    /**
+     * Setter for
+     * <code>template.mobile_source_off_road_categories.sort_order</code>.
+     */
+    public void setSortOrder(Integer value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for
+     * <code>template.mobile_source_off_road_categories.sort_order</code>.
+     */
+    public Integer getSortOrder() {
+        return (Integer) get(4);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -96,17 +110,17 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
     }
 
     // -------------------------------------------------------------------------
-    // Record4 type implementation
+    // Record5 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Short, String, String, String> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Short, String, String, String, Integer> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     @Override
-    public Row4<Short, String, String, String> valuesRow() {
-        return (Row4) super.valuesRow();
+    public Row5<Short, String, String, String, Integer> valuesRow() {
+        return (Row5) super.valuesRow();
     }
 
     @Override
@@ -130,6 +144,11 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
     }
 
     @Override
+    public Field<Integer> field5() {
+        return MobileSourceOffRoadCategories.MOBILE_SOURCE_OFF_ROAD_CATEGORIES.SORT_ORDER;
+    }
+
+    @Override
     public Short component1() {
         return getMobileSourceOffRoadCategoryId();
     }
@@ -150,6 +169,11 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
     }
 
     @Override
+    public Integer component5() {
+        return getSortOrder();
+    }
+
+    @Override
     public Short value1() {
         return getMobileSourceOffRoadCategoryId();
     }
@@ -167,6 +191,11 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
     @Override
     public String value4() {
         return getDescription();
+    }
+
+    @Override
+    public Integer value5() {
+        return getSortOrder();
     }
 
     @Override
@@ -194,11 +223,18 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
     }
 
     @Override
-    public MobileSourceOffRoadCategoriesRecord values(Short value1, String value2, String value3, String value4) {
+    public MobileSourceOffRoadCategoriesRecord value5(Integer value) {
+        setSortOrder(value);
+        return this;
+    }
+
+    @Override
+    public MobileSourceOffRoadCategoriesRecord values(Short value1, String value2, String value3, String value4, Integer value5) {
         value1(value1);
         value2(value2);
         value3(value3);
         value4(value4);
+        value5(value5);
         return this;
     }
 
@@ -216,12 +252,13 @@ public class MobileSourceOffRoadCategoriesRecord extends UpdatableRecordImpl<Mob
     /**
      * Create a detached, initialised MobileSourceOffRoadCategoriesRecord
      */
-    public MobileSourceOffRoadCategoriesRecord(Short mobileSourceOffRoadCategoryId, String code, String name, String description) {
+    public MobileSourceOffRoadCategoriesRecord(Short mobileSourceOffRoadCategoryId, String code, String name, String description, Integer sortOrder) {
         super(MobileSourceOffRoadCategories.MOBILE_SOURCE_OFF_ROAD_CATEGORIES);
 
         setMobileSourceOffRoadCategoryId(mobileSourceOffRoadCategoryId);
         setCode(code);
         setName(name);
         setDescription(description);
+        setSortOrder(sortOrder);
     }
 }

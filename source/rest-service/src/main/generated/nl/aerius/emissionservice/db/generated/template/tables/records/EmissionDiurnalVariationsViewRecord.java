@@ -13,7 +13,7 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert een lijst met verschillende types temporele variaties.
+ * View returning the different types of diurnal variation.
  * 
  * @file source/database/src/main/sql/template/01-sectors/04-views.sql
  */

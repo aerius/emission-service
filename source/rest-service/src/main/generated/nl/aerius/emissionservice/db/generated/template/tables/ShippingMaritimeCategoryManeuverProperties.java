@@ -31,13 +31,12 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Manoeuvreer-eigenschappen per zeevaart schip.
+ * Table containing maneuver properties for maritime shipping categories.
  * 
- * Maneuver_factor is de factor waarmee de emissie in het beginstuk van de
- * vaarroute moet worden opgehoogd vanwege het manouvreren van het schip bij de
- * kade.
- * Maneuver_length is de lengte van de route waarbij deze factor gebruikt moet
- * worden.
+ * @column maneuver_factor The factor to increase emissions at the starting
+ * section of a route due to maneuvring the ship near the dock.
+ * @column maneuver_length The length of the route for which the factor should
+ * be applied.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql
@@ -84,7 +83,7 @@ public class ShippingMaritimeCategoryManeuverProperties extends TableImpl<Shippi
     }
 
     private ShippingMaritimeCategoryManeuverProperties(Name alias, Table<ShippingMaritimeCategoryManeuverPropertiesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Manoeuvreer-eigenschappen per zeevaart schip.\r\n\r\nManeuver_factor is de factor waarmee de emissie in het beginstuk van de vaarroute moet worden opgehoogd vanwege het manouvreren van het schip bij de kade.\r\nManeuver_length is de lengte van de route waarbij deze factor gebruikt moet worden.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing maneuver properties for maritime shipping categories.\r\n\r\n@column maneuver_factor The factor to increase emissions at the starting section of a route due to maneuvring the ship near the dock.\r\n@column maneuver_length The length of the route for which the factor should be applied.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
     }
 
     /**

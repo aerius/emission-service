@@ -14,8 +14,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan
- * welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.
+ * Table linking sectors to main GCN sectors.
+ * This can be used to link sources to a GCN sector if required.
+ * It is also used for the ParticleSizeDistribution value in OPS characteristics
+ * (for calculations involving substances like PM10).
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/01-sectors.sql

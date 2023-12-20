@@ -14,11 +14,11 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Bevat de reductiefactoren (factor 0..1) van de emissiereducerende
- * staltechnieken.
- * Deze reductiefactor wordt toegepast op de totale emissie van het stalsysteem
- * waarop gestapeld wordt, inclusief eventuele additionele staltechnieken die
- * hierop gestapeld zijn.
+ * Table containing the reduction factors (factor 0..1) for the emission
+ * reducing lodging techniques.
+ * These reduction factors are applied on the total emission of the lodging
+ * system on which it is stacked, including any additional lodging techniques
+ * that have been stacked.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

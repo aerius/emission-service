@@ -28,8 +28,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken voor aanlegplaatsen voor
- * binnenvaart.
+ * View returning the emission characteristics for inland shipping docks.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql
@@ -106,7 +105,7 @@ public class ShippingInlandSourceCharacteristicsDockedView extends TableImpl<Shi
     }
 
     private ShippingInlandSourceCharacteristicsDockedView(Name alias, Table<ShippingInlandSourceCharacteristicsDockedViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the emission characteristics for inland shipping docks.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_inland.sql"), TableOptions.view("""
         create view "shipping_inland_source_characteristics_docked_view" as  SELECT shipping_inland_category_source_characteristics_docked.shipping_inland_category_id,
          shipping_inland_category_source_characteristics_docked.laden_state,
          shipping_inland_category_source_characteristics_docked.gcn_sector_id,

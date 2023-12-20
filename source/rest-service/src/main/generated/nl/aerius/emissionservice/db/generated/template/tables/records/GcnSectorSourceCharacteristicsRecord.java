@@ -14,7 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Voorgedefinieerde OPS kenmerken per GCN sector.
+ * Table containing the predefined OPS characteristics per GCN sector.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql

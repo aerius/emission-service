@@ -14,12 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De categories van verschillende soorten binnenvaart-schepen.
- * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt
- * als identificatie van de categorie voor een gebruiker.
- * 
- * Standaard kenmerken voor een specifieke scheepstype kunnen via sector
- * verkregen worden.
+ * Table containing the inland shipping categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql

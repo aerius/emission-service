@@ -15,11 +15,11 @@ import nl.aerius.emissionservice.db.generated.template.tables.records.RoadCatego
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function6;
+import org.jooq.Function5;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row6;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -32,12 +32,13 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De emissie factoren voor verschillende soorten verkeer bij verschillende
- * snelheidstyperingen voor verschillende soorten stoffen.
- * De emissie factors zijn hier in g/voertuig/km.
+ * Table containing the emission factors for road categories for different
+ * substances.
+ * For NL: the emission factors are in g/vehicle/km
+ * For UK: the emission factors are in g/km/s for vehicles per 24 hours.
  * 
- * LET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk
- * aan de AERIUS beleidsjaren.
+ * NOTE: The years present in this table are not by definition the same as the
+ * AERIUS policy/calculation years.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
@@ -68,12 +69,6 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
     public final TableField<RoadCategoryEmissionFactorsRecord, Integer> ROAD_CATEGORY_ID = createField(DSL.name("road_category_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column
-     * <code>template.road_category_emission_factors.road_speed_profile_id</code>.
-     */
-    public final TableField<RoadCategoryEmissionFactorsRecord, Integer> ROAD_SPEED_PROFILE_ID = createField(DSL.name("road_speed_profile_id"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
      * The column <code>template.road_category_emission_factors.year</code>.
      */
     public final TableField<RoadCategoryEmissionFactorsRecord, Short> YEAR = createField(DSL.name("year"), nl.aerius.emissionservice.db.generated.public_.Domains.YEAR_TYPE.getDataType().nullable(false), this, "");
@@ -101,7 +96,7 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
     }
 
     private RoadCategoryEmissionFactors(Name alias, Table<RoadCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten verkeer bij verschillende snelheidstyperingen voor verschillende soorten stoffen.\r\nDe emissie factors zijn hier in g/voertuig/km.\r\n\r\nLET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk aan de AERIUS beleidsjaren.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the emission factors for road categories for different substances.\r\nFor NL: the emission factors are in g/vehicle/km\r\nFor UK: the emission factors are in g/km/s for vehicles per 24 hours.\r\n\r\nNOTE: The years present in this table are not by definition the same as the AERIUS policy/calculation years.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     /**
@@ -144,11 +139,10 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
 
     @Override
     public List<ForeignKey<RoadCategoryEmissionFactorsRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_ROAD_CATEGORIES, Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_ROAD_SPEED_PROFILES, Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_SUBSTANCES);
+        return Arrays.asList(Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_ROAD_CATEGORIES, Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_SUBSTANCES);
     }
 
     private transient RoadCategories _roadCategories;
-    private transient RoadSpeedProfiles _roadSpeedProfiles;
     private transient Substances _substances;
 
     /**
@@ -160,17 +154,6 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
             _roadCategories = new RoadCategories(this, Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_ROAD_CATEGORIES);
 
         return _roadCategories;
-    }
-
-    /**
-     * Get the implicit join path to the
-     * <code>template.road_speed_profiles</code> table.
-     */
-    public RoadSpeedProfiles roadSpeedProfiles() {
-        if (_roadSpeedProfiles == null)
-            _roadSpeedProfiles = new RoadSpeedProfiles(this, Keys.ROAD_CATEGORY_EMISSION_FACTORS__ROAD_CATEGORY_EMISSION_FACTORS_FKEY_ROAD_SPEED_PROFILES);
-
-        return _roadSpeedProfiles;
     }
 
     /**
@@ -223,18 +206,18 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
     }
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, Integer, Short, Short, Double, Double> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row5<Integer, Short, Short, Double, Double> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function6<? super Integer, ? super Integer, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Integer, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -242,7 +225,7 @@ public class RoadCategoryEmissionFactors extends TableImpl<RoadCategoryEmissionF
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Integer, ? super Integer, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Integer, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

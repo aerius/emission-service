@@ -14,11 +14,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Geeft voor emissiearme stalsystemen aan wat het bijbehorende 'overige'
- * stalsysteem is.
- * De koppeling (N:1) is alleen opgenomen als het stalsysteem als 'emissiearm'
- * is geklassificeerd. In bepaalde gevallen wordt dan namelijk de emissiefactor
- * begrensd in de emissie berekening, o.b.v. die van het 'overige' stalsysteem.
+ * Table linking low-emission farm lodging system to their corresponding
+ * 'overige' lodging system.
+ * This link (N:1) is only used when the lodging system is classified as
+ * low-emission ('emissiearm').
+ * In certain cases this will limit the emission factor in the emission
+ * calculation, based on the other lodging system.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

@@ -32,17 +32,10 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De OPS karakteristieken per scheepstype.
+ * Table containing the OPS characteristics per maritime shipping category.
  * 
- * De warmteinhoud (heat_content) in deze tabel overschrijft verder de
- * warmteinhoud verkregen via de sector van het scheepstype.
- * Dit omdat de warmteinhoud afhankelijk is van de scheepstype en beweegtype.
- * De hoogte gedefinieerd in deze tabel overschrijft daarbij de hoogte verkregen
- * via de sector.
- * Dit omdat de hoogte varieert per tonnage-reeks en beweeg type, niet alleen
- * per sector.
- * Spreiding is verder weer een karakteristiek die sterk samenhangt per hoogte,
- * en is daarom ook meegenomen in deze tabel.
+ * These characteristics all depend on the type of the ship and the type of
+ * movement.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql
@@ -113,7 +106,7 @@ public class ShippingMaritimeCategorySourceCharacteristics extends TableImpl<Shi
     }
 
     private ShippingMaritimeCategorySourceCharacteristics(Name alias, Table<ShippingMaritimeCategorySourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken per scheepstype.\r\n\r\nDe warmteinhoud (heat_content) in deze tabel overschrijft verder de warmteinhoud verkregen via de sector van het scheepstype.\r\nDit omdat de warmteinhoud afhankelijk is van de scheepstype en beweegtype.\r\nDe hoogte gedefinieerd in deze tabel overschrijft daarbij de hoogte verkregen via de sector.\r\nDit omdat de hoogte varieert per tonnage-reeks en beweeg type, niet alleen per sector.\r\nSpreiding is verder weer een karakteristiek die sterk samenhangt per hoogte, en is daarom ook meegenomen in deze tabel.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the OPS characteristics per maritime shipping category.\r\n\r\nThese characteristics all depend on the type of the ship and the type of movement.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql"), TableOptions.table());
     }
 
     /**

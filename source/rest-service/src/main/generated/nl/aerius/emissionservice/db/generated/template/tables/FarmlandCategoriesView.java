@@ -27,7 +27,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de landbouwgrond categoriëen.
+ * View returning the farmland categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farmlands.sql
@@ -67,20 +67,20 @@ public class FarmlandCategoriesView extends TableImpl<FarmlandCategoriesViewReco
     public final TableField<FarmlandCategoriesViewRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>template.farmland_categories_view.gcn_sector_id</code>.
+     * The column <code>template.farmland_categories_view.sector_id</code>.
      */
-    public final TableField<FarmlandCategoriesViewRecord, Integer> GCN_SECTOR_ID = createField(DSL.name("gcn_sector_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<FarmlandCategoriesViewRecord, Integer> SECTOR_ID = createField(DSL.name("sector_id"), SQLDataType.INTEGER, this, "");
 
     private FarmlandCategoriesView(Name alias, Table<FarmlandCategoriesViewRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private FarmlandCategoriesView(Name alias, Table<FarmlandCategoriesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de landbouwgrond categoriëen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/farmlands.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the farmland categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/farmlands.sql"), TableOptions.view("""
         create view "farmland_categories_view" as  SELECT farmland_categories.farmland_category_id,
          farmland_categories.code,
          farmland_categories.name,
-         farmland_categories.gcn_sector_id
+         farmland_categories.sector_id
         FROM template.farmland_categories;
         """));
     }

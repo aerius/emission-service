@@ -14,20 +14,21 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De diercategorieën van de stalsystemen waarop een maatregel mag worden
- * toegepast, en de bijbehorende verhouding van de ammoniakemissie afkomstig van
- * de vloer en uit de mestkelder welke de verdeling van reductiefactoren
- * bepaalt.
- * De ammoniakverhouding voor alle maatregelen moet altijd gelijk zijn, wat
- * impliceert dat alle gekozen maatregelen moeten gelden voor dezelfde
- * diercategorie: dat van het het stalsysteem. Met andere woorden, een maatregel
- * reduceert alleen de emissies van een stalsysteem als deze kan worden
- * toegepast op de diercategorie van het stalsysteem.
+ * Table containing the animal categories for which a measure can be applied,
+ * and the corresponding ratio of ammonia emission originating from the floor
+ * and the manure cellar.
+ * The ammonia ratio for all measures should always be equal, which implies that
+ * all chosen measures should apply to the same animal category: the one that is
+ * used in the lodging system.
+ * In other words, a measure only reduces emissions of a lodging system if it
+ * can be applied on the animal category of the lodging system.
  * 
- * @column proportion_floor Het aandeel van de totale ammoniakemissie afkomstig
- * van de vloer voor deze combinatie van maatregel en diercategorie
- * @column proportion_cellar Het aandeel van de totale ammoniakemissie uit de
- * mestkelder voor deze combinatie van maatregel en diercategorie
+ * @column proportion_floor The portion of the total ammonia emission
+ * originating from the floor for this combination of measure and animal
+ * category.
+ * @column proportion_cellar The portion of the total ammonia emission
+ * originating from the manure cellar for this combination of measure and animal
+ * category.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

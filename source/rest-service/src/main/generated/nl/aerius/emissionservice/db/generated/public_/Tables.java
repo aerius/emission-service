@@ -17,29 +17,29 @@ import nl.aerius.emissionservice.db.generated.public_.tables.Substances;
 public class Tables {
 
     /**
-     * Tabel voor de database constanten.
+     * Table for database constants.
      * 
      * @file source/database/src/main/sql/essentials/00-init/03-constants.sql
      */
     public static final Constants CONSTANTS = Constants.CONSTANTS;
 
     /**
-     * De verschillende datasets die beschikbaar zijn.
-     * De data voor elke dataset bevindt zich in een eigen database schema.
+     * The different datasets that are available.
+     * The data for each dataset will reside in their own database schema.
      * 
      * @file source/database/src/main/sql/datasets/02-tables.sql
      */
     public static final Datasets DATASETS = Datasets.DATASETS;
 
     /**
-     * Vertaaltabel voor de verschillende datasets die beschikbaar zijn.
+     * Translation table for the different available datasets.
      * 
      * @file source/database/src/main/sql/datasets/02-tables.sql
      */
     public static final I18nDatasets I18N_DATASETS = I18nDatasets.I18N_DATASETS;
 
     /**
-     * Stoffen
+     * Substances available within the system.
      * 
      * @file source/database/src/main/sql/substances/02-tables.sql
      */

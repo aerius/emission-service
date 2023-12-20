@@ -14,8 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De categorieën van verschillende soorten landbouwgrond activiteiten 
- * De naam is hierbij de identificatie van de categorie voor de gebruiker.
+ * Table containing categories for the different farmland activities.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farmlands.sql
@@ -42,16 +41,16 @@ public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCatego
     }
 
     /**
-     * Setter for <code>template.farmland_categories.gcn_sector_id</code>.
+     * Setter for <code>template.farmland_categories.sector_id</code>.
      */
-    public void setGcnSectorId(Integer value) {
+    public void setSectorId(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>template.farmland_categories.gcn_sector_id</code>.
+     * Getter for <code>template.farmland_categories.sector_id</code>.
      */
-    public Integer getGcnSectorId() {
+    public Integer getSectorId() {
         return (Integer) get(1);
     }
 
@@ -127,7 +126,7 @@ public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCatego
 
     @Override
     public Field<Integer> field2() {
-        return FarmlandCategories.FARMLAND_CATEGORIES.GCN_SECTOR_ID;
+        return FarmlandCategories.FARMLAND_CATEGORIES.SECTOR_ID;
     }
 
     @Override
@@ -152,7 +151,7 @@ public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCatego
 
     @Override
     public Integer component2() {
-        return getGcnSectorId();
+        return getSectorId();
     }
 
     @Override
@@ -177,7 +176,7 @@ public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCatego
 
     @Override
     public Integer value2() {
-        return getGcnSectorId();
+        return getSectorId();
     }
 
     @Override
@@ -203,7 +202,7 @@ public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCatego
 
     @Override
     public FarmlandCategoriesRecord value2(Integer value) {
-        setGcnSectorId(value);
+        setSectorId(value);
         return this;
     }
 
@@ -249,11 +248,11 @@ public class FarmlandCategoriesRecord extends UpdatableRecordImpl<FarmlandCatego
     /**
      * Create a detached, initialised FarmlandCategoriesRecord
      */
-    public FarmlandCategoriesRecord(Short farmlandCategoryId, Integer gcnSectorId, String code, String name, String description) {
+    public FarmlandCategoriesRecord(Short farmlandCategoryId, Integer sectorId, String code, String name, String description) {
         super(FarmlandCategories.FARMLAND_CATEGORIES);
 
         setFarmlandCategoryId(farmlandCategoryId);
-        setGcnSectorId(gcnSectorId);
+        setSectorId(sectorId);
         setCode(code);
         setName(name);
         setDescription(description);

@@ -4,9 +4,7 @@
 package nl.aerius.emissionservice.db.generated.template.tables.records;
 
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
 import nl.aerius.emissionservice.db.generated.public_.enums.SpeedLimitEnforcementType;
-import nl.aerius.emissionservice.db.generated.public_.enums.VehicleType;
 import nl.aerius.emissionservice.db.generated.template.tables.RoadCategoriesView;
 
 import org.jooq.Field;
@@ -16,15 +14,14 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de categorieen voor wegen. Dit bevat onder andere de
- * emissiefactoren en stagnatiefactoren.
- * Zie road_categories en road_category_emission_factors voor meer informatie.
+ * View returning the road categories. This includes the emission factors and
+ * stagnation factors per substance.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesViewRecord> implements Record14<Integer, String, String, VehicleType, RoadType, Integer, Integer, SpeedLimitEnforcementType, Integer, String, Short, Short, Double, Double> {
+public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesViewRecord> implements Record14<Integer, String, String, String, String, String, String, SpeedLimitEnforcementType, Integer, Integer, Short, Short, Double, Double> {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,89 +40,87 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     /**
-     * Setter for <code>template.road_categories_view.code</code>.
+     * Setter for <code>template.road_categories_view.road_area_code</code>.
      */
-    public void setCode(String value) {
+    public void setRoadAreaCode(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>template.road_categories_view.code</code>.
+     * Getter for <code>template.road_categories_view.road_area_code</code>.
      */
-    public String getCode() {
+    public String getRoadAreaCode() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>template.road_categories_view.name</code>.
+     * Setter for <code>template.road_categories_view.road_area_name</code>.
      */
-    public void setName(String value) {
+    public void setRoadAreaName(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>template.road_categories_view.name</code>.
+     * Getter for <code>template.road_categories_view.road_area_name</code>.
      */
-    public String getName() {
+    public String getRoadAreaName() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>template.road_categories_view.vehicle_type</code>.
+     * Setter for <code>template.road_categories_view.road_type_code</code>.
      */
-    public void setVehicleType(VehicleType value) {
+    public void setRoadTypeCode(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>template.road_categories_view.vehicle_type</code>.
+     * Getter for <code>template.road_categories_view.road_type_code</code>.
      */
-    public VehicleType getVehicleType() {
-        return (VehicleType) get(3);
+    public String getRoadTypeCode() {
+        return (String) get(3);
     }
 
     /**
-     * Setter for <code>template.road_categories_view.road_type</code>.
+     * Setter for <code>template.road_categories_view.road_type_name</code>.
      */
-    public void setRoadType(RoadType value) {
+    public void setRoadTypeName(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>template.road_categories_view.road_type</code>.
+     * Getter for <code>template.road_categories_view.road_type_name</code>.
      */
-    public RoadType getRoadType() {
-        return (RoadType) get(4);
+    public String getRoadTypeName() {
+        return (String) get(4);
     }
 
     /**
-     * Setter for <code>template.road_categories_view.gcn_sector_id</code>.
+     * Setter for <code>template.road_categories_view.road_vehicle_code</code>.
      */
-    public void setGcnSectorId(Integer value) {
+    public void setRoadVehicleCode(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>template.road_categories_view.gcn_sector_id</code>.
+     * Getter for <code>template.road_categories_view.road_vehicle_code</code>.
      */
-    public Integer getGcnSectorId() {
-        return (Integer) get(5);
+    public String getRoadVehicleCode() {
+        return (String) get(5);
     }
 
     /**
-     * Setter for
-     * <code>template.road_categories_view.road_speed_profile_id</code>.
+     * Setter for <code>template.road_categories_view.road_vehicle_name</code>.
      */
-    public void setRoadSpeedProfileId(Integer value) {
+    public void setRoadVehicleName(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for
-     * <code>template.road_categories_view.road_speed_profile_id</code>.
+     * Getter for <code>template.road_categories_view.road_vehicle_name</code>.
      */
-    public Integer getRoadSpeedProfileId() {
-        return (Integer) get(6);
+    public String getRoadVehicleName() {
+        return (String) get(6);
     }
 
     /**
@@ -159,19 +154,17 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     /**
-     * Setter for
-     * <code>template.road_categories_view.road_speed_profile_name</code>.
+     * Setter for <code>template.road_categories_view.gradient</code>.
      */
-    public void setRoadSpeedProfileName(String value) {
+    public void setGradient(Integer value) {
         set(9, value);
     }
 
     /**
-     * Getter for
-     * <code>template.road_categories_view.road_speed_profile_name</code>.
+     * Getter for <code>template.road_categories_view.gradient</code>.
      */
-    public String getRoadSpeedProfileName() {
-        return (String) get(9);
+    public Integer getGradient() {
+        return (Integer) get(9);
     }
 
     /**
@@ -237,12 +230,12 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<Integer, String, String, VehicleType, RoadType, Integer, Integer, SpeedLimitEnforcementType, Integer, String, Short, Short, Double, Double> fieldsRow() {
+    public Row14<Integer, String, String, String, String, String, String, SpeedLimitEnforcementType, Integer, Integer, Short, Short, Double, Double> fieldsRow() {
         return (Row14) super.fieldsRow();
     }
 
     @Override
-    public Row14<Integer, String, String, VehicleType, RoadType, Integer, Integer, SpeedLimitEnforcementType, Integer, String, Short, Short, Double, Double> valuesRow() {
+    public Row14<Integer, String, String, String, String, String, String, SpeedLimitEnforcementType, Integer, Integer, Short, Short, Double, Double> valuesRow() {
         return (Row14) super.valuesRow();
     }
 
@@ -253,32 +246,32 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
 
     @Override
     public Field<String> field2() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.CODE;
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_AREA_CODE;
     }
 
     @Override
     public Field<String> field3() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.NAME;
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_AREA_NAME;
     }
 
     @Override
-    public Field<VehicleType> field4() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.VEHICLE_TYPE;
+    public Field<String> field4() {
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_TYPE_CODE;
     }
 
     @Override
-    public Field<RoadType> field5() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_TYPE;
+    public Field<String> field5() {
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_TYPE_NAME;
     }
 
     @Override
-    public Field<Integer> field6() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.GCN_SECTOR_ID;
+    public Field<String> field6() {
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_VEHICLE_CODE;
     }
 
     @Override
-    public Field<Integer> field7() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_SPEED_PROFILE_ID;
+    public Field<String> field7() {
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_VEHICLE_NAME;
     }
 
     @Override
@@ -292,8 +285,8 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     @Override
-    public Field<String> field10() {
-        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.ROAD_SPEED_PROFILE_NAME;
+    public Field<Integer> field10() {
+        return RoadCategoriesView.ROAD_CATEGORIES_VIEW.GRADIENT;
     }
 
     @Override
@@ -323,32 +316,32 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
 
     @Override
     public String component2() {
-        return getCode();
+        return getRoadAreaCode();
     }
 
     @Override
     public String component3() {
-        return getName();
+        return getRoadAreaName();
     }
 
     @Override
-    public VehicleType component4() {
-        return getVehicleType();
+    public String component4() {
+        return getRoadTypeCode();
     }
 
     @Override
-    public RoadType component5() {
-        return getRoadType();
+    public String component5() {
+        return getRoadTypeName();
     }
 
     @Override
-    public Integer component6() {
-        return getGcnSectorId();
+    public String component6() {
+        return getRoadVehicleCode();
     }
 
     @Override
-    public Integer component7() {
-        return getRoadSpeedProfileId();
+    public String component7() {
+        return getRoadVehicleName();
     }
 
     @Override
@@ -362,8 +355,8 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     @Override
-    public String component10() {
-        return getRoadSpeedProfileName();
+    public Integer component10() {
+        return getGradient();
     }
 
     @Override
@@ -393,32 +386,32 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
 
     @Override
     public String value2() {
-        return getCode();
+        return getRoadAreaCode();
     }
 
     @Override
     public String value3() {
-        return getName();
+        return getRoadAreaName();
     }
 
     @Override
-    public VehicleType value4() {
-        return getVehicleType();
+    public String value4() {
+        return getRoadTypeCode();
     }
 
     @Override
-    public RoadType value5() {
-        return getRoadType();
+    public String value5() {
+        return getRoadTypeName();
     }
 
     @Override
-    public Integer value6() {
-        return getGcnSectorId();
+    public String value6() {
+        return getRoadVehicleCode();
     }
 
     @Override
-    public Integer value7() {
-        return getRoadSpeedProfileId();
+    public String value7() {
+        return getRoadVehicleName();
     }
 
     @Override
@@ -432,8 +425,8 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     @Override
-    public String value10() {
-        return getRoadSpeedProfileName();
+    public Integer value10() {
+        return getGradient();
     }
 
     @Override
@@ -464,37 +457,37 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
 
     @Override
     public RoadCategoriesViewRecord value2(String value) {
-        setCode(value);
+        setRoadAreaCode(value);
         return this;
     }
 
     @Override
     public RoadCategoriesViewRecord value3(String value) {
-        setName(value);
+        setRoadAreaName(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesViewRecord value4(VehicleType value) {
-        setVehicleType(value);
+    public RoadCategoriesViewRecord value4(String value) {
+        setRoadTypeCode(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesViewRecord value5(RoadType value) {
-        setRoadType(value);
+    public RoadCategoriesViewRecord value5(String value) {
+        setRoadTypeName(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesViewRecord value6(Integer value) {
-        setGcnSectorId(value);
+    public RoadCategoriesViewRecord value6(String value) {
+        setRoadVehicleCode(value);
         return this;
     }
 
     @Override
-    public RoadCategoriesViewRecord value7(Integer value) {
-        setRoadSpeedProfileId(value);
+    public RoadCategoriesViewRecord value7(String value) {
+        setRoadVehicleName(value);
         return this;
     }
 
@@ -511,8 +504,8 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     @Override
-    public RoadCategoriesViewRecord value10(String value) {
-        setRoadSpeedProfileName(value);
+    public RoadCategoriesViewRecord value10(Integer value) {
+        setGradient(value);
         return this;
     }
 
@@ -541,7 +534,7 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     }
 
     @Override
-    public RoadCategoriesViewRecord values(Integer value1, String value2, String value3, VehicleType value4, RoadType value5, Integer value6, Integer value7, SpeedLimitEnforcementType value8, Integer value9, String value10, Short value11, Short value12, Double value13, Double value14) {
+    public RoadCategoriesViewRecord values(Integer value1, String value2, String value3, String value4, String value5, String value6, String value7, SpeedLimitEnforcementType value8, Integer value9, Integer value10, Short value11, Short value12, Double value13, Double value14) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -573,19 +566,19 @@ public class RoadCategoriesViewRecord extends TableRecordImpl<RoadCategoriesView
     /**
      * Create a detached, initialised RoadCategoriesViewRecord
      */
-    public RoadCategoriesViewRecord(Integer roadCategoryId, String code, String name, VehicleType vehicleType, RoadType roadType, Integer gcnSectorId, Integer roadSpeedProfileId, SpeedLimitEnforcementType speedLimitEnforcement, Integer maximumSpeed, String roadSpeedProfileName, Short year, Short substanceId, Double emissionFactor, Double stagnatedEmissionFactor) {
+    public RoadCategoriesViewRecord(Integer roadCategoryId, String roadAreaCode, String roadAreaName, String roadTypeCode, String roadTypeName, String roadVehicleCode, String roadVehicleName, SpeedLimitEnforcementType speedLimitEnforcement, Integer maximumSpeed, Integer gradient, Short year, Short substanceId, Double emissionFactor, Double stagnatedEmissionFactor) {
         super(RoadCategoriesView.ROAD_CATEGORIES_VIEW);
 
         setRoadCategoryId(roadCategoryId);
-        setCode(code);
-        setName(name);
-        setVehicleType(vehicleType);
-        setRoadType(roadType);
-        setGcnSectorId(gcnSectorId);
-        setRoadSpeedProfileId(roadSpeedProfileId);
+        setRoadAreaCode(roadAreaCode);
+        setRoadAreaName(roadAreaName);
+        setRoadTypeCode(roadTypeCode);
+        setRoadTypeName(roadTypeName);
+        setRoadVehicleCode(roadVehicleCode);
+        setRoadVehicleName(roadVehicleName);
         setSpeedLimitEnforcement(speedLimitEnforcement);
         setMaximumSpeed(maximumSpeed);
-        setRoadSpeedProfileName(roadSpeedProfileName);
+        setGradient(gradient);
         setYear(year);
         setSubstanceId(substanceId);
         setEmissionFactor(emissionFactor);

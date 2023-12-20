@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor diercategorieën.
+ * Translation table for farm animal categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql

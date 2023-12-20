@@ -27,9 +27,10 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de default GCN bron karakteristieken.
- * De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view
- * retourneert de bron karakteristieken van de meest relevante stof.
+ * View returning the default GCN source characteristics.
+ * As the GCN can have different default characteristics per substance, and
+ * AERIUS only needs 1 set, this view returns the characteristics for the most
+ * relevant substance.
  * 
  * @file source/database/src/main/sql/template/01-sectors/04-views.sql
  */
@@ -93,7 +94,7 @@ public class DefaultGcnSectorSourceCharacteristicsView extends TableImpl<Default
     }
 
     private DefaultGcnSectorSourceCharacteristicsView(Name alias, Table<DefaultGcnSectorSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de default GCN bron karakteristieken.\r\nDe GCN bron karakteristieken lijst is per GCN sector en stof. Deze view retourneert de bron karakteristieken van de meest relevante stof.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/04-views.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the default GCN source characteristics.\r\nAs the GCN can have different default characteristics per substance, and AERIUS only needs 1 set, this view returns the characteristics for the most relevant substance.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/04-views.sql"), TableOptions.view("""
         create view "default_gcn_sector_source_characteristics_view" as  SELECT gcn_sector_source_characteristics.gcn_sector_id,
           gcn_sector_source_characteristics.heat_content,
           gcn_sector_source_characteristics.height,
@@ -101,7 +102,7 @@ public class DefaultGcnSectorSourceCharacteristicsView extends TableImpl<Default
           gcn_sector_source_characteristics.emission_diurnal_variation_id,
           gcn_sector_source_characteristics.particle_size_distribution
          FROM template.gcn_sector_source_characteristics
-        WHERE (((gcn_sector_source_characteristics.substance_id = 11) AND ((gcn_sector_source_characteristics.gcn_sector_id < 4120) OR (gcn_sector_source_characteristics.gcn_sector_id >= 4300))) OR ((gcn_sector_source_characteristics.substance_id = 17) AND (gcn_sector_source_characteristics.gcn_sector_id >= 4120) AND (gcn_sector_source_characteristics.gcn_sector_id < 4300)));
+        WHERE (((gcn_sector_source_characteristics.substance_id = 11) AND ((gcn_sector_source_characteristics.gcn_sector_id < 4710) OR (gcn_sector_source_characteristics.gcn_sector_id >= 4780))) OR ((gcn_sector_source_characteristics.substance_id = 17) AND (gcn_sector_source_characteristics.gcn_sector_id >= 4710) AND (gcn_sector_source_characteristics.gcn_sector_id < 4780)) OR ((gcn_sector_source_characteristics.substance_id = 17) AND (gcn_sector_source_characteristics.gcn_sector_id = 4401)));
         """));
     }
 

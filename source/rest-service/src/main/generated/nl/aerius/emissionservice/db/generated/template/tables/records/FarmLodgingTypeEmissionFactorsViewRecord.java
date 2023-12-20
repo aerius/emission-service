@@ -4,25 +4,24 @@
 package nl.aerius.emissionservice.db.generated.template.tables.records;
 
 
+import nl.aerius.emissionservice.db.generated.public_.enums.FarmEmissionFactorType;
 import nl.aerius.emissionservice.db.generated.template.tables.FarmLodgingTypeEmissionFactorsView;
 
 import org.jooq.Field;
-import org.jooq.Record10;
-import org.jooq.Row10;
+import org.jooq.Record11;
+import org.jooq.Row11;
 import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * Geeft de eigenschappen van een stalsysteem, inclusief code, beschrijving,
- * diercategorie, emissiefactoren, of het een luchtwasser is, het bijbehorende
- * traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen
- * worden.
+ * View returning the properties of farm lodging/housing systems, including
+ * emission factors and possible lodging definitions.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<FarmLodgingTypeEmissionFactorsViewRecord> implements Record10<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean> {
+public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<FarmLodgingTypeEmissionFactorsViewRecord> implements Record11<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean, FarmEmissionFactorType> {
 
     private static final long serialVersionUID = 1L;
 
@@ -186,18 +185,34 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
         return (Boolean) get(9);
     }
 
+    /**
+     * Setter for
+     * <code>template.farm_lodging_type_emission_factors_view.farm_emission_factor_type</code>.
+     */
+    public void setFarmEmissionFactorType(FarmEmissionFactorType value) {
+        set(10, value);
+    }
+
+    /**
+     * Getter for
+     * <code>template.farm_lodging_type_emission_factors_view.farm_emission_factor_type</code>.
+     */
+    public FarmEmissionFactorType getFarmEmissionFactorType() {
+        return (FarmEmissionFactorType) get(10);
+    }
+
     // -------------------------------------------------------------------------
-    // Record10 type implementation
+    // Record11 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row11<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean, FarmEmissionFactorType> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     @Override
-    public Row10<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean> valuesRow() {
-        return (Row10) super.valuesRow();
+    public Row11<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean, FarmEmissionFactorType> valuesRow() {
+        return (Row11) super.valuesRow();
     }
 
     @Override
@@ -251,6 +266,11 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
     }
 
     @Override
+    public Field<FarmEmissionFactorType> field11() {
+        return FarmLodgingTypeEmissionFactorsView.FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW.FARM_EMISSION_FACTOR_TYPE;
+    }
+
+    @Override
     public Integer component1() {
         return getFarmLodgingTypeId();
     }
@@ -301,6 +321,11 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
     }
 
     @Override
+    public FarmEmissionFactorType component11() {
+        return getFarmEmissionFactorType();
+    }
+
+    @Override
     public Integer value1() {
         return getFarmLodgingTypeId();
     }
@@ -348,6 +373,11 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
     @Override
     public Boolean value10() {
         return getScrubber();
+    }
+
+    @Override
+    public FarmEmissionFactorType value11() {
+        return getFarmEmissionFactorType();
     }
 
     @Override
@@ -411,7 +441,13 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
     }
 
     @Override
-    public FarmLodgingTypeEmissionFactorsViewRecord values(Integer value1, String value2, String value3, String value4, Integer value5, Integer value6, Short value7, Float value8, Integer value9, Boolean value10) {
+    public FarmLodgingTypeEmissionFactorsViewRecord value11(FarmEmissionFactorType value) {
+        setFarmEmissionFactorType(value);
+        return this;
+    }
+
+    @Override
+    public FarmLodgingTypeEmissionFactorsViewRecord values(Integer value1, String value2, String value3, String value4, Integer value5, Integer value6, Short value7, Float value8, Integer value9, Boolean value10, FarmEmissionFactorType value11) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -422,6 +458,7 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
         value8(value8);
         value9(value9);
         value10(value10);
+        value11(value11);
         return this;
     }
 
@@ -439,7 +476,7 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
     /**
      * Create a detached, initialised FarmLodgingTypeEmissionFactorsViewRecord
      */
-    public FarmLodgingTypeEmissionFactorsViewRecord(Integer farmLodgingTypeId, String code, String name, String description, Integer farmAnimalCategoryId, Integer farmLodgingSystemDefinitionId, Short substanceId, Float emissionFactor, Integer farmOtherLodgingTypeId, Boolean scrubber) {
+    public FarmLodgingTypeEmissionFactorsViewRecord(Integer farmLodgingTypeId, String code, String name, String description, Integer farmAnimalCategoryId, Integer farmLodgingSystemDefinitionId, Short substanceId, Float emissionFactor, Integer farmOtherLodgingTypeId, Boolean scrubber, FarmEmissionFactorType farmEmissionFactorType) {
         super(FarmLodgingTypeEmissionFactorsView.FARM_LODGING_TYPE_EMISSION_FACTORS_VIEW);
 
         setFarmLodgingTypeId(farmLodgingTypeId);
@@ -452,5 +489,6 @@ public class FarmLodgingTypeEmissionFactorsViewRecord extends TableRecordImpl<Fa
         setEmissionFactor(emissionFactor);
         setFarmOtherLodgingTypeId(farmOtherLodgingTypeId);
         setScrubber(scrubber);
+        setFarmEmissionFactorType(farmEmissionFactorType);
     }
 }

@@ -31,8 +31,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De categorieën van verschillende soorten landbouwgrond activiteiten 
- * De naam is hierbij de identificatie van de categorie voor de gebruiker.
+ * Table containing categories for the different farmland activities.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farmlands.sql
@@ -62,9 +61,9 @@ public class FarmlandCategories extends TableImpl<FarmlandCategoriesRecord> {
     public final TableField<FarmlandCategoriesRecord, Short> FARMLAND_CATEGORY_ID = createField(DSL.name("farmland_category_id"), SQLDataType.SMALLINT.nullable(false), this, "");
 
     /**
-     * The column <code>template.farmland_categories.gcn_sector_id</code>.
+     * The column <code>template.farmland_categories.sector_id</code>.
      */
-    public final TableField<FarmlandCategoriesRecord, Integer> GCN_SECTOR_ID = createField(DSL.name("gcn_sector_id"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<FarmlandCategoriesRecord, Integer> SECTOR_ID = createField(DSL.name("sector_id"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>template.farmland_categories.code</code>.
@@ -86,7 +85,7 @@ public class FarmlandCategories extends TableImpl<FarmlandCategoriesRecord> {
     }
 
     private FarmlandCategories(Name alias, Table<FarmlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten landbouwgrond activiteiten \r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farmlands.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing categories for the different farmland activities.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farmlands.sql"), TableOptions.table());
     }
 
     /**
@@ -133,20 +132,19 @@ public class FarmlandCategories extends TableImpl<FarmlandCategoriesRecord> {
 
     @Override
     public List<ForeignKey<FarmlandCategoriesRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FARMLAND_CATEGORIES__FARMLAND_CATEGORIES_FKEY_GCN_SECTORS);
+        return Arrays.asList(Keys.FARMLAND_CATEGORIES__FARMLAND_CATEGORIES_FKEY_SECTORS);
     }
 
-    private transient GcnSectors _gcnSectors;
+    private transient Sectors _sectors;
 
     /**
-     * Get the implicit join path to the <code>template.gcn_sectors</code>
-     * table.
+     * Get the implicit join path to the <code>template.sectors</code> table.
      */
-    public GcnSectors gcnSectors() {
-        if (_gcnSectors == null)
-            _gcnSectors = new GcnSectors(this, Keys.FARMLAND_CATEGORIES__FARMLAND_CATEGORIES_FKEY_GCN_SECTORS);
+    public Sectors sectors() {
+        if (_sectors == null)
+            _sectors = new Sectors(this, Keys.FARMLAND_CATEGORIES__FARMLAND_CATEGORIES_FKEY_SECTORS);
 
-        return _gcnSectors;
+        return _sectors;
     }
 
     @Override

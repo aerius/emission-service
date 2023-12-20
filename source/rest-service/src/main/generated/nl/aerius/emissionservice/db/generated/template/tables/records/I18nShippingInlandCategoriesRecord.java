@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten binnenvaart-schepen.
+ * Translation table for inland shipping categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql

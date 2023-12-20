@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor additionele staltechnieken.
+ * Translation table for additional lodging techniques for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql
@@ -79,7 +79,7 @@ public class I18nFarmAdditionalLodgingSystems extends TableImpl<I18nFarmAddition
     }
 
     private I18nFarmAdditionalLodgingSystems(Name alias, Table<I18nFarmAdditionalLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor additionele staltechnieken.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for additional lodging techniques for farms.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     /**

@@ -4,25 +4,24 @@
 package nl.aerius.emissionservice.db.generated.template.tables.records;
 
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
 import nl.aerius.emissionservice.db.generated.public_.enums.SpeedLimitEnforcementType;
 import nl.aerius.emissionservice.db.generated.template.tables.RoadSpeedProfiles;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record5;
-import org.jooq.Row5;
+import org.jooq.Record4;
+import org.jooq.Row4;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Tabel met daarin de verschillende snelheidstyperingen per wegtype.
+ * Table containing the different speed profiles.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfilesRecord> implements Record5<Integer, RoadType, SpeedLimitEnforcementType, Integer, String> {
+public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfilesRecord> implements Record4<Integer, SpeedLimitEnforcementType, Integer, Integer> {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,25 +42,11 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     }
 
     /**
-     * Setter for <code>template.road_speed_profiles.road_type</code>.
-     */
-    public void setRoadType(RoadType value) {
-        set(1, value);
-    }
-
-    /**
-     * Getter for <code>template.road_speed_profiles.road_type</code>.
-     */
-    public RoadType getRoadType() {
-        return (RoadType) get(1);
-    }
-
-    /**
      * Setter for
      * <code>template.road_speed_profiles.speed_limit_enforcement</code>.
      */
     public void setSpeedLimitEnforcement(SpeedLimitEnforcementType value) {
-        set(2, value);
+        set(1, value);
     }
 
     /**
@@ -69,35 +54,35 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
      * <code>template.road_speed_profiles.speed_limit_enforcement</code>.
      */
     public SpeedLimitEnforcementType getSpeedLimitEnforcement() {
-        return (SpeedLimitEnforcementType) get(2);
+        return (SpeedLimitEnforcementType) get(1);
     }
 
     /**
      * Setter for <code>template.road_speed_profiles.maximum_speed</code>.
      */
     public void setMaximumSpeed(Integer value) {
-        set(3, value);
+        set(2, value);
     }
 
     /**
      * Getter for <code>template.road_speed_profiles.maximum_speed</code>.
      */
     public Integer getMaximumSpeed() {
+        return (Integer) get(2);
+    }
+
+    /**
+     * Setter for <code>template.road_speed_profiles.gradient</code>.
+     */
+    public void setGradient(Integer value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>template.road_speed_profiles.gradient</code>.
+     */
+    public Integer getGradient() {
         return (Integer) get(3);
-    }
-
-    /**
-     * Setter for <code>template.road_speed_profiles.name</code>.
-     */
-    public void setName(String value) {
-        set(4, value);
-    }
-
-    /**
-     * Getter for <code>template.road_speed_profiles.name</code>.
-     */
-    public String getName() {
-        return (String) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -110,17 +95,17 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     }
 
     // -------------------------------------------------------------------------
-    // Record5 type implementation
+    // Record4 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Integer, RoadType, SpeedLimitEnforcementType, Integer, String> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row4<Integer, SpeedLimitEnforcementType, Integer, Integer> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 
     @Override
-    public Row5<Integer, RoadType, SpeedLimitEnforcementType, Integer, String> valuesRow() {
-        return (Row5) super.valuesRow();
+    public Row4<Integer, SpeedLimitEnforcementType, Integer, Integer> valuesRow() {
+        return (Row4) super.valuesRow();
     }
 
     @Override
@@ -129,23 +114,18 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     }
 
     @Override
-    public Field<RoadType> field2() {
-        return RoadSpeedProfiles.ROAD_SPEED_PROFILES.ROAD_TYPE;
-    }
-
-    @Override
-    public Field<SpeedLimitEnforcementType> field3() {
+    public Field<SpeedLimitEnforcementType> field2() {
         return RoadSpeedProfiles.ROAD_SPEED_PROFILES.SPEED_LIMIT_ENFORCEMENT;
     }
 
     @Override
-    public Field<Integer> field4() {
+    public Field<Integer> field3() {
         return RoadSpeedProfiles.ROAD_SPEED_PROFILES.MAXIMUM_SPEED;
     }
 
     @Override
-    public Field<String> field5() {
-        return RoadSpeedProfiles.ROAD_SPEED_PROFILES.NAME;
+    public Field<Integer> field4() {
+        return RoadSpeedProfiles.ROAD_SPEED_PROFILES.GRADIENT;
     }
 
     @Override
@@ -154,23 +134,18 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     }
 
     @Override
-    public RoadType component2() {
-        return getRoadType();
-    }
-
-    @Override
-    public SpeedLimitEnforcementType component3() {
+    public SpeedLimitEnforcementType component2() {
         return getSpeedLimitEnforcement();
     }
 
     @Override
-    public Integer component4() {
+    public Integer component3() {
         return getMaximumSpeed();
     }
 
     @Override
-    public String component5() {
-        return getName();
+    public Integer component4() {
+        return getGradient();
     }
 
     @Override
@@ -179,23 +154,18 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     }
 
     @Override
-    public RoadType value2() {
-        return getRoadType();
-    }
-
-    @Override
-    public SpeedLimitEnforcementType value3() {
+    public SpeedLimitEnforcementType value2() {
         return getSpeedLimitEnforcement();
     }
 
     @Override
-    public Integer value4() {
+    public Integer value3() {
         return getMaximumSpeed();
     }
 
     @Override
-    public String value5() {
-        return getName();
+    public Integer value4() {
+        return getGradient();
     }
 
     @Override
@@ -205,36 +175,29 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     }
 
     @Override
-    public RoadSpeedProfilesRecord value2(RoadType value) {
-        setRoadType(value);
-        return this;
-    }
-
-    @Override
-    public RoadSpeedProfilesRecord value3(SpeedLimitEnforcementType value) {
+    public RoadSpeedProfilesRecord value2(SpeedLimitEnforcementType value) {
         setSpeedLimitEnforcement(value);
         return this;
     }
 
     @Override
-    public RoadSpeedProfilesRecord value4(Integer value) {
+    public RoadSpeedProfilesRecord value3(Integer value) {
         setMaximumSpeed(value);
         return this;
     }
 
     @Override
-    public RoadSpeedProfilesRecord value5(String value) {
-        setName(value);
+    public RoadSpeedProfilesRecord value4(Integer value) {
+        setGradient(value);
         return this;
     }
 
     @Override
-    public RoadSpeedProfilesRecord values(Integer value1, RoadType value2, SpeedLimitEnforcementType value3, Integer value4, String value5) {
+    public RoadSpeedProfilesRecord values(Integer value1, SpeedLimitEnforcementType value2, Integer value3, Integer value4) {
         value1(value1);
         value2(value2);
         value3(value3);
         value4(value4);
-        value5(value5);
         return this;
     }
 
@@ -252,13 +215,12 @@ public class RoadSpeedProfilesRecord extends UpdatableRecordImpl<RoadSpeedProfil
     /**
      * Create a detached, initialised RoadSpeedProfilesRecord
      */
-    public RoadSpeedProfilesRecord(Integer roadSpeedProfileId, RoadType roadType, SpeedLimitEnforcementType speedLimitEnforcement, Integer maximumSpeed, String name) {
+    public RoadSpeedProfilesRecord(Integer roadSpeedProfileId, SpeedLimitEnforcementType speedLimitEnforcement, Integer maximumSpeed, Integer gradient) {
         super(RoadSpeedProfiles.ROAD_SPEED_PROFILES);
 
         setRoadSpeedProfileId(roadSpeedProfileId);
-        setRoadType(roadType);
         setSpeedLimitEnforcement(speedLimitEnforcement);
         setMaximumSpeed(maximumSpeed);
-        setName(name);
+        setGradient(gradient);
     }
 }

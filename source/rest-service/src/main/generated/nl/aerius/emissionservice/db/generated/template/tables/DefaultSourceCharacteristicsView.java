@@ -27,9 +27,10 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken per AERIUS sector.
- * Valt terug op een default GCN bron karakteristieken indien er geen AERIUS
- * default waarde is opgegeven.
+ * View returning the emission characteristics per AERIUS sector.
+ * Falls back to the default GCN source characteristics (as returned by
+ * default_gcn_sector_source_characteristics_view) whenever no AERIUS default
+ * set is present.
  * 
  * @file source/database/src/main/sql/template/01-sectors/04-views.sql
  */
@@ -105,7 +106,7 @@ public class DefaultSourceCharacteristicsView extends TableImpl<DefaultSourceCha
     }
 
     private DefaultSourceCharacteristicsView(Name alias, Table<DefaultSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken per AERIUS sector.\r\nValt terug op een default GCN bron karakteristieken indien er geen AERIUS default waarde is opgegeven.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/04-views.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the emission characteristics per AERIUS sector.\r\nFalls back to the default GCN source characteristics (as returned by default_gcn_sector_source_characteristics_view) whenever no AERIUS default set is present.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/04-views.sql"), TableOptions.view("""
         create view "default_source_characteristics_view" as  SELECT source_characteristics.sector_id,
          source_characteristics.gcn_sector_id,
          source_characteristics.heat_content,

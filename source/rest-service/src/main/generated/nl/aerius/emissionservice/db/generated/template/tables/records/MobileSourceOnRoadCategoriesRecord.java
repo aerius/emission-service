@@ -14,17 +14,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De categorieën van verschillende soorten onroad mobiele bronnen.
- * Dit is qua structuur dezelfde tabel als mobile_source_off_road_categories.
- * Hierdoor zou overerving wel kunnen, echter is het nadeel hierbij dat voor de
- * ID's vervolgens rekening gehouden moet worden met de andere tabel. Hierom is
- * gekozen NIET gebruik te maken van overerving.
- * Er is een kans dat de lijsten afzonderlijk van elkaar zullen gaan wijzigen.
- * 
- * De naam is hierbij de identificatie van de categorie voor de gebruiker.
+ * Table containing the on road mobile source categories.
  * 
  * @file
- * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
+ * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOnRoadCategoriesRecord extends UpdatableRecordImpl<MobileSourceOnRoadCategoriesRecord> implements Record4<Short, String, String, String> {

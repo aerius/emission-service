@@ -29,7 +29,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Stoffen
+ * Substances available within the system.
  * 
  * @file source/database/src/main/sql/substances/02-tables.sql
  */
@@ -71,7 +71,7 @@ public class Substances extends TableImpl<SubstancesRecord> {
     }
 
     private Substances(Name alias, Table<SubstancesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Stoffen\r\n\r\n@file source/database/src/main/sql/substances/02-tables.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Substances available within the system.\r\n\r\n@file source/database/src/main/sql/substances/02-tables.sql"), TableOptions.table());
     }
 
     /**
