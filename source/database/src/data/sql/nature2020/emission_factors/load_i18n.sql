@@ -37,8 +37,9 @@ BEGIN; SELECT setup.ae_load_table('nature2020.i18n_mobile_source_off_road_catego
 BEGIN; SELECT setup.ae_load_table('nature2020.i18n_mobile_source_on_road_categories', '{data_folder}/i18n/i18n.mobile_source_on_road_categories_20150127_nl.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2020.i18n_mobile_source_on_road_categories', '{data_folder}/i18n/i18n.mobile_source_on_road_categories_20150127_en.txt'); COMMIT;
 
-BEGIN; SELECT setup.ae_load_table('nature2020.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_nl.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2020.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_en.txt'); COMMIT;
+-- Plans are removed, kept around as reference.
+--BEGIN; SELECT setup.ae_load_table('nature2020.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_nl.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_en.txt'); COMMIT;
 
 BEGIN; SELECT setup.ae_load_table('nature2020.i18n_shipping_maritime_categories', '{data_folder}/i18n/i18n.shipping_maritime_categories_20140904_nl.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2020.i18n_shipping_maritime_categories', '{data_folder}/i18n/i18n.shipping_maritime_categories_20140904_en.txt'); COMMIT;

@@ -30,8 +30,9 @@ BEGIN; SELECT setup.ae_load_table('nature2020.farm_lodging_fodder_measures_anima
 BEGIN; SELECT setup.ae_load_table('nature2020.farmland_categories', '{data_folder}/temp/temp_farmland_categories_20200527.txt'); COMMIT;
 
 /* Plan emissionfactor data */
-BEGIN; SELECT setup.ae_load_table('nature2020.plan_categories', '{data_folder}/public/plan_categories_20141127.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2020.plan_category_emission_factors', '{data_folder}/public/plan_category_emission_factors_20160418.txt'); COMMIT;
+-- Plans are removed, kept around as reference.
+--BEGIN; SELECT setup.ae_load_table('nature2020.plan_categories', '{data_folder}/public/plan_categories_20141127.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.plan_category_emission_factors', '{data_folder}/public/plan_category_emission_factors_20160418.txt'); COMMIT;
 
 /* Mobile source data */
 BEGIN; SELECT setup.ae_load_table('nature2020.mobile_source_off_road_categories', '{data_folder}/public/mobile_source_off_road_categories_20200626.txt'); COMMIT;

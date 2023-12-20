@@ -29,10 +29,6 @@ BEGIN; SELECT setup.ae_load_table('dev.farm_lodging_fodder_measures_animal_categ
 /* Farmland categories */
 BEGIN; SELECT setup.ae_load_table('dev.farmland_categories', '{data_folder}/temp/temp_farmland_categories_20200527.txt'); COMMIT;
 
-/* Plan emissionfactor data */
-BEGIN; SELECT setup.ae_load_table('dev.plan_categories', '{data_folder}/public/plan_categories_20141127.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('dev.plan_category_emission_factors', '{data_folder}/public/plan_category_emission_factors_20160418.txt'); COMMIT;
-
 /* Mobile source data */
 BEGIN; SELECT setup.ae_load_table('dev.mobile_source_off_road_categories', '{data_folder}/public/mobile_source_off_road_categories_20200626.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('dev.mobile_source_off_road_category_emission_factors', '{data_folder}/public/mobile_source_off_road_category_emission_factors_20200626.txt'); COMMIT;
