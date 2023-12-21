@@ -42,6 +42,20 @@ INSERT INTO i18n_datasets (code, language_code, name, description)
 {import_common 'nature2021/sectors'}
 {import_common 'nature2021/emission_factors'}
 
+-- Dataset(s) for AERIUS 2022
+
+INSERT INTO datasets (code, name, schema_name, current, description)
+	VALUES ('nature2022', 'AERIUS 2022 nature', 'nature2021', true, 'Dataset used in AERIUS 2022, nature profile, released on 26 januari 2023');
+
+INSERT INTO i18n_datasets (code, language_code, name, description)
+	VALUES ('nature2022', 'nl', 'AERIUS 2022 natuur', 'Dataset zoals gebruikt in AERIUS 2022, natuur profiel, publiek beschikbaar vanaf 26 januari 2023');
+INSERT INTO i18n_datasets (code, language_code, name, description)
+	VALUES ('nature2022', 'en', 'AERIUS 2022 nature', 'Dataset used in AERIUS 2022, nature profile, released on 26 januari 2023');
+
+{import_common 'nature2022/dataset_metadata.sql'}
+{import_common 'nature2022/sectors'}
+{import_common 'nature2022/emission_factors'}
+
 
 -- Dataset(s) for Calculator 2023
 
