@@ -31,12 +31,12 @@ INSERT INTO i18n_datasets (code, language_code, name, description)
 -- Dataset(s) for AERIUS 2021
 
 INSERT INTO datasets (code, name, schema_name, current, description)
-	VALUES ('nature2021', 'AERIUS 2021 nature', 'nature2021', true, 'Dataset used in AERIUS 2021, nature profile, to be checked...');
+	VALUES ('nature2021', 'AERIUS 2021 nature', 'nature2021', true, 'Dataset used in AERIUS 2021, nature profile, released on 13 januari 2022');
 
 INSERT INTO i18n_datasets (code, language_code, name, description)
-	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, nog niet publiek beschikbaar');
+	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, publiek beschikbaar vanaf 13 januari 2022');
 INSERT INTO i18n_datasets (code, language_code, name, description)
-	VALUES ('nature2021', 'en', 'AERIUS 2021 nature', 'Dataset used in AERIUS 2021, nature profile, to be checked...');
+	VALUES ('nature2021', 'en', 'AERIUS 2021 nature', 'Dataset used in AERIUS 2021, nature profile, released on 13 januari 2022');
 
 {import_common 'nature2021/dataset_metadata.sql'}
 {import_common 'nature2021/sectors'}
