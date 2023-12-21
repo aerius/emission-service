@@ -1,12 +1,12 @@
 /* Road data */
-BEGIN; SELECT setup.ae_load_table('nature2021.road_area_categories', '{data_folder}/public/road_area_categories_20220203.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_type_categories', '{data_folder}/public/road_type_categories_20220203.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_vehicle_categories', '{data_folder}/public/road_vehicle_categories_20220203.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_speed_profiles', '{data_folder}/public/road_speed_profiles_20220223.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_areas_to_road_types', '{data_folder}/public/road_areas_to_road_types_20220203.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_types_to_speed_profiles', '{data_folder}/public/road_types_to_speed_profiles_20220203.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_categories', '{data_folder}/public/road_categories_20220203.txt', true); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.road_category_emission_factors', '{data_folder}/public/road_category_emission_factors_20220203.txt', true); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_area_categories', '{data_folder}/public/road_area_categories_20220203.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_type_categories', '{data_folder}/public/road_type_categories_20220203.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_vehicle_categories', '{data_folder}/public/road_vehicle_categories_20220203.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_speed_profiles', '{data_folder}/public/road_speed_profiles_20220223.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_areas_to_road_types', '{data_folder}/public/road_areas_to_road_types_20220203.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_types_to_speed_profiles', '{data_folder}/public/road_types_to_speed_profiles_20220203.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_categories', '{data_folder}/public/road_categories_20220203.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.road_category_emission_factors', '{data_folder}/public/road_category_emission_factors_20220203.txt', TRUE); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.mobile_source_on_road_categories', '{data_folder}/public/mobile_source_on_road_categories_20210618.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.mobile_source_on_road_category_emission_factors', '{data_folder}/public/mobile_source_on_road_category_emission_factors_20220203.txt', TRUE); COMMIT;
 
@@ -16,7 +16,7 @@ BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_system_definitions', 
 
 -- Farm lodging structure changed significantly. If needed, something specific has to be applied for this dataset.
 --BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_types', '{data_folder}/public/farm_lodging_types_20211026.txt'); COMMIT;
---BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_type_emission_factors', '{data_folder}/public/farm_lodging_type_emission_factors_20220808.txt', true); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_type_emission_factors', '{data_folder}/public/farm_lodging_type_emission_factors_20220808.txt', TRUE); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_types_other_lodging_type', '{data_folder}/public/farm_lodging_types_other_lodging_type_20211026.txt'); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2021.farm_lodging_types_to_lodging_system_definitions', '{data_folder}/public/farm_lodging_types_to_lodging_system_definitions_20211026.txt'); COMMIT;
 
