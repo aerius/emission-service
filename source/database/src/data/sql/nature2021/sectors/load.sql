@@ -1,6 +1,6 @@
-BEGIN; SELECT setup.ae_load_table('nature2021.sectors', '{data_folder}/temp/temp_sectors_20200527.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.gcn_sectors', '{data_folder}/temp/temp_gcn_sectors_20200514.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.sectors_main_gcn_sector', '{data_folder}/temp/temp_sectors_main_gcn_sector_20200527.txt'); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.sectors', '{data_folder}/public/sectors_20220223.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.gcn_sectors', '{data_folder}/public/gcn_sectors_20220223.txt', TRUE); COMMIT;
+BEGIN; SELECT setup.ae_load_table('nature2021.sectors_main_gcn_sector', '{data_folder}/public/sectors_main_gcn_sector_20220223.txt', TRUE); COMMIT;
 
 BEGIN; SELECT setup.ae_load_table('nature2021.emission_diurnal_variations', '{data_folder}/public/emission_diurnal_variations_20170119.txt'); COMMIT;
 

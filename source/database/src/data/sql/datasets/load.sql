@@ -1,7 +1,7 @@
 -- Dataset for development
 
 INSERT INTO datasets (code, name, schema_name, current, description)
-	VALUES ('dev', 'current development', 'dev', false, 'Dataset to be used for current development');
+	VALUES ('dev', 'current development', 'dev', FALSE, 'Dataset to be used for current development');
 
 INSERT INTO i18n_datasets (code, language_code, name, description)
 	VALUES ('dev', 'nl', 'Huidige ontwikkeling', 'Dataset die gebruikt wordt bij huidige ontwikkelingen');
@@ -16,7 +16,7 @@ INSERT INTO i18n_datasets (code, language_code, name, description)
 -- Dataset(s) for AERIUS 2020
 
 INSERT INTO datasets (code, name, schema_name, current, description)
-	VALUES ('nature2020', 'AERIUS 2020 nature', 'nature2020', true, 'Dataset used in AERIUS 2020, nature profile, released on 15 october 2020');
+	VALUES ('nature2020', 'AERIUS 2020 nature', 'nature2020', FALSE, 'Dataset used in AERIUS 2020, nature profile, released on 15 october 2020');
 
 INSERT INTO i18n_datasets (code, language_code, name, description)
 	VALUES ('nature2020', 'nl', 'AERIUS 2020 natuur', 'Dataset zoals gebruikt in AERIUS 2020, natuur profiel, publiek beschikbaar vanaf 15 oktober 2020');
@@ -31,22 +31,36 @@ INSERT INTO i18n_datasets (code, language_code, name, description)
 -- Dataset(s) for AERIUS 2021
 
 INSERT INTO datasets (code, name, schema_name, current, description)
-	VALUES ('nature2021', 'AERIUS 2021 nature', 'nature2021', true, 'Dataset used in AERIUS 2021, nature profile, to be checked...');
+	VALUES ('nature2021', 'AERIUS 2021 nature', 'nature2021', FALSE, 'Dataset used in AERIUS 2021, nature profile, released on 13 januari 2022');
 
 INSERT INTO i18n_datasets (code, language_code, name, description)
-	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, nog niet publiek beschikbaar');
+	VALUES ('nature2021', 'nl', 'AERIUS 2021 natuur', 'Dataset zoals gebruikt in AERIUS 2021, natuur profiel, publiek beschikbaar vanaf 13 januari 2022');
 INSERT INTO i18n_datasets (code, language_code, name, description)
-	VALUES ('nature2021', 'en', 'AERIUS 2021 nature', 'Dataset used in AERIUS 2021, nature profile, to be checked...');
+	VALUES ('nature2021', 'en', 'AERIUS 2021 nature', 'Dataset used in AERIUS 2021, nature profile, released on 13 januari 2022');
 
 {import_common 'nature2021/dataset_metadata.sql'}
 {import_common 'nature2021/sectors'}
 {import_common 'nature2021/emission_factors'}
 
+-- Dataset(s) for AERIUS 2022
+
+INSERT INTO datasets (code, name, schema_name, current, description)
+	VALUES ('nature2022', 'AERIUS 2022 nature', 'nature2021', FALSE, 'Dataset used in AERIUS 2022, nature profile, released on 26 januari 2023');
+
+INSERT INTO i18n_datasets (code, language_code, name, description)
+	VALUES ('nature2022', 'nl', 'AERIUS 2022 natuur', 'Dataset zoals gebruikt in AERIUS 2022, natuur profiel, publiek beschikbaar vanaf 26 januari 2023');
+INSERT INTO i18n_datasets (code, language_code, name, description)
+	VALUES ('nature2022', 'en', 'AERIUS 2022 nature', 'Dataset used in AERIUS 2022, nature profile, released on 26 januari 2023');
+
+{import_common 'nature2022/dataset_metadata.sql'}
+{import_common 'nature2022/sectors'}
+{import_common 'nature2022/emission_factors'}
+
 
 -- Dataset(s) for Calculator 2023
 
 INSERT INTO datasets (code, name, schema_name, current, description)
-	VALUES ('calculator2023', 'AERIUS Calculator 2023', 'calculator2023', true, 'Dataset used in AERIUS Calculator 2023, released on 5 october 2023');
+	VALUES ('calculator2023', 'AERIUS Calculator 2023', 'calculator2023', TRUE, 'Dataset used in AERIUS Calculator 2023, released on 5 october 2023');
 
 INSERT INTO i18n_datasets (code, language_code, name, description)
 	VALUES ('calculator2023', 'nl', 'AERIUS Calculator 2023', 'Dataset zoals gebruikt in AERIUS Calculator 2023, publiek beschikbaar vanaf 5 oktober 2023');
