@@ -40,7 +40,7 @@ BEGIN; SELECT setup.ae_load_table('nature2020.farmland_categories', '{data_folde
 
 /* Mobile source off road data */
 --Mobile source off road structure changed significantly. If needed, something specific has to be applied for this dataset.
---BEGIN; SELECT setup.ae_load_table('nature2020.mobile_source_off_road_categories', '{data_folder}/public/mobile_source_off_road_categories_20200626.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.mobile_source_off_road_categories', '{data_folder}/public/mobile_source_off_road_categories_20201113.txt'); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2020.mobile_source_off_road_category_emission_factors', '{data_folder}/public/mobile_source_off_road_category_emission_factors_20200626.txt'); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2020.mobile_source_off_road_category_idle_properties', '{data_folder}/public/mobile_source_off_road_category_idle_properties_20200626.txt'); COMMIT;
 
@@ -61,7 +61,7 @@ BEGIN; SELECT setup.ae_load_table('nature2020.shipping_inland_category_emission_
 /* Machinery data */
 -- Machinery types are removed, kept around as reference.
 --BEGIN; SELECT setup.ae_load_table('nature2020.machinery_fuel_types', '{data_folder}/public/machinery_fuel_types_20200701.txt'); COMMIT;
---BEGIN; SELECT setup.ae_load_table('nature2020.machinery_types', '{data_folder}/public/machinery_types_20200619.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2020.machinery_types', '{data_folder}/public/machinery_types_20201130.txt'); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2020.machinery_type_fuel_options', '{data_folder}/public/machinery_type_fuel_options_20200619.txt'); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2020.machinery_type_emission_factors', '{data_folder}/public/machinery_type_emission_factors_20200701.txt'); COMMIT;
 --BEGIN; SELECT setup.ae_load_table('nature2020.machinery_fuel_types_to_sectors', '{data_folder}/public/machinery_fuel_types_to_sectors_20200701.txt'); COMMIT;
