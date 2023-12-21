@@ -14,10 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Lijst met verschillende types temporele variaties.
- * 
- * We gebruiken de veldnaam diurnal_variation in alle tabellen waar
- * emission_diurnal_variation_id als foreign key voorkomt.
+ * Table containing the different types of diurnal (temporal) variations.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql

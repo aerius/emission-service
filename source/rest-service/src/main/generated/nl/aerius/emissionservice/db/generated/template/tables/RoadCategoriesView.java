@@ -6,9 +6,7 @@ package nl.aerius.emissionservice.db.generated.template.tables;
 
 import java.util.function.Function;
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
 import nl.aerius.emissionservice.db.generated.public_.enums.SpeedLimitEnforcementType;
-import nl.aerius.emissionservice.db.generated.public_.enums.VehicleType;
 import nl.aerius.emissionservice.db.generated.template.Template;
 import nl.aerius.emissionservice.db.generated.template.tables.records.RoadCategoriesViewRecord;
 
@@ -30,9 +28,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de categorieen voor wegen. Dit bevat onder andere de
- * emissiefactoren en stagnatiefactoren.
- * Zie road_categories en road_category_emission_factors voor meer informatie.
+ * View returning the road categories. This includes the emission factors and
+ * stagnation factors per substance.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/roads.sql
@@ -61,35 +58,34 @@ public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
     public final TableField<RoadCategoriesViewRecord, Integer> ROAD_CATEGORY_ID = createField(DSL.name("road_category_id"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>template.road_categories_view.code</code>.
+     * The column <code>template.road_categories_view.road_area_code</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, String> CODE = createField(DSL.name("code"), SQLDataType.CLOB, this, "");
+    public final TableField<RoadCategoriesViewRecord, String> ROAD_AREA_CODE = createField(DSL.name("road_area_code"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>template.road_categories_view.name</code>.
+     * The column <code>template.road_categories_view.road_area_name</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB, this, "");
+    public final TableField<RoadCategoriesViewRecord, String> ROAD_AREA_NAME = createField(DSL.name("road_area_name"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>template.road_categories_view.vehicle_type</code>.
+     * The column <code>template.road_categories_view.road_type_code</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, VehicleType> VEHICLE_TYPE = createField(DSL.name("vehicle_type"), SQLDataType.VARCHAR.asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.VehicleType.class), this, "");
+    public final TableField<RoadCategoriesViewRecord, String> ROAD_TYPE_CODE = createField(DSL.name("road_type_code"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>template.road_categories_view.road_type</code>.
+     * The column <code>template.road_categories_view.road_type_name</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, RoadType> ROAD_TYPE = createField(DSL.name("road_type"), SQLDataType.VARCHAR.asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.RoadType.class), this, "");
+    public final TableField<RoadCategoriesViewRecord, String> ROAD_TYPE_NAME = createField(DSL.name("road_type_name"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>template.road_categories_view.gcn_sector_id</code>.
+     * The column <code>template.road_categories_view.road_vehicle_code</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, Integer> GCN_SECTOR_ID = createField(DSL.name("gcn_sector_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<RoadCategoriesViewRecord, String> ROAD_VEHICLE_CODE = createField(DSL.name("road_vehicle_code"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column
-     * <code>template.road_categories_view.road_speed_profile_id</code>.
+     * The column <code>template.road_categories_view.road_vehicle_name</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, Integer> ROAD_SPEED_PROFILE_ID = createField(DSL.name("road_speed_profile_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<RoadCategoriesViewRecord, String> ROAD_VEHICLE_NAME = createField(DSL.name("road_vehicle_name"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -103,10 +99,9 @@ public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
     public final TableField<RoadCategoriesViewRecord, Integer> MAXIMUM_SPEED = createField(DSL.name("maximum_speed"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column
-     * <code>template.road_categories_view.road_speed_profile_name</code>.
+     * The column <code>template.road_categories_view.gradient</code>.
      */
-    public final TableField<RoadCategoriesViewRecord, String> ROAD_SPEED_PROFILE_NAME = createField(DSL.name("road_speed_profile_name"), SQLDataType.CLOB, this, "");
+    public final TableField<RoadCategoriesViewRecord, Integer> GRADIENT = createField(DSL.name("gradient"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>template.road_categories_view.year</code>.
@@ -134,23 +129,26 @@ public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
     }
 
     private RoadCategoriesView(Name alias, Table<RoadCategoriesViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de categorieen voor wegen. Dit bevat onder andere de emissiefactoren en stagnatiefactoren.\r\nZie road_categories en road_category_emission_factors voor meer informatie.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/roads.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the road categories. This includes the emission factors and stagnation factors per substance.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/roads.sql"), TableOptions.view("""
         create view "road_categories_view" as  SELECT road_categories.road_category_id,
-          ((road_categories.vehicle_type || '_'::text) || road_categories.road_type) AS code,
-          road_categories.name,
-          road_categories.vehicle_type,
-          road_categories.road_type,
-          road_categories.gcn_sector_id,
-          road_emission_factors_interpolated_view.road_speed_profile_id,
+          road_area_categories.code AS road_area_code,
+          road_area_categories.name AS road_area_name,
+          road_type_categories.code AS road_type_code,
+          road_type_categories.name AS road_type_name,
+          road_vehicle_categories.code AS road_vehicle_code,
+          road_vehicle_categories.name AS road_vehicle_name,
           road_speed_profiles.speed_limit_enforcement,
           road_speed_profiles.maximum_speed,
-          road_speed_profiles.name AS road_speed_profile_name,
-          road_emission_factors_interpolated_view.year,
-          road_emission_factors_interpolated_view.substance_id,
-          road_emission_factors_interpolated_view.emission_factor,
-          road_emission_factors_interpolated_view.stagnated_emission_factor
-         FROM ((template.road_categories
-           JOIN template.road_emission_factors_interpolated_view USING (road_category_id))
+          road_speed_profiles.gradient,
+          road_category_emission_factors.year,
+          road_category_emission_factors.substance_id,
+          road_category_emission_factors.emission_factor,
+          road_category_emission_factors.stagnated_emission_factor
+         FROM (((((template.road_categories
+           JOIN template.road_category_emission_factors USING (road_category_id))
+           JOIN template.road_area_categories USING (road_area_category_id))
+           JOIN template.road_type_categories USING (road_type_category_id))
+           JOIN template.road_vehicle_categories USING (road_vehicle_category_id))
            JOIN template.road_speed_profiles USING (road_speed_profile_id))
         ORDER BY road_categories.road_category_id;
         """));
@@ -232,14 +230,14 @@ public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<Integer, String, String, VehicleType, RoadType, Integer, Integer, SpeedLimitEnforcementType, Integer, String, Short, Short, Double, Double> fieldsRow() {
+    public Row14<Integer, String, String, String, String, String, String, SpeedLimitEnforcementType, Integer, Integer, Short, Short, Double, Double> fieldsRow() {
         return (Row14) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function14<? super Integer, ? super String, ? super String, ? super VehicleType, ? super RoadType, ? super Integer, ? super Integer, ? super SpeedLimitEnforcementType, ? super Integer, ? super String, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function14<? super Integer, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super SpeedLimitEnforcementType, ? super Integer, ? super Integer, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -247,7 +245,7 @@ public class RoadCategoriesView extends TableImpl<RoadCategoriesViewRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function14<? super Integer, ? super String, ? super String, ? super VehicleType, ? super RoadType, ? super Integer, ? super Integer, ? super SpeedLimitEnforcementType, ? super Integer, ? super String, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function14<? super Integer, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super SpeedLimitEnforcementType, ? super Integer, ? super Integer, ? super Short, ? super Short, ? super Double, ? super Double, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

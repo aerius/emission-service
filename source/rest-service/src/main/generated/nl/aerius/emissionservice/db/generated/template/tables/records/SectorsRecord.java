@@ -14,7 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Sectorindeling van AERIUS
+ * Table containing AERIUS sectors.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/01-sectors.sql

@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor de verschillende datasets die beschikbaar zijn.
+ * Translation table for the different available datasets.
  * 
  * @file source/database/src/main/sql/datasets/02-tables.sql
  */
@@ -79,7 +79,7 @@ public class I18nDatasets extends TableImpl<I18nDatasetsRecord> {
     }
 
     private I18nDatasets(Name alias, Table<I18nDatasetsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor de verschillende datasets die beschikbaar zijn.\r\n\r\n@file source/database/src/main/sql/datasets/02-tables.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for the different available datasets.\r\n\r\n@file source/database/src/main/sql/datasets/02-tables.sql"), TableOptions.table());
     }
 
     /**

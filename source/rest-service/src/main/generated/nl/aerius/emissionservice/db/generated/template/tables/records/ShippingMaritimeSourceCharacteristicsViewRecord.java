@@ -14,7 +14,7 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken voor zeescheep vaart.
+ * View returning the emission characteristics for maritime shipping.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_maritime.sql

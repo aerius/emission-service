@@ -15,8 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten landbouw grond
- * activiteiten.
+ * Translation table for farmland activity categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farmlands.sql

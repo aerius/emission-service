@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor de verschillende type temporele variaties.
+ * Table containing i18n localization for different types of diurnal variation.
  * 
  * @file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql
  */
@@ -83,7 +83,7 @@ public class I18nEmissionDiurnalVariations extends TableImpl<I18nEmissionDiurnal
     }
 
     private I18nEmissionDiurnalVariations(Name alias, Table<I18nEmissionDiurnalVariationsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor de verschillende type temporele variaties.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing i18n localization for different types of diurnal variation.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/i18n/base_keys.sql"), TableOptions.table());
     }
 
     /**

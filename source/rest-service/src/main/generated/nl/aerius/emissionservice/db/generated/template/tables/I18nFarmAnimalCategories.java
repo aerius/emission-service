@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor diercategorieën.
+ * Translation table for farm animal categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql
@@ -78,7 +78,7 @@ public class I18nFarmAnimalCategories extends TableImpl<I18nFarmAnimalCategories
     }
 
     private I18nFarmAnimalCategories(Name alias, Table<I18nFarmAnimalCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor diercategorieën.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for farm animal categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     /**

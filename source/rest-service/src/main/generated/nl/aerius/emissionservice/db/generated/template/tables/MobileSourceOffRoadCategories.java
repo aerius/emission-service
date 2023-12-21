@@ -14,11 +14,11 @@ import nl.aerius.emissionservice.db.generated.template.tables.records.MobileSour
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function4;
+import org.jooq.Function5;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -31,9 +31,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De categorieën van verschillende soorten offroad mobiele bronnen
- * (stageklassen).
- * De naam is hierbij de identificatie van de categorie voor de gebruiker.
+ * Table containing the off road mobile source categories (stageklassen).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
@@ -79,12 +77,18 @@ public class MobileSourceOffRoadCategories extends TableImpl<MobileSourceOffRoad
      */
     public final TableField<MobileSourceOffRoadCategoriesRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
 
+    /**
+     * The column
+     * <code>template.mobile_source_off_road_categories.sort_order</code>.
+     */
+    public final TableField<MobileSourceOffRoadCategoriesRecord, Integer> SORT_ORDER = createField(DSL.name("sort_order"), SQLDataType.INTEGER.nullable(false), this, "");
+
     private MobileSourceOffRoadCategories(Name alias, Table<MobileSourceOffRoadCategoriesRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private MobileSourceOffRoadCategories(Name alias, Table<MobileSourceOffRoadCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De categorieën van verschillende soorten offroad mobiele bronnen (stageklassen).\r\nDe naam is hierbij de identificatie van de categorie voor de gebruiker.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the off road mobile source categories (stageklassen).\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     /**
@@ -127,7 +131,7 @@ public class MobileSourceOffRoadCategories extends TableImpl<MobileSourceOffRoad
 
     @Override
     public List<UniqueKey<MobileSourceOffRoadCategoriesRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.MOBILE_SOURCE_OFF_ROAD_CATEGORIES_CODE_KEY, Keys.MOBILE_SOURCE_OFF_ROAD_CATEGORIES_NAME_KEY);
+        return Arrays.asList(Keys.MOBILE_SOURCE_OFF_ROAD_CATEGORIES_CODE_KEY, Keys.MOBILE_SOURCE_OFF_ROAD_CATEGORIES_NAME_KEY, Keys.MOBILE_SOURCE_OFF_ROAD_CATEGORIES_SORT_ORDER_KEY);
     }
 
     @Override
@@ -170,18 +174,18 @@ public class MobileSourceOffRoadCategories extends TableImpl<MobileSourceOffRoad
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Short, String, String, String> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Short, String, String, String, Integer> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function4<? super Short, ? super String, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Short, ? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -189,7 +193,7 @@ public class MobileSourceOffRoadCategories extends TableImpl<MobileSourceOffRoad
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Short, ? super String, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Short, ? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

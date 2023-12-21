@@ -30,15 +30,14 @@ public class I18n extends SchemaImpl {
     public static final I18n I18N = new I18n();
 
     /**
-     * Systeem tabel voor localized teksten.
+     * System table for localized messages.
      * 
      * @file source/database/src/main/sql/i18n/02-tables.sql
      */
     public final Messages MESSAGES = Messages.MESSAGES;
 
     /**
-     * Systeem info tabel voor localized teksten, voor tonen van systeem
-     * berichten.
+     * System info table for localized messages, for showing system messages.
      * 
      * @file source/database/src/main/sql/i18n/02-tables.sql
      */

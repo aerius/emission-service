@@ -35,29 +35,29 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
-     * Tabel voor de database constanten.
+     * Table for database constants.
      * 
      * @file source/database/src/main/sql/essentials/00-init/03-constants.sql
      */
     public final Constants CONSTANTS = Constants.CONSTANTS;
 
     /**
-     * De verschillende datasets die beschikbaar zijn.
-     * De data voor elke dataset bevindt zich in een eigen database schema.
+     * The different datasets that are available.
+     * The data for each dataset will reside in their own database schema.
      * 
      * @file source/database/src/main/sql/datasets/02-tables.sql
      */
     public final Datasets DATASETS = Datasets.DATASETS;
 
     /**
-     * Vertaaltabel voor de verschillende datasets die beschikbaar zijn.
+     * Translation table for the different available datasets.
      * 
      * @file source/database/src/main/sql/datasets/02-tables.sql
      */
     public final I18nDatasets I18N_DATASETS = I18nDatasets.I18N_DATASETS;
 
     /**
-     * Stoffen
+     * Substances available within the system.
      * 
      * @file source/database/src/main/sql/substances/02-tables.sql
      */

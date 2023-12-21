@@ -14,7 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Bevat de emissiefactoren (kg/jaar) van de stalsystemen.
+ * Table containing the emission factors (kg/year) for farm lodging systems.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

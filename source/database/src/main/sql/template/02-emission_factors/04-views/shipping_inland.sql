@@ -1,7 +1,7 @@
 /*
  * shipping_inland_source_characteristics_view
  * -------------------------------------------
- * View retourneert de emissie karakteristieken voor routes voor binnenvaart.
+ * View returning the emission characteristics for inland shipping routes.
  */
 CREATE OR REPLACE VIEW shipping_inland_source_characteristics_view AS
 SELECT
@@ -24,7 +24,7 @@ SELECT
 /*
  * shipping_inland_source_characteristics_docked_view
  * --------------------------------------------------
- * View retourneert de emissie karakteristieken voor aanlegplaatsen voor binnenvaart.
+ * View returning the emission characteristics for inland shipping docks.
  */
 CREATE OR REPLACE VIEW shipping_inland_source_characteristics_docked_view AS
 SELECT
@@ -46,16 +46,16 @@ SELECT
 /*
  * shipping_inland_waterway_categories_view
  * ----------------------------------------
- * View retourneert de waterweg categorieen.
+ * View returning the waterway categories.
  */
 CREATE OR REPLACE VIEW shipping_inland_waterway_categories_view AS
-SELECT DISTINCT 
-	shipping_inland_waterway_category_id, 
-	code, 
+SELECT DISTINCT
+	shipping_inland_waterway_category_id,
+	code,
 	name,
 	ship_direction
 
-	FROM shipping_inland_category_emission_factors 
+	FROM shipping_inland_category_emission_factors
 		INNER JOIN shipping_inland_waterway_categories USING (shipping_inland_waterway_category_id)
 	ORDER BY shipping_inland_waterway_category_id;
 ;

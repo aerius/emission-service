@@ -13,9 +13,10 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken per AERIUS sector.
- * Valt terug op een default GCN bron karakteristieken indien er geen AERIUS
- * default waarde is opgegeven.
+ * View returning the emission characteristics per AERIUS sector.
+ * Falls back to the default GCN source characteristics (as returned by
+ * default_gcn_sector_source_characteristics_view) whenever no AERIUS default
+ * set is present.
  * 
  * @file source/database/src/main/sql/template/01-sectors/04-views.sql
  */

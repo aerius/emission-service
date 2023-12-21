@@ -15,17 +15,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De OPS karakteristieken per scheepstype.
+ * Table containing the OPS characteristics per maritime shipping category.
  * 
- * De warmteinhoud (heat_content) in deze tabel overschrijft verder de
- * warmteinhoud verkregen via de sector van het scheepstype.
- * Dit omdat de warmteinhoud afhankelijk is van de scheepstype en beweegtype.
- * De hoogte gedefinieerd in deze tabel overschrijft daarbij de hoogte verkregen
- * via de sector.
- * Dit omdat de hoogte varieert per tonnage-reeks en beweeg type, niet alleen
- * per sector.
- * Spreiding is verder weer een karakteristiek die sterk samenhangt per hoogte,
- * en is daarom ook meegenomen in deze tabel.
+ * These characteristics all depend on the type of the ship and the type of
+ * movement.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql

@@ -14,9 +14,8 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De categories van verschillende soorten schepen voor zeevaart.
- * In de naam wordt ook de tonnages aangegeven. De naam wordt verder gebruikt
- * als identificatie van de categorie voor een gebruiker.
+ * Table containing the maritime shipping categories.
+ * The name of the category should indicate a tonnage-range.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql

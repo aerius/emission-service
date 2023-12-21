@@ -32,8 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten landbouw grond
- * activiteiten.
+ * Translation table for farmland activity categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farmlands.sql
@@ -82,7 +81,7 @@ public class I18nFarmlandCategories extends TableImpl<I18nFarmlandCategoriesReco
     }
 
     private I18nFarmlandCategories(Name alias, Table<I18nFarmlandCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten landbouw grond activiteiten.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farmlands.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for farmland activity categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farmlands.sql"), TableOptions.table());
     }
 
     /**

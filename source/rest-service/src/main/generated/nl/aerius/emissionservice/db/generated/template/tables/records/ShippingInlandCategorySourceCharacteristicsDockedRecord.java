@@ -15,8 +15,9 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De OPS karakteristieken voor verschillende soorten stilliggende schepen.
- * Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
+ * Table containing the OPS characteristics for inland shipping categories for
+ * docked ships.
+ * These characteristics are defined per ship type and laden state.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql

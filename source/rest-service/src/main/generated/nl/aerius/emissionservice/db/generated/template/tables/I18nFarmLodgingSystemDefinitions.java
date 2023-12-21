@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor stalbeschrijvingen.
+ * Translation table for lodging system definitions for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql
@@ -79,7 +79,7 @@ public class I18nFarmLodgingSystemDefinitions extends TableImpl<I18nFarmLodgingS
     }
 
     private I18nFarmLodgingSystemDefinitions(Name alias, Table<I18nFarmLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor stalbeschrijvingen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for lodging system definitions for farms.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     /**

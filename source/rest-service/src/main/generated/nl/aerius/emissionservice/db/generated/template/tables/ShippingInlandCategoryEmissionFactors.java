@@ -34,13 +34,14 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De emissie factoren voor de verschillende soorten varende schepen.
- * Deze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen,
- * ladingstoestand en stof.
+ * Table containing the emission factors for inland shipping categories for
+ * moving ships.
+ * These emission factors are defined per ship type, waterway type, travel
+ * direction, laden state and substance.
  * 
- * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de
- * emissie factor tijdens varen (in g/(kilometer * aantal schepen)) bij een
- * bepaalde snelheid.
+ * The emission factors are specified by year (year-dependant), and represent
+ * the emission factor during movement, in g/(kilometer * number of ships) at an
+ * average speed.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql
@@ -111,7 +112,7 @@ public class ShippingInlandCategoryEmissionFactors extends TableImpl<ShippingInl
     }
 
     private ShippingInlandCategoryEmissionFactors(Name alias, Table<ShippingInlandCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor de verschillende soorten varende schepen.\r\nDeze factoren zijn uniek per scheepstype, vaarwegtype, vaarrichtingen, ladingstoestand en stof.\r\n\r\nHierin worden de emissiefactoren per jaar weergegeven, emission_factor is de emissie factor tijdens varen (in g/(kilometer * aantal schepen)) bij een bepaalde snelheid.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the emission factors for inland shipping categories for moving ships.\r\nThese emission factors are defined per ship type, waterway type, travel direction, laden state and substance.\r\n\r\nThe emission factors are specified by year (year-dependant), and represent the emission factor during movement, in g/(kilometer * number of ships) at an average speed.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

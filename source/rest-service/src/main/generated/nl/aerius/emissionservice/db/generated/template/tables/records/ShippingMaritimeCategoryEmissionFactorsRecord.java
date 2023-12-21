@@ -15,15 +15,15 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De emissie factoren voor verschillende soorten schepen voor zeescheepvaart.
- * Deze factoren zijn uniek per scheepstype per stof per jaar per snelheid.
+ * Table containing the emission factors for maritime shipping categories.
+ * These factors are defined per shipping category, per substance, per year and
+ * per movement type.
  * 
- * Hierin worden de emissiefactoren per jaar weergegeven, emission_factor is de
- * emissie factor tijdens varen (in kg/(kilometer * aantal schepen)) bij een
- * bepaalde snelheid.
- * De emission_factor bij een snelheid van 0 is de emissie factor tijdens
- * stilliggen.
- * (in kg/(aantal schepen * uur stilliggen)).
+ * The unit of the emission factor depends on the movement type.
+ * When moving at a certain speed, the emission factor is in kg/(kilometer *
+ * number of ships).
+ * When not moving/docked, the emission factor is in kg/(hours docked * number
+ * of ships).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_maritime.sql

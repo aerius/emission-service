@@ -31,7 +31,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).
+ * Table linking additional lodging techniques and lodging system definitions
+ * (N:N)
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -72,7 +73,7 @@ public class FarmAdditionalLodgingSystemsToLodgingSystemDefinitions extends Tabl
     }
 
     private FarmAdditionalLodgingSystemsToLodgingSystemDefinitions(Name alias, Table<FarmAdditionalLodgingSystemsToLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen additionele staltechnieken en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table linking additional lodging techniques and lodging system definitions (N:N)\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**

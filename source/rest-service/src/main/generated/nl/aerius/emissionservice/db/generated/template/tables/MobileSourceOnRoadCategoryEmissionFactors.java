@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import nl.aerius.emissionservice.db.generated.public_.enums.RoadType;
 import nl.aerius.emissionservice.db.generated.public_.tables.Substances;
 import nl.aerius.emissionservice.db.generated.template.Keys;
 import nl.aerius.emissionservice.db.generated.template.Template;
@@ -16,11 +15,11 @@ import nl.aerius.emissionservice.db.generated.template.tables.records.MobileSour
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function4;
+import org.jooq.Function5;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -33,11 +32,11 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De emissie factoren voor verschillende soorten onroad mobiele bronnen.
- * De emissie factoren zijn hier in kg/km/voertuig.
+ * Table containing the emission factors for on road mobile source categories.
+ * These emission factors are in kg/km/vehicle.
  * 
  * @file
- * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
+ * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileSourceOnRoadCategoryEmissionFactorsRecord> {
@@ -66,9 +65,15 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
 
     /**
      * The column
-     * <code>template.mobile_source_on_road_category_emission_factors.road_type</code>.
+     * <code>template.mobile_source_on_road_category_emission_factors.road_type_category_id</code>.
      */
-    public final TableField<MobileSourceOnRoadCategoryEmissionFactorsRecord, RoadType> ROAD_TYPE = createField(DSL.name("road_type"), SQLDataType.VARCHAR.nullable(false).asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.RoadType.class), this, "");
+    public final TableField<MobileSourceOnRoadCategoryEmissionFactorsRecord, Integer> ROAD_TYPE_CATEGORY_ID = createField(DSL.name("road_type_category_id"), SQLDataType.INTEGER.nullable(false), this, "");
+
+    /**
+     * The column
+     * <code>template.mobile_source_on_road_category_emission_factors.year</code>.
+     */
+    public final TableField<MobileSourceOnRoadCategoryEmissionFactorsRecord, Short> YEAR = createField(DSL.name("year"), nl.aerius.emissionservice.db.generated.public_.Domains.YEAR_TYPE.getDataType().nullable(false), this, "");
 
     /**
      * The column
@@ -87,7 +92,7 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
     }
 
     private MobileSourceOnRoadCategoryEmissionFactors(Name alias, Table<MobileSourceOnRoadCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren voor verschillende soorten onroad mobiele bronnen.\r\nDe emissie factoren zijn hier in kg/km/voertuig.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the emission factors for on road mobile source categories.\r\nThese emission factors are in kg/km/vehicle.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql"), TableOptions.table());
     }
 
     /**
@@ -133,10 +138,11 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
 
     @Override
     public List<ForeignKey<MobileSourceOnRoadCategoryEmissionFactorsRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_MOBILE_ON_ROAD_CAT, Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_SUBSTANCES);
+        return Arrays.asList(Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_MOBILE_ON_ROAD_CAT, Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_ROAD_TYPES, Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_SUBSTANCES);
     }
 
     private transient MobileSourceOnRoadCategories _mobileSourceOnRoadCategories;
+    private transient RoadTypeCategories _roadTypeCategories;
     private transient Substances _substances;
 
     /**
@@ -148,6 +154,17 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
             _mobileSourceOnRoadCategories = new MobileSourceOnRoadCategories(this, Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_MOBILE_ON_ROAD_CAT);
 
         return _mobileSourceOnRoadCategories;
+    }
+
+    /**
+     * Get the implicit join path to the
+     * <code>template.road_type_categories</code> table.
+     */
+    public RoadTypeCategories roadTypeCategories() {
+        if (_roadTypeCategories == null)
+            _roadTypeCategories = new RoadTypeCategories(this, Keys.MOBILE_SOURCE_ON_ROAD_CATEGORY_EMISSION_FACTORS__MOBILE_SOURCE_ON_ROAD_EFAC_FKEY_ROAD_TYPES);
+
+        return _roadTypeCategories;
     }
 
     /**
@@ -200,18 +217,18 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Short, RoadType, Short, Float> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Short, Integer, Short, Short, Float> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function4<? super Short, ? super RoadType, ? super Short, ? super Float, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Short, ? super Integer, ? super Short, ? super Short, ? super Float, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -219,7 +236,7 @@ public class MobileSourceOnRoadCategoryEmissionFactors extends TableImpl<MobileS
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Short, ? super RoadType, ? super Short, ? super Float, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Short, ? super Integer, ? super Short, ? super Short, ? super Float, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

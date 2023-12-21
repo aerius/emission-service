@@ -31,14 +31,16 @@ COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.i18n_farmland_categories', '{data_folder}/i18n/i18n.farmland_categories_20200527_nl.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.i18n_farmland_categories', '{data_folder}/i18n/i18n.farmland_categories_20200527_en.txt'); COMMIT;
 
-BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_off_road_categories', '{data_folder}/i18n/i18n.mobile_source_off_road_categories_20200619_nl.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_off_road_categories', '{data_folder}/i18n/i18n.mobile_source_off_road_categories_20200619_en.txt'); COMMIT;
+-- Mobile sources are not loaded, kept around as reference.
+--BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_off_road_categories', '{data_folder}/i18n/i18n.mobile_source_off_road_categories_20200619_nl.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_off_road_categories', '{data_folder}/i18n/i18n.mobile_source_off_road_categories_20200619_en.txt'); COMMIT;
 
-BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_on_road_categories', '{data_folder}/i18n/i18n.mobile_source_on_road_categories_20150127_nl.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_on_road_categories', '{data_folder}/i18n/i18n.mobile_source_on_road_categories_20150127_en.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_on_road_categories', '{data_folder}/i18n/i18n.mobile_source_on_road_categories_20150127_nl.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2021.i18n_mobile_source_on_road_categories', '{data_folder}/i18n/i18n.mobile_source_on_road_categories_20150127_en.txt'); COMMIT;
 
-BEGIN; SELECT setup.ae_load_table('nature2021.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_nl.txt'); COMMIT;
-BEGIN; SELECT setup.ae_load_table('nature2021.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_en.txt'); COMMIT;
+-- Plans are removed, kept around as reference.
+--BEGIN; SELECT setup.ae_load_table('nature2021.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_nl.txt'); COMMIT;
+--BEGIN; SELECT setup.ae_load_table('nature2021.i18n_plan_categories', '{data_folder}/i18n/i18n.plan_categories_20140904_en.txt'); COMMIT;
 
 BEGIN; SELECT setup.ae_load_table('nature2021.i18n_shipping_maritime_categories', '{data_folder}/i18n/i18n.shipping_maritime_categories_20140904_nl.txt'); COMMIT;
 BEGIN; SELECT setup.ae_load_table('nature2021.i18n_shipping_maritime_categories', '{data_folder}/i18n/i18n.shipping_maritime_categories_20140904_en.txt'); COMMIT;
@@ -51,12 +53,13 @@ BEGIN;
 	SELECT shipping_inland_waterway_category_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name, description FROM nature2021.shipping_inland_waterway_categories;
 COMMIT;
 
-BEGIN;
-	INSERT INTO nature2021.i18n_machinery_types
-	SELECT machinery_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2021.machinery_types;
-COMMIT;
+-- Machinery types are removed, kept around as reference.
+--BEGIN;
+--	INSERT INTO nature2021.i18n_machinery_types
+--	SELECT machinery_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2021.machinery_types;
+--COMMIT;
 
-BEGIN;
-	INSERT INTO nature2021.i18n_machinery_fuel_types
-	SELECT machinery_fuel_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2021.machinery_fuel_types;
-COMMIT;
+--BEGIN;
+--	INSERT INTO nature2021.i18n_machinery_fuel_types
+--	SELECT machinery_fuel_type_id, unnest(ARRAY['nl', 'en']::i18n.language_code_type[]), name FROM nature2021.machinery_fuel_types;
+--COMMIT;

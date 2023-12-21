@@ -32,8 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten binnenvaart
- * vaarwegen.
+ * Translation table for inland shipping waterway categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql
@@ -86,7 +85,7 @@ public class I18nShippingInlandWaterwayCategories extends TableImpl<I18nShipping
     }
 
     private I18nShippingInlandWaterwayCategories(Name alias, Table<I18nShippingInlandWaterwayCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor categorieën van verschillende soorten binnenvaart vaarwegen.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for inland shipping waterway categories.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

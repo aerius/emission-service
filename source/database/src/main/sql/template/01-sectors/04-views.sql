@@ -1,8 +1,8 @@
 /*
  * default_gcn_sector_source_characteristics_view
  * ----------------------------------------------
- * View retourneert de default GCN bron karakteristieken.
- * De GCN bron karakteristieken lijst is per GCN sector en stof. Deze view retourneert de bron karakteristieken van de meest relevante stof.
+ * View returning the default GCN source characteristics.
+ * As the GCN can have different default characteristics per substance, and AERIUS only needs 1 set, this view returns the characteristics for the most relevant substance.
  */
 CREATE OR REPLACE VIEW default_gcn_sector_source_characteristics_view AS
 SELECT
@@ -12,19 +12,20 @@ SELECT
 	spread,
 	emission_diurnal_variation_id,
 	particle_size_distribution
-	
+
 	FROM gcn_sector_source_characteristics
 
 	WHERE
-		(substance_id = 11 AND (gcn_sector_id < 4120 OR gcn_sector_id >= 4300)) -- default source_characteristics
-		OR (substance_id = 17 AND gcn_sector_id >= 4120 AND gcn_sector_id < 4300) -- nh3 farm source_characteristics
+		(substance_id = 11 AND (gcn_sector_id < 4710 OR gcn_sector_id >= 4780)) -- default source_characteristics
+		OR (substance_id = 17 AND gcn_sector_id >= 4710 AND gcn_sector_id < 4780) -- nh3 farm source_characteristics
+		OR (substance_id = 17 AND gcn_sector_id = 4401)
 ;
 
 
 /*
  * emission_diurnal_variations_view
  * --------------------------------
- * View retourneert een lijst met verschillende types temporele variaties.
+ * View returning the different types of diurnal variation.
  */
 CREATE OR REPLACE VIEW emission_diurnal_variations_view AS
 SELECT
@@ -40,8 +41,8 @@ SELECT
 /*
  * default_source_characteristics_view
  * -----------------------------------
- * View retourneert de emissie karakteristieken per AERIUS sector.
- * Valt terug op een default GCN bron karakteristieken indien er geen AERIUS default waarde is opgegeven.
+ * View returning the emission characteristics per AERIUS sector.
+ * Falls back to the default GCN source characteristics (as returned by default_gcn_sector_source_characteristics_view) whenever no AERIUS default set is present.
  */
 CREATE OR REPLACE VIEW default_source_characteristics_view AS
 SELECT

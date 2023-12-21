@@ -15,11 +15,11 @@ import nl.aerius.emissionservice.db.generated.template.tables.records.MobileSour
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function4;
+import org.jooq.Function5;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -32,17 +32,20 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De emissie factoren (werkend en stationair) voor stageklassen.
+ * Table containing the emission factors for off road mobile sources.
  * 
- * Het veld emission_factor_idle is leeg indien er geen stationaire
- * emissieberekening mogelijk is voor een stageklasse. Er bevindt zich dan ook
- * geen bijbehorend record in {@see
- * mobile_source_off_road_category_idle_properties}.
+ * There are emission factors available for fuel use and for operating hours.
+ * Based on the category, 1 of these is present (or not 0), or both are present.
  * 
- * @column emission_factor_working EFW_plb, emissie factor werkend per liter
- * brandstof (g/l)
- * @column emission_factor_idle EFS_plci, emissie factor stationair per uur per
- * liter cilinder-inhoud (g/l/uur)
+ * Besides these factors, an adblue emissionfactor can be present, which can
+ * reduce the total emissions (these are expected to be negative values).
+ * 
+ * @column emission_factor_per_liter_fuel f1 Emission factor per liter brandstof
+ * (kg/l)
+ * @column emission_factor_per_operating_hour f2 Emission factor per operating
+ * hour (stationary + working) (kg/hour)
+ * @column emission_factor_per_liter_adblue f3 Emission factor per liter adblue
+ * (kg/l).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql
@@ -80,22 +83,28 @@ public class MobileSourceOffRoadCategoryEmissionFactors extends TableImpl<Mobile
 
     /**
      * The column
-     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_working</code>.
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_liter_fuel</code>.
      */
-    public final TableField<MobileSourceOffRoadCategoryEmissionFactorsRecord, Float> EMISSION_FACTOR_WORKING = createField(DSL.name("emission_factor_working"), nl.aerius.emissionservice.db.generated.public_.Domains.POSREAL.getDataType().nullable(false), this, "");
+    public final TableField<MobileSourceOffRoadCategoryEmissionFactorsRecord, Float> EMISSION_FACTOR_PER_LITER_FUEL = createField(DSL.name("emission_factor_per_liter_fuel"), nl.aerius.emissionservice.db.generated.public_.Domains.POSREAL.getDataType(), this, "");
 
     /**
      * The column
-     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_idle</code>.
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_operating_hour</code>.
      */
-    public final TableField<MobileSourceOffRoadCategoryEmissionFactorsRecord, Float> EMISSION_FACTOR_IDLE = createField(DSL.name("emission_factor_idle"), nl.aerius.emissionservice.db.generated.public_.Domains.POSREAL.getDataType(), this, "");
+    public final TableField<MobileSourceOffRoadCategoryEmissionFactorsRecord, Float> EMISSION_FACTOR_PER_OPERATING_HOUR = createField(DSL.name("emission_factor_per_operating_hour"), nl.aerius.emissionservice.db.generated.public_.Domains.POSREAL.getDataType(), this, "");
+
+    /**
+     * The column
+     * <code>template.mobile_source_off_road_category_emission_factors.emission_factor_per_liter_adblue</code>.
+     */
+    public final TableField<MobileSourceOffRoadCategoryEmissionFactorsRecord, Float> EMISSION_FACTOR_PER_LITER_ADBLUE = createField(DSL.name("emission_factor_per_liter_adblue"), SQLDataType.REAL, this, "");
 
     private MobileSourceOffRoadCategoryEmissionFactors(Name alias, Table<MobileSourceOffRoadCategoryEmissionFactorsRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private MobileSourceOffRoadCategoryEmissionFactors(Name alias, Table<MobileSourceOffRoadCategoryEmissionFactorsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De emissie factoren (werkend en stationair) voor stageklassen.\r\n\r\nHet veld emission_factor_idle is leeg indien er geen stationaire emissieberekening mogelijk is voor een stageklasse. Er bevindt zich dan ook geen bijbehorend record in {@see mobile_source_off_road_category_idle_properties}.\r\n\r\n@column emission_factor_working EFW_plb, emissie factor werkend per liter brandstof (g/l)\r\n@column emission_factor_idle EFS_plci, emissie factor stationair per uur per liter cilinder-inhoud (g/l/uur)\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the emission factors for off road mobile sources.\r\n\r\nThere are emission factors available for fuel use and for operating hours.\r\nBased on the category, 1 of these is present (or not 0), or both are present.\r\nBesides these factors, an adblue emissionfactor can be present, which can reduce the total emissions (these are expected to be negative values).\r\n\r\n@column emission_factor_per_liter_fuel f1 Emission factor per liter brandstof (kg/l)\r\n@column emission_factor_per_operating_hour f2 Emission factor per operating hour (stationary + working) (kg/hour)\r\n@column emission_factor_per_liter_adblue f3 Emission factor per liter adblue (kg/l).\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/mobile_sources.sql"), TableOptions.table());
     }
 
     /**
@@ -208,18 +217,18 @@ public class MobileSourceOffRoadCategoryEmissionFactors extends TableImpl<Mobile
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Short, Short, Float, Float> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Short, Short, Float, Float, Float> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function4<? super Short, ? super Short, ? super Float, ? super Float, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Short, ? super Short, ? super Float, ? super Float, ? super Float, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -227,7 +236,7 @@ public class MobileSourceOffRoadCategoryEmissionFactors extends TableImpl<Mobile
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Short, ? super Short, ? super Float, ? super Float, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Short, ? super Short, ? super Float, ? super Float, ? super Float, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

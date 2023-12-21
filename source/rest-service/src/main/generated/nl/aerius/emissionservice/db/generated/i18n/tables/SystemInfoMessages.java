@@ -30,7 +30,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Systeem info tabel voor localized teksten, voor tonen van systeem berichten.
+ * System info table for localized messages, for showing system messages.
  * 
  * @file source/database/src/main/sql/i18n/02-tables.sql
  */
@@ -67,7 +67,7 @@ public class SystemInfoMessages extends TableImpl<SystemInfoMessagesRecord> {
     }
 
     private SystemInfoMessages(Name alias, Table<SystemInfoMessagesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Systeem info tabel voor localized teksten, voor tonen van systeem berichten.\r\n\r\n@file source/database/src/main/sql/i18n/02-tables.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("System info table for localized messages, for showing system messages.\r\n\r\n@file source/database/src/main/sql/i18n/02-tables.sql"), TableOptions.table());
     }
 
     /**

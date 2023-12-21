@@ -14,9 +14,9 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Sectorindeling van het RIVM.
- * Elke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan
- * welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.
+ * Table containing GCN (RIVM) sectors.
+ * Every GCN sector is linked to an AERIUS sector. This allows us to link
+ * deposition to AERIUS sources if GCN/RIVM sources are used (Monitor).
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/01-sectors.sql

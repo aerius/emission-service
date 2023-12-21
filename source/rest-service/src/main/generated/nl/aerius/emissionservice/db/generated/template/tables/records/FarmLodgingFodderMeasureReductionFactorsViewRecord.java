@@ -13,9 +13,9 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * Geeft de eigenschappen van een voer- en managementmaatregel, inclusief code,
- * beschrijving, de diercategorieën waarop deze mag worden toegepast en de
- * bijbehorende aandeel- en reductiefactoren voor die diercategorie.
+ * View returning the fodder and management measures, including which farm
+ * animal categories it can be applied to and the corresponding reduction
+ * factors and portions.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql

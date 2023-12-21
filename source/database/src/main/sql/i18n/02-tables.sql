@@ -1,7 +1,7 @@
 /*
  * messages
  * --------
- * Systeem tabel voor localized teksten.
+ * System table for localized messages.
  */
 CREATE TABLE i18n.messages (
 	key text NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE i18n.messages (
 /*
  * system_info_messages
  * --------------------
- * Systeem info tabel voor localized teksten, voor tonen van systeem berichten. 
+ * System info table for localized messages, for showing system messages.
  */
 CREATE TABLE i18n.system_info_messages (
   language_code i18n.language_code_type NOT NULL,

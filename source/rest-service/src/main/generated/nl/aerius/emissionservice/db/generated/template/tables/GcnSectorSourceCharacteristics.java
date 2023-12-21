@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Voorgedefinieerde OPS kenmerken per GCN sector.
+ * Table containing the predefined OPS characteristics per GCN sector.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql
@@ -103,7 +103,7 @@ public class GcnSectorSourceCharacteristics extends TableImpl<GcnSectorSourceCha
     }
 
     private GcnSectorSourceCharacteristics(Name alias, Table<GcnSectorSourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Voorgedefinieerde OPS kenmerken per GCN sector.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the predefined OPS characteristics per GCN sector.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
     }
 
     /**

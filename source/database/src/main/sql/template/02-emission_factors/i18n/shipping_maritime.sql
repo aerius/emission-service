@@ -1,7 +1,7 @@
 /*
  * i18n_shipping_maritime_categories
  * ---------------------------------
- * Vertaaltabel voor categorieën van verschillende soorten zeevaart-schepen.
+ * Translation table for maritime shipping categories.
  */
 CREATE TABLE i18n_shipping_maritime_categories (
 	shipping_maritime_category_id smallint NOT NULL,

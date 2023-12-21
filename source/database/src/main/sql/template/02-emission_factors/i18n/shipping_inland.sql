@@ -1,7 +1,7 @@
 /*
  * i18n_shipping_inland_categories
  * -------------------------------
- * Vertaaltabel voor categorieën van verschillende soorten binnenvaart-schepen.
+ * Translation table for inland shipping categories.
  */
 CREATE TABLE i18n_shipping_inland_categories (
 	shipping_inland_category_id smallint NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE i18n_shipping_inland_categories (
 /*
  * i18n_shipping_inland_waterway_categories
  * ----------------------------------------
- * Vertaaltabel voor categorieën van verschillende soorten binnenvaart vaarwegen.
+ * Translation table for inland shipping waterway categories.
  */
 CREATE TABLE i18n_shipping_inland_waterway_categories (
 	shipping_inland_waterway_category_id smallint NOT NULL,

@@ -33,9 +33,10 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De OPS karakteristieken voor verschillende soorten varende schepen.
- * Deze karakteristieken zijn uniek per scheepstype, vaarwegtypes,
- * vaarrichtingen en ladingstoestand.
+ * Table containing the OPS characteristics for the inland shipping categories
+ * for moving ships.
+ * These characteristics are defined per ship type, waterway type, travel
+ * direction and laden state.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql
@@ -112,7 +113,7 @@ public class ShippingInlandCategorySourceCharacteristics extends TableImpl<Shipp
     }
 
     private ShippingInlandCategorySourceCharacteristics(Name alias, Table<ShippingInlandCategorySourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken voor verschillende soorten varende schepen.\r\nDeze karakteristieken zijn uniek per scheepstype, vaarwegtypes, vaarrichtingen en ladingstoestand.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the OPS characteristics for the inland shipping categories for moving ships.\r\nThese characteristics are defined per ship type, waterway type, travel direction and laden state.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

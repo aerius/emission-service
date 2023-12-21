@@ -14,8 +14,9 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Diercategorieen die voorkomen in de RAV-code lijst. (RAV = Regeling ammoniak
- * en veehouderij)
+ * Table containing the farm animal categories.
+ * For NL: these are the categories as present in the RAV-code list (RAV =
+ * Regeling ammoniak en veehouderij).
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

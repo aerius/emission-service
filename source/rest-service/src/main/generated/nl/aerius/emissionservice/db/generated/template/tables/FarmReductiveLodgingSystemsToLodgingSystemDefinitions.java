@@ -31,8 +31,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen
- * (N:N).
+ * Table linking emission reducing lodging techniques and lodging system
+ * definitions (N:N)
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -73,7 +73,7 @@ public class FarmReductiveLodgingSystemsToLodgingSystemDefinitions extends Table
     }
 
     private FarmReductiveLodgingSystemsToLodgingSystemDefinitions(Name alias, Table<FarmReductiveLodgingSystemsToLodgingSystemDefinitionsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling tussen emissiereducerende staltechnieken en stalbeschrijvingen (N:N).\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table linking emission reducing lodging techniques and lodging system definitions (N:N)\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**

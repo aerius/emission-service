@@ -4,27 +4,30 @@
 package nl.aerius.emissionservice.db.generated.template.tables.records;
 
 
+import nl.aerius.emissionservice.db.generated.public_.enums.FarmEmissionFactorType;
 import nl.aerius.emissionservice.db.generated.template.tables.FarmLodgingTypes;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record6;
-import org.jooq.Row6;
+import org.jooq.Record7;
+import org.jooq.Row7;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Stalsystemen (huisvestingssystemen); dit is in essentie de RAV-code lijst,
- * zie
- * http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage1
- * Een stalsysteem behoort altijd tot een bepaalde diercategorie.
- * Ook aangegeven is of het een luchtwasser is.
+ * Table containing farm lodging or farm housing systems (huisvestingssystemen).
+ * 
+ * A lodging system always belongs to a farm animal category.
+ * This table also indicates if the system is a scrubber (luchtwasser).
+ * For NL: this is in essence the RAV-code list, see
+ * https://wetten.overheid.nl/jci1.3:c:BWBR0013629&amp;bijlage=1&amp;z=2023-04-01&amp;g=2023-04-01
+ * 
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypesRecord> implements Record6<Integer, Integer, String, String, String, Boolean> {
+public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypesRecord> implements Record7<Integer, Integer, String, String, String, Boolean, FarmEmissionFactorType> {
 
     private static final long serialVersionUID = 1L;
 
@@ -114,6 +117,22 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
         return (Boolean) get(5);
     }
 
+    /**
+     * Setter for
+     * <code>template.farm_lodging_types.farm_emission_factor_type</code>.
+     */
+    public void setFarmEmissionFactorType(FarmEmissionFactorType value) {
+        set(6, value);
+    }
+
+    /**
+     * Getter for
+     * <code>template.farm_lodging_types.farm_emission_factor_type</code>.
+     */
+    public FarmEmissionFactorType getFarmEmissionFactorType() {
+        return (FarmEmissionFactorType) get(6);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -124,17 +143,17 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
     }
 
     // -------------------------------------------------------------------------
-    // Record6 type implementation
+    // Record7 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, Integer, String, String, String, Boolean> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row7<Integer, Integer, String, String, String, Boolean, FarmEmissionFactorType> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 
     @Override
-    public Row6<Integer, Integer, String, String, String, Boolean> valuesRow() {
-        return (Row6) super.valuesRow();
+    public Row7<Integer, Integer, String, String, String, Boolean, FarmEmissionFactorType> valuesRow() {
+        return (Row7) super.valuesRow();
     }
 
     @Override
@@ -168,6 +187,11 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
     }
 
     @Override
+    public Field<FarmEmissionFactorType> field7() {
+        return FarmLodgingTypes.FARM_LODGING_TYPES.FARM_EMISSION_FACTOR_TYPE;
+    }
+
+    @Override
     public Integer component1() {
         return getFarmLodgingTypeId();
     }
@@ -198,6 +222,11 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
     }
 
     @Override
+    public FarmEmissionFactorType component7() {
+        return getFarmEmissionFactorType();
+    }
+
+    @Override
     public Integer value1() {
         return getFarmLodgingTypeId();
     }
@@ -225,6 +254,11 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
     @Override
     public Boolean value6() {
         return getScrubber();
+    }
+
+    @Override
+    public FarmEmissionFactorType value7() {
+        return getFarmEmissionFactorType();
     }
 
     @Override
@@ -264,13 +298,20 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
     }
 
     @Override
-    public FarmLodgingTypesRecord values(Integer value1, Integer value2, String value3, String value4, String value5, Boolean value6) {
+    public FarmLodgingTypesRecord value7(FarmEmissionFactorType value) {
+        setFarmEmissionFactorType(value);
+        return this;
+    }
+
+    @Override
+    public FarmLodgingTypesRecord values(Integer value1, Integer value2, String value3, String value4, String value5, Boolean value6, FarmEmissionFactorType value7) {
         value1(value1);
         value2(value2);
         value3(value3);
         value4(value4);
         value5(value5);
         value6(value6);
+        value7(value7);
         return this;
     }
 
@@ -288,7 +329,7 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
     /**
      * Create a detached, initialised FarmLodgingTypesRecord
      */
-    public FarmLodgingTypesRecord(Integer farmLodgingTypeId, Integer farmAnimalCategoryId, String code, String name, String description, Boolean scrubber) {
+    public FarmLodgingTypesRecord(Integer farmLodgingTypeId, Integer farmAnimalCategoryId, String code, String name, String description, Boolean scrubber, FarmEmissionFactorType farmEmissionFactorType) {
         super(FarmLodgingTypes.FARM_LODGING_TYPES);
 
         setFarmLodgingTypeId(farmLodgingTypeId);
@@ -297,5 +338,6 @@ public class FarmLodgingTypesRecord extends UpdatableRecordImpl<FarmLodgingTypes
         setName(name);
         setDescription(description);
         setScrubber(scrubber);
+        setFarmEmissionFactorType(farmEmissionFactorType);
     }
 }

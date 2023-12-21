@@ -15,8 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor categorieën van verschillende soorten offroad mobiele
- * bronnen.
+ * Translation table for off road mobile source categories.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/mobile_sources.sql

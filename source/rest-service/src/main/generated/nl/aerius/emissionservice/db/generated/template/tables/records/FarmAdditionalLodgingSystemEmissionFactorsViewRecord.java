@@ -13,9 +13,8 @@ import org.jooq.impl.TableRecordImpl;
 
 
 /**
- * Geeft de eigenschappen van een additionele staltechniek, inclusief code,
- * beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, en
- * de stalbeschrijvingen die er bij gekozen kunnen worden.
+ * View returning the properties of additional lodging techniques, including
+ * possible lodging definitions.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql

@@ -31,10 +31,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Lijst met verschillende types temporele variaties.
- * 
- * We gebruiken de veldnaam diurnal_variation in alle tabellen waar
- * emission_diurnal_variation_id als foreign key voorkomt.
+ * Table containing the different types of diurnal (temporal) variations.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql
@@ -84,7 +81,7 @@ public class EmissionDiurnalVariations extends TableImpl<EmissionDiurnalVariatio
     }
 
     private EmissionDiurnalVariations(Name alias, Table<EmissionDiurnalVariationsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Lijst met verschillende types temporele variaties.\r\n\r\nWe gebruiken de veldnaam diurnal_variation in alle tabellen waar emission_diurnal_variation_id als foreign key voorkomt.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the different types of diurnal (temporal) variations.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
     }
 
     /**

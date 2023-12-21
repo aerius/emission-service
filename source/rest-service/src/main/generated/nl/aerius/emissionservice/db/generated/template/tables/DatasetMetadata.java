@@ -29,7 +29,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Metadata voor deze dataset
+ * Table containing metadata for this dataset.
  * 
  * @file source/database/src/main/sql/template/dataset_metadata.sql
  */
@@ -66,7 +66,7 @@ public class DatasetMetadata extends TableImpl<DatasetMetadataRecord> {
     }
 
     private DatasetMetadata(Name alias, Table<DatasetMetadataRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Metadata voor deze dataset\r\n\r\n@file source/database/src/main/sql/template/dataset_metadata.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing metadata for this dataset.\r\n\r\n@file source/database/src/main/sql/template/dataset_metadata.sql"), TableOptions.table());
     }
 
     /**

@@ -14,11 +14,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Voer- en managementmaatregelen; zie
- * http://wetten.overheid.nl/BWBR0013629/geldigheidsdatum_11-06-2015#Bijlage2 en
- * http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/pas-maatregelen/alle-pas-maatregelen/
- * Dit zijn maatregelen die zorgen voor minder emissies en toegepast kunnen
- * worden op een stalsysteem (farm_lodging_type).
+ * Table containing fodder and managment measures.
+ * These are measures that result in lower emissions, and can be applied on a
+ * lodging system (farm_lodging_type).
+ * For NL: see
+ * https://wetten.overheid.nl/jci1.3:c:BWBR0013629&amp;bijlage=2&amp;z=2023-04-01&amp;g=2023-04-01
+ * 
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

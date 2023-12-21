@@ -14,9 +14,9 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.
- * Voor sommige types is de stroming van de vaarweg van belang, dit wordt hier
- * ook aangegeven.
+ * Table containing all waterway categories in the inland shipping network.
+ * @column flowing For some types the current or flow of the waterway is of
+ * importance, this is indicated by the flowing boolean.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql

@@ -30,7 +30,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Systeem tabel voor localized teksten.
+ * System table for localized messages.
  * 
  * @file source/database/src/main/sql/i18n/02-tables.sql
  */
@@ -72,7 +72,7 @@ public class Messages extends TableImpl<MessagesRecord> {
     }
 
     private Messages(Name alias, Table<MessagesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Systeem tabel voor localized teksten.\r\n\r\n@file source/database/src/main/sql/i18n/02-tables.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("System table for localized messages.\r\n\r\n@file source/database/src/main/sql/i18n/02-tables.sql"), TableOptions.table());
     }
 
     /**

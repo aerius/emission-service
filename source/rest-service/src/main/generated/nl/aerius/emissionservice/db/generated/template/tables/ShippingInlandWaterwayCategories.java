@@ -31,9 +31,9 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.
- * Voor sommige types is de stroming van de vaarweg van belang, dit wordt hier
- * ook aangegeven.
+ * Table containing all waterway categories in the inland shipping network.
+ * @column flowing For some types the current or flow of the waterway is of
+ * importance, this is indicated by the flowing boolean.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql
@@ -92,7 +92,7 @@ public class ShippingInlandWaterwayCategories extends TableImpl<ShippingInlandWa
     }
 
     private ShippingInlandWaterwayCategories(Name alias, Table<ShippingInlandWaterwayCategoriesRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Alle type vaarwegen in het scheepvaart netwerk voor binnenvaart.\r\nVoor sommige types is de stroming van de vaarweg van belang, dit wordt hier ook aangegeven.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing all waterway categories in the inland shipping network.\r\n@column flowing For some types the current or flow of the waterway is of importance, this is indicated by the flowing boolean.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

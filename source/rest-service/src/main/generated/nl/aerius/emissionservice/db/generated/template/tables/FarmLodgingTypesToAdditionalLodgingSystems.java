@@ -12,7 +12,6 @@ import nl.aerius.emissionservice.db.generated.template.Keys;
 import nl.aerius.emissionservice.db.generated.template.Template;
 import nl.aerius.emissionservice.db.generated.template.tables.records.FarmLodgingTypesToAdditionalLodgingSystemsRecord;
 
-import org.jooq.Check;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function2;
@@ -27,16 +26,15 @@ import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
-import org.jooq.impl.Internal;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 
 
 /**
- * Koppeling (N:N) welke aangeeft op welke stalsystemen de additionele
- * staltechnieken gestapeld kunnen worden.
- * In deze tabel staan de toegestane combinaties van stapelingen binnen de RAV
- * systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.
+ * Table linking (N:N) which additional lodging techniques can be stacked on
+ * which lodging system.
+ * This table contains the allowed combinations within the RAV way of working,
+ * however within calculator every combination is possible.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -77,7 +75,7 @@ public class FarmLodgingTypesToAdditionalLodgingSystems extends TableImpl<FarmLo
     }
 
     private FarmLodgingTypesToAdditionalLodgingSystems(Name alias, Table<FarmLodgingTypesToAdditionalLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Koppeling (N:N) welke aangeeft op welke stalsystemen de additionele staltechnieken gestapeld kunnen worden.\r\nIn deze tabel staan de toegestane combinaties van stapelingen binnen de RAV systematiek, echter binnen de Nb-wet is iedere combinatie mogelijk.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table linking (N:N) which additional lodging techniques can be stacked on which lodging system.\r\nThis table contains the allowed combinations within the RAV way of working, however within calculator every combination is possible.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**
@@ -149,13 +147,6 @@ public class FarmLodgingTypesToAdditionalLodgingSystems extends TableImpl<FarmLo
             _farmAdditionalLodgingSystems = new FarmAdditionalLodgingSystems(this, Keys.FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS__FARM_LODGING_TYPES_TO_ADDITIONAL_LODGING_SYSTEMS_FKEY_SYSTEMS);
 
         return _farmAdditionalLodgingSystems;
-    }
-
-    @Override
-    public List<Check<FarmLodgingTypesToAdditionalLodgingSystemsRecord>> getChecks() {
-        return Arrays.asList(
-            Internal.createCheck(this, DSL.name("farm_lodging_types_to_additional_lodging_systems_chk_selfref"), "((farm_lodging_type_id <> farm_additional_lodging_system_id))", true)
-        );
     }
 
     @Override

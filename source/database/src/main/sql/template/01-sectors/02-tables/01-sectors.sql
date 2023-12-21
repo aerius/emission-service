@@ -1,7 +1,7 @@
 /*
  * sectors
  * -------
- * Sectorindeling van AERIUS
+ * Table containing AERIUS sectors.
  */
 CREATE TABLE sectors (
 	sector_id integer NOT NULL,
@@ -14,8 +14,8 @@ CREATE TABLE sectors (
 /*
  * gcn_sectors
  * -----------
- * Sectorindeling van het RIVM.
- * Elke GCN-sector is gekoppeld aan een AERIUS-sector. Hierdoor weten we aan welke AERIUS-sector de depositie van de RIVM-bronnen toegekend moet worden.
+ * Table containing GCN (RIVM) sectors.
+ * Every GCN sector is linked to an AERIUS sector. This allows us to link deposition to AERIUS sources if GCN/RIVM sources are used (Monitor).
  */
 CREATE TABLE gcn_sectors (
 	gcn_sector_id integer NOT NULL,
@@ -30,7 +30,9 @@ CREATE TABLE gcn_sectors (
 /*
  * sectors_main_gcn_sector
  * -----------------------
- * Koppeltabel om voor de sectoren (zonder (sub)categorieen) aan te geven aan welke hoofd-GCN-sector deze bronnen gekoppeld kunnen worden.
+ * Table linking sectors to main GCN sectors.
+ * This can be used to link sources to a GCN sector if required.
+ * It is also used for the ParticleSizeDistribution value in OPS characteristics (for calculations involving substances like PM10).
  */
 CREATE TABLE sectors_main_gcn_sector (
 	sector_id integer NOT NULL,

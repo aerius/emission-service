@@ -7,25 +7,26 @@ package nl.aerius.emissionservice.db.generated.template.tables.records;
 import nl.aerius.emissionservice.db.generated.template.tables.RoadCategoryEmissionFactors;
 
 import org.jooq.Field;
-import org.jooq.Record4;
-import org.jooq.Record6;
-import org.jooq.Row6;
+import org.jooq.Record3;
+import org.jooq.Record5;
+import org.jooq.Row5;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * De emissie factoren voor verschillende soorten verkeer bij verschillende
- * snelheidstyperingen voor verschillende soorten stoffen.
- * De emissie factors zijn hier in g/voertuig/km.
+ * Table containing the emission factors for road categories for different
+ * substances.
+ * For NL: the emission factors are in g/vehicle/km
+ * For UK: the emission factors are in g/km/s for vehicles per 24 hours.
  * 
- * LET OP: De jaren die in deze tabel voorkomen zijn niet per definitie gelijk
- * aan de AERIUS beleidsjaren.
+ * NOTE: The years present in this table are not by definition the same as the
+ * AERIUS policy/calculation years.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/roads.sql
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadCategoryEmissionFactorsRecord> implements Record6<Integer, Integer, Short, Short, Double, Double> {
+public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadCategoryEmissionFactorsRecord> implements Record5<Integer, Short, Short, Double, Double> {
 
     private static final long serialVersionUID = 1L;
 
@@ -46,33 +47,17 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     }
 
     /**
-     * Setter for
-     * <code>template.road_category_emission_factors.road_speed_profile_id</code>.
-     */
-    public void setRoadSpeedProfileId(Integer value) {
-        set(1, value);
-    }
-
-    /**
-     * Getter for
-     * <code>template.road_category_emission_factors.road_speed_profile_id</code>.
-     */
-    public Integer getRoadSpeedProfileId() {
-        return (Integer) get(1);
-    }
-
-    /**
      * Setter for <code>template.road_category_emission_factors.year</code>.
      */
     public void setYear(Short value) {
-        set(2, value);
+        set(1, value);
     }
 
     /**
      * Getter for <code>template.road_category_emission_factors.year</code>.
      */
     public Short getYear() {
-        return (Short) get(2);
+        return (Short) get(1);
     }
 
     /**
@@ -80,7 +65,7 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
      * <code>template.road_category_emission_factors.substance_id</code>.
      */
     public void setSubstanceId(Short value) {
-        set(3, value);
+        set(2, value);
     }
 
     /**
@@ -88,7 +73,7 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
      * <code>template.road_category_emission_factors.substance_id</code>.
      */
     public Short getSubstanceId() {
-        return (Short) get(3);
+        return (Short) get(2);
     }
 
     /**
@@ -96,7 +81,7 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
      * <code>template.road_category_emission_factors.emission_factor</code>.
      */
     public void setEmissionFactor(Double value) {
-        set(4, value);
+        set(3, value);
     }
 
     /**
@@ -104,7 +89,7 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
      * <code>template.road_category_emission_factors.emission_factor</code>.
      */
     public Double getEmissionFactor() {
-        return (Double) get(4);
+        return (Double) get(3);
     }
 
     /**
@@ -112,7 +97,7 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
      * <code>template.road_category_emission_factors.stagnated_emission_factor</code>.
      */
     public void setStagnatedEmissionFactor(Double value) {
-        set(5, value);
+        set(4, value);
     }
 
     /**
@@ -120,7 +105,7 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
      * <code>template.road_category_emission_factors.stagnated_emission_factor</code>.
      */
     public Double getStagnatedEmissionFactor() {
-        return (Double) get(5);
+        return (Double) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -128,22 +113,22 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     // -------------------------------------------------------------------------
 
     @Override
-    public Record4<Integer, Integer, Short, Short> key() {
-        return (Record4) super.key();
+    public Record3<Integer, Short, Short> key() {
+        return (Record3) super.key();
     }
 
     // -------------------------------------------------------------------------
-    // Record6 type implementation
+    // Record5 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, Integer, Short, Short, Double, Double> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row5<Integer, Short, Short, Double, Double> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     @Override
-    public Row6<Integer, Integer, Short, Short, Double, Double> valuesRow() {
-        return (Row6) super.valuesRow();
+    public Row5<Integer, Short, Short, Double, Double> valuesRow() {
+        return (Row5) super.valuesRow();
     }
 
     @Override
@@ -152,27 +137,22 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     }
 
     @Override
-    public Field<Integer> field2() {
-        return RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS.ROAD_SPEED_PROFILE_ID;
-    }
-
-    @Override
-    public Field<Short> field3() {
+    public Field<Short> field2() {
         return RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS.YEAR;
     }
 
     @Override
-    public Field<Short> field4() {
+    public Field<Short> field3() {
         return RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS.SUBSTANCE_ID;
     }
 
     @Override
-    public Field<Double> field5() {
+    public Field<Double> field4() {
         return RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS.EMISSION_FACTOR;
     }
 
     @Override
-    public Field<Double> field6() {
+    public Field<Double> field5() {
         return RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS.STAGNATED_EMISSION_FACTOR;
     }
 
@@ -182,27 +162,22 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     }
 
     @Override
-    public Integer component2() {
-        return getRoadSpeedProfileId();
-    }
-
-    @Override
-    public Short component3() {
+    public Short component2() {
         return getYear();
     }
 
     @Override
-    public Short component4() {
+    public Short component3() {
         return getSubstanceId();
     }
 
     @Override
-    public Double component5() {
+    public Double component4() {
         return getEmissionFactor();
     }
 
     @Override
-    public Double component6() {
+    public Double component5() {
         return getStagnatedEmissionFactor();
     }
 
@@ -212,27 +187,22 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     }
 
     @Override
-    public Integer value2() {
-        return getRoadSpeedProfileId();
-    }
-
-    @Override
-    public Short value3() {
+    public Short value2() {
         return getYear();
     }
 
     @Override
-    public Short value4() {
+    public Short value3() {
         return getSubstanceId();
     }
 
     @Override
-    public Double value5() {
+    public Double value4() {
         return getEmissionFactor();
     }
 
     @Override
-    public Double value6() {
+    public Double value5() {
         return getStagnatedEmissionFactor();
     }
 
@@ -243,43 +213,36 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     }
 
     @Override
-    public RoadCategoryEmissionFactorsRecord value2(Integer value) {
-        setRoadSpeedProfileId(value);
-        return this;
-    }
-
-    @Override
-    public RoadCategoryEmissionFactorsRecord value3(Short value) {
+    public RoadCategoryEmissionFactorsRecord value2(Short value) {
         setYear(value);
         return this;
     }
 
     @Override
-    public RoadCategoryEmissionFactorsRecord value4(Short value) {
+    public RoadCategoryEmissionFactorsRecord value3(Short value) {
         setSubstanceId(value);
         return this;
     }
 
     @Override
-    public RoadCategoryEmissionFactorsRecord value5(Double value) {
+    public RoadCategoryEmissionFactorsRecord value4(Double value) {
         setEmissionFactor(value);
         return this;
     }
 
     @Override
-    public RoadCategoryEmissionFactorsRecord value6(Double value) {
+    public RoadCategoryEmissionFactorsRecord value5(Double value) {
         setStagnatedEmissionFactor(value);
         return this;
     }
 
     @Override
-    public RoadCategoryEmissionFactorsRecord values(Integer value1, Integer value2, Short value3, Short value4, Double value5, Double value6) {
+    public RoadCategoryEmissionFactorsRecord values(Integer value1, Short value2, Short value3, Double value4, Double value5) {
         value1(value1);
         value2(value2);
         value3(value3);
         value4(value4);
         value5(value5);
-        value6(value6);
         return this;
     }
 
@@ -297,11 +260,10 @@ public class RoadCategoryEmissionFactorsRecord extends UpdatableRecordImpl<RoadC
     /**
      * Create a detached, initialised RoadCategoryEmissionFactorsRecord
      */
-    public RoadCategoryEmissionFactorsRecord(Integer roadCategoryId, Integer roadSpeedProfileId, Short year, Short substanceId, Double emissionFactor, Double stagnatedEmissionFactor) {
+    public RoadCategoryEmissionFactorsRecord(Integer roadCategoryId, Short year, Short substanceId, Double emissionFactor, Double stagnatedEmissionFactor) {
         super(RoadCategoryEmissionFactors.ROAD_CATEGORY_EMISSION_FACTORS);
 
         setRoadCategoryId(roadCategoryId);
-        setRoadSpeedProfileId(roadSpeedProfileId);
         setYear(year);
         setSubstanceId(substanceId);
         setEmissionFactor(emissionFactor);

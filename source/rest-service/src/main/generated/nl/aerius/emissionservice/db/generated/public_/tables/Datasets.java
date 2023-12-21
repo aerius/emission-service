@@ -31,8 +31,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De verschillende datasets die beschikbaar zijn.
- * De data voor elke dataset bevindt zich in een eigen database schema.
+ * The different datasets that are available.
+ * The data for each dataset will reside in their own database schema.
  * 
  * @file source/database/src/main/sql/datasets/02-tables.sql
  */
@@ -84,7 +84,7 @@ public class Datasets extends TableImpl<DatasetsRecord> {
     }
 
     private Datasets(Name alias, Table<DatasetsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De verschillende datasets die beschikbaar zijn.\r\nDe data voor elke dataset bevindt zich in een eigen database schema.\r\n\r\n@file source/database/src/main/sql/datasets/02-tables.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("The different datasets that are available.\r\nThe data for each dataset will reside in their own database schema.\r\n\r\n@file source/database/src/main/sql/datasets/02-tables.sql"), TableOptions.table());
     }
 
     /**

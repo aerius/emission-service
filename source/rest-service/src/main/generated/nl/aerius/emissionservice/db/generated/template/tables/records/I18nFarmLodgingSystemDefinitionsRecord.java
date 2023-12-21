@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor stalbeschrijvingen.
+ * Translation table for lodging system definitions for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql

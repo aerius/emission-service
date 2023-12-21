@@ -31,7 +31,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Standaard OPS kenmerken per sector.
+ * Table containing the standard OPS characteristics per sector.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql
@@ -96,7 +96,7 @@ public class SectorDefaultSourceCharacteristics extends TableImpl<SectorDefaultS
     }
 
     private SectorDefaultSourceCharacteristics(Name alias, Table<SectorDefaultSourceCharacteristicsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Standaard OPS kenmerken per sector.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the standard OPS characteristics per sector.\r\n\r\n@file source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql"), TableOptions.table());
     }
 
     /**

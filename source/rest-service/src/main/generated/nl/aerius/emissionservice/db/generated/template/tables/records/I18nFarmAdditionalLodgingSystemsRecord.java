@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor additionele staltechnieken.
+ * Translation table for additional lodging techniques for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql

@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor voer- en managementmaatregelen.
+ * Translation table for fodder and management measures for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql

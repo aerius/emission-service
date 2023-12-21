@@ -32,8 +32,9 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * De OPS karakteristieken voor verschillende soorten stilliggende schepen.
- * Deze karakteristieken zijn uniek per scheepstype en ladingstoestand.
+ * Table containing the OPS characteristics for inland shipping categories for
+ * docked ships.
+ * These characteristics are defined per ship type and laden state.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql
@@ -98,7 +99,7 @@ public class ShippingInlandCategorySourceCharacteristicsDocked extends TableImpl
     }
 
     private ShippingInlandCategorySourceCharacteristicsDocked(Name alias, Table<ShippingInlandCategorySourceCharacteristicsDockedRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("De OPS karakteristieken voor verschillende soorten stilliggende schepen.\r\nDeze karakteristieken zijn uniek per scheepstype en ladingstoestand.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the OPS characteristics for inland shipping categories for docked ships.\r\nThese characteristics are defined per ship type and laden state.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/shipping_inland.sql"), TableOptions.table());
     }
 
     /**

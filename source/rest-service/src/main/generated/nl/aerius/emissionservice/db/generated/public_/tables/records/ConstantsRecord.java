@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Tabel voor de database constanten.
+ * Table for database constants.
  * 
  * @file source/database/src/main/sql/essentials/00-init/03-constants.sql
  */

@@ -14,7 +14,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Standaard OPS kenmerken per sector.
+ * Table containing the standard OPS characteristics per sector.
  * 
  * @file
  * source/database/src/main/sql/template/01-sectors/02-tables/02-source_characteristics.sql

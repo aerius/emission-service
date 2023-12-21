@@ -15,7 +15,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Vertaaltabel voor de verschillende datasets die beschikbaar zijn.
+ * Translation table for the different available datasets.
  * 
  * @file source/database/src/main/sql/datasets/02-tables.sql
  */

@@ -6,16 +6,17 @@ package nl.aerius.emissionservice.db.generated.template.tables;
 
 import java.util.function.Function;
 
+import nl.aerius.emissionservice.db.generated.public_.enums.FarmEmissionFactorType;
 import nl.aerius.emissionservice.db.generated.template.Template;
 import nl.aerius.emissionservice.db.generated.template.tables.records.FarmLodgingTypeEmissionFactorsViewRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function10;
+import org.jooq.Function11;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row10;
+import org.jooq.Row11;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -27,10 +28,8 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Geeft de eigenschappen van een stalsysteem, inclusief code, beschrijving,
- * diercategorie, emissiefactoren, of het een luchtwasser is, het bijbehorende
- * traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen
- * worden.
+ * View returning the properties of farm lodging/housing systems, including
+ * emission factors and possible lodging definitions.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql
@@ -114,12 +113,18 @@ public class FarmLodgingTypeEmissionFactorsView extends TableImpl<FarmLodgingTyp
      */
     public final TableField<FarmLodgingTypeEmissionFactorsViewRecord, Boolean> SCRUBBER = createField(DSL.name("scrubber"), SQLDataType.BOOLEAN, this, "");
 
+    /**
+     * The column
+     * <code>template.farm_lodging_type_emission_factors_view.farm_emission_factor_type</code>.
+     */
+    public final TableField<FarmLodgingTypeEmissionFactorsViewRecord, FarmEmissionFactorType> FARM_EMISSION_FACTOR_TYPE = createField(DSL.name("farm_emission_factor_type"), SQLDataType.VARCHAR.asEnumDataType(nl.aerius.emissionservice.db.generated.public_.enums.FarmEmissionFactorType.class), this, "");
+
     private FarmLodgingTypeEmissionFactorsView(Name alias, Table<FarmLodgingTypeEmissionFactorsViewRecord> aliased) {
         this(alias, aliased, null);
     }
 
     private FarmLodgingTypeEmissionFactorsView(Name alias, Table<FarmLodgingTypeEmissionFactorsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Geeft de eigenschappen van een stalsysteem, inclusief code, beschrijving, diercategorie, emissiefactoren, of het een luchtwasser is, het bijbehorende traditionele stalsysteem, en de stalbeschrijvingen die er bij gekozen kunnen worden.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the properties of farm lodging/housing systems, including emission factors and possible lodging definitions.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/farms.sql"), TableOptions.view("""
         create view "farm_lodging_type_emission_factors_view" as  SELECT farm_lodging_types.farm_lodging_type_id,
           farm_lodging_types.code,
           farm_lodging_types.name,
@@ -129,13 +134,14 @@ public class FarmLodgingTypeEmissionFactorsView extends TableImpl<FarmLodgingTyp
           farm_lodging_type_emission_factors.substance_id,
           farm_lodging_type_emission_factors.emission_factor,
           farm_lodging_types_other_lodging_type.farm_other_lodging_type_id,
-          farm_lodging_types.scrubber
+          farm_lodging_types.scrubber,
+          farm_lodging_types.farm_emission_factor_type
          FROM ((((template.farm_lodging_types
            JOIN template.farm_animal_categories USING (farm_animal_category_id))
-           JOIN template.farm_lodging_types_to_lodging_system_definitions USING (farm_lodging_type_id))
            JOIN template.farm_lodging_type_emission_factors USING (farm_lodging_type_id))
+           LEFT JOIN template.farm_lodging_types_to_lodging_system_definitions USING (farm_lodging_type_id))
            LEFT JOIN template.farm_lodging_types_other_lodging_type USING (farm_lodging_type_id))
-        ORDER BY ("left"(farm_lodging_types.code, 1)), (string_to_array("right"(farm_lodging_types.code, '-1'::integer), '.'::text))::integer[];
+        ORDER BY ("left"(farm_lodging_types.code, 1)), (array_remove(string_to_array((regexp_match(farm_lodging_types.code, '([\\d+.]+)'::text))[1], '.'::text), ''::text))::integer[];
         """));
     }
 
@@ -214,18 +220,18 @@ public class FarmLodgingTypeEmissionFactorsView extends TableImpl<FarmLodgingTyp
     }
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row11<Integer, String, String, String, Integer, Integer, Short, Float, Integer, Boolean, FarmEmissionFactorType> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function10<? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? super Integer, ? super Short, ? super Float, ? super Integer, ? super Boolean, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function11<? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? super Integer, ? super Short, ? super Float, ? super Integer, ? super Boolean, ? super FarmEmissionFactorType, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -233,7 +239,7 @@ public class FarmLodgingTypeEmissionFactorsView extends TableImpl<FarmLodgingTyp
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? super Integer, ? super Short, ? super Float, ? super Integer, ? super Boolean, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function11<? super Integer, ? super String, ? super String, ? super String, ? super Integer, ? super Integer, ? super Short, ? super Float, ? super Integer, ? super Boolean, ? super FarmEmissionFactorType, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -28,7 +28,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * View retourneert de emissie karakteristieken voor zeescheep vaart.
+ * View returning the emission characteristics for maritime shipping.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/04-views/shipping_maritime.sql
@@ -111,7 +111,7 @@ public class ShippingMaritimeSourceCharacteristicsView extends TableImpl<Shippin
     }
 
     private ShippingMaritimeSourceCharacteristicsView(Name alias, Table<ShippingMaritimeSourceCharacteristicsViewRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("View retourneert de emissie karakteristieken voor zeescheep vaart.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_maritime.sql"), TableOptions.view("""
+        super(alias, null, aliased, parameters, DSL.comment("View returning the emission characteristics for maritime shipping.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/04-views/shipping_maritime.sql"), TableOptions.view("""
         create view "shipping_maritime_source_characteristics_view" as  SELECT shipping_maritime_category_source_characteristics.shipping_maritime_category_id,
          shipping_maritime_category_source_characteristics.year,
          shipping_maritime_category_source_characteristics.movement_type,

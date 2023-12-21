@@ -1,7 +1,7 @@
 /*
  * language_code_type
  * ------------------
- * Talen welke in de vertaaltabellen voorkomen.
+ * Languages that can be used in the i18n localized tables.
  */
 CREATE TYPE i18n.language_code_type AS ENUM
 	('nl', 'en');

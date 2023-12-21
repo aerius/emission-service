@@ -14,10 +14,11 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Additionele staltechnieken. Dit zijn staltechnieken die zorgen voor extra
- * emissies en die gestapeld kunnen worden op een stalsysteem
- * (farm_lodging_type).
- * Deze additionele staltechnieken zijn afgeleid uit de RAV-code lijst.
+ * Table containing additional lodging techniques/systems for farms.
+ * These are lodging techniques that can cause extra emissions, and which can be
+ * used in combination with a lodging system (farm_lodging-type).
+ * For NL: these additional lodging techniques are extracted from the RAV-code
+ * list.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql

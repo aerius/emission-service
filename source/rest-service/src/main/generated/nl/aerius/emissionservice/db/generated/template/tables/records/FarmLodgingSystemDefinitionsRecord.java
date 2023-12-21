@@ -14,10 +14,11 @@ import org.jooq.impl.UpdatableRecordImpl;
 
 
 /**
- * Stalbeschrijvingen (BWL-nummers) zoals gebruikt voor de stalsystemen in de
- * RAV.
- * Zie
- * http://www.infomil.nl/onderwerpen/landbouw-tuinbouw/ammoniak/rav/stalbeschrijvingen
+ * Table containing lodging system definitions, definitions of what lodging
+ * systems are for farms.
+ * For NL: These contain 'BWL-nummers' as used in the RAV.
+ * See
+ * https://www.infomil.nl/onderwerpen/landbouw/emissiearme-stalsystemen/stalbeschrijvingen/
  * 
  * 
  * @file

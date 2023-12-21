@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Vertaaltabel voor emissiereducerende staltechnieken.
+ * Translation table for emission reducing lodging techniques for farms.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql
@@ -79,7 +79,7 @@ public class I18nFarmReductiveLodgingSystems extends TableImpl<I18nFarmReductive
     }
 
     private I18nFarmReductiveLodgingSystems(Name alias, Table<I18nFarmReductiveLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Vertaaltabel voor emissiereducerende staltechnieken.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Translation table for emission reducing lodging techniques for farms.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/i18n/farms.sql"), TableOptions.table());
     }
 
     /**

@@ -31,11 +31,12 @@ import org.jooq.impl.TableImpl;
 
 
 /**
- * Emissiereducerende staltechnieken. Dit zijn staltechnieken die zorgen voor
- * minder emissies en gestapeld kunnen worden op een stalsysteem
- * (farm_lodging_type).
- * Deze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.
- * Ook aangegeven is of het een luchtwasser is.
+ * Table containing the emission reducing lodging techniques/systems for farms.
+ * These are lodging techniques that result in lower emissions, and they can be
+ * stacked on top of a lodging system (farm_lodging_type).
+ * These emission reducing techniques are extracted from the RAV-code list.
+ * Whether or not the system is considered a scrubber (luchtwasser) is also
+ * indicated.
  * 
  * @file
  * source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql
@@ -97,7 +98,7 @@ public class FarmReductiveLodgingSystems extends TableImpl<FarmReductiveLodgingS
     }
 
     private FarmReductiveLodgingSystems(Name alias, Table<FarmReductiveLodgingSystemsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment("Emissiereducerende staltechnieken. Dit zijn staltechnieken die zorgen voor minder emissies en gestapeld kunnen worden op een stalsysteem (farm_lodging_type).\r\nDeze reducerende staltechnieken zijn afgeleid uit de RAV-code lijst.\r\nOok aangegeven is of het een luchtwasser is.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
+        super(alias, null, aliased, parameters, DSL.comment("Table containing the emission reducing lodging techniques/systems for farms.\r\nThese are lodging techniques that result in lower emissions, and they can be stacked on top of a lodging system (farm_lodging_type).\r\nThese emission reducing techniques are extracted from the RAV-code list.\r\nWhether or not the system is considered a scrubber (luchtwasser) is also indicated.\r\n\r\n@file source/database/src/main/sql/template/02-emission_factors/02-tables/farms.sql"), TableOptions.table());
     }
 
     /**
