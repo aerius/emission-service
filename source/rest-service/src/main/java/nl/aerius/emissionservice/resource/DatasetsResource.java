@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,10 +36,12 @@ import nl.aerius.emissionservice.model.FarmAdditionalLodgingSystemCategory;
 import nl.aerius.emissionservice.model.FarmFodderMeasureCategory;
 import nl.aerius.emissionservice.model.FarmLodgingCategory;
 import nl.aerius.emissionservice.model.FarmReductiveLodgingSystemCategory;
+import nl.aerius.emissionservice.model.RoadEmissionFactors;
 import nl.aerius.emissionservice.model.Sector;
 import nl.aerius.emissionservice.repository.DatasetStore;
 import nl.aerius.emissionservice.repository.FarmRepository;
 import nl.aerius.emissionservice.repository.FarmlandRepository;
+import nl.aerius.emissionservice.repository.RoadRepository;
 import nl.aerius.emissionservice.repository.SectorRepository;
 
 @Service
@@ -160,34 +161,25 @@ public class DatasetsResource implements DatasetsApiDelegate {
   }
 
   @Override
-  public ResponseEntity<List<String>> listVehicleTypes(final String dataset, final Optional<String> acceptLanguage) {
-    return handle(dataset, acceptLanguage, roadRepository::getVehicleTypes);
+  public ResponseEntity<List<Category>> listRoadAreas(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getRoadAreas);
   }
 
   @Override
-  public ResponseEntity<List<String>> listRoadTypes(final String dataset, final Optional<String> acceptLanguage) {
+  public ResponseEntity<List<Category>> listRoadTypes(final String dataset, final Optional<String> acceptLanguage) {
     return handle(dataset, acceptLanguage, roadRepository::getRoadTypes);
   }
 
   @Override
-  public ResponseEntity<List<RoadSpeedProfileCategory>> listSpeedProfiles(final String dataset, final Optional<String> acceptLanguage,
-      final Optional<String> roadtype, final Optional<String> speedlimitenforcement, final Optional<Boolean> srm2,
-      final Optional<Boolean> srm1, final Optional<Integer> maximumspeed) {
-    return handle(dataset, acceptLanguage,
-        locale -> roadRepository.getRoadSpeedProfiles(locale, roadtype, speedlimitenforcement, srm2, srm1, maximumspeed));
+  public ResponseEntity<List<Category>> listVehicleTypes(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getVehicleTypes);
   }
 
   @Override
-  public ResponseEntity<RoadEmissionFactors> getRoadEmissionFactors(final String dataset, final String speedprofile, final String vehicletype,
-      final Integer year, final Optional<String> acceptLanguage) {
-    return handle(dataset, acceptLanguage, locale -> roadRepository.getEmissionFactors(locale, speedprofile, vehicletype, year).orElseThrow(
+  public ResponseEntity<List<RoadEmissionFactors>> getRoadEmissionFactors(final String dataset, final String roadarea, final String roadtype,
+      final String vehicletype, final Integer year, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> roadRepository.getEmissionFactors(locale, roadarea, roadtype, vehicletype, year).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find road emission factors for supplied parameters")));
-  }
-
-  private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Supplier<T> function) {
-    final String actualDataset = handleDataset(dataset);
-    final T result = function.get();
-    return toOkResponse(actualDataset, result);
   }
 
   private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Function<Locale, T> function) {
