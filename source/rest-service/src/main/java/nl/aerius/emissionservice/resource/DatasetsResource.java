@@ -178,7 +178,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
   @Override
   public ResponseEntity<List<RoadEmissionFactors>> getRoadEmissionFactors(final String dataset, final String roadarea, final String roadtype,
       final String vehicletype, final Integer year, final Optional<String> acceptLanguage) {
-    return handle(dataset, acceptLanguage, locale -> roadRepository.getEmissionFactors(locale, roadarea, roadtype, vehicletype, year).orElseThrow(
+    return handle(dataset, acceptLanguage, locale -> roadRepository.getEmissionFactors(roadarea, roadtype, vehicletype, year).orElseThrow(
         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find road emission factors for supplied parameters")));
   }
 
