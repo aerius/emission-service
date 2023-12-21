@@ -51,7 +51,7 @@ ruby ../../../aerius-database-build/bin/Build.rb test_structure.rb settings.rb -
 To download required data files from the SFTP server. 
 
 ```
-ruby ../../../aerius-database-build/bin/SyncDBData.rb settings.rb --from-sftp --to-local
+ruby ../../../aerius-database-build/bin/SyncDBData.rb settings.rb
 ```
 
 To build an actual database.

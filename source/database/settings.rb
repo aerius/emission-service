@@ -49,6 +49,8 @@ $db_function_prefix = 'ae'
 $pg_username = 'aerius' # Username for database
 $pg_password = '' # Password for database
 
+$source = :sftp
+$target = :local
 $sftp_data_path = 'sftp://aerius-sftp.rivm.nl/' # Location of SFTP server
 
 $sftp_data_readonly_username = 'aeriusro' # Username for sftp server
