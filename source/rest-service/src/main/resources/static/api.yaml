@@ -35,6 +35,8 @@ tags:
   description: Sector specific information
 - name: farming
   description: Farm specific information
+- name: roads
+  description: Road specific information
 paths:
   /datasets:
     get:
@@ -70,8 +72,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Dataset"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/sectors:
     get:
       summary: List all sectors
@@ -91,8 +92,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/Sector"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/sectors/{code}:
     get:
       summary: Get specific sector information
@@ -116,8 +116,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Sector"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/animals:
     get:
       summary: List all farm animal categories
@@ -129,16 +128,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm animal categories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings:
     get:
       summary: List all farm lodging categories
@@ -156,16 +148,9 @@ paths:
             type: string
       responses:
         200:
-          description: A list of possible farm lodging categories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/{code}:
     get:
       summary: Get specific farm lodging information
@@ -189,8 +174,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmLodgingCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/additionalsystems:
     get:
       summary: List all farm additional lodging systems
@@ -202,16 +186,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm additional lodging systems
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/additionalsystems/{code}:
     get:
       summary: Get specific farm additional lodging system
@@ -235,8 +212,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmAdditionalLodgingSystemCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/reductivesystems:
     get:
       summary: List all farm reductive lodging systems
@@ -248,16 +224,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm reductive lodging systems
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/reductivesystems/{code}:
     get:
       summary: Get specific farm reductive lodging system
@@ -281,8 +250,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmReductiveLodgingSystemCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/foddermeasures:
     get:
       summary: List all farm lodging fodder measures
@@ -294,16 +262,9 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farm lodging fodder measures
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Category"
+          $ref: '#/components/responses/CategoriesList'
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farm/lodgings/foddermeasures/{code}:
     get:
       summary: Get specific farm lodging fodder measure
@@ -327,8 +288,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FarmFodderMeasureCategory"
         404:
-          description: Supplied dataset or category not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
   /datasets/{dataset}/farmlands:
     get:
       summary: List all farmland-related categories
@@ -340,16 +300,96 @@ paths:
         - $ref: '#/components/parameters/languageHeader'
       responses:
         200:
-          description: A list of possible farmland categories
+          $ref: '#/components/responses/CategoriesList'
+        404:
+          $ref: '#/components/responses/NotFound'
+  /datasets/{dataset}/road/roadareas:
+    get:
+      summary: List all road areas
+      operationId: listRoadAreas
+      tags:
+        - roads
+      parameters:
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
+      responses:
+        200:
+          $ref: '#/components/responses/CategoriesList'
+        404:
+          $ref: '#/components/responses/NotFound'
+  /datasets/{dataset}/road/roadtypes:
+    get:
+      summary: List all road types
+      operationId: listRoadTypes
+      tags:
+        - roads
+      parameters:
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
+      responses:
+        200:
+          $ref: '#/components/responses/CategoriesList'
+        404:
+          $ref: '#/components/responses/NotFound'
+  /datasets/{dataset}/road/vehicletypes:
+    get:
+      summary: List all vehicle types
+      operationId: listVehicleTypes
+      tags:
+        - roads
+      parameters:
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
+      responses:
+        200:
+          $ref: '#/components/responses/CategoriesList'
+        404:
+          $ref: '#/components/responses/NotFound'
+  /datasets/{dataset}/road/area/{roadarea}/roadtype/{roadtype}/vehicletype/{vehicletype}/year/{year}:
+    get:
+      summary: Retrieve emission factors for road
+      operationId: getRoadEmissionFactors
+      tags:
+        - roads
+      parameters:
+        - $ref: '#/components/parameters/datasetParam'
+        - $ref: '#/components/parameters/languageHeader'
+        - name: roadarea
+          in: path
+          description: Which (road) area to retrieve for.
+          required: true
+          schema:
+            type: string
+        - name: roadtype
+          in: path
+          description: Which road type to retrieve for.
+          required: true
+          schema:
+            type: string
+        - name: vehicletype
+          in: path
+          description: Which vehicle type to retrieve for.
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: path
+          description: Which year to retrieve for.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The road category with emission factors that can be used.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Category"
+                  $ref: "#/components/schemas/RoadEmissionFactors"
         404:
-          description: Supplied dataset not found.
-          content: {}
+          $ref: '#/components/responses/NotFound'
 components:
   parameters:
     datasetParam:
@@ -366,6 +406,21 @@ components:
       schema:
         type: string
       description:  Indication of which language to use. if not supplied or only unsupported languages are supplied, dutch will be used.
+
+  responses:
+    CategoriesList:
+      description: A list of possible categories
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Category"
+    NotFound:
+      description: |
+        Het opgegeven object kon niet worden gevonden.
+      content: {}
+
   schemas:
     Category:
       type: object
@@ -586,6 +641,41 @@ components:
         fractionCellar:
           type: number
           description: The fraction of the emission originating from the cellar (or manure pit).
+    RoadEmissionFactors:
+      type: object
+      description: Category for road.
+      required:
+        - roadArea
+        - roadType
+        - vehicleType
+        - year
+      properties:
+        roadArea:
+          type: string
+          description: The road area for the emission factors
+        roadType:
+          type: string
+          description: The road type for the emission factors
+        vehicleType:
+          type: string
+          description: The vehicle type for the emission factors
+        year:
+          type: integer
+          format: int32
+          description: The year for the emission factors
+        strictEnforcement:
+          type: boolean
+          description: Indication if these emission factors are for strict enforcement. If absent, assume false.
+        speed:
+          type: integer
+          description: The speed for the vehicles. Can be maximum speed or actual speed, depending on country. If not present, this is not of interest.
+        gradient:
+          type: integer
+          description: The gradient of the road. If not present, assume 0.
+        emissionFactors:
+          type: array
+          items:
+            $ref: "#/components/schemas/RoadEmissionFactor"
     EmissionFactor:
       type: object
       required:
@@ -610,3 +700,18 @@ components:
         fraction:
           type: number
           description: The fraction of emission.
+    RoadEmissionFactor:
+      type: object
+      required:
+        - substance
+        - factor
+      properties:
+        substance:
+          type: string
+          description: The substance that the emission factor is for.
+        factor:
+          type: number
+          description: The factor of emission per g/vehicle/km to be used for vehicles under free flow.
+        stagnatedFactor:
+          type: number
+          description: The factor of emission per g/vehicle/km to be used for vehicles that are considered stagnated..

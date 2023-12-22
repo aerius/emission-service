@@ -36,10 +36,12 @@ import nl.aerius.emissionservice.model.FarmAdditionalLodgingSystemCategory;
 import nl.aerius.emissionservice.model.FarmFodderMeasureCategory;
 import nl.aerius.emissionservice.model.FarmLodgingCategory;
 import nl.aerius.emissionservice.model.FarmReductiveLodgingSystemCategory;
+import nl.aerius.emissionservice.model.RoadEmissionFactors;
 import nl.aerius.emissionservice.model.Sector;
 import nl.aerius.emissionservice.repository.DatasetStore;
 import nl.aerius.emissionservice.repository.FarmRepository;
 import nl.aerius.emissionservice.repository.FarmlandRepository;
+import nl.aerius.emissionservice.repository.RoadRepository;
 import nl.aerius.emissionservice.repository.SectorRepository;
 
 @Service
@@ -54,11 +56,12 @@ public class DatasetsResource implements DatasetsApiDelegate {
   private final SectorRepository sectorRepository;
   private final FarmRepository farmRepository;
   private final FarmlandRepository farmlandRepository;
+  private final RoadRepository roadRepository;
 
   @Autowired
   public DatasetsResource(final NativeWebRequest nativeWebRequest, final LocaleHelper localeHelper, final DatasetHelper datasetHelper,
       final DatasetStore datasetStore, final SectorRepository sectorRepository, final FarmRepository farmRepository,
-      final FarmlandRepository farmlandRepository) {
+      final FarmlandRepository farmlandRepository, final RoadRepository roadRepository) {
     this.nativeWebRequest = nativeWebRequest;
     this.localeHelper = localeHelper;
     this.datasetHelper = datasetHelper;
@@ -66,6 +69,7 @@ public class DatasetsResource implements DatasetsApiDelegate {
     this.sectorRepository = sectorRepository;
     this.farmRepository = farmRepository;
     this.farmlandRepository = farmlandRepository;
+    this.roadRepository = roadRepository;
   }
 
   @Override
@@ -156,10 +160,36 @@ public class DatasetsResource implements DatasetsApiDelegate {
     return handle(dataset, acceptLanguage, farmlandRepository::getFarmlands);
   }
 
+  @Override
+  public ResponseEntity<List<Category>> listRoadAreas(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getRoadAreas);
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listRoadTypes(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getRoadTypes);
+  }
+
+  @Override
+  public ResponseEntity<List<Category>> listVehicleTypes(final String dataset, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, roadRepository::getVehicleTypes);
+  }
+
+  @Override
+  public ResponseEntity<List<RoadEmissionFactors>> getRoadEmissionFactors(final String dataset, final String roadarea, final String roadtype,
+      final String vehicletype, final Integer year, final Optional<String> acceptLanguage) {
+    return handle(dataset, acceptLanguage, locale -> roadRepository.getEmissionFactors(roadarea, roadtype, vehicletype, year).orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find road emission factors for supplied parameters")));
+  }
+
   private <T> ResponseEntity<T> handle(final String dataset, final Optional<String> acceptLanguage, final Function<Locale, T> function) {
     final String actualDataset = handleDataset(dataset);
     final Locale locale = localeHelper.getResponseLocale(acceptLanguage);
     final T result = function.apply(locale);
+    return toOkResponse(actualDataset, result);
+  }
+
+  private <T> ResponseEntity<T> toOkResponse(final String actualDataset, final T result) {
     return ResponseEntity
         .status(HttpStatus.OK)
         .header(DATASET_HEADER, actualDataset)
