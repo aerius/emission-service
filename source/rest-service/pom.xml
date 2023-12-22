@@ -186,7 +186,7 @@
             <configuration>
               <skip>${maven.main.skip}</skip>
               <!-- Location of our openapi specification file -->
-              <inputSpec>${project.basedir}/src/main/resources/static/api.yaml</inputSpec>
+              <inputSpec>${project.basedir}/src/main/resources/static/openapi.yaml</inputSpec>
               <!-- Type of code to generate -->
               <generatorName>spring</generatorName>
               <!-- Location where generated code should end up -->
