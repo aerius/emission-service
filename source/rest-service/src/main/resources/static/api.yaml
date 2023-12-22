@@ -501,6 +501,7 @@ components:
         - description: A category for a farm lodging type.
         - type: object
           required:
+            - emissionFactorType
             - emissionFactors
             - systemDefinitions
             - additionalLodgingSystems
@@ -508,6 +509,9 @@ components:
             - fodderMeasures
             - scrubber
           properties:
+            emissionFactorType:
+              type: string
+              description: Indication of what the unit is for the emission factors of this category.
             emissionFactors:
               type: array
               description: Emission factors per animal.

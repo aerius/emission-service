@@ -72,6 +72,7 @@ public class FarmRepository {
   private static final Field<String> DESCRIPTION = field("description", String.class);
   private static final Field<String> I18N_DESCRIPTION = field("i18n_description", String.class);
   private static final Field<String> SUBSTANCE = field("substance", String.class);
+  private static final Field<String> FACTOR_TYPE = field("emission_factor_type", String.class);
   private static final Field<String> FACTOR = field("factor", String.class);
   private static final Field<String> FRACTION = field("fraction", String.class);
   private static final Field<String> TOTAL_REDUCTION_FRACTION = field("total_reduction_fraction", String.class);
@@ -147,6 +148,7 @@ public class FarmRepository {
         FARM_LODGING_TYPES.CODE,
         FARM_LODGING_TYPES.NAME,
         coalesce(I18N_DESCRIPTION, FARM_LODGING_TYPES.DESCRIPTION).as(DESCRIPTION),
+        FARM_LODGING_TYPES.FARM_EMISSION_FACTOR_TYPE.as(FACTOR_TYPE),
         FARM_LODGING_TYPES.SCRUBBER)
         .from(FARM_LODGING_TYPES)
         .leftJoin(
